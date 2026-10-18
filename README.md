@@ -1,23 +1,21 @@
-# HocMay_2026-2027
+# Học máy 2026–2027
 
-Nhóm Học máy năm học 2026-2027
+## Thành viên
 
+| Họ và tên | MSSV | Vai trò |
+| --- | --- | --- |
+| Trần Nhựt Huy | 3124411112 | Thành viên |
+| Nguyễn Hoàng Phúc | 3124411236 | Thành viên |
+| Phùng Anh Vũ | 3124411351 | Nhóm trưởng |
+| Bùi Nhật Hào | 3124411077 | Thành viên |
 
-**Thành viên nhóm (4 người):**
+## Phân công các lab
 
-| STT | Họ và tên         | MSSV       | Vai trò       |
-| --- | -------------------- | ---------- | -------------- |
-| 1   | Trần Nhựt Huy      | 3124411112 | Thành viên   |
-| 2   | Nguyễn Hoàng Phúc | 3124411236 | Thành viên   |
-| 3   | Phùng Anh Vũ       | 3124411351 | Nhóm trưởng |
-| 4   | Bùi Nhật Hào      | 3124411077 | Thành viên   |
+Phân công đã được gán sẵn trong README của từng lab:
 
-## Công nghệ sử dụng
-
-- **Ngôn ngữ:** Python
-- **IDE:** Visual Studio, Visual Studio Code,..
-- **Quản lý phiên bản:** Git & GitHub
-
-## Cấu trúc project
-
-- Chưa có cấu trúc cho đồ án
+| Lab | Nội dung |
+| --- | --- |
+| [Lab02](lab02/README.md) | Dự đoán giá nhà bằng các mô hình học máy |
+| [Lab03](lab03/README.md) | Khám phá và phân tích dữ liệu giá nhà (EDA) |
+| [Lab04](Lab04/README.md) | Tiền xử lý dữ liệu và lựa chọn đặc trưng |
+| [Lab05](Lab05/README.md) | Thống kê, phân tích dữ liệu và huấn luyện mô hình |
