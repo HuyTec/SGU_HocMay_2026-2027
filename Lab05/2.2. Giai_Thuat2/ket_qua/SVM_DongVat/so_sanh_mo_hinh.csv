@@ -1,0 +1,3 @@
+﻿Model,Train accuracy,CV score,Test accuracy,Test balanced accuracy,Test precision macro,Test recall macro,Test F1 macro,Test ROC AUC (class 1),Minority label,Minority precision,Minority recall,Minority average precision
+SVM baseline,1.0,0.75,1.0,1.0,1.0,1.0,1.0,1.0,0,1.0,1.0,1.0
+SVM tuned,1.0,0.7804878048780488,1.0,1.0,1.0,1.0,1.0,1.0,0,1.0,1.0,1.0
