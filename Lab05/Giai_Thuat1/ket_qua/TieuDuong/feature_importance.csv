@@ -1,0 +1,16 @@
+﻿Feature,Importance
+num__blood_glucose_level,0.4592129159779126
+num__HbA1c_level,0.2154501048662984
+num__age,0.19062701584361974
+cat__smoking_history_No Info,0.04590287335811947
+num__hypertension,0.04511701347994626
+num__heart_disease,0.023516414634679978
+num__bmi,0.016380177632603937
+cat__gender_Female,0.0023341624053291768
+cat__smoking_history_never,0.0006023803692936712
+cat__gender_Male,0.0005634638298442252
+cat__smoking_history_current,0.000293477602346217
+cat__smoking_history_ever,6.166986270935501e-15
+cat__gender_Other,0.0
+cat__smoking_history_former,0.0
+cat__smoking_history_not current,0.0
