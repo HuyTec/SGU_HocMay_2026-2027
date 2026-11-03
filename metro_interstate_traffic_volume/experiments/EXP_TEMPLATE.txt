@@ -1,0 +1,30 @@
+Experiment ID: EXP_00X
+Date: YYYY-MM-DD
+
+Dataset: Traffic Volume
+Model: [Tên mô hình và tham số, ví dụ Ridge Regression (alpha=1.0)]
+
+Features:
+- [Tên đặc trưng thực tế]
+
+Data Split:
+- Train: 70%
+- Validation: 15%
+- Test: 15%
+- Split strategy: Chronological
+
+Results:
+- MAE: [Giá trị thực nghiệm]
+- RMSE: [Giá trị thực nghiệm]
+- R²: [Giá trị thực nghiệm]
+
+Observations:
+- [Tập đánh giá: validation/test; số mẫu; mốc chia thực tế]
+- [Phiên bản dữ liệu, quy tắc xử lý và phiên bản code]
+- [Nhận xét dựa trên kết quả]
+
+Problems:
+- [Vấn đề hoặc giới hạn; chưa ghi nhận vấn đề không đồng nghĩa không có vấn đề]
+
+Next Steps:
+- [Hành động tiếp theo]
