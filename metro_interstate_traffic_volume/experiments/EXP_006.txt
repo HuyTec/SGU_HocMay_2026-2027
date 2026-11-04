@@ -1,0 +1,41 @@
+Experiment ID: EXP_006
+Date: 2026-11-04
+
+Dataset: Traffic Volume
+Model: Thử nghiệm baseline - MLP
+
+Features:
+- weekday
+- hour
+
+Data Split:
+- Train: 70%
+- Validation: 15%
+- Test: 15%
+- Split strategy: Chronological
+
+Results:
+- MAE: 283.3201414126816
+- RMSE: 504.034571152169
+- R²: 0.9342535051743674
+
+Observations:
+- CSV SHA-256: 749c90d720360a4215bb15345526073c079ba4cc95e3fa558796d083f85fce9e
+- Train: 28402 giờ; 2012-10-02 09:00:00 đến 2017-05-10 04:00:00.
+- Validation: 6086 giờ; 2017-05-10 05:00:00 đến 2018-01-19 14:00:00.
+- Test: 6087 giờ; giữ riêng, chưa đánh giá.
+- Python 3.14.7; pandas 3.0.6; scikit-learn 1.9.1.
+- Notebook: notebooks/BASELINE/baseline_time-only.ipynb; commit chưa xác minh.
+- Time-only: chưa dùng ngày lễ, thời tiết hay lịch sử lưu lượng.
+- Thiết lập: One-hot; chuẩn hóa target trong fold; alpha=0.0001; max_iter=120; random_state=42.
+- Tuning: 3 fold theo thời gian trong train; chọn theo MAE.
+- Tham số được chọn: {'regressor__model__hidden_layer_sizes': (16,)}
+- Kết quả từng fold: [{"parameters":{"regressor__model__hidden_layer_sizes":[16]},"fold_1_mae":321.4870049026,"fold_2_mae":286.6092551263,"fold_3_mae":315.6342078034,"mean_cv_mae":307.9101559441,"rank":1},{"parameters":{"regressor__model__hidden_layer_sizes":[32]},"fold_1_mae":315.3426868212,"fold_2_mae":295.6712133487,"fold_3_mae":312.8898953313,"mean_cv_mae":307.9679318337,"rank":2}]
+- Mốc các fold: [{'fold': 1, 'train_start': Timestamp('2012-10-02 09:00:00'), 'train_end': Timestamp('2013-08-18 18:00:00'), 'train_samples': 7102, 'val_start': Timestamp('2013-08-18 19:00:00'), 'val_end': Timestamp('2015-07-07 11:00:00'), 'val_samples': 7100}, {'fold': 2, 'train_start': Timestamp('2012-10-02 09:00:00'), 'train_end': Timestamp('2015-07-07 11:00:00'), 'train_samples': 14202, 'val_start': Timestamp('2015-07-07 12:00:00'), 'val_end': Timestamp('2016-07-15 04:00:00'), 'val_samples': 7100}, {'fold': 3, 'train_start': Timestamp('2012-10-02 09:00:00'), 'train_end': Timestamp('2016-07-15 04:00:00'), 'train_samples': 21302, 'val_start': Timestamp('2016-07-15 05:00:00'), 'val_end': Timestamp('2017-05-10 04:00:00'), 'val_samples': 7100}]
+
+Problems:
+- Dữ liệu thiếu giờ; validation chỉ gồm các giờ quan sát được.
+- Các mô hình dùng cách mã hóa khác nhau; kết quả chưa đánh giá test.
+
+Next Steps:
+- Phân tích sai số theo giờ và giai đoạn thời gian.

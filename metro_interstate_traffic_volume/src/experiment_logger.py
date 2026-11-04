@@ -24,7 +24,7 @@ def save_experiment_log(
     experiment_date: date | str | None = None,
     output_dir: str | Path = DEFAULT_LOG_DIR,
 ) -> Path:
-    """Ghi EXP_001.txt, EXP_002.txt... và trả về đường dẫn tuyệt đối.
+    """Ghi EXP_001.txt, EXP_002.txt... và trả về đường dẫn tương đối.
 
     results nhận MAE, RMSE và R2 (hoặc R²). data_split nhận phần trăm
     Train/Validation/Test, mặc định 70/15/15. Ngày mặc định theo UTC+7.
