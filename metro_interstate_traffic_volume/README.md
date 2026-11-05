@@ -105,13 +105,13 @@ Với đánh giá History từng giờ, quan sát của các giờ validation/te
 
 Đánh giá bằng **MAE, RMSE và R²**. MAE và RMSE có đơn vị xe/giờ; MAE/RMSE thấp hơn và R² cao hơn là tốt hơn trên cùng tập đánh giá. Không dùng MAPE làm độ đo chính vì mục tiêu có thể bằng 0 hoặc rất nhỏ.
 
-Mỗi lần chạy cần ghi ID, ngày, dữ liệu/phiên bản, giả thuyết, thay đổi, mô hình, tham số, đặc trưng, tỷ lệ và mốc chia, tập đánh giá, số mẫu, metrics, nhận xét, vấn đề và bước tiếp theo. Dùng [hàm ghi log](src/experiment_logger.py) và [hướng dẫn nhật ký](experiments/README.md); mẫu điền tay ở [EXP_TEMPLATE.txt](experiments/EXP_TEMPLATE.txt). Mẫu không phải kết quả thực nghiệm.
+Mỗi lần chạy cần ghi ID, ngày, dữ liệu/phiên bản, giả thuyết, thay đổi, mô hình, tham số, đặc trưng, tỷ lệ và mốc chia, tập đánh giá, số mẫu, metrics, nhận xét, vấn đề và bước tiếp theo. Dùng [hàm ghi log](src/experiment_logger.py) và [hướng dẫn nhật ký](docs/experiment_tracking/README.md); mẫu điền tay ở [EXP_TEMPLATE.txt](docs/experiment_tracking/EXP_TEMPLATE.txt). Mẫu không phải kết quả thực nghiệm.
 
 Các phân tích sau baseline gồm mức cải thiện MAE so với baseline, sai số theo giờ/ngày lễ/thời tiết kèm số mẫu, feature importance và SHAP. Diễn giải đóng góp dự đoán của đặc trưng không đồng nghĩa với kết luận nhân quả.
 
 ## 8. Tiến độ hiện tại và kế hoạch
 
-Trong thư mục hiện tại có notebook kiểm tra dữ liệu, EDA và [baseline Time-only](notebooks/baseline_time-only.ipynb). Notebook baseline đã có phần đọc, kiểm tra dữ liệu và gộp timestamp; chưa có code chia tập, huấn luyện và metrics mô hình. Các file `src/data.py`, `src/features.py`, `src/evaluation.py` hiện là khung rỗng; `src/experiment_logger.py` đã có hàm ghi log. Tình trạng này cần cập nhật khi bổ sung bằng chứng mới.
+Notebook [baseline Time-only](notebooks/BASELINE/baseline_V_1.ipynb) đã lưu kết quả validation cho sáu phương pháp; xem [các phiên bản thử nghiệm](src/versions/README.md) và các log EXP để đối chiếu. V_1 cần được chạy lại để xác nhận tính tái lập; V_2–V_5 là kế hoạch. Các file `src/data.py`, `src/features.py`, `src/evaluation.py` hiện là khung rỗng; `src/experiment_logger.py` có hàm ghi log. Test được giữ riêng theo các log hiện có.
 
 Lịch dự kiến theo proposal:
 
@@ -131,8 +131,9 @@ Các mốc tuần là kế hoạch, không phải xác nhận đã hoàn thành.
 | --- | --- |
 | `data/` | CSV gốc |
 | `notebooks/data_validation.ipynb` | Kiểm tra chất lượng dữ liệu |
-| `notebooks/eda_vu.ipynb` | EDA và trực quan hóa |
-| `notebooks/baseline_time-only.ipynb` | Baseline Time-only đang xây dựng |
+| `notebooks/EDA/eda.ipynb` | EDA chung và trực quan hóa |
+| `notebooks/versions/V_1_time_only/` | Chỉ mục notebook và EDA liên quan V_1 |
+| `notebooks/BASELINE/baseline_V_1.ipynb` | Baseline Time-only đang xây dựng |
 | `src/` | Các hàm Python dùng lại; kiểm tra nội dung từng file trước khi sử dụng |
 | `experiments/` | Mẫu, hướng dẫn và log từng lần chạy |
 | `docs/` | Proposal và bảng công việc |

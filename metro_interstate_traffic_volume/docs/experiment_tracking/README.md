@@ -1,17 +1,19 @@
 # Nhật ký thực nghiệm
 
+Xem [các phiên bản thử nghiệm](../../src/versions/README.md) để đối chiếu phạm vi, trạng thái và các log liên quan.
+
 `experiment_log.xlsx` là bảng tổng hợp **ảnh chụp** của lần chạy Time-only
-trong notebook `notebooks/BASELINE/baseline_time-only.ipynb`: sheet Validation
+trong notebook `notebooks/BASELINE/baseline_V_1.ipynb`: sheet Validation
 ghi kết quả theo mô hình, Tuning CV ghi từng bộ tham số và MAE của ba fold,
 Fold thoi gian ghi các mốc chia. Các file `EXP_001.txt`–`EXP_006.txt` chứa
 chi tiết do `save_experiment_log` ghi từ lần chạy trước qua script ngoài notebook.
 Notebook hiện có các cell gọi trực tiếp logger; đặt `SAVE_EXPERIMENT_LOGS = True`
 và chạy cell ghi để tạo log mới sau khi đã chạy các cell mô hình. Mỗi lần ghi tạo
-file mới. Excel không tự cập nhật; cần cập nhật riêng sau mỗi lần chạy tiếp theo.
+file mới. Excel không tự cập nhật; cần cập nhật riêng sau mỗi lần chạy tiếp theo. Tên notebook trong các log cũ phản ánh tên tại thời điểm ghi và được giữ nguyên.
 
 `src/experiment_logger.py` lưu mỗi lần gọi thành một file `EXP_001.txt`,
-`EXP_002.txt`... trong thư mục này, không ghi đè các lần chạy trước.
-`EXP_TEMPLATE.txt` là mẫu điền tay, không phải kết quả thực nghiệm.
+`EXP_002.txt`... trong thư mục `experiments/`, không ghi đè các lần chạy trước.
+[`EXP_TEMPLATE.txt`](EXP_TEMPLATE.txt) là mẫu điền tay, không phải kết quả thực nghiệm.
 Ngày mặc định theo UTC+7; có thể truyền `experiment_date="YYYY-MM-DD"`.
 
 ## Gọi từ notebook
