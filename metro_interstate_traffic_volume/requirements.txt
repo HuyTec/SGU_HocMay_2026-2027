@@ -1,0 +1,26 @@
+# Môi trường chung của nhóm (Python 3.13.9).
+#
+# Đã kiểm tra với đúng bộ phiên bản này, chạy hết không lỗi:
+#   - python -m src.prepare_data: ra đúng các file data/processed đang có trong Git
+#   - notebooks/data_validation.ipynb, notebooks/preprocessing_features.ipynb, notebooks/EDA/eda.ipynb
+#   - notebooks/BASELINE/baseline_V_1.ipynb: MAE/RMSE/R² trùng bản đã lưu
+#     (bản đã lưu được tạo với pandas 3.0.6 + scikit-learn 1.9.1)
+#
+# Lưu ý: với pandas 3.x, preprocessing_features.ipynb lỗi ở bước so sánh kết quả của src với
+# phần thử nghiệm (cột holiday_name khác kiểu dữ liệu), nên nhóm dùng pandas 2.3.3.
+# Đổi phiên bản thì chạy lại các notebook trên trước khi ghi nhận kết quả.
+#
+# Cài đặt: tạo venv ở thư mục NGOÀI repo để không commit nhầm, ví dụ trên Windows:
+#   python -m venv C:\venv\hocmay
+#   C:\venv\hocmay\Scripts\activate
+#   pip install -r requirements.txt
+
+pandas==2.3.3
+numpy==2.2.6
+scikit-learn==1.7.2
+scipy==1.16.3
+matplotlib==3.10.6
+seaborn==0.13.2
+
+# Để chạy notebook trong Jupyter hoặc VS Code
+ipykernel==6.31.0
