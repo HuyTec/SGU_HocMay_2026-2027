@@ -1,0 +1,64 @@
+Experiment ID: EXP_017
+Date: 2026-11-06
+
+Dataset: Traffic Volume
+Model: B_thoi_tiet - Random Forest
+
+Features:
+- hour
+- day_of_week
+- month
+- is_weekend
+- is_rush_hour
+- hour_sin
+- hour_cos
+- day_of_week_sin
+- day_of_week_cos
+- month_sin
+- month_cos
+- is_holiday
+- temp_c
+- rain_1h
+- snow_1h
+- clouds_all
+- weather_clear
+- weather_clouds
+- weather_drizzle
+- weather_fog
+- weather_haze
+- weather_mist
+- weather_rain
+- weather_smoke
+- weather_snow
+- weather_squall
+- weather_thunderstorm
+
+Data Split:
+- Train: 70%
+- Validation: 15%
+- Test: 15%
+- Split strategy: Chronological
+
+Results:
+- MAE: 245.82920917854227
+- RMSE: 399.5032831878288
+- R²: 0.9586959479691983
+
+Observations:
+- CSV SHA-256: 749c90d720360a4215bb15345526073c079ba4cc95e3fa558796d083f85fce9e
+- Train: 28402 giờ; 2012-10-02 09:00:00 đến 2017-05-10 04:00:00.
+- Validation: 6086 giờ; 2017-05-10 05:00:00 đến 2018-01-19 14:00:00.
+- Test: 6087 giờ; giữ riêng, chưa đánh giá.
+- Python 3.13.9; pandas 3.0.6; scikit-learn 1.9.1; xgboost 3.4.1.
+- Notebook: notebooks/BASELINE/baseline_V_3.ipynb; commit gốc 442fca3; có thay đổi chưa commit.
+- Tập đánh giá: validation; 6086 giờ.
+- Tham số được chọn: {'min_samples_leaf': 5, 'max_features': 0.33, 'max_depth': 20}
+- MAE trung bình CV: 278.3232960856905
+- Kết quả từng fold: [{"parameters":{"min_samples_leaf":5,"max_features":0.33,"max_depth":20},"fold_1_mae":262.4677023213,"fold_2_mae":266.3285698989,"fold_3_mae":306.1736160369,"mean_cv_mae":278.3232960857,"rank":1},{"parameters":{"min_samples_leaf":10,"max_features":0.5,"max_depth":null},"fold_1_mae":263.6870516136,"fold_2_mae":264.2435309439,"fold_3_mae":308.4743490477,"mean_cv_mae":278.8016438684,"rank":2},{"parameters":{"min_samples_leaf":2,"max_features":0.33,"max_depth":null},"fold_1_mae":263.4126756991,"fold_2_mae":267.2512905217,"fold_3_mae":310.5732526578,"mean_cv_mae":280.4124062929,"rank":3},{"parameters":{"min_samples_leaf":10,"max_features":0.33,"max_depth":20},"fold_1_mae":269.4923416696,"fold_2_mae":269.0301944054,"fold_3_mae":306.1430929074,"mean_cv_mae":281.5552096608,"rank":4},{"parameters":{"min_samples_leaf":1,"max_features":0.33,"max_depth":20},"fold_1_mae":268.8126027532,"fold_2_mae":274.7252062511,"fold_3_mae":318.2207180011,"mean_cv_mae":287.2528423351,"rank":5},{"parameters":{"min_samples_leaf":1,"max_features":0.5,"max_depth":null},"fold_1_mae":270.8372061033,"fold_2_mae":275.3888323709,"fold_3_mae":322.5808336922,"mean_cv_mae":289.6022907221,"rank":6}]
+
+Problems:
+- Dùng thời tiết quan trắc cùng giờ; chưa đo khi chỉ có dự báo thời tiết.
+- Dữ liệu thiếu giờ; validation chỉ gồm các giờ quan sát được.
+
+Next Steps:
+- Đánh giá thêm lịch sử lưu lượng trong V_4 và phân tích sai số.

@@ -61,3 +61,7 @@ Ghi rõ tập đánh giá trong Observations vì ba metrics chỉ đại diện 
 được dùng để tính chúng. Các mốc chia, phiên bản dữ liệu/code và tham số
 cần khớp với lần chạy. Mỗi lần chạy lại cell ghi log sẽ tạo một ID mới.
 Có thể dùng `output_dir` để chọn thư mục khác; ID được cấp riêng theo thư mục.
+
+## Các log của V_2–V_4
+
+`EXP_007`–`EXP_027` được ghi từ `baseline_V_2.ipynb`, `baseline_V_3.ipynb` và `baseline_V_4.ipynb`. Các notebook này chỉ ghi log khi đặt biến môi trường `SAVE_EXPERIMENT_LOGS=1` trước khi chạy, nên chạy lại bình thường không tạo log trùng. Sheet `Validation V2-V4` trong `experiment_log.xlsx` tổng hợp các log này. Nếu một thành viên khác ghi log trên nhánh riêng cùng lúc, ID có thể trùng khi gộp; kiểm tra thư mục `experiments/` trước khi ghi.

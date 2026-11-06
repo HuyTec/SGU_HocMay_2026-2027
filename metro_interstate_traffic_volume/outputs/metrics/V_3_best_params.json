@@ -1,0 +1,17 @@
+{
+  "B_thoi_tiet|Ridge": {
+    "model__alpha": 0.1
+  },
+  "B_thoi_tiet|Random Forest": {
+    "min_samples_leaf": 5,
+    "max_features": 0.33,
+    "max_depth": 20
+  },
+  "B_thoi_tiet|XGBoost": {
+    "subsample": 0.7,
+    "min_child_weight": 1,
+    "max_depth": 5,
+    "learning_rate": 0.03,
+    "colsample_bytree": 0.6
+  }
+}

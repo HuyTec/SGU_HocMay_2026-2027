@@ -1,0 +1,48 @@
+Experiment ID: EXP_011
+Date: 2026-11-06
+
+Dataset: Traffic Volume
+Model: T1_lich - Random Forest
+
+Features:
+- hour
+- day_of_week
+- month
+- is_weekend
+- is_rush_hour
+- hour_sin
+- hour_cos
+- day_of_week_sin
+- day_of_week_cos
+- month_sin
+- month_cos
+
+Data Split:
+- Train: 70%
+- Validation: 15%
+- Test: 15%
+- Split strategy: Chronological
+
+Results:
+- MAE: 276.83197978055966
+- RMSE: 474.2507817572694
+- R²: 0.9417939585173974
+
+Observations:
+- CSV SHA-256: 749c90d720360a4215bb15345526073c079ba4cc95e3fa558796d083f85fce9e
+- Train: 28402 giờ; 2012-10-02 09:00:00 đến 2017-05-10 04:00:00.
+- Validation: 6086 giờ; 2017-05-10 05:00:00 đến 2018-01-19 14:00:00.
+- Test: 6087 giờ; giữ riêng, chưa đánh giá.
+- Python 3.13.9; pandas 3.0.6; scikit-learn 1.9.1; xgboost 3.4.1.
+- Notebook: notebooks/BASELINE/baseline_V_2.ipynb; commit gốc 442fca3; có thay đổi chưa commit.
+- Tập đánh giá: validation; 6086 giờ.
+- Tham số được chọn: {'min_samples_leaf': 10, 'max_features': 0.5, 'max_depth': None}
+- MAE trung bình CV: 294.4162580345347
+- Kết quả từng fold: [{"parameters":{"min_samples_leaf":10,"max_features":0.5,"max_depth":null},"fold_1_mae":278.3890181548,"fold_2_mae":288.5435270081,"fold_3_mae":316.3162289407,"mean_cv_mae":294.4162580345,"rank":1},{"parameters":{"min_samples_leaf":10,"max_features":0.33,"max_depth":20},"fold_1_mae":282.8603991214,"fold_2_mae":287.7724576876,"fold_3_mae":315.0705803627,"mean_cv_mae":295.2344790572,"rank":2},{"parameters":{"min_samples_leaf":5,"max_features":0.33,"max_depth":20},"fold_1_mae":276.5088437278,"fold_2_mae":295.6340857105,"fold_3_mae":322.4249332476,"mean_cv_mae":298.189287562,"rank":3},{"parameters":{"min_samples_leaf":2,"max_features":0.33,"max_depth":null},"fold_1_mae":285.5014044718,"fold_2_mae":304.4603608116,"fold_3_mae":326.7824008237,"mean_cv_mae":305.5813887023,"rank":4},{"parameters":{"min_samples_leaf":1,"max_features":0.33,"max_depth":20},"fold_1_mae":290.5935141125,"fold_2_mae":306.5173659452,"fold_3_mae":327.032451624,"mean_cv_mae":308.0477772272,"rank":5},{"parameters":{"min_samples_leaf":1,"max_features":0.5,"max_depth":null},"fold_1_mae":290.686921619,"fold_2_mae":306.5217752916,"fold_3_mae":327.0201243993,"mean_cv_mae":308.0762737699,"rank":6}]
+
+Problems:
+- Dữ liệu thiếu giờ; validation chỉ gồm các giờ quan sát được.
+- Validation chỉ có 10 ngày có nhãn sự kiện; kết quả theo từng sự kiện có ít mẫu.
+
+Next Steps:
+- So sánh Time với Time + Weather trong V_3.

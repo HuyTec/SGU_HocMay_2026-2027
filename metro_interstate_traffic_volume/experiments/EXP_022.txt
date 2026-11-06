@@ -1,0 +1,67 @@
+Experiment ID: EXP_022
+Date: 2026-11-06
+
+Dataset: Traffic Volume
+Model: C_lich_su - Ridge
+
+Features:
+- hour
+- day_of_week
+- month
+- is_weekend
+- is_rush_hour
+- hour_sin
+- hour_cos
+- day_of_week_sin
+- day_of_week_cos
+- month_sin
+- month_cos
+- is_holiday
+- temp_c
+- rain_1h
+- snow_1h
+- clouds_all
+- weather_clear
+- weather_clouds
+- weather_drizzle
+- weather_fog
+- weather_haze
+- weather_mist
+- weather_rain
+- weather_smoke
+- weather_snow
+- weather_squall
+- weather_thunderstorm
+- lag_24h
+- lag_168h
+- mean_24h
+
+Data Split:
+- Train: 70%
+- Validation: 15%
+- Test: 15%
+- Split strategy: Chronological
+
+Results:
+- MAE: 243.88947830791386
+- RMSE: 405.7863525821688
+- R²: 0.9573291701744386
+
+Observations:
+- CSV SHA-256: 749c90d720360a4215bb15345526073c079ba4cc95e3fa558796d083f85fce9e
+- Train: 28402 giờ; 2012-10-02 09:00:00 đến 2017-05-10 04:00:00.
+- Validation: 6086 giờ; 2017-05-10 05:00:00 đến 2018-01-19 14:00:00.
+- Test: 6087 giờ; giữ riêng, chưa đánh giá.
+- Python 3.13.9; pandas 3.0.6; scikit-learn 1.9.1; xgboost 3.4.1.
+- Notebook: notebooks/BASELINE/baseline_V_4.ipynb; commit gốc 442fca3; có thay đổi chưa commit.
+- Tập đánh giá: validation đủ lịch sử; 6050/6086 giờ.
+- Tham số được chọn: {'model__alpha': 0.1}
+- MAE trung bình CV: 265.49399214583906
+- Kết quả từng fold: [{"parameters":{"model__alpha":0.1},"fold_1_mae":265.6221464347,"fold_2_mae":278.2301951251,"fold_3_mae":252.6296348777,"mean_cv_mae":265.4939921458,"rank":1},{"parameters":{"model__alpha":1.0},"fold_1_mae":276.2695389685,"fold_2_mae":275.2195620482,"fold_3_mae":250.4077246099,"mean_cv_mae":267.2989418755,"rank":2},{"parameters":{"model__alpha":10.0},"fold_1_mae":313.8918596527,"fold_2_mae":291.9672583628,"fold_3_mae":261.8104085773,"mean_cv_mae":289.2231755309,"rank":3},{"parameters":{"model__alpha":100.0},"fold_1_mae":362.2876794182,"fold_2_mae":331.8765105254,"fold_3_mae":299.5396667065,"mean_cv_mae":331.2346188834,"rank":4},{"parameters":{"model__alpha":1000.0},"fold_1_mae":449.6037397218,"fold_2_mae":381.1913983505,"fold_3_mae":344.0857595435,"mean_cv_mae":391.626965872,"rank":5}]
+
+Problems:
+- Đánh giá tuần tự từng giờ, không phải dự đoán nhiều bước.
+- Metrics chỉ tính trên các giờ đủ lịch sử; train bị giảm do thiếu giờ.
+
+Next Steps:
+- Phân tích sai số và SHAP; sau khi nhóm chốt quy trình mới đánh giá test trong V_5.

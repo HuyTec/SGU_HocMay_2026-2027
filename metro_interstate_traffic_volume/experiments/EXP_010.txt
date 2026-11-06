@@ -1,0 +1,48 @@
+Experiment ID: EXP_010
+Date: 2026-11-06
+
+Dataset: Traffic Volume
+Model: T1_lich - Ridge
+
+Features:
+- hour
+- day_of_week
+- month
+- is_weekend
+- is_rush_hour
+- hour_sin
+- hour_cos
+- day_of_week_sin
+- day_of_week_cos
+- month_sin
+- month_cos
+
+Data Split:
+- Train: 70%
+- Validation: 15%
+- Test: 15%
+- Split strategy: Chronological
+
+Results:
+- MAE: 291.7965663737174
+- RMSE: 490.4229762534027
+- R²: 0.9377565622801878
+
+Observations:
+- CSV SHA-256: 749c90d720360a4215bb15345526073c079ba4cc95e3fa558796d083f85fce9e
+- Train: 28402 giờ; 2012-10-02 09:00:00 đến 2017-05-10 04:00:00.
+- Validation: 6086 giờ; 2017-05-10 05:00:00 đến 2018-01-19 14:00:00.
+- Test: 6087 giờ; giữ riêng, chưa đánh giá.
+- Python 3.13.9; pandas 3.0.6; scikit-learn 1.9.1; xgboost 3.4.1.
+- Notebook: notebooks/BASELINE/baseline_V_2.ipynb; commit gốc 442fca3; có thay đổi chưa commit.
+- Tập đánh giá: validation; 6086 giờ.
+- Tham số được chọn: {'model__alpha': 0.1}
+- MAE trung bình CV: 307.72483606845816
+- Kết quả từng fold: [{"parameters":{"model__alpha":0.1},"fold_1_mae":297.3086274527,"fold_2_mae":301.9203139764,"fold_3_mae":323.9455667762,"mean_cv_mae":307.7248360685,"rank":1},{"parameters":{"model__alpha":1.0},"fold_1_mae":305.9333241557,"fold_2_mae":305.2543158762,"fold_3_mae":323.9709377303,"mean_cv_mae":311.7195259207,"rank":2},{"parameters":{"model__alpha":10.0},"fold_1_mae":485.0397829575,"fold_2_mae":373.3948964793,"fold_3_mae":345.2566373352,"mean_cv_mae":401.230438924,"rank":3},{"parameters":{"model__alpha":100.0},"fold_1_mae":1251.8361023386,"fold_2_mae":1005.9852522177,"fold_3_mae":791.3672418691,"mean_cv_mae":1016.3961988085,"rank":4},{"parameters":{"model__alpha":1000.0},"fold_1_mae":1670.6383300912,"fold_2_mae":1631.3748067452,"fold_3_mae":1513.02384493,"mean_cv_mae":1605.0123272555,"rank":5}]
+
+Problems:
+- Dữ liệu thiếu giờ; validation chỉ gồm các giờ quan sát được.
+- Validation chỉ có 10 ngày có nhãn sự kiện; kết quả theo từng sự kiện có ít mẫu.
+
+Next Steps:
+- So sánh Time với Time + Weather trong V_3.
