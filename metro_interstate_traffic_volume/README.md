@@ -111,18 +111,7 @@ Các phân tích sau baseline gồm mức cải thiện MAE so với baseline, s
 
 ## 8. Tiến độ hiện tại và kế hoạch
 
-Notebook [baseline Time-only](notebooks/BASELINE/baseline_V_1.ipynb) đã lưu kết quả validation cho sáu phương pháp. Khi chạy lại với cùng dữ liệu (SHA-256 `749c90d7…`), pandas 3.0.6 và scikit-learn 1.9.1 trên Python 3.13.9, bảng so sánh cho cùng giá trị MAE/RMSE/R². V_2–V_4 đã có thí nghiệm trên validation (EXP_007–EXP_027). V_5 (đánh giá test) chưa chạy và cần nhóm chốt quy trình trước. Xem [các phiên bản thử nghiệm](src/versions/README.md) và [bản rà soát tiến độ](docs/ra_soat_tien_do.md).
-
-Kết quả validation chính (MAE, xe/giờ; chi tiết trong từng notebook):
-
-| Bước | Mô hình tốt nhất | MAE | Ghi chú |
-| --- | --- | --- | --- |
-| Trung bình thứ–giờ | Baseline | 285,03 | Mốc của V_1 |
-| A — Time + ngày lễ (V_2) | XGBoost | 244,94 | `is_holiday` giảm 33,95 so với chỉ dùng lịch |
-| B — Time + Weather (V_3) | XGBoost | 243,45 | Thời tiết giảm 1,49; CI 95% chứa 0 |
-| C — thêm History (V_4) | XGBoost | 192,94 | Đo trên 6.050 giờ đủ lịch sử; B trên cùng giờ là 243,04 |
-
-`src/data.py`, `src/features.py`, `src/evaluation.py` và `src/models.py` chứa quy trình dùng chung. `src/data.py` cho kết quả trùng với `final_filled_splits` của `preprocessing_features.ipynb`. Test được giữ riêng.
+Notebook [baseline Time-only](notebooks/BASELINE/baseline_V_1.ipynb) đã lưu kết quả validation cho sáu phương pháp; xem [các phiên bản thử nghiệm](src/versions/README.md) và các log EXP để đối chiếu. V_1 cần được chạy lại để xác nhận tính tái lập; V_2–V_5 là kế hoạch. Các file `src/data.py`, `src/features.py`, `src/evaluation.py` hiện là khung rỗng; `src/experiment_logger.py` có hàm ghi log. Test được giữ riêng theo các log hiện có.
 
 Lịch dự kiến theo proposal:
 
@@ -134,7 +123,7 @@ Lịch dự kiến theo proposal:
 | 4 | Tinh chỉnh, đối chứng và phân tích lỗi | Huy, phối hợp Hào | Bảng kết quả, biểu đồ, diễn giải/SHAP |
 | 5 | Demo, báo cáo và slide | Hào, phối hợp nhóm | Demo Time + Weather, báo cáo và gói nộp |
 
-Các mốc tuần là kế hoạch, không phải xác nhận đã hoàn thành. Bảng công việc `docs/Task.xlsx` đã bị xóa khỏi repo ở commit `9d064fa`; có thể lấy lại bằng `git show 9d064fa^:metro_interstate_traffic_volume/docs/Task.xlsx > Task.xlsx`. Cập nhật bằng chứng thực tế trước khi báo cáo.
+Các mốc tuần là kế hoạch, không phải xác nhận đã hoàn thành. Đối chiếu thêm [bảng công việc](docs/Task.xlsx) và cập nhật bằng chứng thực tế trước khi báo cáo.
 
 ## 9. Tổ chức và chạy lại
 
@@ -144,24 +133,14 @@ Các mốc tuần là kế hoạch, không phải xác nhận đã hoàn thành.
 | `notebooks/data_validation.ipynb` | Kiểm tra chất lượng dữ liệu |
 | `notebooks/EDA/eda.ipynb` | EDA chung và trực quan hóa |
 | `notebooks/versions/V_1_time_only/` | Chỉ mục notebook và EDA liên quan V_1 |
-| `notebooks/preprocessing_features.ipynb` | Quy tắc gộp giờ, điền thiếu và đặc trưng thời gian |
-| `notebooks/BASELINE/baseline_V_1.ipynb` | Baseline Time-only |
-| `notebooks/BASELINE/baseline_V_2.ipynb` | Thời gian và ngày lễ (cấu hình A) |
-| `notebooks/BASELINE/baseline_V_3.ipynb` | Time + Weather (cấu hình B), đối chứng A–B, độ nhạy dữ liệu |
-| `notebooks/BASELINE/baseline_V_4.ipynb` | History (cấu hình C), seasonal naive, đối chứng B–C |
-| `notebooks/BASELINE/error_analysis_validation.ipynb` | Sai số theo giờ/ngày/thời tiết và SHAP |
-| `src/data.py` | CSV gốc → bảng một dòng mỗi giờ → chia 70/15/15 → điền thiếu |
-| `src/features.py` | Đặc trưng thời gian, thời tiết, lịch sử và danh sách cấu hình A/B/C |
-| `src/models.py` | Mô hình, lưới tuning dùng chung, lưu/đọc kết quả |
-| `src/evaluation.py` | Metrics, hai baseline thống kê, bootstrap theo ngày |
-| `app/demo_time_weather.py` | Demo Streamlit Time + Weather |
-| `outputs/metrics/`, `outputs/predictions/` | Metrics, tham số đã chọn và dự đoán validation |
-| `experiments/` | Log từng lần chạy |
-| `docs/` | Proposal, hướng dẫn nhật ký và rà soát tiến độ |
+| `notebooks/BASELINE/baseline_V_1.ipynb` | Baseline Time-only đang xây dựng |
+| `src/` | Các hàm Python dùng lại; kiểm tra nội dung từng file trước khi sử dụng |
+| `experiments/` | Mẫu, hướng dẫn và log từng lần chạy |
+| `docs/` | Proposal và bảng công việc |
 
-Cài môi trường bằng `pip install -r requirements.txt`. Chạy các notebook theo thứ tự V_2 → V_3 → V_4 → `error_analysis_validation`, vì notebook sau đọc dự đoán đã lưu của notebook trước. Các notebook V_2–V_4 chỉ ghi log khi đặt biến môi trường `SAVE_EXPERIMENT_LOGS=1`. Demo: `streamlit run app/demo_time_weather.py` từ thư mục dự án, sau khi đã chạy V_2 và V_3.
+Mở notebook trong Jupyter hoặc VS Code và chọn môi trường Python có các thư viện được import. Phần Time-only hiện dùng `pandas` và `numpy`; phần Ridge dự kiến cần `scikit-learn`. Chạy các cell theo thứ tự từ trên xuống. Notebook hỗ trợ thư mục làm việc ở gốc dự án hoặc `notebooks/`.
 
-Trước khi ghi nhận một lần thực nghiệm hoàn chỉnh, restart kernel và chạy lại toàn bộ notebook, lưu output, phiên bản Python/thư viện và SHA-256 của dữ liệu.
+Trước khi ghi nhận một lần thực nghiệm hoàn chỉnh, restart kernel và chạy lại toàn bộ notebook, lưu output, phiên bản Python/thư viện và SHA-256 của dữ liệu. Dự án chưa có file khóa phiên bản môi trường; cần bổ sung phiên bản đã kiểm chứng khi đóng gói để chạy lại.
 
 ## 10. Sản phẩm và tài liệu
 
@@ -171,7 +150,7 @@ Gói nộp giữa kỳ theo yêu cầu học phần gồm các sản phẩm th�
 
 - [Proposal Word](docs/ML_Project_Proposal.docx)
 - [Proposal PDF](docs/Nhom7_DuDoanLuuLuongGiaoThong_Proposal.pdf)
-- [Rà soát tiến độ](docs/ra_soat_tien_do.md)
+- [Bảng công việc](docs/Task.xlsx)
 - [Dataset CSV](data/Metro_Interstate_Traffic_Volume.csv)
 
 Hướng phát triển trong proposal gồm dữ liệu giao thông Việt Nam, dự đoán nhiều bước và mô hình chuỗi thời gian chuyên dụng; chưa phải phạm vi đã triển khai.

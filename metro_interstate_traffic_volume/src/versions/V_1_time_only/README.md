@@ -1,6 +1,6 @@
 # V_1 — Time-only
 
-**Trạng thái:** Đã chạy lại ngày 06/11/2026 với Python 3.13.9, pandas 3.0.6, scikit-learn 1.9.1 (tắt ghi log); bảng so sánh validation trùng output đã lưu. Phân tích sai số cho cấu hình có ngày lễ và thời tiết nằm ở `notebooks/BASELINE/error_analysis_validation.ipynb`.
+**Trạng thái:** Đã có thử nghiệm; cần chạy lại để xác nhận tính tái lập và phân tích sai số.
 
 - [Chỉ mục notebook V_1 và EDA chung](../../../notebooks/versions/V_1_time_only/README.md).
 - Notebook đang sử dụng: [baseline_time-only.ipynb](../../../notebooks/BASELINE/baseline_V_1.ipynb).
