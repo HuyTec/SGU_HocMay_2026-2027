@@ -1,0 +1,67 @@
+Experiment ID: EXP_024
+Date: 2026-11-06
+
+Dataset: Traffic Volume
+Model: C_lich_su - XGBoost
+
+Features:
+- hour
+- day_of_week
+- month
+- is_weekend
+- is_rush_hour
+- hour_sin
+- hour_cos
+- day_of_week_sin
+- day_of_week_cos
+- month_sin
+- month_cos
+- is_holiday
+- temp_c
+- rain_1h
+- snow_1h
+- clouds_all
+- weather_clear
+- weather_clouds
+- weather_drizzle
+- weather_fog
+- weather_haze
+- weather_mist
+- weather_rain
+- weather_smoke
+- weather_snow
+- weather_squall
+- weather_thunderstorm
+- lag_24h
+- lag_168h
+- mean_24h
+
+Data Split:
+- Train: 70%
+- Validation: 15%
+- Test: 15%
+- Split strategy: Chronological
+
+Results:
+- MAE: 196.13198464890158
+- RMSE: 313.7236886928595
+- R²: 0.9744946762458114
+
+Observations:
+- CSV SHA-256: 749c90d720360a4215bb15345526073c079ba4cc95e3fa558796d083f85fce9e
+- Train: 28402 giờ; 2012-10-02 09:00:00 đến 2017-05-10 04:00:00.
+- Validation: 6086 giờ; 2017-05-10 05:00:00 đến 2018-01-19 14:00:00.
+- Test: 6087 giờ; giữ riêng, chưa đánh giá.
+- Python 3.13.9; pandas 3.0.6; scikit-learn 1.9.1; xgboost 3.4.1.
+- Notebook: notebooks/BASELINE/baseline_V_4.ipynb; commit gốc 442fca3; có thay đổi chưa commit.
+- Tập đánh giá: validation đủ lịch sử; 6050/6086 giờ.
+- Tham số được chọn: {'subsample': 0.7, 'min_child_weight': 1, 'max_depth': 6, 'learning_rate': 0.03, 'colsample_bytree': 0.8}
+- MAE trung bình CV: 230.9595743815104
+- Kết quả từng fold: [{"parameters":{"subsample":0.7,"min_child_weight":1,"max_depth":6,"learning_rate":0.03,"colsample_bytree":0.8},"fold_1_mae":225.0191497803,"fold_2_mae":244.4837036133,"fold_3_mae":223.375869751,"mean_cv_mae":230.9595743815,"rank":1},{"parameters":{"subsample":0.7,"min_child_weight":1,"max_depth":5,"learning_rate":0.03,"colsample_bytree":0.6},"fold_1_mae":224.3719329834,"fold_2_mae":247.0876922607,"fold_3_mae":225.0709991455,"mean_cv_mae":232.1768747965,"rank":2},{"parameters":{"subsample":1.0,"min_child_weight":1,"max_depth":6,"learning_rate":0.05,"colsample_bytree":0.8},"fold_1_mae":224.7761383057,"fold_2_mae":247.2846832275,"fold_3_mae":225.8195800781,"mean_cv_mae":232.6268005371,"rank":3},{"parameters":{"subsample":0.7,"min_child_weight":10,"max_depth":6,"learning_rate":0.03,"colsample_bytree":0.8},"fold_1_mae":226.1529388428,"fold_2_mae":248.763092041,"fold_3_mae":224.5260925293,"mean_cv_mae":233.147374471,"rank":4},{"parameters":{"subsample":1.0,"min_child_weight":1,"max_depth":8,"learning_rate":0.03,"colsample_bytree":0.8},"fold_1_mae":225.4624481201,"fold_2_mae":249.3148498535,"fold_3_mae":225.6687927246,"mean_cv_mae":233.4820302327,"rank":5},{"parameters":{"subsample":0.7,"min_child_weight":1,"max_depth":4,"learning_rate":0.05,"colsample_bytree":0.8},"fold_1_mae":229.1083068848,"fold_2_mae":251.657913208,"fold_3_mae":229.9338684082,"mean_cv_mae":236.9000295003,"rank":6},{"parameters":{"subsample":1.0,"min_child_weight":5,"max_depth":5,"learning_rate":0.05,"colsample_bytree":1.0},"fold_1_mae":233.9550170898,"fold_2_mae":253.0408935547,"fold_3_mae":229.8273620605,"mean_cv_mae":238.9410909017,"rank":7},{"parameters":{"subsample":0.7,"min_child_weight":1,"max_depth":4,"learning_rate":0.1,"colsample_bytree":0.8},"fold_1_mae":235.7972412109,"fold_2_mae":253.0881500244,"fold_3_mae":228.8020477295,"mean_cv_mae":239.2291463216,"rank":8},{"parameters":{"subsample":1.0,"min_child_weight":10,"max_depth":8,"learning_rate":0.05,"colsample_bytree":0.8},"fold_1_mae":231.9086914062,"fold_2_mae":256.1564331055,"fold_3_mae":230.32421875,"mean_cv_mae":239.4631144206,"rank":9},{"parameters":{"subsample":0.85,"min_child_weight":10,"max_depth":5,"learning_rate":0.1,"colsample_bytree":0.8},"fold_1_mae":236.5727081299,"fold_2_mae":252.1011962891,"fold_3_mae":230.0641326904,"mean_cv_mae":239.5793457031,"rank":10},{"parameters":{"subsample":0.7,"min_child_weight":1,"max_depth":4,"learning_rate":0.03,"colsample_bytree":0.8},"fold_1_mae":231.1826629639,"fold_2_mae":257.5918579102,"fold_3_mae":233.3129119873,"mean_cv_mae":240.6958109538,"rank":11},{"parameters":{"subsample":0.7,"min_child_weight":5,"max_depth":4,"learning_rate":0.03,"colsample_bytree":1.0},"fold_1_mae":237.4906463623,"fold_2_mae":258.0053710938,"fold_3_mae":237.0719604492,"mean_cv_mae":244.1893259684,"rank":12}]
+
+Problems:
+- Đánh giá tuần tự từng giờ, không phải dự đoán nhiều bước.
+- Metrics chỉ tính trên các giờ đủ lịch sử; train bị giảm do thiếu giờ.
+
+Next Steps:
+- Phân tích sai số và SHAP; sau khi nhóm chốt quy trình mới đánh giá test trong V_5.

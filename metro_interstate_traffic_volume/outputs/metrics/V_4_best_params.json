@@ -1,0 +1,47 @@
+{
+  "B_du_lich_su|Ridge": {
+    "model__alpha": 0.1
+  },
+  "B_du_lich_su|Random Forest": {
+    "min_samples_leaf": 10,
+    "max_features": 0.5,
+    "max_depth": null
+  },
+  "B_du_lich_su|XGBoost": {
+    "subsample": 0.7,
+    "min_child_weight": 1,
+    "max_depth": 5,
+    "learning_rate": 0.03,
+    "colsample_bytree": 0.6
+  },
+  "C_lich_su|Ridge": {
+    "model__alpha": 0.1
+  },
+  "C_lich_su|Random Forest": {
+    "min_samples_leaf": 2,
+    "max_features": 0.33,
+    "max_depth": null
+  },
+  "C_lich_su|XGBoost": {
+    "subsample": 0.7,
+    "min_child_weight": 1,
+    "max_depth": 6,
+    "learning_rate": 0.03,
+    "colsample_bytree": 0.8
+  },
+  "C_toan_bo_train|Ridge": {
+    "model__alpha": 0.1
+  },
+  "C_toan_bo_train|Random Forest": {
+    "min_samples_leaf": 1,
+    "max_features": 0.33,
+    "max_depth": 20
+  },
+  "C_toan_bo_train|XGBoost": {
+    "subsample": 0.7,
+    "min_child_weight": 1,
+    "max_depth": 6,
+    "learning_rate": 0.03,
+    "colsample_bytree": 0.8
+  }
+}

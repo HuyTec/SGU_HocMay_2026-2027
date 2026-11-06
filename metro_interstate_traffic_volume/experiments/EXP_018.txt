@@ -1,0 +1,64 @@
+Experiment ID: EXP_018
+Date: 2026-11-06
+
+Dataset: Traffic Volume
+Model: B_thoi_tiet - XGBoost
+
+Features:
+- hour
+- day_of_week
+- month
+- is_weekend
+- is_rush_hour
+- hour_sin
+- hour_cos
+- day_of_week_sin
+- day_of_week_cos
+- month_sin
+- month_cos
+- is_holiday
+- temp_c
+- rain_1h
+- snow_1h
+- clouds_all
+- weather_clear
+- weather_clouds
+- weather_drizzle
+- weather_fog
+- weather_haze
+- weather_mist
+- weather_rain
+- weather_smoke
+- weather_snow
+- weather_squall
+- weather_thunderstorm
+
+Data Split:
+- Train: 70%
+- Validation: 15%
+- Test: 15%
+- Split strategy: Chronological
+
+Results:
+- MAE: 243.4528689545861
+- RMSE: 389.8889579063764
+- R²: 0.9606600480726586
+
+Observations:
+- CSV SHA-256: 749c90d720360a4215bb15345526073c079ba4cc95e3fa558796d083f85fce9e
+- Train: 28402 giờ; 2012-10-02 09:00:00 đến 2017-05-10 04:00:00.
+- Validation: 6086 giờ; 2017-05-10 05:00:00 đến 2018-01-19 14:00:00.
+- Test: 6087 giờ; giữ riêng, chưa đánh giá.
+- Python 3.13.9; pandas 3.0.6; scikit-learn 1.9.1; xgboost 3.4.1.
+- Notebook: notebooks/BASELINE/baseline_V_3.ipynb; commit gốc 442fca3; có thay đổi chưa commit.
+- Tập đánh giá: validation; 6086 giờ.
+- Tham số được chọn: {'subsample': 0.7, 'min_child_weight': 1, 'max_depth': 5, 'learning_rate': 0.03, 'colsample_bytree': 0.6}
+- MAE trung bình CV: 283.1653544108073
+- Kết quả từng fold: [{"parameters":{"subsample":0.7,"min_child_weight":1,"max_depth":5,"learning_rate":0.03,"colsample_bytree":0.6},"fold_1_mae":272.7104492188,"fold_2_mae":267.2967529297,"fold_3_mae":309.488861084,"mean_cv_mae":283.1653544108,"rank":1},{"parameters":{"subsample":0.7,"min_child_weight":10,"max_depth":6,"learning_rate":0.03,"colsample_bytree":0.8},"fold_1_mae":275.6373596191,"fold_2_mae":266.7850646973,"fold_3_mae":308.922668457,"mean_cv_mae":283.7816975911,"rank":2},{"parameters":{"subsample":0.7,"min_child_weight":1,"max_depth":6,"learning_rate":0.03,"colsample_bytree":0.8},"fold_1_mae":275.9186401367,"fold_2_mae":267.5309448242,"fold_3_mae":309.1829833984,"mean_cv_mae":284.2108561198,"rank":3},{"parameters":{"subsample":1.0,"min_child_weight":1,"max_depth":8,"learning_rate":0.03,"colsample_bytree":0.8},"fold_1_mae":280.6936950684,"fold_2_mae":270.2500915527,"fold_3_mae":315.5921936035,"mean_cv_mae":288.8453267415,"rank":4},{"parameters":{"subsample":0.7,"min_child_weight":1,"max_depth":4,"learning_rate":0.05,"colsample_bytree":0.8},"fold_1_mae":278.7930908203,"fold_2_mae":273.6141662598,"fold_3_mae":315.9443664551,"mean_cv_mae":289.4505411784,"rank":5},{"parameters":{"subsample":0.7,"min_child_weight":1,"max_depth":4,"learning_rate":0.03,"colsample_bytree":0.8},"fold_1_mae":276.0472412109,"fold_2_mae":277.9962463379,"fold_3_mae":317.8852233887,"mean_cv_mae":290.6429036458,"rank":6},{"parameters":{"subsample":1.0,"min_child_weight":1,"max_depth":6,"learning_rate":0.05,"colsample_bytree":0.8},"fold_1_mae":285.1955566406,"fold_2_mae":273.9953918457,"fold_3_mae":314.308013916,"mean_cv_mae":291.1663208008,"rank":7},{"parameters":{"subsample":1.0,"min_child_weight":5,"max_depth":5,"learning_rate":0.05,"colsample_bytree":1.0},"fold_1_mae":283.507019043,"fold_2_mae":275.477722168,"fold_3_mae":315.563873291,"mean_cv_mae":291.516204834,"rank":8},{"parameters":{"subsample":0.7,"min_child_weight":5,"max_depth":4,"learning_rate":0.03,"colsample_bytree":1.0},"fold_1_mae":276.6225585938,"fold_2_mae":279.0184631348,"fold_3_mae":318.9480285645,"mean_cv_mae":291.529683431,"rank":9},{"parameters":{"subsample":1.0,"min_child_weight":10,"max_depth":8,"learning_rate":0.05,"colsample_bytree":0.8},"fold_1_mae":288.3153991699,"fold_2_mae":276.5643005371,"fold_3_mae":320.2870483398,"mean_cv_mae":295.0555826823,"rank":10},{"parameters":{"subsample":0.7,"min_child_weight":1,"max_depth":4,"learning_rate":0.1,"colsample_bytree":0.8},"fold_1_mae":292.823638916,"fold_2_mae":275.2357177734,"fold_3_mae":319.3417053223,"mean_cv_mae":295.8003540039,"rank":11},{"parameters":{"subsample":0.85,"min_child_weight":10,"max_depth":5,"learning_rate":0.1,"colsample_bytree":0.8},"fold_1_mae":293.3075256348,"fold_2_mae":277.9160766602,"fold_3_mae":318.1050109863,"mean_cv_mae":296.4428710938,"rank":12}]
+
+Problems:
+- Dùng thời tiết quan trắc cùng giờ; chưa đo khi chỉ có dự báo thời tiết.
+- Dữ liệu thiếu giờ; validation chỉ gồm các giờ quan sát được.
+
+Next Steps:
+- Đánh giá thêm lịch sử lưu lượng trong V_4 và phân tích sai số.
