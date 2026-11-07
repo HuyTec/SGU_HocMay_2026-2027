@@ -67,20 +67,20 @@ Phúc và Vũ phối hợp xác định chất lượng và quy tắc dữ liệ
 
 ## 4. Quy trình hiện tại
 
-| Bước | Notebook | Việc cần kiểm tra |
-| --- | --- | --- |
-| 1. Kiểm tra dữ liệu | [Data Validation](notebooks/eda/data_validation.ipynb) | Kiểu dữ liệu, timestamp trùng, số giờ thiếu và bất thường của thời tiết. |
-| 2. Khám phá dữ liệu | [EDA chung](notebooks/eda/eda.ipynb) | Phân phối lưu lượng, tương quan, boxplot và các mốc bất thường. |
-| 3. Tiền xử lý | [Preprocessing & Features](notebooks/preprocessing/preprocessing_features.ipynb) | Gộp các dòng cùng timestamp, chia 70/15/15 theo thời gian, kiểm tra điền thiếu và đặc trưng. |
-| 4. Thực nghiệm | [V1](notebooks/experiments/V_1.ipynb), [V2](notebooks/experiments/V_2.ipynb), [V3](notebooks/experiments/V_3.ipynb), [V4](notebooks/experiments/V_4.ipynb) | Tinh chỉnh trong train bằng `TimeSeriesSplit`, so sánh mô hình và baseline trên validation, lưu Excel. |
-| 5. Phân tích sai số | [Error Analysis](notebooks/evaluation/error_analysis_validation.ipynb) | Đọc kết quả V3/V4 từ Excel và phân tích sai số validation. |
+| Bước                  | Notebook                                                                                                                                               | Việc cần kiểm tra                                                                                             |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------- |
+| 1. Kiểm tra dữ liệu  | [Data Validation](notebooks/eda/data_validation.ipynb)                                                                                                  | Kiểu dữ liệu, timestamp trùng, số giờ thiếu và bất thường của thời tiết.                           |
+| 2. Khám phá dữ liệu | [EDA chung](notebooks/eda/eda.ipynb)                                                                                                                    | Phân phối lưu lượng, tương quan, boxplot và các mốc bất thường.                                     |
+| 3. Tiền xử lý        | [Preprocessing &amp; Features](notebooks/preprocessing/preprocessing_features.ipynb)                                                                    | Gộp các dòng cùng timestamp, chia 70/15/15 theo thời gian, kiểm tra điền thiếu và đặc trưng.        |
+| 4. Thực nghiệm        | [V1](notebooks/experiments/V_1.ipynb), [V2](notebooks/experiments/V_2.ipynb), [V3](notebooks/experiments/V_3.ipynb), [V4](notebooks/experiments/V_4.ipynb) | Tinh chỉnh trong train bằng `TimeSeriesSplit`, so sánh mô hình và baseline trên validation, lưu Excel. |
+| 5. Phân tích sai số  | [Error Analysis](notebooks/evaluation/error_analysis_validation.ipynb)                                                                                  | Đọc kết quả V3/V4 từ Excel và phân tích sai số validation.                                              |
 
-| Phiên bản | Cấu hình | Mục tiêu |
-| --- | --- | --- |
-| V1 | `T0_thu_gio` | So sánh LR, RF, GB, MLP, Ridge và XGBoost với baseline trung bình theo thứ–giờ. Ridge dùng cột `weekday_hour`. |
-| V2 | `T0_thu_gio`, `T1_lich`, `A_lich_le` | Đo phần tăng thêm của đặc trưng lịch và ngày lễ. |
-| V3 | `B_thoi_tiet` | Bổ sung thời tiết, đối chứng A–B trên cùng các giờ validation. |
-| V4 | Cấu hình C có lịch sử | Thêm lưu lượng cùng giờ hôm trước, cùng giờ tuần trước và trung bình 24 giờ trước. Đọc kết quả B của V3 và đối chiếu trên cùng các giờ đủ lịch sử. |
+| Phiên bản | Cấu hình                                 | Mục tiêu                                                                                                                                                                             |
+| ----------- | ------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| V1          | `T0_thu_gio`                             | So sánh LR, RF, GB, MLP, Ridge và XGBoost với baseline trung bình theo thứ–giờ. Ridge dùng cột `weekday_hour`.                                                              |
+| V2          | `T0_thu_gio`, `T1_lich`, `A_lich_le` | Đo phần tăng thêm của đặc trưng lịch và ngày lễ.                                                                                                                           |
+| V3          | `B_thoi_tiet`                            | Bổ sung thời tiết, đối chứng A–B trên cùng các giờ validation.                                                                                                              |
+| V4          | Cấu hình C có lịch sử                 | Thêm lưu lượng cùng giờ hôm trước, cùng giờ tuần trước và trung bình 24 giờ trước. Đọc kết quả B của V3 và đối chiếu trên cùng các giờ đủ lịch sử. |
 
 Baseline thứ–giờ lấy trung bình lưu lượng theo cặp thứ và giờ từ train. V4 còn có seasonal naive lấy lưu lượng quan sát cùng giờ tuần trước khi có dữ liệu. Dùng **MAE, RMSE và R²** để đọc kết quả. So sánh trực tiếp các dòng được chấm trên cùng tập giờ.
 
@@ -116,14 +116,14 @@ Nếu cần xuất CSV đã xử lý, chạy lệnh sau từ thư mục dự án
 
 ### 5.3. Đọc Excel và xử lý lỗi
 
-| Sheet | Nội dung |
-| --- | --- |
-| `Tổng quan` | Trạng thái, mã lần chạy, mã chạy đối chứng, địa điểm và múi giờ. Mốc dữ liệu dùng CST, thời điểm ghi lần chạy dùng UTC+7. |
-| `Validation` | MAE, RMSE, R², tham số đã chọn và điểm so với baseline. |
-| `Hyper Parameters` | Giá trị tham số của mô hình đã fit và nguồn giá trị. |
-| `Tuning CV` | Các ứng viên, điểm từng fold và thứ hạng theo MAE CV. |
-| `Evaluation` | Bảng so sánh mô hình theo nhóm giờ chấm. Phần kết hợp dự đoán nhiều mô hình chưa được triển khai. |
-| Sheet theo phiên bản | Dự đoán từng giờ, mốc chia, thông tin lần chạy và bảng đối chứng tương ứng. |
+| Sheet                  | Nội dung                                                                                                                                            |
+| ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Tổng quan`         | Trạng thái, mã lần chạy, mã chạy đối chứng, địa điểm và múi giờ. Mốc dữ liệu dùng CST, thời điểm ghi lần chạy dùng UTC+7. |
+| `Validation`         | MAE, RMSE, R², tham số đã chọn và điểm so với baseline.                                                                                     |
+| `Hyper Parameters`   | Giá trị tham số của mô hình đã fit và nguồn giá trị.                                                                                     |
+| `Tuning CV`          | Các ứng viên, điểm từng fold và thứ hạng theo MAE CV.                                                                                       |
+| `Evaluation`         | Bảng so sánh mô hình theo nhóm giờ chấm. Phần kết hợp dự đoán nhiều mô hình chưa được triển khai.                               |
+| Sheet theo phiên bản | Dự đoán từng giờ, mốc chia, thông tin lần chạy và bảng đối chứng tương ứng.                                                         |
 
 - **WinError 5 khi lưu.** Đóng workbook trong Excel, rồi chạy lại riêng cell lưu nếu kernel còn kết quả.
 - **Báo thiếu V2/V3 hoặc trạng thái Cần chạy lại.** Kiểm tra sheet **Tổng quan**, chạy và lưu phiên bản trước, sau đó chạy lại notebook phụ thuộc. Workbook kiểm tra SHA-256 của CSV và mã lần chạy đối chứng.
@@ -131,14 +131,12 @@ Nếu cần xuất CSV đã xử lý, chạy lệnh sau từ thư mục dự án
 
 ## 6. Mã dùng chung và tài liệu
 
-| File | Vai trò |
-| --- | --- |
-| [data.py](src/data.py), [data_validation.py](src/data_validation.py) | Đọc CSV, kiểm tra dữ liệu và tạo bảng theo timestamp. |
+| File                                                                                                          | Vai trò                                                                                        |
+| ------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| [data.py](src/data.py), [data_validation.py](src/data_validation.py)                                            | Đọc CSV, kiểm tra dữ liệu và tạo bảng theo timestamp.                                   |
 | [preprocessing.py](src/preprocessing.py), [features.py](src/features.py), [prepare_data.py](src/prepare_data.py) | Chia tập, xử lý thiếu, tạo đặc trưng và xuất dữ liệu đã xử lý khi được gọi. |
-| [models.py](src/models.py), [tuning.py](src/tuning.py) | Pipeline mô hình, không gian tham số và cross-validation theo thời gian. |
-| [evaluation.py](src/evaluation.py), [experiment_excel.py](src/experiment_excel.py) | Baseline, metrics, đối chứng và đọc/ghi workbook. |
-| [experiment_logger.py](src/experiment_logger.py) | Nhật ký TXT tùy chọn. Xem [hướng dẫn nhật ký](docs/experiment_tracking/README.md). |
+| [models.py](src/models.py), [tuning.py](src/tuning.py)                                                          | Pipeline mô hình, không gian tham số và cross-validation theo thời gian.                  |
+| [evaluation.py](src/evaluation.py), [experiment_excel.py](src/experiment_excel.py)                              | Baseline, metrics, đối chứng và đọc/ghi workbook.                                         |
+| [experiment_logger.py](src/experiment_logger.py)                                                               | Nhật ký TXT tùy chọn. Xem [hướng dẫn nhật ký](docs/experiment_tracking/README.md).      |
 
-[Demo Streamlit](app/demo_time_weather.py) hiện lưu mã ở dạng chú thích. Quy trình chạy ở trên kết thúc ở bước phân tích validation.
-
-[Sơ đồ quy trình](docs/Quy%20trình.drawio) · [Proposal PDF](docs/Nhom7_DuDoanLuuLuongGiaoThong_Proposal.pdf)
+[Sơ đồ quy trình](<docs/Quy%20trình.drawio>) · [Proposal PDF](docs/Nhom7_DuDoanLuuLuongGiaoThong_Proposal.pdf)
