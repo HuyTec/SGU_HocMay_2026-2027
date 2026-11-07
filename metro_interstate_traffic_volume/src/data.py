@@ -1,6 +1,6 @@
 """Đọc CSV gốc và tạo bảng một dòng mỗi giờ.
 
-Quy tắc mặc định giống notebooks/preprocessing_features.ipynb (Bước 02–07).
+Quy tắc mặc định giống notebooks/preprocessing/preprocessing_features.ipynb (Bước 02–07).
 Các tham số mask_stuck_temp và complete_holidays mặc định tắt: đây là các
 phương án đề xuất thêm, chỉ bật khi nhóm đã thống nhất hoặc khi kiểm tra độ nhạy.
 """
@@ -10,6 +10,8 @@ from pathlib import Path
 import pandas as pd
 from pandas.tseries.holiday import USFederalHolidayCalendar
 
+from src.preprocessing import fill_weather, fit_weather_fill, split_by_time
+
 
 PROJECT_DIR = Path(__file__).resolve().parents[1]
 DATA_PATH = PROJECT_DIR / "data" / "Metro_Interstate_Traffic_Volume.csv"
@@ -17,11 +19,10 @@ DATA_PATH = PROJECT_DIR / "data" / "Metro_Interstate_Traffic_Volume.csv"
 WEATHER_NUMERIC = ["temp", "rain_1h", "snow_1h", "clouds_all"]
 WEATHER_LABELS = ["weather_main", "weather_description"]
 
-# Giá trị lặp bất thường đã ghi nhận trong notebooks/data_validation.ipynb.
+# Giá trị lặp bất thường đã ghi nhận trong notebooks/eda/data_validation.ipynb.
 STUCK_TEMP_K = 276.793
 RAIN_OUTLIER_TIME = pd.Timestamp("2016-07-11 17:00:00")
 RAIN_OUTLIER_VALUE = 9831.3
-MAX_TEMP_AGE = pd.Timedelta(hours=6)
 
 
 def load_raw(path: str | Path = DATA_PATH) -> pd.DataFrame:
@@ -132,69 +133,32 @@ def build_hourly_table(
 
 
 def split_chronological(table: pd.DataFrame) -> dict[str, pd.DataFrame]:
-    """Chia 70/15/15 theo thứ tự thời gian, tính trên số giờ quan sát."""
-    ordered = table.sort_values("date_time").reset_index(drop=True)
-    if not ordered["date_time"].is_unique:
-        raise ValueError("Có timestamp lặp; cần gộp trước khi chia.")
-    n_rows = len(ordered)
-    train_end = n_rows * 70 // 100
-    validation_end = n_rows * 85 // 100
-    return {
-        "train": ordered.iloc[:train_end].copy(),
-        "validation": ordered.iloc[train_end:validation_end].copy(),
-        "test": ordered.iloc[validation_end:].copy(),
-    }
+    """Giữ điểm gọi hiện tại và dùng chung quy tắc chia theo thời gian."""
+    return split_by_time(table)
 
 
 def fill_missing_weather(splits: dict[str, pd.DataFrame]) -> dict[str, pd.DataFrame]:
-    """Điền temp và rain_1h với thống kê học từ train.
-
-    temp: quan sát gần nhất trước đó nếu cách tối đa 6 giờ; nếu không có thì
-    median tháng–giờ của train; cuối cùng là median toàn train.
-    rain_1h: median toàn train.
-    """
-    train = splits["train"]
-    keys = [
-        train["date_time"].dt.month.rename("month"),
-        train["date_time"].dt.hour.rename("hour"),
-    ]
-    temp_by_month_hour = train.groupby(keys)["temp"].median().dropna()
-    temp_fallback = train["temp"].median()
-    rain_fallback = train["rain_1h"].median()
-
-    # Chỉ tra quan sát thật trong quá khứ, không dùng giá trị vừa điền.
-    observed = (
-        pd.concat(splits.values())[["date_time", "temp"]]
-        .dropna()
-        .sort_values("date_time")
-        .rename(columns={"temp": "previous_temp"})
-    )
-
+    """Học median từ train và điền bằng quan sát gốc đã có theo thời gian."""
+    statistics = fit_weather_fill(splits["train"])
+    history = splits["train"][["date_time", "temp"]].iloc[:0].copy()
     filled = {}
     for name, part in splits.items():
-        result = part.copy()
-        missing = result["temp"].isna()
-        if missing.any():
-            lookup = pd.merge_asof(
-                result.loc[missing, ["date_time"]].sort_values("date_time"),
-                observed,
-                on="date_time",
-                direction="backward",
-                allow_exact_matches=False,
-                tolerance=MAX_TEMP_AGE,
-            ).set_index("date_time")["previous_temp"]
-            times = result.loc[missing, "date_time"]
-            month_hour = pd.MultiIndex.from_arrays(
-                [times.dt.month, times.dt.hour], names=["month", "hour"]
-            )
-            medians = temp_by_month_hour.reindex(month_hour).fillna(temp_fallback)
-            values = times.map(lookup).to_numpy()
-            result.loc[missing, "temp"] = (
-                pd.Series(values).fillna(pd.Series(medians.to_numpy())).to_numpy()
-            )
-        result["rain_1h"] = result["rain_1h"].fillna(rain_fallback)
-        filled[name] = result
+        filled[name] = fill_weather(part, statistics, history=history)
+        history = pd.concat([history, part[["date_time", "temp"]]], ignore_index=True)
     return filled
+
+
+def load_hourly_splits(
+    path: str | Path = DATA_PATH,
+    mask_stuck_temp: bool = False,
+    complete_holidays: bool = False,
+) -> dict[str, pd.DataFrame]:
+    """Đọc CSV, gộp theo giờ và chia theo thời gian trước khi điền thiếu."""
+    raw = load_raw(path)
+    table = build_hourly_table(
+        raw, mask_stuck_temp=mask_stuck_temp, complete_holidays=complete_holidays
+    )
+    return split_chronological(table)
 
 
 def load_splits(
@@ -202,9 +166,5 @@ def load_splits(
     mask_stuck_temp: bool = False,
     complete_holidays: bool = False,
 ) -> dict[str, pd.DataFrame]:
-    """Chạy từ CSV gốc đến ba tập đã điền thiếu."""
-    raw = load_raw(path)
-    table = build_hourly_table(
-        raw, mask_stuck_temp=mask_stuck_temp, complete_holidays=complete_holidays
-    )
-    return fill_missing_weather(split_chronological(table))
+    """Chuẩn bị ba tập để huấn luyện cuối hoặc dự đoán sau khi đã chốt quy tắc."""
+    return fill_missing_weather(load_hourly_splits(path, mask_stuck_temp, complete_holidays))

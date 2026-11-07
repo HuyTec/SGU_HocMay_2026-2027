@@ -4,17 +4,33 @@
 
 Tên đề tài: **Dự đoán lưu lượng giao thông theo giờ dựa trên đặc trưng thời gian và điều kiện thời tiết**.
 
-README tổng hợp phạm vi, phương pháp và kế hoạch trong [proposal](docs/ML_Project_Proposal.docx), đồng thời cụ thể hóa phân công và quy trình thực nghiệm. Những phương pháp dự kiến bên dưới chỉ được xem là đã triển khai khi có mã chạy và bằng chứng kết quả tương ứng.
+README mô tả cách chạy dự án hiện tại. Phạm vi và phân công của nhóm được trình bày trong [proposal](docs/ML_Project_Proposal.docx).
+
+```
+metro_interstate_traffic_volume/
+├── docs/                  # Sơ đồ, đề xuất và hướng dẫn nhật ký
+├── data/                  # Dữ liệu đầu vào và dữ liệu đã xử lý
+├── src/                   # Code dùng chung cho dữ liệu, mô hình và đánh giá
+├── notebooks/
+│   ├── eda/               # EDA chung và kiểm tra chất lượng dữ liệu
+│   ├── preprocessing/     # Notebook giải thích và kiểm chứng tiền xử lý
+│   ├── experiments/       # Thực nghiệm V1–V4
+│   └── evaluation/        # Phân tích sai số và đối chứng Ridge A/B/C
+├── experiments/           # Workbook thực nghiệm và nhật ký tùy chọn
+├── outputs/               # Kết quả và hình đã xuất
+├── reports/               # Báo cáo cho nhóm
+└── app/                   # Demo
+```
 
 ## 1. Bài toán và mục tiêu
 
 Đây là bài toán **học có giám sát, hồi quy trên dữ liệu có thứ tự thời gian**. Nhóm xây dựng mô hình dự đoán lưu lượng xe theo giờ, so sánh các phương pháp và phân tích những trường hợp dự đoán sai nhiều.
 
-| Thành phần | Nội dung |
-| --- | --- |
-| Đầu vào chính | Thời gian, ngày lễ và thông tin thời tiết của giờ cần dự đoán |
-| Đầu ra | `traffic_volume`, số xe/giờ, không âm |
-| Phần mở rộng | Bổ sung lưu lượng đã quan sát trong quá khứ |
+| Thành phần         | Nội dung                                                                              |
+| -------------------- | -------------------------------------------------------------------------------------- |
+| Đầu vào chính    | Thời gian, ngày lễ và thông tin thời tiết của giờ cần dự đoán             |
+| Đầu ra             | `traffic_volume`, số xe/giờ, không âm                                            |
+| Phần mở rộng      | Bổ sung lưu lượng đã quan sát trong quá khứ                                   |
 | Sản phẩm minh họa | Demo Time + Weather, nhận ngày giờ và thời tiết, trả dự đoán kèm biểu đồ |
 
 Các câu hỏi nghiên cứu:
@@ -40,138 +56,89 @@ Với phần History, nhóm xét dự đoán từng giờ kế tiếp khi các q
 
 Phân công dưới đây cụ thể hóa vai trò trong proposal. Đây là trách nhiệm dự kiến; đóng góp thực tế cần được ghi bằng file, cell, commit hoặc mã thí nghiệm trong báo cáo tiến độ.
 
-| Thành viên | MSSV | Trách nhiệm | Đầu ra bàn giao |
-| --- | --- | --- | --- |
-| Phùng Anh Vũ | 3124411351 | Thu thập và mô tả dữ liệu; EDA theo giờ, thứ, tháng, ngày lễ và thời tiết; phối hợp kiểm tra timestamp trùng, giờ thiếu và bất thường | Notebook EDA, hình gốc, nhận xét có số liệu và danh sách vấn đề dữ liệu |
-| Nguyễn Hoàng Phúc | 3124411236 | Xây dựng pipeline tiền xử lý từ CSV gốc; chốt quy tắc gộp cho từng cột; xử lý thiếu/bất thường; tạo đặc trưng thời gian, thời tiết và lịch sử; encoding/scaling theo tập huấn luyện | Mã tiền xử lý tái lập, quy tắc dữ liệu, bảng đặc trưng theo timestamp và mô tả thời điểm thông tin sẵn có |
-| Trần Nhựt Huy | 3124411112 | Xây dựng ba baseline và các mô hình chính; thống nhất mốc chia với nhóm; thiết kế, ghi log, tinh chỉnh và so sánh Time/Weather/History; trực quan hóa, diễn giải và phân tích lỗi | Notebook thực nghiệm, cấu hình mô hình, log, dự đoán và bảng metrics; biểu đồ đối chứng, phân tích sai số và SHAP khi thực hiện |
-| Bùi Nhật Hào | 3124411077 | Phối hợp kiểm tra cách tính metrics và khả năng chạy lại; tổng hợp kết quả cùng Huy; xây dựng demo Time + Weather; tổng hợp báo cáo, slide và gói nộp | Bảng đánh giá thống nhất với log, demo, tài liệu chạy, báo cáo, slide và danh mục sản phẩm |
+| Thành viên         | MSSV       | Trách nhiệm                                                                                                                                                                                                      | Đầu ra bàn giao                                                                                                                                     |
+| -------------------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Phùng Anh Vũ       | 3124411351 | Thu thập và mô tả dữ liệu; EDA theo giờ, thứ, tháng, ngày lễ và thời tiết; phối hợp kiểm tra timestamp trùng, giờ thiếu và bất thường                                                      | Notebook EDA, hình gốc, nhận xét có số liệu và danh sách vấn đề dữ liệu                                                                  |
+| Nguyễn Hoàng Phúc | 3124411236 | Xây dựng pipeline tiền xử lý từ CSV gốc; chốt quy tắc gộp cho từng cột; xử lý thiếu/bất thường; tạo đặc trưng thời gian, thời tiết và lịch sử; encoding/scaling theo tập huấn luyện | Mã tiền xử lý tái lập, quy tắc dữ liệu, bảng đặc trưng theo timestamp và mô tả thời điểm thông tin sẵn có                        |
+| Trần Nhựt Huy      | 3124411112 | Xây dựng ba baseline và các mô hình chính; thống nhất mốc chia với nhóm; thiết kế, ghi log, tinh chỉnh và so sánh Time/Weather/History; trực quan hóa, diễn giải và phân tích lỗi         | Notebook thực nghiệm, cấu hình mô hình, log, dự đoán và bảng metrics; biểu đồ đối chứng, phân tích sai số và SHAP khi thực hiện |
+| Bùi Nhật Hào      | 3124411077 | Phối hợp kiểm tra cách tính metrics và khả năng chạy lại; tổng hợp kết quả cùng Huy; xây dựng demo Time + Weather; tổng hợp báo cáo, slide và gói nộp                                      | Bảng đánh giá thống nhất với log, demo, tài liệu chạy, báo cáo, slide và danh mục sản phẩm                                             |
 
 Phúc và Vũ phối hợp xác định chất lượng và quy tắc dữ liệu. Huy tiếp nhận đầu vào đã thống nhất để huấn luyện, đồng thời có thể chạy Time-only trước khi pipeline thời tiết hoàn thiện. Huy và Hào dùng chung mốc chia, tập đánh giá và mã thí nghiệm khi tổng hợp kết quả.
 
-## 4. Khám phá, tiền xử lý và đặc trưng
+## 4. Quy trình hiện tại
 
-EDA dự kiến gồm phân phối mục tiêu; lưu lượng theo giờ, thứ và tháng; ngày thường/cuối tuần/ngày lễ; thời tiết; tương quan; giá trị thiếu và bất thường.
-
-Quy trình chuẩn bị dữ liệu:
-
-1. Kiểm tra cấu trúc, kiểu dữ liệu, timestamp và miền giá trị mục tiêu; ghi số dòng và phiên bản dữ liệu.
-2. Kiểm tra mục tiêu trong từng timestamp. Nếu nhất quán, giữ một giá trị lưu lượng; nếu mâu thuẫn, kiểm tra nguyên nhân trước khi gộp. Không cộng các mục tiêu lặp.
-3. Với thời tiết, kiểm tra từng cột và ghi quy tắc tổng hợp riêng. Xác định cách xử lý nhiệt độ 0 K, mưa cực lớn và dữ liệu thiếu; không tùy ý giữ dòng đầu cho toàn bộ thuộc tính.
-4. Sắp xếp theo thời gian, xác định mốc chia; mọi bước học tham số xử lý thiếu, encoding, scaling chỉ fit trên train tương ứng.
-5. Tạo đặc trưng phù hợp với kịch bản. Với lịch sử, tra theo timestamp thực, xử lý giờ thiếu và không dùng mục tiêu hiện tại hoặc dữ liệu tương lai.
-
-Theo proposal, các đặc trưng dự kiến gồm `hour`, `day_of_week`, `month`, `is_weekend`, `is_rush_hour`, `is_holiday`, mã hóa tuần hoàn sin/cos, nhiệt độ đổi sang °C, mưa, tuyết, mây và loại thời tiết. Notebook có thể dùng tên `weekday` tương ứng với `day_of_week`; cần ghi đúng tên thực tế vào log.
-
-Đặc trưng lịch sử mở rộng gồm lưu lượng cùng giờ hôm trước, cùng giờ tuần trước và trung bình 24 giờ trước. Không mặc định `shift(24)` hoặc `shift(168)` theo dòng tương ứng với 24 hoặc 168 giờ khi dữ liệu còn thiếu giờ. Không nội suy mục tiêu bằng dữ liệu tương lai.
-
-## 5. Ba baseline
-
-Ba baseline là các phương pháp dự đoán. Chúng khác với ba cấu hình đầu vào A/B/C ở mục 6.
-
-| Baseline | Quy tắc | Điều kiện và phạm vi |
+| Bước | Notebook | Việc cần kiểm tra |
 | --- | --- | --- |
-| Trung bình theo thứ–giờ | Dự đoán bằng trung bình `traffic_volume` của cùng cặp thứ và giờ trong train | Chỉ tính trung bình từ train; nếu thiếu nhóm, dùng phương án dự phòng đã ghi trong log, chẳng hạn trung bình toàn train |
-| Seasonal naive cùng giờ tuần trước | Với timestamp `t`, dự đoán bằng lưu lượng quan sát tại `t - 7 ngày` | Có sử dụng History; tra theo timestamp, không theo số dòng; ghi quy tắc khi thiếu lịch sử, số mẫu đánh giá và thời điểm quan sát sẵn có |
-| Ridge Regression | Học mô hình tuyến tính có phạt L2; bắt đầu bằng Time-only, sau đó mở rộng đầu vào | Đưa tiền xử lý vào pipeline, fit trên train; ghi `alpha`, đặc trưng và cấu hình encoding/scaling |
+| 1. Kiểm tra dữ liệu | [Data Validation](notebooks/eda/data_validation.ipynb) | Kiểu dữ liệu, timestamp trùng, số giờ thiếu và bất thường của thời tiết. |
+| 2. Khám phá dữ liệu | [EDA chung](notebooks/eda/eda.ipynb) | Phân phối lưu lượng, tương quan, boxplot và các mốc bất thường. |
+| 3. Tiền xử lý | [Preprocessing & Features](notebooks/preprocessing/preprocessing_features.ipynb) | Gộp các dòng cùng timestamp, chia 70/15/15 theo thời gian, kiểm tra điền thiếu và đặc trưng. |
+| 4. Thực nghiệm | [V1](notebooks/experiments/V_1.ipynb), [V2](notebooks/experiments/V_2.ipynb), [V3](notebooks/experiments/V_3.ipynb), [V4](notebooks/experiments/V_4.ipynb) | Tinh chỉnh trong train bằng `TimeSeriesSplit`, so sánh mô hình và baseline trên validation, lưu Excel. |
+| 5. Phân tích sai số | [Error Analysis](notebooks/evaluation/error_analysis_validation.ipynb) | Đọc kết quả V3/V4 từ Excel và phân tích sai số validation. |
 
-Thứ tự triển khai ban đầu: **trung bình thứ–giờ → Ridge Time-only → seasonal naive khi đã chốt quy tắc lịch sử**. Giai đoạn đầu ưu tiên chạy đúng từ đầu đến cuối và có log trước khi tuning.
-
-Nếu seasonal naive chỉ đánh giá ở các giờ có lịch sử, các mô hình dùng để so sánh trực tiếp cũng phải được đo trên cùng các giờ đó. Ghi số giờ đủ điều kiện và tỷ lệ bao phủ; không so trực tiếp các metrics tính trên hai tập giờ khác nhau.
-
-## 6. Cấu hình đầu vào và mô hình chính
-
-| Cấu hình theo proposal | Đầu vào | Mục đích |
+| Phiên bản | Cấu hình | Mục tiêu |
 | --- | --- | --- |
-| A — Time | Thời gian và ngày lễ | Mốc so sánh |
-| B — Time + Weather | A và thời tiết | Đo giá trị dự đoán bổ sung của thời tiết |
-| C — Time + Weather + History | B và lưu lượng quá khứ | Đo giá trị dự đoán bổ sung của lịch sử; đánh giá riêng trong notebook |
+| V1 | `T0_thu_gio` | So sánh LR, RF, GB, MLP, Ridge và XGBoost với baseline trung bình theo thứ–giờ. Ridge dùng cột `weekday_hour`. |
+| V2 | `T0_thu_gio`, `T1_lich`, `A_lich_le` | Đo phần tăng thêm của đặc trưng lịch và ngày lễ. |
+| V3 | `B_thoi_tiet` | Bổ sung thời tiết, đối chứng A–B trên cùng các giờ validation. |
+| V4 | Cấu hình C có lịch sử | Thêm lưu lượng cùng giờ hôm trước, cùng giờ tuần trước và trung bình 24 giờ trước. Đọc kết quả B của V3 và đối chiếu trên cùng các giờ đủ lịch sử. |
 
-Baseline Time-only ban đầu có thể chỉ dùng giờ, thứ, tháng và cuối tuần. Đây là bước khởi đầu; chưa bao phủ đầy đủ cấu hình A nếu chưa có ngày lễ. Ghi chính xác tập đặc trưng thực tế thay vì chỉ ghi tên cấu hình.
+Baseline thứ–giờ lấy trung bình lưu lượng theo cặp thứ và giờ từ train. V4 còn có seasonal naive lấy lưu lượng quan sát cùng giờ tuần trước khi có dữ liệu. Dùng **MAE, RMSE và R²** để đọc kết quả. So sánh trực tiếp các dòng được chấm trên cùng tập giờ.
 
-Các mô hình theo proposal: **Ridge Regression**, **Random Forest** và **XGBoost hoặc LightGBM**. Ridge là mốc tuyến tính; các mô hình cây được dùng để kiểm tra quan hệ phi tuyến và tương tác. Cơ sở lựa chọn cần được kiểm chứng bằng kết quả thực nghiệm.
+Dữ liệu được chia theo các timestamp quan sát được. Các tham số tiền xử lý dùng trong tuning được fit theo phần train của từng fold. Validation dùng để so sánh cấu hình. Dự án dành test cho đánh giá cuối và hiện chưa có notebook chạy đánh giá cuối hay kết hợp dự đoán từ nhiều mô hình.
 
-Đối chứng A–B và B–C sử dụng cùng loại mô hình, cùng mốc chia và cùng tập giờ đánh giá; ghi rõ cấu hình và ngân sách tuning. Nếu History làm giảm số mẫu đủ điều kiện, cần kiểm soát cả sự khác biệt về dữ liệu huấn luyện để tránh quy toàn bộ chênh lệch cho đặc trưng mới.
+## 5. Hướng dẫn chạy trên Windows
 
-## 7. Thiết kế thực nghiệm và nhật ký
+### 5.1. Tạo môi trường
 
-Sau khi gộp timestamp và sắp xếp thời gian, chia **70% đầu làm train, 15% tiếp theo làm validation, 15% cuối làm test**. Tỷ lệ tính theo số timestamp quan sát được; lưu số mẫu và mốc thời gian thực tế. Một timestamp chỉ thuộc một tập.
+Mở PowerShell tại thư mục `metro_interstate_traffic_volume`. File [requirements.txt](requirements.txt) ghi nhận môi trường Python 3.13.9 dùng để chạy các thí nghiệm.
 
-- **Train:** học mô hình và các tham số tiền xử lý. Tinh chỉnh dự kiến bằng TimeSeriesSplit kết hợp Random Search hoặc Optuna trong train; fit preprocessing riêng trong mỗi lượt.
-- **Validation:** so sánh các phương án trong quá trình phát triển. Không đưa nhãn validation vào việc fit mô hình hoặc tính trung bình baseline.
-- **Test:** giữ cho đánh giá cuối khi đã chốt quy trình; không dùng điểm test để chọn tham số.
+```powershell
+py -3.13 -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+```
 
-Với đánh giá History từng giờ, quan sát của các giờ validation/test trước đó chỉ được dùng khi chúng thực sự đã sẵn có trước giờ đang dự đoán. Đây là đánh giá tuần tự, không phải dự đoán đồng thời toàn bộ tương lai khi chưa biết các quan sát trung gian.
+Trong VS Code, mở notebook và chọn **Select Kernel → Python Environments → .venv**. Giữ [CSV gốc](data/Metro_Interstate_Traffic_Volume.csv) ở đúng đường dẫn trước khi chạy.
 
-Đánh giá bằng **MAE, RMSE và R²**. MAE và RMSE có đơn vị xe/giờ; MAE/RMSE thấp hơn và R² cao hơn là tốt hơn trên cùng tập đánh giá. Không dùng MAPE làm độ đo chính vì mục tiêu có thể bằng 0 hoặc rất nhỏ.
+### 5.2. Chạy notebook và lưu kết quả
 
-Mỗi lần chạy cần ghi ID, ngày, dữ liệu/phiên bản, giả thuyết, thay đổi, mô hình, tham số, đặc trưng, tỷ lệ và mốc chia, tập đánh giá, số mẫu, metrics, nhận xét, vấn đề và bước tiếp theo. Dùng [hàm ghi log](src/experiment_logger.py) và [hướng dẫn nhật ký](docs/experiment_tracking/README.md); mẫu điền tay ở [EXP_TEMPLATE.txt](docs/experiment_tracking/EXP_TEMPLATE.txt). Mẫu không phải kết quả thực nghiệm.
+1. Chạy các notebook kiểm tra dữ liệu, EDA và tiền xử lý theo bảng ở mục 4 khi cần kiểm tra đầu vào.
+2. Chạy từng notebook thí nghiệm từ trên xuống. **V1 chạy độc lập**. Với chuỗi đối chứng, chạy **V2 → V3 → V4**. Mỗi notebook tạo đầu vào từ CSV gốc. V3 đọc kết quả V2 đã ghi vào Excel và V4 đọc kết quả V3.
+3. Đóng Excel trước khi chạy cell lưu của mỗi notebook. Khi cell báo đã lưu, mở [experiments_logs.xlsx](experiments/experiments_logs.xlsx) và kiểm tra sheet **Tổng quan**. Mỗi phiên bản lưu kết quả của lần chạy mới nhất.
+4. Chạy **Error Analysis** sau khi kết quả V3 và V4 sẵn sàng.
 
-Các phân tích sau baseline gồm mức cải thiện MAE so với baseline, sai số theo giờ/ngày lễ/thời tiết kèm số mẫu, feature importance và SHAP. Diễn giải đóng góp dự đoán của đặc trưng không đồng nghĩa với kết luận nhân quả.
+Nếu cần xuất CSV đã xử lý, chạy lệnh sau từ thư mục dự án. Lệnh cập nhật ba file `train.csv`, `validation.csv` và `test.csv` trong `data/processed/`. Notebook [Ridge A/B/C bổ sung](notebooks/evaluation/ridge_phuc_A_B_C_doi_chung_bo_sung.ipynb) dùng các CSV này.
 
-## 8. Tiến độ hiện tại và kế hoạch
+```powershell
+.\.venv\Scripts\python.exe -m src.prepare_data
+```
 
-Notebook [baseline Time-only](notebooks/BASELINE/baseline_V_1.ipynb) đã lưu kết quả validation cho sáu phương pháp. Khi chạy lại với cùng dữ liệu (SHA-256 `749c90d7…`), pandas 3.0.6 và scikit-learn 1.9.1 trên Python 3.13.9, bảng so sánh cho cùng giá trị MAE/RMSE/R². V_2–V_4 đã có thí nghiệm trên validation (EXP_007–EXP_027). V_5 (đánh giá test) chưa chạy và cần nhóm chốt quy trình trước. Xem [các phiên bản thử nghiệm](src/versions/README.md) và [bản rà soát tiến độ](docs/ra_soat_tien_do.md).
+Để bật nhật ký TXT, đặt `os.environ["SAVE_EXPERIMENT_LOGS"] = "1"` trong kernel trước cell ghi nhật ký. V1 còn hỗ trợ xuất ảnh PNG khi đặt `os.environ["SAVE_EXPERIMENT_RESULTS"] = "1"` trước cell vẽ. Các cell lưu Excel chạy trực tiếp.
 
-Kết quả validation chính (MAE, xe/giờ; chi tiết trong từng notebook):
+### 5.3. Đọc Excel và xử lý lỗi
 
-| Bước | Mô hình tốt nhất | MAE | Ghi chú |
-| --- | --- | --- | --- |
-| Trung bình thứ–giờ | Baseline | 285,03 | Mốc của V_1 |
-| A — Time + ngày lễ (V_2) | XGBoost | 244,94 | `is_holiday` giảm 33,95 so với chỉ dùng lịch |
-| B — Time + Weather (V_3) | XGBoost | 243,45 | Thời tiết giảm 1,49; CI 95% chứa 0 |
-| C — thêm History (V_4) | XGBoost | 192,94 | Đo trên 6.050 giờ đủ lịch sử; B trên cùng giờ là 243,04 |
-
-`src/data.py`, `src/features.py`, `src/evaluation.py` và `src/models.py` chứa quy trình dùng chung. `src/data.py` cho kết quả trùng với `final_filled_splits` của `preprocessing_features.ipynb`. Test được giữ riêng.
-
-Lịch dự kiến theo proposal:
-
-| Tuần | Công việc | Phụ trách chính | Sản phẩm |
-| --- | --- | --- | --- |
-| 1 | Chốt đề tài, tải dữ liệu, EDA | Vũ | Notebook EDA, biểu đồ |
-| 2 | Tiền xử lý và feature engineering | Phúc | Pipeline/dataset xử lý, danh sách đặc trưng |
-| 3 | Baseline và mô hình chính | Huy | Kết quả ban đầu và log |
-| 4 | Tinh chỉnh, đối chứng và phân tích lỗi | Huy, phối hợp Hào | Bảng kết quả, biểu đồ, diễn giải/SHAP |
-| 5 | Demo, báo cáo và slide | Hào, phối hợp nhóm | Demo Time + Weather, báo cáo và gói nộp |
-
-Các mốc tuần là kế hoạch, không phải xác nhận đã hoàn thành. Bảng công việc `docs/Task.xlsx` đã bị xóa khỏi repo ở commit `9d064fa`; có thể lấy lại bằng `git show 9d064fa^:metro_interstate_traffic_volume/docs/Task.xlsx > Task.xlsx`. Cập nhật bằng chứng thực tế trước khi báo cáo.
-
-## 9. Tổ chức và chạy lại
-
-| Đường dẫn | Nội dung |
+| Sheet | Nội dung |
 | --- | --- |
-| `data/` | CSV gốc |
-| `notebooks/data_validation.ipynb` | Kiểm tra chất lượng dữ liệu |
-| `notebooks/EDA/eda.ipynb` | EDA chung và trực quan hóa |
-| `notebooks/versions/V_1_time_only/` | Chỉ mục notebook và EDA liên quan V_1 |
-| `notebooks/preprocessing_features.ipynb` | Quy tắc gộp giờ, điền thiếu và đặc trưng thời gian |
-| `notebooks/BASELINE/baseline_V_1.ipynb` | Baseline Time-only |
-| `notebooks/BASELINE/baseline_V_2.ipynb` | Thời gian và ngày lễ (cấu hình A) |
-| `notebooks/BASELINE/baseline_V_3.ipynb` | Time + Weather (cấu hình B), đối chứng A–B, độ nhạy dữ liệu |
-| `notebooks/BASELINE/baseline_V_4.ipynb` | History (cấu hình C), seasonal naive, đối chứng B–C |
-| `notebooks/BASELINE/error_analysis_validation.ipynb` | Sai số theo giờ/ngày/thời tiết và SHAP |
-| `src/data.py` | CSV gốc → bảng một dòng mỗi giờ → chia 70/15/15 → điền thiếu |
-| `src/features.py` | Đặc trưng thời gian, thời tiết, lịch sử và danh sách cấu hình A/B/C |
-| `src/models.py` | Mô hình, lưới tuning dùng chung, lưu/đọc kết quả |
-| `src/evaluation.py` | Metrics, hai baseline thống kê, bootstrap theo ngày |
-| `app/demo_time_weather.py` | Demo Streamlit Time + Weather |
-| `outputs/metrics/`, `outputs/predictions/` | Metrics, tham số đã chọn và dự đoán validation |
-| `experiments/` | Log từng lần chạy |
-| `docs/` | Proposal, hướng dẫn nhật ký và rà soát tiến độ |
+| `Tổng quan` | Trạng thái, mã lần chạy, mã chạy đối chứng, địa điểm và múi giờ. Mốc dữ liệu dùng CST, thời điểm ghi lần chạy dùng UTC+7. |
+| `Validation` | MAE, RMSE, R², tham số đã chọn và điểm so với baseline. |
+| `Hyper Parameters` | Giá trị tham số của mô hình đã fit và nguồn giá trị. |
+| `Tuning CV` | Các ứng viên, điểm từng fold và thứ hạng theo MAE CV. |
+| `Evaluation` | Bảng so sánh mô hình theo nhóm giờ chấm. Phần kết hợp dự đoán nhiều mô hình chưa được triển khai. |
+| Sheet theo phiên bản | Dự đoán từng giờ, mốc chia, thông tin lần chạy và bảng đối chứng tương ứng. |
 
-Cài môi trường bằng `pip install -r requirements.txt`. Chạy các notebook theo thứ tự V_2 → V_3 → V_4 → `error_analysis_validation`, vì notebook sau đọc dự đoán đã lưu của notebook trước. Các notebook V_2–V_4 chỉ ghi log khi đặt biến môi trường `SAVE_EXPERIMENT_LOGS=1`. Demo: `streamlit run app/demo_time_weather.py` từ thư mục dự án, sau khi đã chạy V_2 và V_3.
+- **WinError 5 khi lưu.** Đóng workbook trong Excel, rồi chạy lại riêng cell lưu nếu kernel còn kết quả.
+- **Báo thiếu V2/V3 hoặc trạng thái Cần chạy lại.** Kiểm tra sheet **Tổng quan**, chạy và lưu phiên bản trước, sau đó chạy lại notebook phụ thuộc. Workbook kiểm tra SHA-256 của CSV và mã lần chạy đối chứng.
+- **Kernel mới thiếu biến hoặc thiếu module.** Chọn kernel `.venv` rồi chạy lại các cell từ đầu.
 
-Trước khi ghi nhận một lần thực nghiệm hoàn chỉnh, restart kernel và chạy lại toàn bộ notebook, lưu output, phiên bản Python/thư viện và SHA-256 của dữ liệu.
+## 6. Mã dùng chung và tài liệu
 
-## 10. Sản phẩm và tài liệu
+| File | Vai trò |
+| --- | --- |
+| [data.py](src/data.py), [data_validation.py](src/data_validation.py) | Đọc CSV, kiểm tra dữ liệu và tạo bảng theo timestamp. |
+| [preprocessing.py](src/preprocessing.py), [features.py](src/features.py), [prepare_data.py](src/prepare_data.py) | Chia tập, xử lý thiếu, tạo đặc trưng và xuất dữ liệu đã xử lý khi được gọi. |
+| [models.py](src/models.py), [tuning.py](src/tuning.py) | Pipeline mô hình, không gian tham số và cross-validation theo thời gian. |
+| [evaluation.py](src/evaluation.py), [experiment_excel.py](src/experiment_excel.py) | Baseline, metrics, đối chứng và đọc/ghi workbook. |
+| [experiment_logger.py](src/experiment_logger.py) | Nhật ký TXT tùy chọn. Xem [hướng dẫn nhật ký](docs/experiment_tracking/README.md). |
 
-Sản phẩm dự kiến: notebook và mã Python, cấu hình môi trường, experiment log, hình gốc, bảng so sánh test MAE/RMSE/R², báo cáo DOCX, slide PPTX, README và demo Streamlit/Gradio. Lưu mô hình đã huấn luyện nếu có. Demo chính dùng Time + Weather; History được đánh giá riêng trong notebook.
+[Demo Streamlit](app/demo_time_weather.py) hiện lưu mã ở dạng chú thích. Quy trình chạy ở trên kết thúc ở bước phân tích validation.
 
-Gói nộp giữa kỳ theo yêu cầu học phần gồm các sản phẩm thực tế đã có, nén theo `Nhom??_TenDeTai_GiuaKy.zip`; nhóm trưởng nộp trên Google Classroom theo hạn của lớp. Báo cáo cần phân biệt kết quả đã đạt, khó khăn và kế hoạch tiếp theo, thống nhất với mã nguồn, log và hình.
-
-- [Proposal Word](docs/ML_Project_Proposal.docx)
-- [Proposal PDF](docs/Nhom7_DuDoanLuuLuongGiaoThong_Proposal.pdf)
-- [Rà soát tiến độ](docs/ra_soat_tien_do.md)
-- [Dataset CSV](data/Metro_Interstate_Traffic_Volume.csv)
-
-Hướng phát triển trong proposal gồm dữ liệu giao thông Việt Nam, dự đoán nhiều bước và mô hình chuỗi thời gian chuyên dụng; chưa phải phạm vi đã triển khai.
+[Sơ đồ quy trình](docs/Quy%20trình.drawio) · [Proposal PDF](docs/Nhom7_DuDoanLuuLuongGiaoThong_Proposal.pdf)
