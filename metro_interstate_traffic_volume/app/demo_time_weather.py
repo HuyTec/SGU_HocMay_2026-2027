@@ -4,7 +4,7 @@ Chạy từ thư mục metro_interstate_traffic_volume:
     streamlit run app/demo_time_weather.py
 
 Mô hình là XGBoost cấu hình B với tham số đã chọn trong
-notebooks/experiments/baseline_V_3.ipynb, fit trên tập train. Validation và test
+notebooks/experiments/V_3.ipynb, fit trên tập train. Validation và test
 không được dùng để fit. Cần chạy baseline_V_2 và baseline_V_3 trước để có
 outputs/metrics/V_3_best_params.json.
 """
@@ -72,7 +72,7 @@ st.caption("I-94 hướng Tây, trạm ATR 301 (Minneapolis–St Paul). Cấu h�
 try:
     model, validation_metrics, weekday_hour_profile = load_model()
 except FileNotFoundError as error:
-    st.error(f"{error}\n\nHãy chạy baseline_V_2.ipynb và baseline_V_3.ipynb trước.")
+    st.error(f"{error}\n\nHãy chạy V_2.ipynb và V_3.ipynb trước.")
     st.stop()
 
 with st.sidebar:
@@ -127,7 +127,7 @@ with st.expander("Bảng số liệu"):
 
 st.info(
     "Mức sai số tuyệt đối trung bình trên validation khoảng "
-    f"{validation_metrics['MAE']:.0f} xe/giờ. Theo baseline_V_3.ipynb, thời tiết chỉ giảm MAE khoảng 1% so với "
+    f"{validation_metrics['MAE']:.0f} xe/giờ. Theo V_3.ipynb, thời tiết chỉ giảm MAE khoảng 1% so với "
     "chỉ dùng thời gian và ngày lễ; mô hình sai nhiều hơn vào ngày lễ, ngày sát lễ và ngày tuyết. "
     "Kết quả là dự đoán của mô hình, không phải quan hệ nhân quả."
 )

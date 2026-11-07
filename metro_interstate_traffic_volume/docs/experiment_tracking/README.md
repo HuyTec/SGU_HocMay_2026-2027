@@ -3,7 +3,7 @@
 Xem [các phiên bản thử nghiệm](../../src/versions/README.md) để đối chiếu phạm vi, trạng thái và các log liên quan.
 
 `experiment_log.xlsx` là bảng tổng hợp **ảnh chụp** của lần chạy Time-only
-trong notebook `notebooks/experiments/baseline_V_1.ipynb`: sheet Validation
+trong notebook `notebooks/experiments/V_1.ipynb`: sheet Validation
 ghi kết quả theo mô hình, Tuning CV ghi từng bộ tham số và MAE của ba fold,
 Fold thoi gian ghi các mốc chia. Các file `EXP_001.txt`–`EXP_006.txt` chứa
 chi tiết do `save_experiment_log` ghi từ lần chạy trước qua script ngoài notebook.
@@ -64,4 +64,4 @@ Có thể dùng `output_dir` để chọn thư mục khác; ID được cấp ri
 
 ## Các log của V_2–V_4
 
-`EXP_007`–`EXP_027` được ghi từ `baseline_V_2.ipynb`, `baseline_V_3.ipynb` và `baseline_V_4.ipynb`. Các notebook này chỉ ghi log khi đặt biến môi trường `SAVE_EXPERIMENT_LOGS=1` trước khi chạy, nên chạy lại bình thường không tạo log trùng. Sheet `Validation V2-V4` trong `experiment_log.xlsx` tổng hợp các log này. Nếu một thành viên khác ghi log trên nhánh riêng cùng lúc, ID có thể trùng khi gộp; kiểm tra thư mục `experiments/` trước khi ghi.
+`EXP_007`–`EXP_027` được ghi từ `V_2.ipynb`, `V_3.ipynb` và `V_4.ipynb`. Các notebook này chỉ ghi log khi đặt biến môi trường `SAVE_EXPERIMENT_LOGS=1` trước khi chạy, nên chạy lại bình thường không tạo log trùng. Sheet `Validation V2-V4` trong `experiment_log.xlsx` tổng hợp các log này. Nếu một thành viên khác ghi log trên nhánh riêng cùng lúc, ID có thể trùng khi gộp; kiểm tra thư mục `experiments/` trước khi ghi.

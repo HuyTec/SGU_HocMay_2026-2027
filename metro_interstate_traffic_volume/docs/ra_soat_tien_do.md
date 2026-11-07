@@ -10,15 +10,15 @@ Ngày rà soát: 06/11/2026, trên commit `442fca3` cộng các thay đổi chư
 | Kiểm tra chất lượng dữ liệu | Đã có | `notebooks/eda/data_validation.ipynb`, `docs/station_data_info.docx` |
 | Gộp timestamp, điền thiếu, chia 70/15/15 | Đã có | `preprocessing_features.ipynb` Bước 02–07; `src/data.py` cho kết quả trùng khớp |
 | `hour`, `day_of_week`, `month`, `is_weekend`, `temp_c`, `is_holiday` | Đã có | `preprocessing_features.ipynb` Bước 05, 08 |
-| `is_rush_hour`, sin/cos, mã hóa thời tiết, đặc trưng lịch sử | Mới bổ sung, cần Phúc xem lại | `src/features.py`; căn cứ ở `baseline_V_2.ipynb` mục 2.3 và `baseline_V_3.ipynb` mục 3.2 |
+| `is_rush_hour`, sin/cos, mã hóa thời tiết, đặc trưng lịch sử | Mới bổ sung, cần Phúc xem lại | `src/features.py`; căn cứ ở `V_2.ipynb` mục 2.3 và `V_3.ipynb` mục 3.2 |
 | Encoding/scaling fit theo train | Mới bổ sung | Pipeline Ridge trong `src/models.py` (one-hot, imputer, scaler fit trong từng fold) |
 | Baseline trung bình thứ–giờ | Đã có | V_1, MAE 285,03 |
 | Baseline Ridge | Đã có | V_1 (one-hot riêng, 581,94); V_2 (one-hot cặp thứ–giờ, 285,13) |
-| Baseline seasonal naive | Mới bổ sung | `baseline_V_4.ipynb`, MAE 330,18 trên 6.050 giờ |
+| Baseline seasonal naive | Mới bổ sung | `V_4.ipynb`, MAE 330,18 trên 6.050 giờ |
 | Ridge, Random Forest, XGBoost | Đã có | V_2–V_4. LightGBM chưa thử (proposal ghi XGBoost **hoặc** LightGBM) |
 | Tuning bằng TimeSeriesSplit + Random Search | Mới bổ sung | `src/models.py`: 3 fold, cùng lưới và số lượt thử cho mọi cấu hình. Optuna chưa dùng |
-| Đối chứng A–B (thời tiết) | Mới bổ sung | `baseline_V_3.ipynb` |
-| Đối chứng B–C (lịch sử) | Mới bổ sung | `baseline_V_4.ipynb` |
+| Đối chứng A–B (thời tiết) | Mới bổ sung | `V_3.ipynb` |
+| Đối chứng B–C (lịch sử) | Mới bổ sung | `V_4.ipynb` |
 | Phân tích sai số theo giờ/ngày lễ/thời tiết | Mới bổ sung | `error_analysis_validation.ipynb`, `figures/error_by_*.png` |
 | Feature importance, SHAP | Mới bổ sung | `error_analysis_validation.ipynb` mục 6, `figures/shap_time_weather.png` |
 | Đánh giá test (V_5) | **Chưa làm** | Cần nhóm chốt các quyết định ở mục 4 trước |
@@ -30,7 +30,7 @@ Ngày rà soát: 06/11/2026, trên commit `442fca3` cộng các thay đổi chư
 ## 2. Những gì đã bổ sung trong lần này
 
 - `src/data.py`, `src/features.py`, `src/evaluation.py` trước đây rỗng; nay chứa quy trình dùng chung. Thêm `src/models.py`. `src/data.py` được đối chiếu bằng cách chạy lại toàn bộ code của `preprocessing_features.ipynb`: ba tập sau điền thiếu trùng khớp từng cột.
-- Chạy lại `baseline_V_1.ipynb` (tắt ghi log): bảng so sánh validation trùng output đã lưu.
+- Chạy lại `V_1.ipynb` (tắt ghi log): bảng so sánh validation trùng output đã lưu.
 - Ba notebook thí nghiệm trong `notebooks/experiments/` và một notebook phân tích trong `notebooks/evaluation/` cùng output, nhận xét và log `EXP_007`–`EXP_027`.
 - `outputs/metrics/`, `outputs/predictions/`: metrics, tham số được chọn và dự đoán validation để notebook sau dùng lại.
 - Sheet `Validation V2-V4` trong `experiments/experiment_log.xlsx`.
@@ -76,6 +76,6 @@ Khi đổi quy tắc dữ liệu, bật tham số tương ứng trong `src/data.
 
 - `README.md` ở gốc repo ghi nhóm trưởng là Phùng Anh Vũ; proposal, README dự án và mẫu báo cáo ghi Trần Nhựt Huy. Cần thống nhất.
 - Thư mục `.jupyter-tmp/` ở gốc repo chứa ảnh tạm đã được commit.
-- `baseline_V_1.ipynb` đang lưu `SAVE_EXPERIMENT_LOGS = True`. Chạy lại toàn bộ notebook sẽ tạo thêm 6 log trùng, trái với hướng dẫn trong `docs/experiment_tracking/README.md`.
+- `V_1.ipynb` đang lưu `SAVE_EXPERIMENT_LOGS = True`. Chạy lại toàn bộ notebook sẽ tạo thêm 6 log trùng, trái với hướng dẫn trong `docs/experiment_tracking/README.md`.
 - `preprocessing_features.ipynb` Bước 08: lệnh `print` danh sách cột nằm trong vòng lặp nên in ba lần.
 - Các lần chạy trong rà soát dùng Python 3.13.9; V_1 gốc chạy trên Python 3.14.7. Hai môi trường cho cùng kết quả V_1.
