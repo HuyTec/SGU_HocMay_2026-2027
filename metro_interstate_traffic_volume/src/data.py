@@ -1,6 +1,6 @@
 """Đọc CSV gốc và tạo bảng một dòng mỗi giờ.
 
-Quy tắc mặc định giống notebooks/preprocessing_features.ipynb (Bước 02–07).
+Quy tắc mặc định giống notebooks/preprocessing/preprocessing_features.ipynb (Bước 02–07).
 Các tham số mask_stuck_temp và complete_holidays mặc định tắt: đây là các
 phương án đề xuất thêm, chỉ bật khi nhóm đã thống nhất hoặc khi kiểm tra độ nhạy.
 """
@@ -17,7 +17,7 @@ DATA_PATH = PROJECT_DIR / "data" / "Metro_Interstate_Traffic_Volume.csv"
 WEATHER_NUMERIC = ["temp", "rain_1h", "snow_1h", "clouds_all"]
 WEATHER_LABELS = ["weather_main", "weather_description"]
 
-# Giá trị lặp bất thường đã ghi nhận trong notebooks/data_validation.ipynb.
+# Giá trị lặp bất thường đã ghi nhận trong notebooks/eda/data_validation.ipynb.
 STUCK_TEMP_K = 276.793
 RAIN_OUTLIER_TIME = pd.Timestamp("2016-07-11 17:00:00")
 RAIN_OUTLIER_VALUE = 9831.3

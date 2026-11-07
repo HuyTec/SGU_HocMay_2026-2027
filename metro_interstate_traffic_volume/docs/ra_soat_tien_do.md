@@ -6,8 +6,8 @@ Ngày rà soát: 06/11/2026, trên commit `442fca3` cộng các thay đổi chư
 
 | Hạng mục trong proposal / README | Trạng thái | Bằng chứng |
 | --- | --- | --- |
-| EDA và trực quan hóa | Đã có | `notebooks/EDA/eda.ipynb`, `figures/traffic_*.png` |
-| Kiểm tra chất lượng dữ liệu | Đã có | `notebooks/data_validation.ipynb`, `docs/station_data_info.docx` |
+| EDA và trực quan hóa | Đã có | `notebooks/eda/eda.ipynb`, `figures/traffic_*.png` |
+| Kiểm tra chất lượng dữ liệu | Đã có | `notebooks/eda/data_validation.ipynb`, `docs/station_data_info.docx` |
 | Gộp timestamp, điền thiếu, chia 70/15/15 | Đã có | `preprocessing_features.ipynb` Bước 02–07; `src/data.py` cho kết quả trùng khớp |
 | `hour`, `day_of_week`, `month`, `is_weekend`, `temp_c`, `is_holiday` | Đã có | `preprocessing_features.ipynb` Bước 05, 08 |
 | `is_rush_hour`, sin/cos, mã hóa thời tiết, đặc trưng lịch sử | Mới bổ sung, cần Phúc xem lại | `src/features.py`; căn cứ ở `baseline_V_2.ipynb` mục 2.3 và `baseline_V_3.ipynb` mục 3.2 |
@@ -31,7 +31,7 @@ Ngày rà soát: 06/11/2026, trên commit `442fca3` cộng các thay đổi chư
 
 - `src/data.py`, `src/features.py`, `src/evaluation.py` trước đây rỗng; nay chứa quy trình dùng chung. Thêm `src/models.py`. `src/data.py` được đối chiếu bằng cách chạy lại toàn bộ code của `preprocessing_features.ipynb`: ba tập sau điền thiếu trùng khớp từng cột.
 - Chạy lại `baseline_V_1.ipynb` (tắt ghi log): bảng so sánh validation trùng output đã lưu.
-- Bốn notebook mới trong `notebooks/BASELINE/` cùng output, nhận xét và log `EXP_007`–`EXP_027`.
+- Ba notebook thí nghiệm trong `notebooks/experiments/` và một notebook phân tích trong `notebooks/evaluation/` cùng output, nhận xét và log `EXP_007`–`EXP_027`.
 - `outputs/metrics/`, `outputs/predictions/`: metrics, tham số được chọn và dự đoán validation để notebook sau dùng lại.
 - Sheet `Validation V2-V4` trong `experiments/experiment_log.xlsx`.
 - Cập nhật README dự án, README các phiên bản V_1–V_4 và hướng dẫn nhật ký.

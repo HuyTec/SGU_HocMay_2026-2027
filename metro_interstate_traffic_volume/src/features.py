@@ -196,7 +196,7 @@ import numpy as np
 
 
 # Giờ cao điểm ngày làm việc; căn cứ từ bảng trung bình theo giờ của train
-# trong notebooks/BASELINE/baseline_V_2.ipynb.
+# trong notebooks/experiments/baseline_V_2.ipynb.
 RUSH_HOURS = (6, 7, 8, 15, 16, 17)
 
 # 11 nhãn weather_main sau khi chuẩn hóa chữ thường, đều xuất hiện trong train.

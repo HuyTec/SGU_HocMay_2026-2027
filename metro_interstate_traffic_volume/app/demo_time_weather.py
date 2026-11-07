@@ -4,7 +4,7 @@ Chạy từ thư mục metro_interstate_traffic_volume:
     streamlit run app/demo_time_weather.py
 
 Mô hình là XGBoost cấu hình B với tham số đã chọn trong
-notebooks/BASELINE/baseline_V_3.ipynb, fit trên tập train. Validation và test
+notebooks/experiments/baseline_V_3.ipynb, fit trên tập train. Validation và test
 không được dùng để fit. Cần chạy baseline_V_2 và baseline_V_3 trước để có
 outputs/metrics/V_3_best_params.json.
 """

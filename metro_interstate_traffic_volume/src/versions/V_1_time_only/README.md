@@ -1,9 +1,9 @@
 # V_1 — Time-only
 
-**Trạng thái:** Đã chạy lại ngày 06/11/2026 với Python 3.13.9, pandas 3.0.6, scikit-learn 1.9.1 (tắt ghi log); bảng so sánh validation trùng output đã lưu. Phân tích sai số cho cấu hình có ngày lễ và thời tiết nằm ở `notebooks/BASELINE/error_analysis_validation.ipynb`.
+**Trạng thái:** Đã chạy lại ngày 06/11/2026 với Python 3.13.9, pandas 3.0.6, scikit-learn 1.9.1 (tắt ghi log); bảng so sánh validation trùng output đã lưu. Phân tích sai số cho cấu hình có ngày lễ và thời tiết nằm ở `notebooks/evaluation/error_analysis_validation.ipynb`.
 
 - [Chỉ mục notebook V_1 và EDA chung](../../../notebooks/versions/V_1_time_only/README.md).
-- Notebook đang sử dụng: [baseline_time-only.ipynb](../../../notebooks/BASELINE/baseline_V_1.ipynb).
+- Notebook đang sử dụng: [baseline_time-only.ipynb](../../../notebooks/experiments/baseline_V_1.ipynb).
 - Đầu vào hiện tại: `weekday`, `hour`; chưa dùng ngày lễ, thời tiết hoặc lịch sử.
 - Nhật ký hiện có: [EXP_001](../../../experiments/EXP_001.txt), [EXP_002](../../../experiments/EXP_002.txt), [EXP_003](../../../experiments/EXP_003.txt), [EXP_004](../../../experiments/EXP_004.txt), [EXP_005](../../../experiments/EXP_005.txt), [EXP_006](../../../experiments/EXP_006.txt).
 - [Bảng tổng hợp hiện có](../../../experiments/experiment_log.xlsx) là ảnh chụp, không tự cập nhật.

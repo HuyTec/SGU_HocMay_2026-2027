@@ -3,7 +3,7 @@
 Xem [các phiên bản thử nghiệm](../../src/versions/README.md) để đối chiếu phạm vi, trạng thái và các log liên quan.
 
 `experiment_log.xlsx` là bảng tổng hợp **ảnh chụp** của lần chạy Time-only
-trong notebook `notebooks/BASELINE/baseline_V_1.ipynb`: sheet Validation
+trong notebook `notebooks/experiments/baseline_V_1.ipynb`: sheet Validation
 ghi kết quả theo mô hình, Tuning CV ghi từng bộ tham số và MAE của ba fold,
 Fold thoi gian ghi các mốc chia. Các file `EXP_001.txt`–`EXP_006.txt` chứa
 chi tiết do `save_experiment_log` ghi từ lần chạy trước qua script ngoài notebook.

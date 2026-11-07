@@ -111,7 +111,7 @@ Các phân tích sau baseline gồm mức cải thiện MAE so với baseline, s
 
 ## 8. Tiến độ hiện tại và kế hoạch
 
-Notebook [baseline Time-only](notebooks/BASELINE/baseline_V_1.ipynb) đã lưu kết quả validation cho sáu phương pháp. Khi chạy lại với cùng dữ liệu (SHA-256 `749c90d7…`), pandas 3.0.6 và scikit-learn 1.9.1 trên Python 3.13.9, bảng so sánh cho cùng giá trị MAE/RMSE/R². V_2–V_4 đã có thí nghiệm trên validation (EXP_007–EXP_027). V_5 (đánh giá test) chưa chạy và cần nhóm chốt quy trình trước. Xem [các phiên bản thử nghiệm](src/versions/README.md) và [bản rà soát tiến độ](docs/ra_soat_tien_do.md).
+Notebook [baseline Time-only](notebooks/experiments/baseline_V_1.ipynb) đã lưu kết quả validation cho sáu phương pháp. Khi chạy lại với cùng dữ liệu (SHA-256 `749c90d7…`), pandas 3.0.6 và scikit-learn 1.9.1 trên Python 3.13.9, bảng so sánh cho cùng giá trị MAE/RMSE/R². V_2–V_4 đã có thí nghiệm trên validation (EXP_007–EXP_027). V_5 (đánh giá test) chưa chạy và cần nhóm chốt quy trình trước. Xem [các phiên bản thử nghiệm](src/versions/README.md) và [bản rà soát tiến độ](docs/ra_soat_tien_do.md).
 
 Kết quả validation chính (MAE, xe/giờ; chi tiết trong từng notebook):
 
@@ -141,15 +141,15 @@ Các mốc tuần là kế hoạch, không phải xác nhận đã hoàn thành.
 | Đường dẫn | Nội dung |
 | --- | --- |
 | `data/` | CSV gốc |
-| `notebooks/data_validation.ipynb` | Kiểm tra chất lượng dữ liệu |
-| `notebooks/EDA/eda.ipynb` | EDA chung và trực quan hóa |
+| `notebooks/eda/data_validation.ipynb` | Kiểm tra chất lượng dữ liệu |
+| `notebooks/eda/eda.ipynb` | EDA chung và trực quan hóa |
 | `notebooks/versions/V_1_time_only/` | Chỉ mục notebook và EDA liên quan V_1 |
-| `notebooks/preprocessing_features.ipynb` | Quy tắc gộp giờ, điền thiếu và đặc trưng thời gian |
-| `notebooks/BASELINE/baseline_V_1.ipynb` | Baseline Time-only |
-| `notebooks/BASELINE/baseline_V_2.ipynb` | Thời gian và ngày lễ (cấu hình A) |
-| `notebooks/BASELINE/baseline_V_3.ipynb` | Time + Weather (cấu hình B), đối chứng A–B, độ nhạy dữ liệu |
-| `notebooks/BASELINE/baseline_V_4.ipynb` | History (cấu hình C), seasonal naive, đối chứng B–C |
-| `notebooks/BASELINE/error_analysis_validation.ipynb` | Sai số theo giờ/ngày/thời tiết và SHAP |
+| `notebooks/preprocessing/preprocessing_features.ipynb` | Quy tắc gộp giờ, điền thiếu và đặc trưng thời gian |
+| `notebooks/experiments/baseline_V_1.ipynb` | Baseline Time-only |
+| `notebooks/experiments/baseline_V_2.ipynb` | Thời gian và ngày lễ (cấu hình A) |
+| `notebooks/experiments/baseline_V_3.ipynb` | Time + Weather (cấu hình B), đối chứng A–B, độ nhạy dữ liệu |
+| `notebooks/experiments/baseline_V_4.ipynb` | History (cấu hình C), seasonal naive, đối chứng B–C |
+| `notebooks/evaluation/error_analysis_validation.ipynb` | Sai số theo giờ/ngày/thời tiết và SHAP |
 | `src/data.py` | CSV gốc → bảng một dòng mỗi giờ → chia 70/15/15 → điền thiếu |
 | `src/features.py` | Đặc trưng thời gian, thời tiết, lịch sử và danh sách cấu hình A/B/C |
 | `src/models.py` | Mô hình, lưới tuning dùng chung, lưu/đọc kết quả |

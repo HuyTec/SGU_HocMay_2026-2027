@@ -2,7 +2,7 @@
 
 **Trạng thái:** Đã có thí nghiệm trên validation; test chưa dùng.
 
-- Notebook: [baseline_V_2.ipynb](../../../notebooks/BASELINE/baseline_V_2.ipynb).
+- Notebook: [baseline_V_2.ipynb](../../../notebooks/experiments/baseline_V_2.ipynb).
 - Cấu hình: `T0_thu_gio` (giờ, thứ), `T1_lich` (thêm tháng, cuối tuần, cao điểm, sin/cos), `A_lich_le` (thêm `is_holiday` theo nhãn CSV, gắn cho cả ngày).
 - Mô hình: Ridge (one-hot cặp thứ–giờ), Random Forest, XGBoost; cùng lưới tuning trong `src/models.py`, 3 fold `TimeSeriesSplit` trong train.
 - Kết quả chính: XGBoost `A_lich_le` MAE 244,94; thêm `is_holiday` giảm 33,95 xe/giờ (CI 95% theo ngày: 15,64–55,43).
