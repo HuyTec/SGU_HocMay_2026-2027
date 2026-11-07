@@ -2,14 +2,24 @@
 
 Xem [các phiên bản thử nghiệm](../../src/versions/README.md) để đối chiếu phạm vi, trạng thái và các log liên quan.
 
-`experiment_log.xlsx` là bảng tổng hợp **ảnh chụp** của lần chạy Time-only
-trong notebook `notebooks/experiments/V_1.ipynb`: sheet Validation
-ghi kết quả theo mô hình, Tuning CV ghi từng bộ tham số và MAE của ba fold,
-Fold thoi gian ghi các mốc chia. Các file `EXP_001.txt`–`EXP_006.txt` chứa
-chi tiết do `save_experiment_log` ghi từ lần chạy trước qua script ngoài notebook.
-Notebook hiện có các cell gọi trực tiếp logger; đặt `SAVE_EXPERIMENT_LOGS = True`
-và chạy cell ghi để tạo log mới sau khi đã chạy các cell mô hình. Mỗi lần ghi tạo
-file mới. Excel không tự cập nhật; cần cập nhật riêng sau mỗi lần chạy tiếp theo. Tên notebook trong các log cũ phản ánh tên tại thời điểm ghi và được giữ nguyên.
+## Workbook kết quả V1–V4
+
+Cell lưu của V1–V4 ghi kết quả vào `experiments/experiments_logs.xlsx`. Mỗi phiên bản cập nhật các sheet mang tiền tố của mình và các bảng tổng hợp chung. Đặt `SAVE_EXPERIMENT_LOGS=1` để bật nhật ký TXT. Trong V1, `SAVE_EXPERIMENT_RESULTS=1` bật xuất ảnh PNG.
+
+- **Validation** ghi metrics, cấu hình, cột đầu vào và tham số được chọn.
+- **Tuning CV**, **Mốc dữ liệu** và **Mốc fold** ghi ứng viên, điểm, mốc chia và số giờ.
+- **Dự đoán** lưu lưu lượng thật và dự đoán theo từng giờ. V3 và V4 thêm sheet đối chứng.
+- **Hướng dẫn** giải thích cách đọc kết quả và ghi nguồn notebook, mã lần chạy, commit gốc, hash CSV và workbook dùng để đối chứng.
+- **Hyper Parameters** ghi giá trị thực tế của từng tham số mô hình sau fit và phân biệt tham số cố định với tham số đã tuning.
+- **Evaluation** gom mô hình và baseline thứ–giờ của các phiên bản sẵn sàng. So trực tiếp trong cùng nhóm giờ chấm. Cột Giờ train cho biết số giờ đã fit của từng cấu hình.
+
+Địa điểm đo là **I-94 hướng Tây, trạm MnDOT ATR 301, khu vực Minneapolis–St. Paul, Minnesota, Mỹ**. Mốc dữ liệu và các fold giữ giờ CST như mô tả của [UCI](https://archive.ics.uci.edu/dataset/492/metro+interstate+traffic+volume). Thời điểm ghi workbook và mã lần chạy dùng UTC+7.
+
+Chạy theo thứ tự V2 → V3 → V4. V3 đọc các sheet V2 và V4 đọc các sheet V3 trong file chung. Mỗi phép đối chứng xác nhận mã lần chạy, hash CSV, giờ và mục tiêu trước khi chấm. Sheet **Tổng quan** đánh dấu **Cần chạy lại** khi một phiên bản đối chứng đã được cập nhật.
+
+Workbook `experiment_log_old.xlsx` và các file `EXP_*.txt` hiện có là hiện vật lịch sử.
+
+## Nhật ký TXT
 
 `src/experiment_logger.py` lưu mỗi lần gọi thành một file `EXP_001.txt`,
 `EXP_002.txt`... trong thư mục `experiments/`, không ghi đè các lần chạy trước.
