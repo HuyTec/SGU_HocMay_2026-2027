@@ -22,9 +22,19 @@ metro_interstate_traffic_volume/
 └── app/                   # Demo
 ```
 
+<<<<<<< Updated upstream
 ## 1. Bài toán và mục tiêu
 
 Đây là bài toán **học có giám sát, hồi quy trên dữ liệu có thứ tự thời gian**. Nhóm xây dựng mô hình dự đoán lưu lượng xe theo giờ, so sánh các phương pháp và phân tích những trường hợp dự đoán sai nhiều.
+=======
+| Cấu hình theo proposal      | Đầu vào                 | Mục đích                                           |
+| ----------------------------- | -------------------------- | ----------------------------------------------------- |
+| A — Time                     | Thời gian, ngày lễ      | Mốc đối chứng                                     |
+| B — Time + Weather           | A + thời tiết            | So sánh với A để đo đóng góp của thời tiết |
+| C — Time + Weather + History | B + lưu lượng quá khứ | Thí nghiệm mở rộng về lịch sử                  |
+
+Mô hình chính trong proposal: Linear Regression/Ridge, Random Forest, Gradient Boosting, MLP. Baseline gồm trung bình theo thứ–giờ, Ridge và seasonal naive cho thí nghiệm có lịch sử. Demo cuối dùng cấu hình B; History đánh giá riêng trong notebook.
+>>>>>>> Stashed changes
 
 | Thành phần         | Nội dung                                                                              |
 | -------------------- | -------------------------------------------------------------------------------------- |

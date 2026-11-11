@@ -1,0 +1,7 @@
+parameters,fold_1_mae,fold_2_mae,fold_3_mae,mean_cv_mae,rank
+"{'model__learning_rate_init': 0.003, 'model__hidden_layer_sizes': (64, 32), 'model__alpha': 0.0001}",385.93906597418686,396.5075921618853,378.81030584683276,387.08565466096826,1
+"{'model__learning_rate_init': 0.001, 'model__hidden_layer_sizes': (64, 32), 'model__alpha': 0.01}",573.051186480978,459.3702928364147,369.9907983360603,467.47075921781766,2
+"{'model__learning_rate_init': 0.003, 'model__hidden_layer_sizes': (64,), 'model__alpha': 0.01}",844.6768061647955,723.5854144760073,703.4954359430822,757.2525521946283,3
+"{'model__learning_rate_init': 0.001, 'model__hidden_layer_sizes': (64,), 'model__alpha': 0.01}",1377.2636719237157,902.4080640638141,771.1498309470962,1016.9405223115419,4
+"{'model__learning_rate_init': 0.001, 'model__hidden_layer_sizes': (64,), 'model__alpha': 0.0001}",1376.9957618770502,906.5049242548802,793.1884552483419,1025.5630471267575,5
+"{'model__learning_rate_init': 0.001, 'model__hidden_layer_sizes': (32,), 'model__alpha': 0.0001}",1465.593239862192,911.4615263957512,817.1498383071398,1064.7348681883611,6

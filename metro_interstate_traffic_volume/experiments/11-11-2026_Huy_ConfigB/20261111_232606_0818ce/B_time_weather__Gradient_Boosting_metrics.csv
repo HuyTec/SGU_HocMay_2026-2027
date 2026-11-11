@@ -1,0 +1,2 @@
+config,model,MAE,RMSE,R2
+B_time_weather,Gradient Boosting,288.8453513000464,492.96527457935736,0.9371095634726215
