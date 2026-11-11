@@ -1,37 +1,43 @@
-# House Prices — Thí nghiệm dự đoán giá nhà
+# House Prices — Hướng dẫn làm thí nghiệm
 
-## Cấu trúc
+Dự án dự đoán `SalePrice` từ dữ liệu House Prices. Mỗi thành viên làm notebook theo giai đoạn, lưu kết quả từng lần chạy và ghi một dòng vào sổ thí nghiệm chung.
 
-```text
-data/raw/                   Dữ liệu gốc và mô tả
-notebooks/
-  eda/                      Notebook khám phá dữ liệu
-  preprocessing/            Notebook thử tiền xử lý
-  feature/                  Notebook thử đặc trưng
-  experiment/               Notebook mô hình và phân tích sai số
-experiments/                Kết quả của mọi lần thí nghiệm
-  YYYY-MM-DD_HH-MM-SS_V1_ten/
-    notebook.ipynb          Bản chụp notebook của lần chạy
-    log.xlsx                Thông tin và kết quả lần chạy
-    figures/                Biểu đồ cần lưu, nếu có
-    artifacts/              Các tệp kết quả khác, nếu có
+## Vai trò các thư mục
+
+| Đường dẫn | Chức năng |
+|---|---|
+| `data/raw/` | Dữ liệu gốc, file mô tả và mẫu submission. Giữ nguyên các file này. |
+| `notebooks/eda/` | Notebook khám phá dữ liệu, biểu đồ và nhận xét. |
+| `notebooks/preprocessing/` | Notebook thử cách làm sạch, điền thiếu và mã hóa. |
+| `notebooks/feature/` | Notebook thử tạo hoặc chọn đặc trưng. |
+| `notebooks/experiment/` | Notebook đánh giá mô hình, phân tích lỗi và tuning. |
+| `experiments/` | Lưu lịch sử từng lần EDA, xử lý dữ liệu, feature và mô hình. |
+| `experiments/experiments_mau.xlsx` | Sổ chung: một dòng cho mỗi lần thí nghiệm. |
+
+## Cách thực hiện và lưu một thí nghiệm
+
+1. **Viết notebook** ở đúng thư mục trong `notebooks/`. Ví dụ: thử Ridge trong `notebooks/experiment/`. Ghi câu hỏi, giả thuyết và mốc so sánh.
+2. **Thực hiện và nhận xét** trong notebook: ghi dữ liệu, cách xử lý, phương pháp, tham số, cách đánh giá và kết quả. Ghi cả kết quả chưa tốt hoặc thất bại để người khác hiểu quá trình.
+3. **Lưu lịch sử:** tạo thư mục riêng theo mẫu `experiments/YYYY-MM-DD_Ten_MoTa/`, ví dụ `experiments/2026-11-11_Huy_Ridge_alpha_V1/`. Nếu trùng tên, thêm phiên bản hoặc giờ để không ghi đè. Lưu notebook, bản HTML và các biểu đồ, file `.txt` hay kết quả liên quan vào đó khi có.
+4. **Ghi một dòng** trong `experiments/experiments_mau.xlsx`: ngày, người thực hiện, tên, mô tả, trạng thái, cách đánh giá, kết quả và đường dẫn thư mục. Để trống điều chưa biết; kết quả EDA không bắt buộc có metric.
+5. **Chia sẻ thư mục kết quả** để người khác đọc notebook hoặc HTML, đối chiếu kết quả và tiếp tục thí nghiệm.
+
+### Ví dụ lưu notebook và HTML
+
+Lưu notebook trong Jupyter trước. Trong PowerShell mở tại thư mục gốc dự án:
+
+```powershell
+$runDir = "experiments/2026-11-11_Huy_Ridge_alpha_V1"
+New-Item -ItemType Directory -Path $runDir
+Copy-Item "notebooks/experiment/03_ridge_error_analysis.ipynb" "$runDir/03_ridge_error_analysis.ipynb"
+jupyter nbconvert --to html "$runDir/03_ridge_error_analysis.ipynb" --output-dir "$runDir"
 ```
 
-Mọi lần EDA, tiền xử lý, tạo đặc trưng, đánh giá mô hình hoặc tuning đều có
-thư mục riêng trong `experiments/`. Notebook làm việc nằm trong `notebooks/`;
-bản chụp của lần chạy được lưu cùng kết quả. Tên thư mục gồm ngày giờ, phiên bản
-và tên ngắn; không ghi đè kết quả cũ. Cây thư mục trên là quy ước cho các lần
-chạy tiếp theo, không có nghĩa các thư mục thí nghiệm đã tồn tại.
+Thay tên, ngày và đường dẫn theo lần chạy. HTML chứa output đã lưu trong notebook; lệnh này không tự chạy lại. Không dùng lại thư mục cũ để ghi đè kết quả.
 
-## Các bước thực hiện một thí nghiệm
+## Lưu ý khi đánh giá mô hình
 
-1. Ghi câu hỏi, giả thuyết, dữ liệu và mốc so sánh trong notebook.
-2. Ghi cấu hình: cách xử lý, mô hình hoặc biểu đồ, cách chia dữ liệu, metric,
-   tham số và seed nếu có.
-3. Chạy từng bước; lưu kết quả, nhận xét và những lần lỗi hoặc chưa hoàn tất.
-4. So sánh trên cùng dữ liệu và cách đánh giá khi phù hợp; ghi kết luận và giới hạn.
-5. Lưu notebook và kết quả vào thư mục lần chạy kèm ngày giờ, phiên bản và mô tả.
+Giữ cùng dữ liệu, cách chia và metric khi so sánh công bằng. Những bước tiền xử lý có học từ dữ liệu phải nằm trong pipeline và được fit trên từng phần huấn luyện của CV. Điểm dùng để tuning không phải đánh giá độc lập cuối cùng; `test.csv` không có giá thực tế để tính RMSE.
 
-Với cross-validation, các bước tiền xử lý có học từ dữ liệu phải được fit bên
-trong từng fold. File `test.csv` không có nhãn để tính sai số.
-Hiện hàm chưa tự tạo thư mục lần chạy hoặc chụp notebook; cần lưu các tệp đó thủ công.
+`experiment_logger.py` là công cụ tùy chọn tạo workbook chi tiết cho một lần chạy; nó **không tự ghi** vào `experiments_mau.xlsx` và không tự lưu notebook hoặc HTML. Ghi sổ chung thủ công sau mỗi lần thí nghiệm. Quy ước chi tiết: [QUY_UOC_THI_NGHIEM.md](experiments/QUY_UOC_THI_NGHIEM.md).
+

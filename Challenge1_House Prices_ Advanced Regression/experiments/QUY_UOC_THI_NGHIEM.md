@@ -39,21 +39,10 @@ chạy hết. Không tự gán ngày chạy cho kết quả cũ không rõ thờ
 5. **Lưu vết:** ngày giờ kèm múi giờ, phiên bản, mô tả, notebook và các kết quả
    đi cùng trong thư mục của lần chạy. Không lưu thông tin chưa được kiểm chứng.
 
-## Áp dụng cho Ridge
+Lệnh thực hiện chuyển sang type HTML từ nb
 
-Notebook 02 là baseline Dummy/Ridge. Notebook 03 phân tích sai số out-of-fold;
-việc hai căn chiếm khoảng 75,5% tổng bình phương sai số fold 3 là quan sát để
-kiểm tra, không phải lý do tự động loại dữ liệu. Tuning Ridge là bước tiếp theo:
-ghi giả thuyết, lưới alpha, cấu hình CV và kết quả từng cấu hình.
-
-Các bước học tham số tiền xử lý phải nằm trong pipeline được fit trên từng fold.
-Không áp dụng máy móc cách lưu dữ liệu đã scale trước CV trong ví dụ Iris: nếu
-scaler đã học từ toàn bộ dữ liệu trước khi chia fold thì đánh giá có thể rò rỉ.
-`data/raw/test.csv` không có nhãn, dùng để tạo dự đoán cuối, không tính RMSE.
-
-## Tình trạng công cụ hiện có
-
-`experiment_logger.py` hiện tạo workbook bốn sheet với ngày giờ và phiên bản;
-nó **chưa** tự tạo thư mục lần chạy hoặc chụp notebook. Không coi quy ước trên
-là tính năng đã triển khai. Cho đến khi bổ sung công cụ, cần tự tạo thư mục và
-lưu notebook cùng workbook sau mỗi lần chạy.
+```Shell
+jupyter nbconvert --to html `
+  "notebooks/experiment/<tên file>.ipynb" `
+  --output-dir "experiments/<tên folder thí nghiệm"
+```
