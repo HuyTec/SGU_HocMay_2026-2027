@@ -5,7 +5,7 @@ import json
 from pathlib import Path
 
 import pandas as pd
-from sklearn.compose import ColumnTransformer
+from sklearn.compose import ColumnTransformer, TransformedTargetRegressor
 from sklearn.ensemble import GradientBoostingRegressor, RandomForestRegressor
 from sklearn.impute import SimpleImputer
 from sklearn.linear_model import LinearRegression, Ridge
@@ -51,7 +51,28 @@ SEARCH_SPACE = {
     },
 }
 N_RANDOM_TRIALS = {"Random Forest": 6, "XGBoost": 12, "Gradient Boosting": 6, "MLP": 6}
+FIXED_MODEL_CLASSES = {
+    "Linear Regression": LinearRegression,
+    "Random Forest": RandomForestRegressor,
+    "Gradient Boosting": GradientBoostingRegressor,
+    "MLP": MLPRegressor,
+}
 
+
+def make_fixed_model(name: str, params: dict):
+    """Khởi tạo một mô hình từ tham số trong notebook."""
+    if name not in FIXED_MODEL_CLASSES:
+        raise ValueError(f"Mô hình không được hỗ trợ: {name}")
+
+    model = FIXED_MODEL_CLASSES[name](**params)
+
+    if name == "MLP":
+        return TransformedTargetRegressor(
+            regressor=model,
+            transformer=StandardScaler(),
+        )
+
+    return model
 
 def ridge_one_hot(features: list[str]) -> list[str]:
     """Cột one-hot của Ridge, chỉ gồm thông tin có trong cấu hình đang xét."""
