@@ -27,9 +27,11 @@ Mô hình chính trong proposal: Ridge, Random Forest, XGBoost/LightGBM. Baselin
 
 ## Thực nghiệm hiện tại
 
-Đang thử cấu hình thời gian trong `notebooks/experiments/ConfigA-Datetime_Compare5Model_Huy_5-11-2026.ipynb` (đổi tên từ V_1). Đặc trưng hiện tại là giờ và thứ, chưa đầy đủ cấu hình A của proposal.
+- [Config A của Phúc](notebooks/experiments/V1_ConfigA_phuc.ipynb) so sánh 4 mô hình với đặc trưng thời gian.
+- [Config A của Huy](notebooks/experiments/ConfigAWithoutHoliday_Compare5Model_Huy_5-11-2026.ipynb) thử cấu hình thời gian bỏ đặc trưng ngày lễ.
+- [Config B của Huy](notebooks/experiments/ConfigB_Compare5Model_Huy_11-11-2026.ipynb) so sánh mô hình khi bổ sung thời tiết.
 
-**Tiếp theo:** chốt bộ đặc trưng A và danh sách **5 mô hình**, thực nghiệm B (A + thời tiết), rồi đối chiếu từng mô hình với A trên cùng các giờ validation. Notebook hiện còn mã chạy 6 mô hình; tên file chưa phản ánh đầy đủ nội dung. Chưa coi kế hoạch này là kết quả đã hoàn thành.
+Xem [nhật ký thực nghiệm](experiments/experiments_logs.xlsx) để đối chiếu các lần chạy. Trước khi kết luận về đóng góp của thời tiết, kiểm tra A và B dùng cùng mô hình, mốc chia, các giờ validation và quy tắc tuning.
 
 ## Tài liệu và thư mục
 
