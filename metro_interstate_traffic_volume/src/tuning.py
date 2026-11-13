@@ -85,36 +85,115 @@ class SearchResult:
         return self.best_estimator_.predict(inputs)
 
 
-def _search(name, features, train, folds) -> SearchResult:
+def _search(
+    name,
+    features,
+    train,
+    folds,
+    *,
+    config=None,
+    progress_callback=None,
+) -> SearchResult:
     columns = input_columns(name, features)
     space = SEARCH_SPACE[name]
     if name in N_RANDOM_TRIALS:
         candidates = ParameterSampler(space, N_RANDOM_TRIALS[name], random_state=RANDOM_STATE)
     else:
         candidates = ParameterGrid(space)
+    candidates = list(candidates)
+    candidate_count = len(candidates)
     rows = []
-    for parameters in candidates:
+    for candidate_number, parameters in enumerate(candidates, start=1):
         errors = {}
         for number, (fit, score) in enumerate(folds, start=1):
-            model = make_model(name, features).set_params(**parameters)
-            model.fit(fit[columns], fit["traffic_volume"])
-            prediction = clip_prediction(model.predict(score[columns]))
-            errors[f"fold_{number}_mae"] = mean_absolute_error(score["traffic_volume"], prediction)
+            try:
+                model = make_model(name, features).set_params(**parameters)
+                model.fit(fit[columns], fit["traffic_volume"])
+                prediction = clip_prediction(model.predict(score[columns]))
+                fold_mae = mean_absolute_error(
+                    score["traffic_volume"], prediction
+                )
+                errors[f"fold_{number}_mae"] = float(fold_mae)
+
+                if progress_callback is not None:
+                    progress_callback({
+                        "config": config,
+                        "model": name,
+                        "candidate": candidate_number,
+                        "candidate_count": candidate_count,
+                        "fold": number,
+                        "status": "fold_complete",
+                        "params_json": parameters,
+                        "fold_mae": float(fold_mae),
+                        "fit_start": str(fit["date_time"].iloc[0]),
+                        "fit_end": str(fit["date_time"].iloc[-1]),
+                        "score_start": str(score["date_time"].iloc[0]),
+                        "score_end": str(score["date_time"].iloc[-1]),
+                    })
+            except Exception as exc:
+                if progress_callback is not None:
+                    progress_callback({
+                        "config": config,
+                        "model": name,
+                        "candidate": candidate_number,
+                        "candidate_count": candidate_count,
+                        "fold": number,
+                        "status": "fold_error",
+                        "params_json": parameters,
+                        "fit_start": str(fit["date_time"].iloc[0]),
+                        "fit_end": str(fit["date_time"].iloc[-1]),
+                        "score_start": str(score["date_time"].iloc[0]),
+                        "score_end": str(score["date_time"].iloc[-1]),
+                        "error": f"{type(exc).__name__}: {exc}",
+                    })
+                raise
+
+        mean_cv_mae = sum(errors.values()) / len(errors)
         rows.append({
             "parameters": parameters, **errors,
-            "mean_cv_mae": sum(errors.values()) / len(errors),
+            "mean_cv_mae": mean_cv_mae,
         })
+
+        if progress_callback is not None:
+            progress_callback({
+                "config": config,
+                "model": name,
+                "candidate": candidate_number,
+                "candidate_count": candidate_count,
+                "status": "candidate_complete",
+                "params_json": parameters,
+                "mean_cv_mae": mean_cv_mae,
+            })
+
     scores = pd.DataFrame(rows).sort_values("mean_cv_mae", kind="stable").reset_index(drop=True)
     scores["rank"] = scores["mean_cv_mae"].rank(method="min").astype(int)
     best = scores.iloc[0]
-    model = make_model(name, features).set_params(**best["parameters"])
-    model.fit(train[columns], train["traffic_volume"])
-    return SearchResult(model, best["parameters"], -best["mean_cv_mae"], scores)
+    best_model = make_model(name, features).set_params(**best["parameters"])
+    best_model.fit(train[columns], train["traffic_volume"])
+    return SearchResult(
+        best_estimator_=best_model,
+        best_params_=best["parameters"],
+        best_score_=-float(best["mean_cv_mae"]),
+        scores=scores,
+    )
 
 
-def tune_model(name, features, train, *, raw_train=None) -> SearchResult:
+def tune_model(
+    name,
+    features,
+    train,
+    *,
+    raw_train=None,
+    progress_callback=None,
+) -> SearchResult:
     """Chọn theo MAE CV và fit lại trên toàn bộ train đã chuẩn bị."""
-    return _search(name, features, train, _prepare_folds(train, features, raw_train))
+    return _search(
+        name,
+        features,
+        train,
+        _prepare_folds(train, features, raw_train),
+        progress_callback=progress_callback,
+    )
 
 
 def summarize_search(search: SearchResult) -> pd.DataFrame:
@@ -122,21 +201,51 @@ def summarize_search(search: SearchResult) -> pd.DataFrame:
     return search.scores.copy()
 
 
-def run_config(config, features, train, target, model_names=MODEL_NAMES, *, raw_train=None):
+def run_config(
+    config,
+    features,
+    train,
+    target,
+    model_names=MODEL_NAMES,
+    *,
+    raw_train=None,
+    progress_callback=None,
+):
     """Tuning trên train, rồi dự đoán tập validation ngoài bằng mô hình đã fit lại."""
     if target["date_time"].min() <= train["date_time"].max():
         raise ValueError("Tập đánh giá phải nằm sau train.")
     folds = _prepare_folds(train, features, raw_train)
     results = []
     for name in model_names:
-        search = _search(name, features, train, folds)
+        search = _search(
+            name,
+            features,
+            train,
+            folds,
+            config=config,
+            progress_callback=progress_callback,
+        )
         prediction = clip_prediction(search.predict(target[input_columns(name, features)]))
+        metrics = regression_metrics(target["traffic_volume"], prediction)
+
+        if progress_callback is not None:
+            progress_callback({
+                "config": config,
+                "model": name,
+                "status": "validation_complete",
+                "params_json": search.best_params_,
+                "mean_cv_mae": -search.best_score_,
+                "validation_mae": metrics["MAE"],
+                "validation_rmse": metrics["RMSE"],
+                "validation_r2": metrics["R2"],
+            })
+
         results.append({
             "config": config,
             "model": name,
             "features": list(features),
             "search": search,
             "prediction": prediction,
-            "metrics": regression_metrics(target["traffic_volume"], prediction),
+            "metrics": metrics,
         })
     return results

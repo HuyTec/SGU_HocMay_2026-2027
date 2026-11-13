@@ -1,0 +1,60 @@
+Experiment ID: EXP_001
+Date: 2026-11-13
+
+Dataset: Traffic Volume
+Model: Config C — Linear Regression
+
+Features:
+- hour
+- day_of_week
+- month
+- is_weekend
+- is_rush_hour
+- hour_sin
+- hour_cos
+- day_of_week_sin
+- day_of_week_cos
+- month_sin
+- month_cos
+- is_holiday
+- temp_c
+- rain_1h
+- snow_1h
+- clouds_all
+- weather_clear
+- weather_clouds
+- weather_drizzle
+- weather_fog
+- weather_haze
+- weather_mist
+- weather_rain
+- weather_smoke
+- weather_snow
+- weather_squall
+- weather_thunderstorm
+- lag_24h
+- lag_168h
+- mean_24h
+
+Data Split:
+- Train: 70%
+- Validation: 15%
+- Test: 15%
+- Split strategy: Chronological
+
+Results:
+- MAE: 341.35455191484584
+- RMSE: 519.6335887100734
+- R²: 0.9300269754027917
+
+Observations:
+- MAE trung bình CV: 357.9319
+- Params tốt nhất: {"linearregression__fit_intercept": true}
+- Số mẫu train: 22503
+- Số mẫu validation: 6050
+
+Problems:
+- Chưa ghi nhận
+
+Next Steps:
+- Giữ test riêng cho đánh giá cuối sau khi chọn mô hình.

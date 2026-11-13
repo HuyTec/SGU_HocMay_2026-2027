@@ -1,0 +1,23 @@
+{
+  "C|Linear Regression": {
+    "linearregression__fit_intercept": true
+  },
+  "C|Random Forest": {
+    "min_samples_leaf": 2,
+    "max_features": 0.33,
+    "max_depth": null
+  },
+  "C|Gradient Boosting": {
+    "model__n_estimators": 200,
+    "model__max_depth": 3,
+    "model__learning_rate": 0.1
+  },
+  "C|MLP": {
+    "model__regressor__learning_rate_init": 0.001,
+    "model__regressor__hidden_layer_sizes": [
+      64,
+      32
+    ],
+    "model__regressor__alpha": 0.01
+  }
+}

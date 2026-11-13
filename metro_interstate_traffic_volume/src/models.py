@@ -25,16 +25,18 @@ CALENDAR_FOR_RIDGE = {
 }
 
 SEARCH_SPACE = {
-    "Linear Regression": {},
+    "Linear Regression": {
+        "linearregression__fit_intercept": [True, False],
+    },
     "Gradient Boosting": {
         "model__n_estimators": [100, 200],
         "model__learning_rate": [0.03, 0.1],
         "model__max_depth": [2, 3],
     },
     "MLP": {
-        "model__hidden_layer_sizes": [(32,), (64,), (64, 32)],
-        "model__alpha": [0.0001, 0.01],
-        "model__learning_rate_init": [0.001, 0.003],
+        "model__regressor__hidden_layer_sizes": [(32,), (64,), (64, 32)],
+        "model__regressor__alpha": [0.0001, 0.01],
+        "model__regressor__learning_rate_init": [0.001, 0.003],
     },
     "Ridge": {"model__alpha": [0.1, 1.0, 10.0, 100.0, 1000.0]},
     "Random Forest": {
@@ -121,7 +123,11 @@ def make_model(name: str, features: list[str]):
     if name == "Random Forest":
         return make_forest()
     if name == "Linear Regression":
-        return make_pipeline(SimpleImputer(strategy="median"), LinearRegression())
+        return make_pipeline(
+            SimpleImputer(strategy="median"),
+            StandardScaler(),
+            LinearRegression(),
+        )
     if name == "Gradient Boosting":
         return Pipeline([
             ("imputer", SimpleImputer(strategy="median")),
@@ -131,7 +137,16 @@ def make_model(name: str, features: list[str]):
         return Pipeline([
             ("imputer", SimpleImputer(strategy="median")),
             ("scaler", StandardScaler()),
-            ("model", MLPRegressor(random_state=RANDOM_STATE, max_iter=500)),
+            (
+                "model",
+                TransformedTargetRegressor(
+                    regressor=MLPRegressor(
+                        random_state=RANDOM_STATE,
+                        max_iter=500,
+                    ),
+                    transformer=StandardScaler(),
+                ),
+            ),
         ])
     if name == "XGBoost":
         from xgboost import XGBRegressor
