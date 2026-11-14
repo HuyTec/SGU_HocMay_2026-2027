@@ -1,28 +1,21 @@
-"""Cấu hình mô hình và tuning dùng chung để so sánh các phiên bản V_2–V_4.
+"""Tạo mô hình hồi quy, khai báo phạm vi tham số và đọc/ghi kết quả."""
 
-Mọi cấu hình đầu vào dùng cùng lưới tham số, cùng số lượt thử và cùng fold theo
-thời gian. Bước học tham số tiền xử lý nằm trong pipeline nên chỉ fit trên phần
-train của từng fold.
-"""
 
 import json
 from pathlib import Path
 
 import pandas as pd
-from sklearn.compose import ColumnTransformer
-from sklearn.ensemble import RandomForestRegressor
+from sklearn.compose import ColumnTransformer, TransformedTargetRegressor
+from sklearn.ensemble import GradientBoostingRegressor, RandomForestRegressor
 from sklearn.impute import SimpleImputer
-from sklearn.linear_model import Ridge
-from sklearn.model_selection import GridSearchCV, RandomizedSearchCV, TimeSeriesSplit
+from sklearn.linear_model import LinearRegression, Ridge
+from sklearn.neural_network import MLPRegressor
 from sklearn.pipeline import Pipeline, make_pipeline
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
-from xgboost import XGBRegressor
-
-from src.evaluation import clip_prediction, regression_metrics
-
 
 RANDOM_STATE = 42
-N_SPLITS = 3
+DEMO_MODEL_NAMES = ["Linear Regression", "Random Forest", "Gradient Boosting", "MLP"]
+MODEL_NAMES = [*DEMO_MODEL_NAMES, "Ridge", "XGBoost"]
 
 # Ridge không tự tạo tương tác: thay các cột lịch bằng one-hot cặp thứ–giờ và tháng.
 CALENDAR_FOR_RIDGE = {
@@ -32,6 +25,17 @@ CALENDAR_FOR_RIDGE = {
 }
 
 SEARCH_SPACE = {
+    "Linear Regression": {},
+    "Gradient Boosting": {
+        "model__n_estimators": [100, 200],
+        "model__learning_rate": [0.03, 0.1],
+        "model__max_depth": [2, 3],
+    },
+    "MLP": {
+        "model__hidden_layer_sizes": [(32,), (64,), (64, 32)],
+        "model__alpha": [0.0001, 0.01],
+        "model__learning_rate_init": [0.001, 0.003],
+    },
     "Ridge": {"model__alpha": [0.1, 1.0, 10.0, 100.0, 1000.0]},
     "Random Forest": {
         "max_depth": [12, 16, 20, None],
@@ -46,8 +50,29 @@ SEARCH_SPACE = {
         "colsample_bytree": [0.6, 0.8, 1.0],
     },
 }
-N_RANDOM_TRIALS = {"Random Forest": 6, "XGBoost": 12}
+N_RANDOM_TRIALS = {"Random Forest": 6, "XGBoost": 12, "Gradient Boosting": 6, "MLP": 6}
+FIXED_MODEL_CLASSES = {
+    "Linear Regression": LinearRegression,
+    "Random Forest": RandomForestRegressor,
+    "Gradient Boosting": GradientBoostingRegressor,
+    "MLP": MLPRegressor,
+}
 
+
+def make_fixed_model(name: str, params: dict):
+    """Khởi tạo một mô hình từ tham số trong notebook."""
+    if name not in FIXED_MODEL_CLASSES:
+        raise ValueError(f"Mô hình không được hỗ trợ: {name}")
+
+    model = FIXED_MODEL_CLASSES[name](**params)
+
+    if name == "MLP":
+        return TransformedTargetRegressor(
+            regressor=model,
+            transformer=StandardScaler(),
+        )
+
+    return model
 
 def ridge_one_hot(features: list[str]) -> list[str]:
     """Cột one-hot của Ridge, chỉ gồm thông tin có trong cấu hình đang xét."""
@@ -95,7 +120,22 @@ def make_model(name: str, features: list[str]):
         return make_ridge(features)
     if name == "Random Forest":
         return make_forest()
+    if name == "Linear Regression":
+        return make_pipeline(SimpleImputer(strategy="median"), LinearRegression())
+    if name == "Gradient Boosting":
+        return Pipeline([
+            ("imputer", SimpleImputer(strategy="median")),
+            ("model", GradientBoostingRegressor(random_state=RANDOM_STATE)),
+        ])
+    if name == "MLP":
+        return Pipeline([
+            ("imputer", SimpleImputer(strategy="median")),
+            ("scaler", StandardScaler()),
+            ("model", MLPRegressor(random_state=RANDOM_STATE, max_iter=500)),
+        ])
     if name == "XGBoost":
+        from xgboost import XGBRegressor
+
         return XGBRegressor(
             n_estimators=400,
             objective="reg:squarederror",
@@ -116,68 +156,6 @@ def make_forest() -> RandomForestRegressor:
 def input_columns(name: str, features: list[str]) -> list[str]:
     """Danh sách cột cần đưa vào mô hình."""
     return ridge_columns(features) if name == "Ridge" else list(features)
-
-
-def tune_model(name: str, features: list[str], train: pd.DataFrame):
-    """Chọn tham số theo MAE trên ba fold thời gian rồi fit lại trên toàn train."""
-    settings = {
-        "scoring": "neg_mean_absolute_error",
-        "cv": TimeSeriesSplit(n_splits=N_SPLITS),
-        "refit": True,
-        "error_score": "raise",
-        "n_jobs": 1,
-    }
-    estimator = make_model(name, features)
-    if name == "Ridge":
-        search = GridSearchCV(estimator, SEARCH_SPACE[name], **settings)
-    else:
-        search = RandomizedSearchCV(
-            estimator,
-            SEARCH_SPACE[name],
-            n_iter=N_RANDOM_TRIALS[name],
-            random_state=RANDOM_STATE,
-            **settings,
-        )
-    return search.fit(train[input_columns(name, features)], train["traffic_volume"])
-
-
-def summarize_search(search) -> pd.DataFrame:
-    """Bảng tham số và MAE của từng fold, xếp theo thứ hạng."""
-    rows = pd.DataFrame(search.cv_results_)
-    table = pd.DataFrame({"parameters": rows["params"]})
-    for fold in range(N_SPLITS):
-        table[f"fold_{fold + 1}_mae"] = -rows[f"split{fold}_test_score"]
-    table["mean_cv_mae"] = -rows["mean_test_score"]
-    table["rank"] = rows["rank_test_score"]
-    return table.sort_values("rank").reset_index(drop=True)
-
-
-MODEL_NAMES = ["Ridge", "Random Forest", "XGBoost"]
-
-
-def run_config(
-    config: str,
-    features: list[str],
-    train: pd.DataFrame,
-    target: pd.DataFrame,
-    model_names: list[str] = MODEL_NAMES,
-) -> list[dict]:
-    """Tuning từng mô hình trên train rồi dự đoán các giờ trong target."""
-    results = []
-    for name in model_names:
-        search = tune_model(name, features, train)
-        prediction = search.predict(target[input_columns(name, features)])
-        results.append(
-            {
-                "config": config,
-                "model": name,
-                "features": list(features),
-                "search": search,
-                "prediction": clip_prediction(prediction),
-                "metrics": regression_metrics(target["traffic_volume"], prediction),
-            }
-        )
-    return results
 
 
 def results_table(results: list[dict]) -> pd.DataFrame:

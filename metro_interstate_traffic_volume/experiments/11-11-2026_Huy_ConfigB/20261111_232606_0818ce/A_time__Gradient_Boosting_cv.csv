@@ -1,0 +1,7 @@
+parameters,fold_1_mae,fold_2_mae,fold_3_mae,mean_cv_mae,rank
+"{'model__n_estimators': 200, 'model__max_depth': 3, 'model__learning_rate': 0.1}",328.7095752568806,299.9185019094321,319.85345610806456,316.1605110914591,1
+"{'model__n_estimators': 200, 'model__max_depth': 2, 'model__learning_rate': 0.1}",431.77453036832844,408.08291633902536,435.5957378441281,425.1510615171606,2
+"{'model__n_estimators': 100, 'model__max_depth': 3, 'model__learning_rate': 0.03}",484.06689419711506,453.4977017139313,471.6032826364862,469.72262618251085,3
+"{'model__n_estimators': 100, 'model__max_depth': 2, 'model__learning_rate': 0.1}",492.09548745002246,465.1105013109458,488.6194049321131,481.9417978976938,4
+"{'model__n_estimators': 200, 'model__max_depth': 2, 'model__learning_rate': 0.03}",535.0093579826163,512.0679945597029,526.8170982183603,524.6314835868932,5
+"{'model__n_estimators': 100, 'model__max_depth': 2, 'model__learning_rate': 0.03}",641.48341671376,615.5474992187953,612.623607751497,623.2181745613508,6

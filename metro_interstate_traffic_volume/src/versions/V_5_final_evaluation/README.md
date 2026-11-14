@@ -1,7 +1,0 @@
-# V_5 — Đánh giá cuối và đóng gói
-
-**Trạng thái:** Kế hoạch, chưa có kết quả test cuối được xác nhận trong các log V_1.
-
-Chốt quy trình bằng train, CV và validation trước khi đánh giá test. Lưu cấu hình, dữ liệu, môi trường, metrics, giới hạn và hướng dẫn sử dụng theo kết quả thực tế. Không dùng test để chọn tham số.
-
-Đặt liên kết hiện vật và ID thí nghiệm thực tế vào đây khi triển khai.

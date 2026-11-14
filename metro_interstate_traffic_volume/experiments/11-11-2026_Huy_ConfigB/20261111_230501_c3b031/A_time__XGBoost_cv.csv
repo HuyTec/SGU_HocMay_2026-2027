@@ -1,0 +1,13 @@
+parameters,fold_1_mae,fold_2_mae,fold_3_mae,mean_cv_mae,rank
+"{'subsample': 1.0, 'min_child_weight': 5, 'max_depth': 5, 'learning_rate': 0.05, 'colsample_bytree': 1.0}",316.62811499367297,286.1731540303835,306.9453132350008,303.2488607530191,1
+"{'subsample': 0.7, 'min_child_weight': 5, 'max_depth': 4, 'learning_rate': 0.03, 'colsample_bytree': 1.0}",319.2897001970318,288.8355549772021,309.5344792239767,305.8865781327368,2
+"{'subsample': 1.0, 'min_child_weight': 10, 'max_depth': 8, 'learning_rate': 0.05, 'colsample_bytree': 0.8}",592.5132785066417,567.0213358091972,583.8384114773173,581.1243419310521,3
+"{'subsample': 1.0, 'min_child_weight': 1, 'max_depth': 6, 'learning_rate': 0.05, 'colsample_bytree': 0.8}",592.5135249984096,567.0216002504591,583.8392459289121,581.1247903925936,4
+"{'subsample': 0.85, 'min_child_weight': 10, 'max_depth': 5, 'learning_rate': 0.1, 'colsample_bytree': 0.8}",593.0388762686287,567.2505156933422,584.2498859991155,581.5130926536955,5
+"{'subsample': 0.7, 'min_child_weight': 1, 'max_depth': 4, 'learning_rate': 0.05, 'colsample_bytree': 0.8}",593.1916734765281,567.3769647633189,584.4475563586598,581.672064866169,6
+"{'subsample': 0.7, 'min_child_weight': 1, 'max_depth': 4, 'learning_rate': 0.1, 'colsample_bytree': 0.8}",593.2757942882055,567.4878824473099,584.3111095624574,581.6915954326577,7
+"{'subsample': 1.0, 'min_child_weight': 1, 'max_depth': 8, 'learning_rate': 0.03, 'colsample_bytree': 0.8}",593.7838989397505,568.4552997664331,584.4963964010964,582.2451983690934,8
+"{'subsample': 0.7, 'min_child_weight': 10, 'max_depth': 6, 'learning_rate': 0.03, 'colsample_bytree': 0.8}",594.541674410323,569.0331622583094,585.0881262545519,582.8876543077281,9
+"{'subsample': 0.7, 'min_child_weight': 1, 'max_depth': 6, 'learning_rate': 0.03, 'colsample_bytree': 0.8}",594.541674410323,569.0331622583094,585.0881262545519,582.8876543077281,9
+"{'subsample': 0.7, 'min_child_weight': 1, 'max_depth': 5, 'learning_rate': 0.03, 'colsample_bytree': 0.6}",594.6607933603207,569.0689999900065,585.2171100277968,582.9823011260413,11
+"{'subsample': 0.7, 'min_child_weight': 1, 'max_depth': 4, 'learning_rate': 0.03, 'colsample_bytree': 0.8}",594.7554792817881,569.2921888039817,585.99862951413,583.3487658666332,12
