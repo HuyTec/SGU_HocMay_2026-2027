@@ -1,0 +1,60 @@
+Experiment ID: EXP_002
+Date: 2026-11-13
+
+Dataset: Traffic Volume
+Model: Config C — Random Forest
+
+Features:
+- hour
+- day_of_week
+- month
+- is_weekend
+- is_rush_hour
+- hour_sin
+- hour_cos
+- day_of_week_sin
+- day_of_week_cos
+- month_sin
+- month_cos
+- is_holiday
+- temp_c
+- rain_1h
+- snow_1h
+- clouds_all
+- weather_clear
+- weather_clouds
+- weather_drizzle
+- weather_fog
+- weather_haze
+- weather_mist
+- weather_rain
+- weather_smoke
+- weather_snow
+- weather_squall
+- weather_thunderstorm
+- lag_24h
+- lag_168h
+- mean_24h
+
+Data Split:
+- Train: 70%
+- Validation: 15%
+- Test: 15%
+- Split strategy: Chronological
+
+Results:
+- MAE: 195.3362133611554
+- RMSE: 321.98332661372996
+- R²: 0.9731340017992129
+
+Observations:
+- MAE trung bình CV: 229.4855
+- Params tốt nhất: {"max_depth": null, "max_features": 0.33, "min_samples_leaf": 2}
+- Số mẫu train: 22503
+- Số mẫu validation: 6050
+
+Problems:
+- Chưa ghi nhận
+
+Next Steps:
+- Giữ test riêng cho đánh giá cuối sau khi chọn mô hình.

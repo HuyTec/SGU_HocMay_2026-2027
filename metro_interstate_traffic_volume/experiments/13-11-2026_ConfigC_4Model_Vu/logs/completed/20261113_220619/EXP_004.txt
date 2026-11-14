@@ -1,0 +1,60 @@
+Experiment ID: EXP_004
+Date: 2026-11-13
+
+Dataset: Traffic Volume
+Model: Config C — MLP
+
+Features:
+- hour
+- day_of_week
+- month
+- is_weekend
+- is_rush_hour
+- hour_sin
+- hour_cos
+- day_of_week_sin
+- day_of_week_cos
+- month_sin
+- month_cos
+- is_holiday
+- temp_c
+- rain_1h
+- snow_1h
+- clouds_all
+- weather_clear
+- weather_clouds
+- weather_drizzle
+- weather_fog
+- weather_haze
+- weather_mist
+- weather_rain
+- weather_smoke
+- weather_snow
+- weather_squall
+- weather_thunderstorm
+- lag_24h
+- lag_168h
+- mean_24h
+
+Data Split:
+- Train: 70%
+- Validation: 15%
+- Test: 15%
+- Split strategy: Chronological
+
+Results:
+- MAE: 227.20489512298033
+- RMSE: 349.30772568449913
+- R²: 0.9683806747869048
+
+Observations:
+- MAE trung bình CV: 280.8134
+- Params tốt nhất: {"model__regressor__alpha": 0.01, "model__regressor__hidden_layer_sizes": [64, 32], "model__regressor__learning_rate_init": 0.001}
+- Số mẫu train: 22503
+- Số mẫu validation: 6050
+
+Problems:
+- Chưa ghi nhận
+
+Next Steps:
+- Giữ test riêng cho đánh giá cuối sau khi chọn mô hình.
