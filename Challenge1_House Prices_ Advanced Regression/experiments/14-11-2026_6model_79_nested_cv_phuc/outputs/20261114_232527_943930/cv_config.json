@@ -1,0 +1,171 @@
+{
+  "baseline": "experiments\\14-11-2026_6model_79_phuc\\outputs\\20261114_224507_500186",
+  "feature_columns": [
+    "MSSubClass",
+    "MSZoning",
+    "LotFrontage",
+    "LotArea",
+    "Street",
+    "Alley",
+    "LotShape",
+    "LandContour",
+    "Utilities",
+    "LotConfig",
+    "LandSlope",
+    "Neighborhood",
+    "Condition1",
+    "Condition2",
+    "BldgType",
+    "HouseStyle",
+    "OverallQual",
+    "OverallCond",
+    "YearBuilt",
+    "YearRemodAdd",
+    "RoofStyle",
+    "RoofMatl",
+    "Exterior1st",
+    "Exterior2nd",
+    "MasVnrType",
+    "MasVnrArea",
+    "ExterQual",
+    "ExterCond",
+    "Foundation",
+    "BsmtQual",
+    "BsmtCond",
+    "BsmtExposure",
+    "BsmtFinType1",
+    "BsmtFinSF1",
+    "BsmtFinType2",
+    "BsmtFinSF2",
+    "BsmtUnfSF",
+    "TotalBsmtSF",
+    "Heating",
+    "HeatingQC",
+    "CentralAir",
+    "Electrical",
+    "1stFlrSF",
+    "2ndFlrSF",
+    "LowQualFinSF",
+    "GrLivArea",
+    "BsmtFullBath",
+    "BsmtHalfBath",
+    "FullBath",
+    "HalfBath",
+    "BedroomAbvGr",
+    "KitchenAbvGr",
+    "KitchenQual",
+    "TotRmsAbvGrd",
+    "Functional",
+    "Fireplaces",
+    "FireplaceQu",
+    "GarageType",
+    "GarageYrBlt",
+    "GarageFinish",
+    "GarageCars",
+    "GarageArea",
+    "GarageQual",
+    "GarageCond",
+    "PavedDrive",
+    "WoodDeckSF",
+    "OpenPorchSF",
+    "EnclosedPorch",
+    "3SsnPorch",
+    "ScreenPorch",
+    "PoolArea",
+    "PoolQC",
+    "Fence",
+    "MiscFeature",
+    "MiscVal",
+    "MoSold",
+    "YrSold",
+    "SaleType",
+    "SaleCondition"
+  ],
+  "target": "ln(SalePrice)",
+  "outer_folds": 5,
+  "inner_folds": 3,
+  "random_state": 42,
+  "fixed_params": {
+    "DummyRegressor": {
+      "strategy": "mean"
+    },
+    "Ridge": {
+      "alpha": 1.0,
+      "solver": "lsqr"
+    },
+    "Random Forest": {
+      "n_estimators": 200,
+      "min_samples_leaf": 2,
+      "random_state": 42
+    },
+    "Lasso": {
+      "alpha": 0.001,
+      "max_iter": 10000
+    },
+    "XGBoost": {
+      "n_estimators": 200,
+      "max_depth": 4,
+      "learning_rate": 0.05,
+      "random_state": 42,
+      "n_jobs": 2
+    },
+    "SVR": {
+      "C": 10.0,
+      "epsilon": 0.05,
+      "gamma": "scale"
+    }
+  },
+  "param_grid": {
+    "DummyRegressor": {},
+    "Ridge": {
+      "alpha": [
+        0.1,
+        1.0,
+        10.0,
+        30.0
+      ]
+    },
+    "Random Forest": {
+      "min_samples_leaf": [
+        1,
+        2,
+        4
+      ],
+      "max_features": [
+        1.0,
+        0.5
+      ]
+    },
+    "Lasso": {
+      "alpha": [
+        0.0003,
+        0.001,
+        0.002,
+        0.005
+      ]
+    },
+    "XGBoost": {
+      "max_depth": [
+        2,
+        4
+      ],
+      "learning_rate": [
+        0.03,
+        0.05,
+        0.1
+      ]
+    },
+    "SVR": {
+      "C": [
+        1.0,
+        10.0,
+        30.0
+      ],
+      "epsilon": [
+        0.02,
+        0.05,
+        0.1
+      ]
+    }
+  }
+}
