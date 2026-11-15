@@ -3,7 +3,7 @@
 import argparse
 import json
 import sys
-from importlib.metadata import version
+from importlib.metadata import PackageNotFoundError, version
 from pathlib import Path
 
 import joblib
@@ -26,10 +26,16 @@ def feature_sets(frame, config):
         + 0.5 * (original["HalfBath"] + original["BsmtHalfBath"]),
         AgeAtSale=original["YrSold"] - original["YearBuilt"],
     )
-    return {
-        name: expanded[[*original.columns, *config[name]["extra_features"]]]
-        for name in config["weights"]
-    }
+    features_by_model = {}
+    for name in config["weights"]:
+        settings = config[name]
+        columns = [*original.columns, *settings["extra_features"]]
+        features = expanded[columns].copy()
+        log_columns = settings.get("log1p_features", [])
+        if log_columns:
+            features[log_columns] = np.log1p(features[log_columns])
+        features_by_model[name] = features
+    return features_by_model
 
 
 def train(config):
@@ -63,7 +69,12 @@ def train(config):
     joblib.dump({"config": config, "pipelines": pipelines}, FOLDER / "ensemble.joblib", compress=3)
     packages = ["numpy", "pandas", "scipy", "scikit-learn", "joblib"]
     requirements = [f"{package}=={version(package)}" for package in packages]
-    requirements.append(f"xgboost-cpu=={xgboost.__version__}")
+    try:
+        cpu_version = version("xgboost-cpu")
+    except PackageNotFoundError:
+        requirements.append(f"xgboost=={xgboost.__version__}")
+    else:
+        requirements.append(f"xgboost-cpu=={cpu_version}")
     (FOLDER / "requirements.txt").write_text("\n".join(requirements) + "\n", encoding="utf-8")
     print(f"Training rows: {len(clean)}. Removed IDs: {raw.loc[removed, ID].tolist()}")
 

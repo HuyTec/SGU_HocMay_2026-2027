@@ -1,6 +1,6 @@
 # XGBoost + Lasso với log diện tích
 
-Thí nghiệm ngày 15/11/2026 dựa trên ensemble 80% XGBoost và 20% Lasso của Phúc. Mục tiêu là kiểm tra xem `log1p(GrLivArea)` và `log1p(TotalSF)` trong nhánh Lasso có cải thiện RMSE trên log giá hay không. Hai nhánh dùng cấu hình trong `final_model/config.json`; ensemble tính trung bình có trọng số trên log giá.
+Thí nghiệm ngày 15/11/2026 dựa trên ensemble 80% XGBoost và 20% Lasso của Phúc. Mục tiêu là kiểm tra xem `log1p(GrLivArea)` và `log1p(TotalSF)` trong nhánh Lasso có cải thiện RMSE trên log giá hay không. Hai nhánh dùng cấu hình đã lưu trong `baseline_config.json` và trộn dự đoán theo trọng số trên log giá.
 
 Notebook [ensemble_log_area.ipynb](ensemble_log_area.ipynb) dùng fold đã lưu theo `Id` từ hai lần chạy của Phúc. Mỗi fold fit imputer, encoder, scaler và mô hình trên tập huấn luyện. Điều kiện lọc ngoại lệ chỉ áp dụng cho tập huấn luyện của từng fold; cả 1.460 dòng đều có dự đoán validation.
 
