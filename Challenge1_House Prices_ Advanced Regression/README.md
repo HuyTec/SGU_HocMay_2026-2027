@@ -3,6 +3,20 @@
 
 Dự án dự đoán `SalePrice` từ dữ liệu House Prices. Mỗi thành viên làm notebook theo giai đoạn, lưu kết quả từng lần chạy và ghi một dòng vào sổ thí nghiệm chung.
 
+## Mô hình cuối
+
+Mô hình trộn 80% XGBoost đã tối ưu và 20% Lasso dùng `log1p` cho `GrLivArea` và `TotalSF`. RMSE OOF trên log giá đạt 0,12568 ở bộ fold gốc và 0,12410 với seed 123. Xem [notebook thí nghiệm](experiments/2026-11-15_Huy_xgb_tuned_log_area/xgb_tuned_log_area.ipynb).
+
+Chạy từ thư mục gốc dự án:
+
+```powershell
+python -m pip install -r final_model/requirements.txt
+python final_model/run_model.py train
+python final_model/run_model.py predict
+```
+
+Lệnh `train` tạo `final_model/ensemble.joblib`. Lệnh `predict` dùng mô hình đã lưu để tạo `final_model/submission.csv`.
+
 ## Vai trò các thư mục
 
 | Đường dẫn                        | Chức năng                                                                    |

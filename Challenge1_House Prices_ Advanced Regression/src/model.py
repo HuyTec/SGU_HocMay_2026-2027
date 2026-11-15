@@ -19,6 +19,11 @@ def make_xgboost(
     n_estimators: int = 200,
     max_depth: int = 4,
     learning_rate: float = 0.05,
+    min_child_weight: float = 1,
+    subsample: float = 1,
+    colsample_bytree: float = 1,
+    reg_alpha: float = 0,
+    reg_lambda: float = 1,
     random_state: int = 42,
     n_jobs: int = 2,
 ) -> "XGBRegressor":
@@ -31,6 +36,11 @@ def make_xgboost(
         n_estimators=n_estimators,
         max_depth=max_depth,
         learning_rate=learning_rate,
+        min_child_weight=min_child_weight,
+        subsample=subsample,
+        colsample_bytree=colsample_bytree,
+        reg_alpha=reg_alpha,
+        reg_lambda=reg_lambda,
         random_state=random_state,
         n_jobs=n_jobs,
     )

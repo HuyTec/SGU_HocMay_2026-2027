@@ -9,10 +9,22 @@
   },
   "xgboost": {
     "extra_features": ["TotalSF", "TotalBath"],
-    "params": {"n_estimators": 200, "max_depth": 4, "learning_rate": 0.05, "random_state": 42, "n_jobs": 2}
+    "params": {
+      "n_estimators": 1500,
+      "max_depth": 3,
+      "learning_rate": 0.05,
+      "min_child_weight": 1,
+      "subsample": 0.8,
+      "colsample_bytree": 0.8,
+      "reg_alpha": 0.1,
+      "reg_lambda": 5,
+      "random_state": 42,
+      "n_jobs": 2
+    }
   },
   "lasso": {
     "extra_features": ["TotalSF", "TotalBath", "AgeAtSale"],
+    "log1p_features": ["GrLivArea", "TotalSF"],
     "params": {"alpha": 0.001, "max_iter": 10000}
   }
 }
