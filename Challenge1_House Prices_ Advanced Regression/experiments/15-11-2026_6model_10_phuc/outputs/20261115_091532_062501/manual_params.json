@@ -1,0 +1,137 @@
+{
+  "dataset": "data/raw/train.csv",
+  "target_transform": "natural log",
+  "feature_selection": "Top 10 absolute Pearson correlations with SalePrice on fold training rows",
+  "feature_columns_by_fold": {
+    "1": [
+      "OverallQual",
+      "GrLivArea",
+      "GarageCars",
+      "GarageArea",
+      "TotalBsmtSF",
+      "1stFlrSF",
+      "FullBath",
+      "TotRmsAbvGrd",
+      "YearBuilt",
+      "YearRemodAdd"
+    ],
+    "2": [
+      "OverallQual",
+      "GrLivArea",
+      "GarageCars",
+      "GarageArea",
+      "TotalBsmtSF",
+      "1stFlrSF",
+      "FullBath",
+      "TotRmsAbvGrd",
+      "YearBuilt",
+      "YearRemodAdd"
+    ],
+    "3": [
+      "OverallQual",
+      "GrLivArea",
+      "TotalBsmtSF",
+      "1stFlrSF",
+      "GarageCars",
+      "GarageArea",
+      "FullBath",
+      "TotRmsAbvGrd",
+      "YearBuilt",
+      "YearRemodAdd"
+    ],
+    "4": [
+      "OverallQual",
+      "GrLivArea",
+      "GarageCars",
+      "GarageArea",
+      "TotalBsmtSF",
+      "1stFlrSF",
+      "FullBath",
+      "TotRmsAbvGrd",
+      "YearBuilt",
+      "YearRemodAdd"
+    ],
+    "5": [
+      "OverallQual",
+      "GrLivArea",
+      "GarageCars",
+      "GarageArea",
+      "TotalBsmtSF",
+      "1stFlrSF",
+      "FullBath",
+      "TotRmsAbvGrd",
+      "YearBuilt",
+      "YearRemodAdd"
+    ]
+  },
+  "baseline": "experiments\\14-11-2026_6model_79_phuc\\outputs\\20261114_224507_500186",
+  "cv": {
+    "n_splits": 5,
+    "shuffle": true,
+    "random_state": 42
+  },
+  "model_params": {
+    "DummyRegressor": {
+      "strategy": "mean"
+    },
+    "Ridge": {
+      "alpha": 1.0,
+      "copy_X": true,
+      "fit_intercept": true,
+      "positive": false,
+      "solver": "lsqr",
+      "tol": 0.0001
+    },
+    "Random Forest": {
+      "bootstrap": true,
+      "ccp_alpha": 0.0,
+      "criterion": "squared_error",
+      "max_features": 1.0,
+      "min_impurity_decrease": 0.0,
+      "min_samples_leaf": 2,
+      "min_samples_split": 2,
+      "min_weight_fraction_leaf": 0.0,
+      "n_estimators": 200,
+      "n_jobs": -1,
+      "oob_score": false,
+      "random_state": 42,
+      "verbose": 0,
+      "warm_start": false
+    },
+    "Lasso": {
+      "alpha": 0.001,
+      "copy_X": true,
+      "fit_intercept": true,
+      "max_iter": 10000,
+      "positive": false,
+      "precompute": false,
+      "selection": "cyclic",
+      "tol": 0.0001,
+      "warm_start": false
+    },
+    "XGBoost": {
+      "objective": "reg:squarederror",
+      "enable_categorical": true,
+      "learning_rate": 0.05,
+      "max_depth": 4,
+      "missing": NaN,
+      "n_estimators": 200,
+      "n_jobs": 2,
+      "random_state": 42,
+      "tree_method": "hist"
+    },
+    "SVR": {
+      "C": 10.0,
+      "cache_size": 200,
+      "coef0": 0.0,
+      "degree": 3,
+      "epsilon": 0.05,
+      "gamma": "scale",
+      "kernel": "rbf",
+      "max_iter": -1,
+      "shrinking": true,
+      "tol": 0.001,
+      "verbose": false
+    }
+  }
+}

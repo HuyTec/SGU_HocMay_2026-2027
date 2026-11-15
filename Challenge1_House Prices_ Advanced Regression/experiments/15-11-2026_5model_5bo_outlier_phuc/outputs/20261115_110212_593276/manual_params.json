@@ -1,0 +1,57 @@
+{
+  "dataset": "data/raw/train.csv",
+  "target_transform": "natural log",
+  "baseline": "experiments\\14-11-2026_6model_79_phuc\\outputs\\20261114_224507_500186",
+  "feature_formulas": {
+    "TotalSF": "TotalBsmtSF + 1stFlrSF + 2ndFlrSF",
+    "TotalBath": "FullBath + BsmtFullBath + 0.5 * (HalfBath + BsmtHalfBath)",
+    "AgeAtSale": "YrSold - YearBuilt"
+  },
+  "feature_pairs": [
+    [
+      "TotalSF",
+      "TotalBath"
+    ],
+    [
+      "TotalSF",
+      "AgeAtSale"
+    ],
+    [
+      "TotalBath",
+      "AgeAtSale"
+    ]
+  ],
+  "cv": {
+    "n_splits": 5,
+    "shuffle": true,
+    "random_state": 42
+  },
+  "outlier_rule": {
+    "GrLivArea_gt": 4000,
+    "SalePrice_lt": 200000,
+    "scope": "fold train only"
+  },
+  "model_params": {
+    "DummyRegressor": {
+      "strategy": "mean"
+    },
+    "Ridge": {
+      "alpha": 1.0,
+      "solver": "lsqr"
+    },
+    "Random Forest": {
+      "n_estimators": 200,
+      "min_samples_leaf": 2,
+      "random_state": 42
+    },
+    "Lasso": {
+      "alpha": 0.001,
+      "max_iter": 10000
+    },
+    "SVR": {
+      "C": 10.0,
+      "epsilon": 0.05,
+      "gamma": "scale"
+    }
+  }
+}

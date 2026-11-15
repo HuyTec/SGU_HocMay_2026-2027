@@ -1,0 +1,26 @@
+variant,fold,train_rows,validation_rows,removed_ids
+79_goc,1,1166,292,"[524, 1299]"
+79_goc,2,1166,292,"[524, 1299]"
+79_goc,3,1168,292,[]
+79_goc,4,1166,292,"[524, 1299]"
+79_goc,5,1166,292,"[524, 1299]"
+TotalSF + TotalBath,1,1166,292,"[524, 1299]"
+TotalSF + TotalBath,2,1166,292,"[524, 1299]"
+TotalSF + TotalBath,3,1168,292,[]
+TotalSF + TotalBath,4,1166,292,"[524, 1299]"
+TotalSF + TotalBath,5,1166,292,"[524, 1299]"
+TotalSF + AgeAtSale,1,1166,292,"[524, 1299]"
+TotalSF + AgeAtSale,2,1166,292,"[524, 1299]"
+TotalSF + AgeAtSale,3,1168,292,[]
+TotalSF + AgeAtSale,4,1166,292,"[524, 1299]"
+TotalSF + AgeAtSale,5,1166,292,"[524, 1299]"
+TotalBath + AgeAtSale,1,1166,292,"[524, 1299]"
+TotalBath + AgeAtSale,2,1166,292,"[524, 1299]"
+TotalBath + AgeAtSale,3,1168,292,[]
+TotalBath + AgeAtSale,4,1166,292,"[524, 1299]"
+TotalBath + AgeAtSale,5,1166,292,"[524, 1299]"
+82_ca_ba,1,1166,292,"[524, 1299]"
+82_ca_ba,2,1166,292,"[524, 1299]"
+82_ca_ba,3,1168,292,[]
+82_ca_ba,4,1166,292,"[524, 1299]"
+82_ca_ba,5,1166,292,"[524, 1299]"
