@@ -1,0 +1,36 @@
+{
+  "n_splits": 3,
+  "data_params": {
+    "mask_stuck_temp": false,
+    "complete_holidays": false
+  },
+  "reference_params": {
+    "n_estimators": 400,
+    "max_depth": 12,
+    "min_samples_leaf": 5,
+    "max_features": 1.0,
+    "random_state": 42,
+    "n_jobs": -1
+  },
+  "param_grids": {
+    "Random Forest": {
+      "max_depth": [
+        8,
+        10,
+        12,
+        14
+      ],
+      "min_samples_leaf": [
+        3,
+        5,
+        8,
+        12
+      ]
+    }
+  },
+  "max_features_cv_enabled": false,
+  "max_features_to_try": [
+    0.6,
+    0.8
+  ]
+}
