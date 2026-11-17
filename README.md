@@ -9,6 +9,9 @@
 | Phùng Anh Vũ | 3124411351 | Nhóm trưởng |
 | Bùi Nhật Hào | 3124411077 | Thành viên |
 
+## Các thông tin liên quan đề tài cuối kỳ
+link gg doc:https://docs.google.com/document/d/1dHSWGm43qGQtsnvnaf_s-wlyw58mSSu5mB2gfmnBuVA/edit?usp=sharing
+
 ## Phân công các lab
 
 Phân công đã được gán sẵn trong README của từng lab:
