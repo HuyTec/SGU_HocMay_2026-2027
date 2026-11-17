@@ -1,0 +1,37 @@
+{
+  "data": "data/Metro_Interstate_Traffic_Volume.csv",
+  "data_sha256": "749c90d720360a4215bb15345526073c079ba4cc95e3fa558796d083f85fce9e",
+  "data_params": {
+    "mask_stuck_temp": false,
+    "complete_holidays": false
+  },
+  "history_features_required": [
+    "lag_24h",
+    "lag_168h",
+    "mean_24h"
+  ],
+  "evaluation": "validation",
+  "eligibility": [
+    {
+      "split": "train",
+      "all_hours": 28402,
+      "eligible_hours": 22503,
+      "excluded_hours": 5899,
+      "eligible_start": "2012-10-09 09:00:00",
+      "eligible_end": "2017-05-10 04:00:00"
+    },
+    {
+      "split": "validation",
+      "all_hours": 6086,
+      "eligible_hours": 6050,
+      "excluded_hours": 36,
+      "eligible_start": "2017-05-10 05:00:00",
+      "eligible_end": "2018-01-19 14:00:00"
+    }
+  ],
+  "validation_timestamp_sha256": "66a5457a7c6436349a12de5da30714ff9fe756fb9e0ac6fc5422fd53c57be02f",
+  "versions": {
+    "pandas": "3.0.6",
+    "sklearn": "1.9.1"
+  }
+}

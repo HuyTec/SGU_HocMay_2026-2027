@@ -1,0 +1,22 @@
+{
+  "method": "fixed arithmetic mean of nonnegative RF C and GB C predictions",
+  "weights": {
+    "RF C": 0.5,
+    "GB C": 0.5
+  },
+  "dataset": "data/Metro_Interstate_Traffic_Volume.csv",
+  "dataset_sha256": "749c90d720360a4215bb15345526073c079ba4cc95e3fa558796d083f85fce9e",
+  "source_predictions": "experiments/17-11-2026_Huy_ConfigC/02_models_bc/outputs/validation_predictions.csv",
+  "source_predictions_sha256": "1512aa1baab05102802089f66fafa8ae177aee72d93291ce876fa135a6047e59",
+  "data_params": {
+    "mask_stuck_temp": false,
+    "complete_holidays": false
+  },
+  "validation": {
+    "n_total": 6086,
+    "n_eligible": 6050,
+    "first": "2017-05-10 05:00:00",
+    "last": "2018-01-19 14:00:00",
+    "verified_timestamp_target_and_peak_flag": true
+  }
+}
