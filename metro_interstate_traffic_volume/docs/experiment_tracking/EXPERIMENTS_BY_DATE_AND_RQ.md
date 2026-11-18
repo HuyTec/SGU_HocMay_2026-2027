@@ -14,6 +14,16 @@ Nguồn: [ML_Project_Proposal.docx](../ML_Project_Proposal.docx), phần “Mụ
 
 **RQ2-M** chỉ phần so sánh mô hình/pipeline; **RQ2-W** chỉ phần đóng góp thời tiết của cùng RQ2. **MỞ RỘNG-H** là B→C hoặc A→A+lịch sử theo mục đặc trưng/kế hoạch mở rộng; không tự đặt thành RQ4. Tuning và kiểm tra dữ liệu hỗ trợ RQ, không tự động là một câu trả lời nghiên cứu mới. RQ1 ở đây là quan hệ/mẫu hình dự đoán; không suy ra tác động nhân quả từ importance hoặc ablation.
 
+Tiêu đề và đánh giá cuối của 26 notebook hiện dùng ký hiệu tương ứng `RQ_1`, `RQ_2`, `RQ_3` và ba vai trò:
+
+| Nhãn | Ý nghĩa khi dùng trong báo cáo |
+|---|---|
+| **CHÍNH** — 5 notebook | Trả lời trực tiếp một phép đối chứng trọng tâm của RQ_2 hoặc phân tích lỗi RQ_3, trong phạm vi protocol đã nêu. Nhãn này không có nghĩa đã chốt mô hình cuối hay có bằng chứng test. |
+| **HỖ TRỢ** — 14 notebook | Cung cấp baseline, chọn/sửa tham số, kiểm tra nguồn hoặc tổng hợp kết quả phục vụ RQ chính. Không đếm tuning, checkpoint và bản tổng hợp thành bằng chứng độc lập mới. |
+| **BỔ SUNG** — 7 notebook | Đối chứng A/B tối giản, mở rộng lịch sử, weather có điều kiện history hoặc ensemble. Giữ câu hỏi và phạm vi riêng, không thay thế ablation chính của proposal. |
+
+Mỗi notebook có một cell Markdown cuối ghi câu hỏi, đánh giá kết quả, giới hạn kết luận và liên kết hiện vật theo mã E. Các đánh giá dựa trên kết quả lịch sử; chỉ thêm tài liệu, không huấn luyện lại. Chưa gắn nhãn một notebook thực nghiệm là nguồn chính của RQ_1 vì phần này cần các nguồn EDA riêng.
+
 ## 2. Theo ngày: câu hỏi → kết quả → vai trò
 
 Các con số là validation, trừ dòng ghi CV-only. Metrics được trích từ hiện vật liên kết; chưa tái huấn luyện để tái lập. Không lập bảng xếp hạng toàn cục từ các cohort/feature set khác nhau. Trong cùng ngày, các dòng không có timestamp riêng không được suy diễn thứ tự giờ chạy.
