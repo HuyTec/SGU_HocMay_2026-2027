@@ -27,6 +27,8 @@ Mô hình chính trong proposal: Ridge, Random Forest, XGBoost/LightGBM. Baselin
 
 ## Thực nghiệm hiện tại
 
+Các notebook trong `experiments/` dùng chung [`load_experiment_splits`](src/experiment_data.py): mặc định đọc `data/processed/`, chọn `stage="raw"` cho CV trước điền thiếu hoặc `stage="filled"` để giữ schema thời tiết của nhánh cũ. Hàm kiểm tra bộ chia và target giữa các nguồn; mặc định chỉ trả train/validation. Xem [hướng dẫn đối chứng](docs/experiment_tracking/COMPARISON_PROTOCOL.md) và [danh mục theo ngày/RQ](docs/experiment_tracking/EXPERIMENTS_BY_DATE_AND_RQ.md). Output notebook đang lưu là kết quả lịch sử; thay loader chưa phải chạy lại mô hình.
+
 - [Config A của Phúc](notebooks/experiments/V1_ConfigA_phuc.ipynb) so sánh 4 mô hình với đặc trưng thời gian.
 - [Config A của Huy](notebooks/experiments/ConfigAWithoutHoliday_Compare5Model_Huy_5-11-2026.ipynb) thử cấu hình thời gian bỏ đặc trưng ngày lễ.
 - [Config B của Huy](notebooks/experiments/ConfigB_Compare5Model_Huy_11-11-2026.ipynb) so sánh mô hình khi bổ sung thời tiết.

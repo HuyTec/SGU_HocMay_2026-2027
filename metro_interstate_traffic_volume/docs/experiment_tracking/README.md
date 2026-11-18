@@ -1,5 +1,9 @@
 # Nhật ký thực nghiệm
 
+Xem [hướng dẫn đối chứng và chọn nguồn dữ liệu](COMPARISON_PROTOCOL.md) để phân biệt lúc dùng `data/processed/`, lúc cần dữ liệu trước điền thiếu cho CV, và quy tắc đối chứng cho đủ các nhóm thí nghiệm.
+
+Xem [danh mục thí nghiệm theo ngày và câu hỏi proposal](EXPERIMENTS_BY_DATE_AND_RQ.md) để chọn các đối chứng phù hợp, phân biệt lượt tuning, sửa lỗi và phần mở rộng lịch sử. Danh mục ghi rõ nguồn ngày chạy và các hiện vật hiện có; không chạy lại hoặc thay thế log gốc.
+
 Xem [các phiên bản thử nghiệm](../../src/versions/README.md) để đối chiếu phạm vi, trạng thái và các log liên quan.
 
 ## Workbook kết quả V1–V4
