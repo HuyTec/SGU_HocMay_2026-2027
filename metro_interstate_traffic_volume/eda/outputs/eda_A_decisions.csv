@@ -1,0 +1,13 @@
+﻿feature,decision,evidence,n
+hour,Giữ cấu hình tham chiếu,mẫu hình nhóm/VIF mô tả; chưa làm ablation riêng feature,28402
+day_of_week,Giữ cấu hình tham chiếu,mẫu hình nhóm/VIF mô tả; chưa làm ablation riêng feature,28402
+month,Giữ cấu hình tham chiếu,mẫu hình nhóm/VIF mô tả; chưa làm ablation riêng feature,28402
+is_weekend,Giữ để đối chứng,"n1=8,108; cờ dẫn xuất từ lịch, có thể trùng thông tin",28402
+is_rush_hour,Giữ để đối chứng,"n1=5,018; cờ dẫn xuất từ lịch, có thể trùng thông tin",28402
+hour_sin,Giữ cấu hình tham chiếu,mẫu hình nhóm/VIF mô tả; chưa làm ablation riêng feature,28402
+hour_cos,Giữ cấu hình tham chiếu,mẫu hình nhóm/VIF mô tả; chưa làm ablation riêng feature,28402
+day_of_week_sin,Giữ cấu hình tham chiếu,mẫu hình nhóm/VIF mô tả; chưa làm ablation riêng feature,28402
+day_of_week_cos,Giữ cấu hình tham chiếu,mẫu hình nhóm/VIF mô tả; chưa làm ablation riêng feature,28402
+month_sin,Giữ cấu hình tham chiếu,mẫu hình nhóm/VIF mô tả; chưa làm ablation riêng feature,28402
+month_cos,Giữ cấu hình tham chiếu,mẫu hình nhóm/VIF mô tả; chưa làm ablation riêng feature,28402
+is_holiday,Giữ để đối chứng,"n1=844; cờ dẫn xuất từ lịch, có thể trùng thông tin",28402

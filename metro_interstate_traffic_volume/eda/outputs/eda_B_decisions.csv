@@ -1,0 +1,28 @@
+﻿feature,decision,evidence,n
+hour,Giữ cấu hình tham chiếu,mẫu hình nhóm/VIF mô tả; chưa làm ablation riêng feature,28402
+day_of_week,Giữ cấu hình tham chiếu,mẫu hình nhóm/VIF mô tả; chưa làm ablation riêng feature,28402
+month,Giữ cấu hình tham chiếu,mẫu hình nhóm/VIF mô tả; chưa làm ablation riêng feature,28402
+is_weekend,Giữ để đối chứng,"n1=8,108; cờ dẫn xuất từ lịch, có thể trùng thông tin",28402
+is_rush_hour,Giữ để đối chứng,"n1=5,018; cờ dẫn xuất từ lịch, có thể trùng thông tin",28402
+hour_sin,Giữ cấu hình tham chiếu,mẫu hình nhóm/VIF mô tả; chưa làm ablation riêng feature,28402
+hour_cos,Giữ cấu hình tham chiếu,mẫu hình nhóm/VIF mô tả; chưa làm ablation riêng feature,28402
+day_of_week_sin,Giữ cấu hình tham chiếu,mẫu hình nhóm/VIF mô tả; chưa làm ablation riêng feature,28402
+day_of_week_cos,Giữ cấu hình tham chiếu,mẫu hình nhóm/VIF mô tả; chưa làm ablation riêng feature,28402
+month_sin,Giữ cấu hình tham chiếu,mẫu hình nhóm/VIF mô tả; chưa làm ablation riêng feature,28402
+month_cos,Giữ cấu hình tham chiếu,mẫu hình nhóm/VIF mô tả; chưa làm ablation riêng feature,28402
+is_holiday,Giữ để đối chứng,"n1=844; cờ dẫn xuất từ lịch, có thể trùng thông tin",28402
+temp_c,Đổi xử lý,giữ mask bất thường; imputation chỉ học fold-train,28392
+rain_1h,Đổi xử lý,giữ mask bất thường; imputation chỉ học fold-train,28401
+snow_1h,Giữ cấu hình tham chiếu,mẫu hình nhóm/VIF mô tả; chưa làm ablation riêng feature,28402
+clouds_all,Giữ cấu hình tham chiếu,mẫu hình nhóm/VIF mô tả; chưa làm ablation riêng feature,28402
+weather_clear,Giữ để đối chứng,"n1=9,135; hiệu quả nhóm weather phải đọc A/B, chưa cô lập từng cờ",28402
+weather_clouds,Giữ để đối chứng,"n1=11,129; hiệu quả nhóm weather phải đọc A/B, chưa cô lập từng cờ",28402
+weather_drizzle,Giữ để đối chứng,"n1=1,161; hiệu quả nhóm weather phải đọc A/B, chưa cô lập từng cờ",28402
+weather_fog,Giữ để đối chứng,"n1=567; hiệu quả nhóm weather phải đọc A/B, chưa cô lập từng cờ",28402
+weather_haze,Giữ để đối chứng,"n1=895; hiệu quả nhóm weather phải đọc A/B, chưa cô lập từng cờ",28402
+weather_mist,Giữ để đối chứng,"n1=4,011; hiệu quả nhóm weather phải đọc A/B, chưa cô lập từng cờ",28402
+weather_rain,Giữ để đối chứng,"n1=3,788; hiệu quả nhóm weather phải đọc A/B, chưa cô lập từng cờ",28402
+weather_smoke,Giữ thăm dò; đánh dấu hiếm,"n1=17; hiệu quả nhóm weather phải đọc A/B, chưa cô lập từng cờ",28402
+weather_snow,Giữ để đối chứng,"n1=1,989; hiệu quả nhóm weather phải đọc A/B, chưa cô lập từng cờ",28402
+weather_squall,Giữ thăm dò; đánh dấu hiếm,"n1=4; hiệu quả nhóm weather phải đọc A/B, chưa cô lập từng cờ",28402
+weather_thunderstorm,Giữ để đối chứng,"n1=507; hiệu quả nhóm weather phải đọc A/B, chưa cô lập từng cờ",28402

@@ -1,0 +1,24 @@
+{
+  "stage": "B",
+  "headline": "Rain với lượng mưa 0: 3,609 dòng toàn CSV; B giảm MAE ở 2/3 fold; delta MAE +1.26",
+  "decision": "Giữ A12/B27 để đối chứng; đổi xử lý temp/rain; chưa bỏ riêng weather theo tương quan",
+  "n": 28402,
+  "risks": "Weather cùng giờ cần sẵn có; nhãn hiếm; 0 mm không đồng nghĩa trời khô; một seed/model",
+  "seed": 42,
+  "data_sha256": "749c90d720360a4215bb15345526073c079ba4cc95e3fa558796d083f85fce9e",
+  "versions": {
+    "python": "3.14.7",
+    "pandas": "3.0.6",
+    "numpy": "2.5.3",
+    "sklearn": "1.9.1"
+  },
+  "model_params": {
+    "n_estimators": 100,
+    "max_depth": 12,
+    "min_samples_leaf": 5,
+    "max_features": 1.0,
+    "random_state": 42,
+    "n_jobs": 4
+  },
+  "scope": "train-only EDA and CV; no validation/test model scoring"
+}
