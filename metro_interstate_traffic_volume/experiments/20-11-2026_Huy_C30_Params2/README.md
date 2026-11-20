@@ -1,7 +1,7 @@
 # Hai thí nghiệm C30 với tham số cố định
 
-- `../20-11-2026_Huy_C30_Current_Params/fit_validation_C30.ipynb`: snapshot best_params hiện tại của tuning C30.
-- `../20-11-2026_Huy_C30_Claude_Params/fit_validation_C30.ipynb`: bộ tham số được người dùng trích từ Claude. RF 100 cây và XGBoost 400 cây được tái dựng theo factory cũ; chưa có summary_row.json gốc để xác minh toàn bộ.
+- `../20-11-2026_Huy_C30_Params2/fit_validation_C30.ipynb`: snapshot best_params hiện tại của tuning C30.
+- `../20-11-2026_Huy_C30_Params1/fit_validation_C30.ipynb`: bộ tham số được người dùng trích từ Claude. RF 100 cây và XGBoost 400 cây được tái dựng theo factory cũ; chưa có summary_row.json gốc để xác minh toàn bộ.
 
 Cả hai cùng 22.503 giờ train và 6.050 giờ validation đủ history, 30 cột C30, seed 42 và cùng prepare_fold. Thống kê điền thiếu chỉ học từ train. Đã đối chiếu hash cohort, ma trận và tiền xử lý giữa hai lượt. Mỗi mô hình fit một lần, không chạy tìm kiếm tham số. Ensemble cố định 50/50; baseline chỉ học trên train.
 
