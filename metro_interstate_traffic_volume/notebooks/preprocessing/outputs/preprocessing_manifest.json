@@ -1,0 +1,46 @@
+{
+  "source": "Metro_Interstate_Traffic_Volume.csv",
+  "source_sha256": "749c90d720360a4215bb15345526073c079ba4cc95e3fa558796d083f85fce9e",
+  "output": "data/preprocessed/hourly_unfilled.csv",
+  "output_sha256": "d2092b0060b8db304a5da8c27b637b38da97b798e43f67da6a239328890a1de6",
+  "n_raw": 48204,
+  "n_hourly": 40575,
+  "missing_hours": 11976,
+  "columns": [
+    "date_time",
+    "traffic_volume",
+    "temp",
+    "rain_1h",
+    "snow_1h",
+    "clouds_all",
+    "weather_main",
+    "weather_description",
+    "holiday_name",
+    "is_holiday"
+  ],
+  "imputation_fitted": false,
+  "rules": {
+    "keep_default_na": false,
+    "hourly_numeric": "median distinct values",
+    "hourly_labels": "sorted union",
+    "mask_temp_zero": true,
+    "mask_known_rain_outlier": true,
+    "mask_stuck_temp": false,
+    "complete_holidays": false,
+    "target_fill": false,
+    "split": "performed in memory by FE; 70/15/15 chronological",
+    "DST": "not analysed",
+    "median_scope": "fit only on each fold-train"
+  },
+  "code_sha256": {
+    "data.py": "4da27e5234f47534555ca27f900a962ae496e94316a2b20072007dbfecadb898",
+    "preprocessing.py": "6e22a82410d02eb678bdef0e7bf41e6fabc94baaa92d831fd55046d5ba0ec705",
+    "features.py": "1f796ab10ff81e09e3ba7be8c0a48c518700256e635b1fd2698196772256e6ed",
+    "data_validation.py": "0d056713d0d10c6c3035e3a83a73bd952e9b1586036e5f61a79264346c67d7ce"
+  },
+  "versions": {
+    "python": "3.14.7",
+    "pandas": "3.0.6",
+    "numpy": "2.5.3"
+  }
+}

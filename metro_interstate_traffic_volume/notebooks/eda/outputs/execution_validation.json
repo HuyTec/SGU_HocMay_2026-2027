@@ -1,0 +1,49 @@
+{
+  "protocol_id": "5cd3a348f078084c",
+  "synthetic_checks": "passed",
+  "execution": "sequential IPython cells, fresh process per notebook, inside sandbox",
+  "jupyter_kernel_startup_verified": false,
+  "notebooks": [
+    {
+      "path": "notebooks/eda/eda_A.ipynb",
+      "code_cells": 17,
+      "inline_pngs": 5,
+      "errors": 0
+    },
+    {
+      "path": "notebooks/eda/eda_B.ipynb",
+      "code_cells": 19,
+      "inline_pngs": 4,
+      "errors": 0
+    },
+    {
+      "path": "notebooks/eda/eda_C.ipynb",
+      "code_cells": 20,
+      "inline_pngs": 4,
+      "errors": 0
+    }
+  ],
+  "shared_preprocessing_hashes_verified": true,
+  "n_train": 28402,
+  "n_cohort": 22503,
+  "winner": "V5_C30",
+  "metrics_recomputed_from_predictions": true,
+  "path_revision": {
+    "checked_notebooks": [
+      "notebooks/eda/eda_A.ipynb",
+      "notebooks/eda/eda_B.ipynb",
+      "notebooks/eda/eda_C.ipynb",
+      "notebooks/eda/EDA_general.ipynb",
+      "notebooks/features/feature_comparison.ipynb",
+      "notebooks/features/feaure_V1_A12.ipynb",
+      "notebooks/features/feaure_V2_numeric16.ipynb",
+      "notebooks/features/feaure_V3_labels23.ipynb",
+      "notebooks/features/feaure_V4_B27.ipynb",
+      "notebooks/features/feaure_V5_C30.ipynb",
+      "notebooks/preprocessing/preprocessing.ipynb"
+    ],
+    "validation": "Imports/root detection checked from new notebook directories; FE fold preparation recomputed, stored predictions and scores unchanged; comparison/export cells reexecuted.",
+    "protocol_id": "409693731ee48e29",
+    "reused_training_from_protocol": "5cd3a348f078084c"
+  }
+}

@@ -1,0 +1,109 @@
+{
+  "protocol_id": "e4bc1e064317af8c",
+  "synthetic_checks": "passed",
+  "execution": "sequential IPython cells, fresh process per notebook, inside sandbox",
+  "jupyter_kernel_startup_verified": false,
+  "notebooks": [
+    {
+      "path": "notebooks/eda/eda_A.ipynb",
+      "code_cells": 17,
+      "inline_pngs": 5,
+      "errors": 0
+    },
+    {
+      "path": "notebooks/eda/eda_B.ipynb",
+      "code_cells": 19,
+      "inline_pngs": 4,
+      "errors": 0
+    },
+    {
+      "path": "notebooks/eda/eda_C.ipynb",
+      "code_cells": 20,
+      "inline_pngs": 4,
+      "errors": 0
+    },
+    {
+      "path": "notebooks/features/feaure_V1_A12.ipynb",
+      "code_cells": 5,
+      "inline_pngs": 1,
+      "errors": 0
+    },
+    {
+      "path": "notebooks/features/feaure_V2_numeric16.ipynb",
+      "code_cells": 6,
+      "inline_pngs": 1,
+      "errors": 0
+    },
+    {
+      "path": "notebooks/features/feaure_V3_labels23.ipynb",
+      "code_cells": 6,
+      "inline_pngs": 1,
+      "errors": 0
+    },
+    {
+      "path": "notebooks/features/feaure_V4_B27.ipynb",
+      "code_cells": 6,
+      "inline_pngs": 1,
+      "errors": 0
+    },
+    {
+      "path": "notebooks/features/feaure_V5_C30.ipynb",
+      "code_cells": 6,
+      "inline_pngs": 1,
+      "errors": 0
+    },
+    {
+      "path": "notebooks/features/feature_comparison.ipynb",
+      "code_cells": 5,
+      "inline_pngs": 0,
+      "errors": 0
+    }
+  ],
+  "shared_preprocessing_hashes_verified": true,
+  "n_train": 28402,
+  "n_cohort": 22503,
+  "winner": "V5_C30",
+  "metrics_recomputed_from_predictions": true,
+  "layout_revision": {
+    "summary_notebook": "notebooks/features/feature_comparison.ipynb",
+    "verification": "Changed local comparison cells and all five summary cells executed in IPython using saved CV scores; training cells unchanged and not rerun.",
+    "training_metrics_and_predictions_unchanged": true,
+    "protocol_id": "5cd3a348f078084c"
+  },
+  "path_revision": {
+    "checked_notebooks": [
+      "notebooks/eda/eda_A.ipynb",
+      "notebooks/eda/eda_B.ipynb",
+      "notebooks/eda/eda_C.ipynb",
+      "notebooks/eda/EDA_general.ipynb",
+      "notebooks/features/feature_comparison.ipynb",
+      "notebooks/features/feaure_V1_A12.ipynb",
+      "notebooks/features/feaure_V2_numeric16.ipynb",
+      "notebooks/features/feaure_V3_labels23.ipynb",
+      "notebooks/features/feaure_V4_B27.ipynb",
+      "notebooks/features/feaure_V5_C30.ipynb",
+      "notebooks/preprocessing/preprocessing.ipynb"
+    ],
+    "validation": "Imports/root detection checked from new notebook directories; FE fold preparation recomputed, stored predictions and scores unchanged; comparison/export cells reexecuted.",
+    "protocol_id": "409693731ee48e29",
+    "reused_training_from_protocol": "5cd3a348f078084c"
+  },
+  "single_csv_revision": {
+    "output": "data/preprocessed/hourly_unfilled.csv",
+    "only_one_data_file": true,
+    "old_processed_unchanged": true,
+    "preprocessing_all_20_cells_executed": true,
+    "csv_exact_round_trip": true,
+    "FE_fold_matrices_unchanged": true,
+    "protocol_id": "e4bc1e064317af8c"
+  },
+  "deduplication": {
+    "retained_protocol": "e4bc1e064317af8c",
+    "removed_protocols": [
+      "5cd3a348f078084c",
+      "409693731ee48e29"
+    ],
+    "csv_sha256_identical": true,
+    "provenance_archive": "outputs/e4bc1e064317af8c/deduplication.json"
+  }
+}

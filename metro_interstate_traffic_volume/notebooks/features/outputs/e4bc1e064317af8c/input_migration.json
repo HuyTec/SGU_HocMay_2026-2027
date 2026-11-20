@@ -1,0 +1,8 @@
+{
+  "previous_protocol": "409693731ee48e29",
+  "current_protocol": "e4bc1e064317af8c",
+  "input": "data/preprocessed/hourly_unfilled.csv",
+  "hourly_values_and_fold_matrices_identical": true,
+  "metrics_and_predictions_unchanged": true,
+  "model_retrained": false
+}

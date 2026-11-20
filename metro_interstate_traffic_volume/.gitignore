@@ -1,0 +1,34 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+*.egg-info/
+.pytest_cache/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Hệ điều hành và trình soạn thảo
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# File tạm của Office
+~$*
+.~lock.*
+
+# Bí mật và cấu hình cục bộ
+.env
+
+# Mô hình lưu cục bộ (bỏ dòng này nếu bạn muốn commit mô hình cuối)
+*.joblib
+*.pkl
+*.pt
+
+# --- Tùy chọn: đầu ra sinh ra của feature engineering ---
+# Bỏ dấu # nếu coi chúng là sản phẩm tái tạo được từ notebook.
+# notebooks/features/outputs/
+# notebooks/features/selected/

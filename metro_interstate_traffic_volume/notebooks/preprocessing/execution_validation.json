@@ -1,0 +1,46 @@
+{
+  "notebook": "notebooks/preprocessing/preprocessing.ipynb",
+  "code_cells": 20,
+  "explanatory_markdown_before_every_code_cell": true,
+  "execution": "all cells in order in fresh in-process IPython, inside sandbox",
+  "jupyter_kernel_startup_verified": false,
+  "inline_pngs": 1,
+  "errors": 0,
+  "canonical_FE_hourly_equivalence": true,
+  "csv_round_trip_exact_values": true,
+  "temporal_split_checks": true,
+  "imputation_boundary_and_future_checks": true,
+  "n_raw": 48204,
+  "n_hourly": 40575,
+  "raw_sha256": "749c90d720360a4215bb15345526073c079ba4cc95e3fa558796d083f85fce9e",
+  "input_notebook_attachment": "6d6d739f-924d-4802-9446-cb637ea73c54",
+  "output_directory": "data/preprocessed",
+  "old_processed_overwritten": false,
+  "path_revision": {
+    "checked_notebooks": [
+      "notebooks/eda/eda_A.ipynb",
+      "notebooks/eda/eda_B.ipynb",
+      "notebooks/eda/eda_C.ipynb",
+      "notebooks/eda/EDA_general.ipynb",
+      "notebooks/features/feature_comparison.ipynb",
+      "notebooks/features/feaure_V1_A12.ipynb",
+      "notebooks/features/feaure_V2_numeric16.ipynb",
+      "notebooks/features/feaure_V3_labels23.ipynb",
+      "notebooks/features/feaure_V4_B27.ipynb",
+      "notebooks/features/feaure_V5_C30.ipynb",
+      "notebooks/preprocessing/preprocessing.ipynb"
+    ],
+    "validation": "Imports/root detection checked from new notebook directories; FE fold preparation recomputed, stored predictions and scores unchanged; comparison/export cells reexecuted.",
+    "protocol_id": "409693731ee48e29",
+    "reused_training_from_protocol": "5cd3a348f078084c"
+  },
+  "single_csv_revision": {
+    "output": "data/preprocessed/hourly_unfilled.csv",
+    "only_one_data_file": true,
+    "old_processed_unchanged": true,
+    "preprocessing_all_20_cells_executed": true,
+    "csv_exact_round_trip": true,
+    "FE_fold_matrices_unchanged": true,
+    "protocol_id": "e4bc1e064317af8c"
+  }
+}
