@@ -1,0 +1,3 @@
+Trên cùng 6,050 giờ validation, Ensemble RF + XGBoost (50/50) đạt MAE thấp nhất 193.810 xe/giờ. RF đạt 196.775; XGBoost đạt 197.031 xe/giờ. Đây là đối chiếu bổ sung trên validation đã được xem trước; cần giữ test cho đánh giá cuối.
+
+Nguồn tham số: Các tham số được người dùng gửi trong trao đổi. Không có summary_row.json gốc. RF 100 cây và XGBoost 400 cây được tái dựng theo factory cũ, chưa xác minh từ artifact của Claude.
