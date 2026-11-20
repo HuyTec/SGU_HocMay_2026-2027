@@ -1,251 +1,178 @@
-"""Tuning theo thời gian, học xử lý thiếu trong từng fold của train."""
+"""Tuning báo cáo từ một CSV theo giờ. Chỉ đọc target của 70% train đầu.
 
+Hàm run_tuning chỉ CV, không fit/score validation hoặc test. Lịch sử chỉ dùng
+quan sát trước t; cấu hình có C30 yêu cầu cohort đủ history chung cho cả lượt.
+Mã tuning lịch sử được giữ ở tuning_exp.py.
+"""
+import hashlib
+import json
+import platform
+import time
+import warnings
 from dataclasses import dataclass
+from pathlib import Path
 
+import numpy as np
 import pandas as pd
-from sklearn.metrics import mean_absolute_error
+import sklearn
 from sklearn.model_selection import ParameterGrid, ParameterSampler, TimeSeriesSplit
 
 from src.evaluation import clip_prediction, regression_metrics
-from src.models import (
-    MODEL_NAMES, N_RANDOM_TRIALS, RANDOM_STATE, SEARCH_SPACE, input_columns, make_model,
-)
-from src.preprocessing import fill_weather, fit_weather_fill
-
+from src.features import add_history_features, has_history
+from src.model import CONFIGS, MODEL_NAMES, RANDOM_STATE, SEARCH_SPACE, make_model
 
 N_SPLITS = 3
-
-
-def _time_folds(train: pd.DataFrame):
-    """Kiểm tra thứ tự trước khi chia fold mở rộng."""
-    times = train["date_time"]
-    if times.isna().any() or not times.is_unique or not times.is_monotonic_increasing:
-        raise ValueError("Train phải có timestamp duy nhất và tăng dần.")
-    for fit_idx, score_idx in TimeSeriesSplit(n_splits=N_SPLITS).split(train):
-        yield train.iloc[fit_idx], train.iloc[score_idx]
-
-
-def describe_folds(train: pd.DataFrame) -> pd.DataFrame:
-    """Tạo bảng ranh giới và số giờ cho notebook."""
-    return pd.DataFrame([
-        {
-            "fold": number,
-            "fit_start": fit["date_time"].iloc[0],
-            "fit_end": fit["date_time"].iloc[-1],
-            "validation_start": score["date_time"].iloc[0],
-            "validation_end": score["date_time"].iloc[-1],
-            "n_fit": len(fit),
-            "n_validation": len(score),
-        }
-        for number, (fit, score) in enumerate(_time_folds(train), start=1)
-    ])
-
-
-def _prepare_folds(train, features, raw_train):
-    """Tạo đầu vào mỗi fold từ thời tiết gốc, giữ lịch sử quan sát theo thời gian."""
-    weather_columns = set(features) & {"temp_c", "rain_1h"}
-    if not weather_columns:
-        return list(_time_folds(train))
-    if raw_train is None:
-        raise ValueError("Cấu hình thời tiết cần raw_train chưa điền để học median trong từng fold.")
-
-    raw = raw_train[["date_time", "temp", "rain_1h"]].sort_values("date_time")
-    times = raw["date_time"]
-    if times.isna().any() or not times.is_unique or not train["date_time"].isin(times).all():
-        raise ValueError("raw_train phải có một dòng cho mỗi giờ và bao phủ tập huấn luyện.")
-    folds = []
-    for fit, score in _time_folds(train):
-        # Các giờ không đủ lag vẫn là quan sát thời tiết có sẵn.
-        past = raw.loc[times.le(fit["date_time"].iloc[-1])]
-        period = raw.loc[times.gt(past["date_time"].iloc[-1]) & times.le(score["date_time"].iloc[-1])]
-        statistics = fit_weather_fill(past)
-        fit_weather = fill_weather(past, statistics).set_index("date_time")
-        score_weather = fill_weather(period, statistics, history=past).set_index("date_time")
-
-        fit, score = fit.copy(), score.copy()
-        for frame, weather in ((fit, fit_weather), (score, score_weather)):
-            if "temp_c" in weather_columns:
-                frame["temp_c"] = frame["date_time"].map(weather["temp"]) - 273.15
-            if "rain_1h" in weather_columns:
-                frame["rain_1h"] = frame["date_time"].map(weather["rain_1h"])
-        folds.append((fit, score))
-    return folds
+N_CANDIDATES = 6
 
 
 @dataclass
-class SearchResult:
-    """Mô hình đã fit lại và bảng điểm CV cho các ứng viên."""
-
-    best_estimator_: object
-    best_params_: dict
-    best_score_: float
-    scores: pd.DataFrame
-
-    def predict(self, inputs: pd.DataFrame):
-        return self.best_estimator_.predict(inputs)
+class TrainingData:
+    """Chỉ giữ train và ngữ cảnh nhiệt độ, không mang validation/test target."""
+    frame: pd.DataFrame
+    weather_context: pd.DataFrame
+    configs: tuple
+    metadata: dict
 
 
-def _search(
-    name,
-    features,
-    train,
-    folds,
-    *,
-    config=None,
-    progress_callback=None,
-) -> SearchResult:
-    columns = input_columns(name, features)
-    space = SEARCH_SPACE[name]
-    if name in N_RANDOM_TRIALS:
-        candidates = ParameterSampler(space, N_RANDOM_TRIALS[name], random_state=RANDOM_STATE)
-    else:
-        candidates = ParameterGrid(space)
-    candidates = list(candidates)
-    candidate_count = len(candidates)
+def load_training_data(path=None, *, configs=("A12", "B27")):
+    """Đếm timestamp để đặt mốc 70%, sau đó chỉ đọc các dòng train đầu file."""
+    path = Path(path) if path is not None else Path(__file__).resolve().parents[1]/"data/preprocessed/hourly_unfilled.csv"
+    configs = tuple(configs)
+    if not configs or len(set(configs)) != len(configs) or not set(configs) <= CONFIGS.keys():
+        raise ValueError("Cần cấu hình A12/B27/C30 duy nhất, không rỗng.")
+    times = pd.read_csv(path, usecols=["date_time"], keep_default_na=False).date_time
+    times = pd.to_datetime(times, format="%Y-%m-%d %H:%M:%S", errors="raise")
+    if times.isna().any() or not times.is_unique or not times.is_monotonic_increasing or not times.eq(times.dt.floor("h")).all():
+        raise ValueError("CSV cần timestamp duy nhất, tăng dần, đúng đầu giờ.")
+    n_train = len(times)*70//100
+    if n_train < 8:
+        raise ValueError("Không đủ train để chia CV.")
+    numeric = dict(traffic_volume="int64", temp="float64", rain_1h="float64", snow_1h="float64",
+                   clouds_all="float64", is_holiday="int8")
+    raw = pd.read_csv(path, nrows=n_train, keep_default_na=False, dtype=numeric,
+                      na_values={c:[""] for c in numeric}, float_precision="round_trip")
+    required = {"date_time", "weather_main", "weather_description", "holiday_name", *numeric}
+    if set(raw.columns) != required:
+        raise ValueError("Sai schema CSV tiền xử lý.")
+    raw["date_time"] = pd.to_datetime(raw.date_time, format="%Y-%m-%d %H:%M:%S", errors="raise")
+    if raw.drop(columns=["temp", "rain_1h"]).isna().any().any() or np.isinf(raw[list(numeric)].to_numpy()).any():
+        raise ValueError("Train có thiếu ngoài temp/rain hoặc số vô hạn.")
+    if not raw.traffic_volume.ge(0).all() or not raw.clouds_all.between(0,100).all() or not raw.is_holiday.isin([0,1]).all():
+        raise ValueError("Train có giá trị ngoài miền hợp lệ.")
+    featured = add_history_features(raw) if "C30" in configs else raw.copy()
+    if "C30" in configs:
+        featured = featured.loc[has_history(featured)].copy()
+    metadata = dict(input_path=str(path.resolve()), input_sha256=hashlib.sha256(path.read_bytes()).hexdigest(),
+                    n_total=len(times), n_raw_train=n_train, n_cohort=len(featured),
+                    cohort="complete history for all configurations" if "C30" in configs else "all observed train hours",
+                    train_end=str(raw.date_time.max()), scope="train CV only; validation/test targets not loaded",
+                    weather="same-hour weather assumed available", history="sequential observed past only; mean >=18/24 hours")
+    return TrainingData(featured.reset_index(drop=True),raw[["date_time","temp"]].copy(),configs,metadata)
+
+
+def time_folds(data, n_splits=N_SPLITS):
+    """Trả cùng các chỉ số dòng cho mọi mô hình/cấu hình."""
+    times = data.frame.date_time
+    if not times.is_unique or not times.is_monotonic_increasing:
+        raise ValueError("Train không đúng thứ tự.")
+    return list(TimeSeriesSplit(n_splits=n_splits).split(data.frame))
+
+
+def describe_folds(data, n_splits=N_SPLITS):
+    """Số mẫu, khoảng lịch và hash timestamp/target của mỗi fold."""
     rows = []
-    for candidate_number, parameters in enumerate(candidates, start=1):
-        errors = {}
-        for number, (fit, score) in enumerate(folds, start=1):
-            try:
-                model = make_model(name, features).set_params(**parameters)
-                model.fit(fit[columns], fit["traffic_volume"])
-                prediction = clip_prediction(model.predict(score[columns]))
-                fold_mae = mean_absolute_error(
-                    score["traffic_volume"], prediction
-                )
-                errors[f"fold_{number}_mae"] = float(fold_mae)
-
-                if progress_callback is not None:
-                    progress_callback({
-                        "config": config,
-                        "model": name,
-                        "candidate": candidate_number,
-                        "candidate_count": candidate_count,
-                        "fold": number,
-                        "status": "fold_complete",
-                        "params_json": parameters,
-                        "fold_mae": float(fold_mae),
-                        "fit_start": str(fit["date_time"].iloc[0]),
-                        "fit_end": str(fit["date_time"].iloc[-1]),
-                        "score_start": str(score["date_time"].iloc[0]),
-                        "score_end": str(score["date_time"].iloc[-1]),
-                    })
-            except Exception as exc:
-                if progress_callback is not None:
-                    progress_callback({
-                        "config": config,
-                        "model": name,
-                        "candidate": candidate_number,
-                        "candidate_count": candidate_count,
-                        "fold": number,
-                        "status": "fold_error",
-                        "params_json": parameters,
-                        "fit_start": str(fit["date_time"].iloc[0]),
-                        "fit_end": str(fit["date_time"].iloc[-1]),
-                        "score_start": str(score["date_time"].iloc[0]),
-                        "score_end": str(score["date_time"].iloc[-1]),
-                        "error": f"{type(exc).__name__}: {exc}",
-                    })
-                raise
-
-        mean_cv_mae = sum(errors.values()) / len(errors)
-        rows.append({
-            "parameters": parameters, **errors,
-            "mean_cv_mae": mean_cv_mae,
-        })
-
-        if progress_callback is not None:
-            progress_callback({
-                "config": config,
-                "model": name,
-                "candidate": candidate_number,
-                "candidate_count": candidate_count,
-                "status": "candidate_complete",
-                "params_json": parameters,
-                "mean_cv_mae": mean_cv_mae,
-            })
-
-    scores = pd.DataFrame(rows).sort_values("mean_cv_mae", kind="stable").reset_index(drop=True)
-    scores["rank"] = scores["mean_cv_mae"].rank(method="min").astype(int)
-    best = scores.iloc[0]
-    best_model = make_model(name, features).set_params(**best["parameters"])
-    best_model.fit(train[columns], train["traffic_volume"])
-    return SearchResult(
-        best_estimator_=best_model,
-        best_params_=best["parameters"],
-        best_score_=-float(best["mean_cv_mae"]),
-        scores=scores,
-    )
+    for number,(fit_idx,score_idx) in enumerate(time_folds(data,n_splits),1):
+        fit,score = data.frame.iloc[fit_idx],data.frame.iloc[score_idx]
+        row = dict(fold=number,n_fit=len(fit),n=len(score))
+        for prefix,part in [("fit",fit),("score",score)]:
+            row.update({f"{prefix}_start":str(part.date_time.min()),f"{prefix}_end":str(part.date_time.max()),
+                        f"{prefix}_calendar_hours":(part.date_time.max()-part.date_time.min()).total_seconds()/3600+1,
+                        f"{prefix}_sha256":hashlib.sha256(pd.util.hash_pandas_object(part[["date_time","traffic_volume"]],index=False).to_numpy().tobytes()).hexdigest()})
+        rows.append(row)
+    return pd.DataFrame(rows)
 
 
-def tune_model(
-    name,
-    features,
-    train,
-    *,
-    raw_train=None,
-    progress_callback=None,
-) -> SearchResult:
-    """Chọn theo MAE CV và fit lại trên toàn bộ train đã chuẩn bị."""
-    return _search(
-        name,
-        features,
-        train,
-        _prepare_folds(train, features, raw_train),
-        progress_callback=progress_callback,
-    )
+def candidate_parameters(name, n_candidates=N_CANDIDATES, random_state=RANDOM_STATE):
+    """Lấy đúng số ứng viên không trùng; không âm thầm giảm ngân sách."""
+    if name not in SEARCH_SPACE:
+        raise ValueError(f"Không hỗ trợ mô hình {name}")
+    if not 1 <= n_candidates <= len(ParameterGrid(SEARCH_SPACE[name])):
+        raise ValueError(f"Ngân sách không hợp lệ cho {name}; mở rộng search space trước.")
+    return list(ParameterSampler(SEARCH_SPACE[name],n_iter=n_candidates,random_state=random_state))
 
 
-def summarize_search(search: SearchResult) -> pd.DataFrame:
-    """Bảng tham số và MAE theo fold."""
-    return search.scores.copy()
+def run_tuning(data, *, model_names=MODEL_NAMES, n_candidates=N_CANDIDATES,
+               n_splits=N_SPLITS, output_path=None, progress_callback=None):
+    """Tìm tham số theo MAE, cùng folds/ngân sách, xuất một JSON kết quả.
 
-
-def run_config(
-    config,
-    features,
-    train,
-    target,
-    model_names=MODEL_NAMES,
-    *,
-    raw_train=None,
-    progress_callback=None,
-):
-    """Tuning trên train, rồi dự đoán tập validation ngoài bằng mô hình đã fit lại."""
-    if target["date_time"].min() <= train["date_time"].max():
-        raise ValueError("Tập đánh giá phải nằm sau train.")
-    folds = _prepare_folds(train, features, raw_train)
+    OOF chỉ lưu cho ứng viên tốt nhất của mỗi cặp model/config để ensemble
+    dùng lại. Không tự fit lại model trên toàn train và không chấm holdout.
+    """
+    names = tuple(model_names)
+    if not names or len(set(names)) != len(names):
+        raise ValueError("Danh sách mô hình phải duy nhất và không rỗng.")
+    bank = {name:candidate_parameters(name,n_candidates) for name in names}
+    folds = time_folds(data,n_splits)
+    manifest = describe_folds(data,n_splits).to_dict("records")
+    observation_rows = []
+    for number,(_,score_idx) in enumerate(folds,1):
+        observation_rows.extend(dict(fold=number,date_time=str(row.date_time),y_true=float(row.traffic_volume))
+                                for row in data.frame.iloc[score_idx].itertuples())
     results = []
-    for name in model_names:
-        search = _search(
-            name,
-            features,
-            train,
-            folds,
-            config=config,
-            progress_callback=progress_callback,
-        )
-        prediction = clip_prediction(search.predict(target[input_columns(name, features)]))
-        metrics = regression_metrics(target["traffic_volume"], prediction)
+    for config in data.configs:
+        for name in names:
+            candidates,best_predictions,best_key = [],None,None
+            for candidate_id,parameters in enumerate(bank[name],1):
+                fold_scores,predictions = [],[]
+                for number,(fit_idx,score_idx) in enumerate(folds,1):
+                    fit,score = data.frame.iloc[fit_idx],data.frame.iloc[score_idx]
+                    model = make_model(name,CONFIGS[config],weather_context=data.weather_context).set_params(**parameters)
+                    start = time.monotonic()
+                    with warnings.catch_warnings(record=True) as caught:
+                        warnings.simplefilter("always")
+                        model.fit(fit,fit.traffic_volume)
+                        predicted = clip_prediction(model.predict(score))
+                    row = dict(**manifest[number-1],**regression_metrics(score.traffic_volume,predicted),
+                               seconds=time.monotonic()-start,
+                               warnings=sorted({str(w.message) for w in caught}))
+                    fold_scores.append(row)
+                    predictions.extend(predicted.tolist())
+                    if progress_callback:
+                        progress_callback(dict(config=config,model=name,candidate=candidate_id,fold=number,MAE=row["MAE"]))
+                candidate = dict(candidate=candidate_id,parameters=parameters,folds=fold_scores,
+                                 MAE_mean=float(np.mean([r["MAE"] for r in fold_scores])),
+                                 RMSE_mean=float(np.mean([r["RMSE"] for r in fold_scores])))
+                candidates.append(candidate)
+                key = (candidate["MAE_mean"],candidate["RMSE_mean"],candidate_id)
+                if best_key is None or key < best_key:
+                    best_key,best_predictions = key,predictions
+            best = min(candidates,key=lambda r:(r["MAE_mean"],r["RMSE_mean"],r["candidate"]))
+            results.append(dict(config=config,model=name,features=CONFIGS[config],best_params=best["parameters"],
+                                best_candidate=best["candidate"],MAE_mean=best["MAE_mean"],RMSE_mean=best["RMSE_mean"],
+                                candidates=candidates,oof_prediction=best_predictions))
+    record = dict(metadata=dict(**data.metadata,n_splits=n_splits,n_candidates=n_candidates,
+                               random_state=RANDOM_STATE,selection="mean MAE; RMSE tie-break",prediction_clip_min=0,
+                               versions=dict(python=platform.python_version(),pandas=pd.__version__,numpy=np.__version__,sklearn=sklearn.__version__),
+                               source_sha256={p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in [Path(__file__),Path(__file__).with_name('model.py')]}),
+                  folds=manifest,oof_observations=observation_rows,results=results)
+    if output_path is not None:
+        output_path = Path(output_path)
+        output_path.parent.mkdir(parents=True,exist_ok=True)
+        output_path.write_text(json.dumps(record,ensure_ascii=False,indent=2,allow_nan=False),encoding="utf-8")
+    return record
 
-        if progress_callback is not None:
-            progress_callback({
-                "config": config,
-                "model": name,
-                "status": "validation_complete",
-                "params_json": search.best_params_,
-                "mean_cv_mae": -search.best_score_,
-                "validation_mae": metrics["MAE"],
-                "validation_rmse": metrics["RMSE"],
-                "validation_r2": metrics["R2"],
-            })
 
-        results.append({
-            "config": config,
-            "model": name,
-            "features": list(features),
-            "search": search,
-            "prediction": prediction,
-            "metrics": metrics,
-        })
-    return results
+def results_table(record):
+    """Bảng tóm tắt từ file kết quả, không huấn luyện hoặc chấm lại."""
+    return pd.DataFrame([dict(config=r["config"],model=r["model"],best_params=r["best_params"],
+                              MAE_CV=r["MAE_mean"],RMSE_CV=r["RMSE_mean"],
+                              n=len(record["oof_observations"])) for r in record["results"]])
+
+
+def fit_selected_model(data, result):
+    """Fit lại từ tham số đã chọn để dùng validation/ensemble; không tuning lại."""
+    if result['config'] not in data.configs or result['features'] != CONFIGS[result['config']]:
+        raise ValueError("Kết quả không khớp cấu hình của train.")
+    model = make_model(result['model'],result['features'],weather_context=data.weather_context)
+    model.set_params(**result['best_params']).fit(data.frame,data.frame.traffic_volume)
+    return model

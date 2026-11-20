@@ -12,7 +12,7 @@ from sklearn.preprocessing import StandardScaler
 from src import features
 from src.data import fill_missing_weather
 from src.evaluation import clip_prediction, regression_metrics
-from src.models import make_fixed_model
+from src.models_exp import make_fixed_model
 
 
 def make_config_b_pipeline(model_name, params):

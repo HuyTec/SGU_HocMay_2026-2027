@@ -26,7 +26,7 @@
 #     CONFIG_B, WEATHER_GROUPS, add_time_features, add_weather_features, build_features,
 # )
 # from src.experiment_excel import load_experiment_workbook  # noqa: E402
-# from src.models import make_model  # noqa: E402
+# from src.models_exp import make_model  # noqa: E402
 
 # WEATHER_NAMES = {
 #     "clear": "Trời quang", "clouds": "Nhiều mây", "drizzle": "Mưa phùn",

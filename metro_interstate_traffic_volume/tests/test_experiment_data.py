@@ -68,7 +68,7 @@ class ExperimentDataTests(unittest.TestCase):
     def test_cv_recomputes_imputation_without_later_fold_statistics(self):
         # First missing hour has no past reading. Later hours must not set its
         # fallback median in the first CV fold.
-        from src.tuning import _prepare_folds
+        from src.tuning_exp import _prepare_folds
 
         raw = pd.DataFrame({
             "date_time": pd.date_range("2020-01-01", periods=8, freq="h"),
