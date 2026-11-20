@@ -1,0 +1,11 @@
+model,comparison,MAE_gain,CI95_low,CI95_high,block_days,valid_replicates,n,reading
+Ridge,B27 vs A12,2.2326642792646085,-0.3861968481321978,4.780049679925093,7,2000,16875,Chưa tách được chiều cải thiện
+Random Forest,B27 vs A12,1.35952094537994,-3.8585544707848154,7.161198436617766,7,2000,16875,Chưa tách được chiều cải thiện
+Gradient Boosting,B27 vs A12,-12.213182594366742,-20.31519019639277,-5.353620458520865,7,2000,16875,CI có điều kiện không chứa 0; chưa phải kiểm định độc lập
+MLP,B27 vs A12,-52.84814855324074,-61.866269185186894,-44.491221802474634,7,2000,16875,CI có điều kiện không chứa 0; chưa phải kiểm định độc lập
+XGBoost,B27 vs A12,-5.652466411223235,-13.521547046104859,0.9073409748044258,7,2000,16875,Chưa tách được chiều cải thiện
+Ridge,C30 vs B27,52.836830908687446,42.06447850179074,63.134764694806755,7,2000,16875,CI có điều kiện không chứa 0; chưa phải kiểm định độc lập
+Random Forest,C30 vs B27,55.783258393453224,45.31951117796613,66.08149333910846,7,2000,16875,CI có điều kiện không chứa 0; chưa phải kiểm định độc lập
+Gradient Boosting,C30 vs B27,56.78098283636317,44.19908579393355,68.69555820122422,7,2000,16875,CI có điều kiện không chứa 0; chưa phải kiểm định độc lập
+MLP,C30 vs B27,79.31382936921297,65.52825992777531,91.49379667392266,7,2000,16875,CI có điều kiện không chứa 0; chưa phải kiểm định độc lập
+XGBoost,C30 vs B27,60.11864893798828,46.875359052966395,72.92803368215851,7,2000,16875,CI có điều kiện không chứa 0; chưa phải kiểm định độc lập

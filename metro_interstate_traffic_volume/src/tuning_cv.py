@@ -33,23 +33,27 @@ def _write(path, value):
     path.parent.mkdir(parents=True,exist_ok=True)
     temporary = path.with_suffix(path.suffix+".tmp")
     temporary.write_text(json.dumps(value,ensure_ascii=False,indent=2,allow_nan=False,default=str),encoding="utf-8")
-    temporary.replace(path)
+    # Windows readers/antivirus can briefly deny replacing an open file.
+    for attempt in range(30):
+        try:
+            temporary.replace(path)
+            break
+        except PermissionError:
+            if attempt==29:
+                raise
+            time.sleep(.1)
 
 
 def candidate_bank():
     """Đúng sáu ứng viên mỗi mô hình, cùng danh sách giữa các cấu hình.
 
-    RF chứa cấu hình cố định của FE để đối chiếu trực tiếp, năm ứng viên
-    còn lại lấy từ không gian chung. Không chọn lưới theo điểm của A/B/C.
+    Lấy trực tiếp đúng ngân sách bằng ParameterSampler, không lấy toàn grid
+    rồi cắt phần đầu. Không chèn bộ FE thay cho một lượt tìm kiếm. RF cố
+    định ở FE chỉ là tham chiếu ngoài vòng chọn sáu ứng viên này.
     """
     bank = {}
     for name in MODEL_NAMES:
-        if name == "Random Forest":
-            reference = dict(model__n_estimators=400,model__max_depth=12,model__min_samples_leaf=5)
-            pool = list(ParameterSampler(SEARCH_SPACE[name],n_iter=24,random_state=SEED))
-            bank[name] = [reference,*[p for p in pool if p!=reference][:N_CANDIDATES-1]]
-        else:
-            bank[name] = list(ParameterSampler(SEARCH_SPACE[name],n_iter=N_CANDIDATES,random_state=SEED))
+        bank[name] = list(ParameterSampler(SEARCH_SPACE[name],n_iter=N_CANDIDATES,random_state=SEED))
         if len(bank[name])!=N_CANDIDATES or len({_digest(p) for p in bank[name]})!=N_CANDIDATES:
             raise ValueError(f"Ngân sách hoặc ứng viên trùng: {name}")
     return bank

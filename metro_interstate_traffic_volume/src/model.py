@@ -18,8 +18,10 @@ CONFIGS = {"A12": list(CONFIG_A), "B27": list(CONFIG_B), "C30": list(CONFIG_C)}
 MODEL_NAMES = ("Ridge", "Random Forest", "Gradient Boosting", "MLP", "XGBoost")
 SEARCH_SPACE = {
     "Ridge": {"model__alpha": [0.001, 0.01, 0.1, 1., 10., 100.]},
-    "Random Forest": {"model__n_estimators": [200, 400], "model__max_depth": [8, 12, 16, None],
-                      "model__min_samples_leaf": [1, 5, 10]},
+    "Random Forest": {"model__n_estimators": [100, 200, 400],
+                      "model__max_depth": [8, 12, 16, 20, None],
+                      "model__min_samples_leaf": [1, 2, 5, 10],
+                      "model__max_features": [0.33, 0.5, 0.8, 1.0]},
     "Gradient Boosting": {"model__n_estimators": [100, 200], "model__learning_rate": [0.03, 0.1],
                           "model__max_depth": [2, 3]},
     "MLP": {"model__regressor__hidden_layer_sizes": [(32,), (64,), (64, 32)],

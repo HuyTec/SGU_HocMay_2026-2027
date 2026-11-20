@@ -1,0 +1,47 @@
+{
+  "protocol_hash": "6042efc8e56db7968fddaa33ee9d8b43d53c817fb778b15a7431d016a0576686",
+  "n_cohort": 22503,
+  "n_oof": 16875,
+  "configs": [
+    "A12",
+    "B27",
+    "C30"
+  ],
+  "n_models": 5,
+  "n_candidates": 6,
+  "n_folds": 3,
+  "completed_CV_fits": 270,
+  "tests_passed": 14,
+  "notebooks": [
+    {
+      "file": "notebooks/tuning/tuning_C30.ipynb",
+      "code_cells": 4,
+      "errors": 0
+    },
+    {
+      "file": "notebooks/tuning/tuning_A12.ipynb",
+      "code_cells": 4,
+      "errors": 0
+    },
+    {
+      "file": "notebooks/tuning/tuning_B27.ipynb",
+      "code_cells": 4,
+      "errors": 0
+    },
+    {
+      "file": "notebooks/tuning/tuning_compare.ipynb",
+      "code_cells": 6,
+      "errors": 0
+    }
+  ],
+  "RF_sampler_direct_ParameterSampler": true,
+  "RF_unique_candidates_per_config": 6,
+  "candidate_audit_rows": 90,
+  "all_prepared_fold_hashes_match_FE": true,
+  "OOF_metrics_recomputed": true,
+  "other_model_scores_unchanged": true,
+  "execution": "All cells in order in fresh in-process IPython per notebook; counts and outputs saved",
+  "external_Jupyter_kernel_startup_verified": false,
+  "validation_scored": false,
+  "test_scored": false
+}
