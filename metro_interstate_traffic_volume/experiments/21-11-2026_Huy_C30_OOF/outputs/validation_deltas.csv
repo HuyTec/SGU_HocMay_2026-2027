@@ -1,0 +1,2 @@
+comparison,n,MAE_reduction,RMSE_reduction
+50/50 trừ ensemble OOF,6050,-0.12233368226296193,-1.4955255987010219

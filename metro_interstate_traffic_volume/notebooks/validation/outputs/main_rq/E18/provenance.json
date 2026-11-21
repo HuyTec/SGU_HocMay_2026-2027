@@ -1,0 +1,32 @@
+{
+  "experiment": "E18",
+  "title": "Huy: XGBoost A12/B27 chọn theo RMSE CV",
+  "author": "Huy",
+  "historical_date": "17/11/2026",
+  "rq": "RQ2-W, RQ3",
+  "role": "CHÍNH",
+  "metadata": {
+    "n_train": 28402,
+    "n": 6086,
+    "start": "2017-05-10 05:00:00",
+    "end": "2018-01-19 14:00:00",
+    "cohort_hash": "2fc566243148d6d1f9d28b87782df152ab8d53378b46a51cbef3b02a0c33338a",
+    "timestamps_verified": true,
+    "metric_verification": "MAE/RMSE/R2 khớp predictions trong 1e-8",
+    "precision": "Số đầy đủ từ CSV"
+  },
+  "protocol": "12 ứng viên × 3 fold cho mỗi A/B, chọn RMSE CV; tham số thắng A và B được phép khác.",
+  "limitation": "RF/baseline đọc lại từ E17, không phải RF chạy mới. Khác mô hình và cách chọn so với ablation RF; không quy chênh lệch cho riêng metric chọn.",
+  "source_hashes": {
+    "experiments\\17-11-2026_Huy_XGBoost_RMSE\\outputs\\cv_fold_scores.csv": "0b510e67060123ba90234278d972fde08bd25de5fb554d1b6816253d3c017298",
+    "experiments\\17-11-2026_Huy_XGBoost_RMSE\\outputs\\cv_folds.csv": "3b076d98b7cad253be5d30a70e4cb9d776942947215dc1c2bb4bbd091fc9db84",
+    "experiments\\17-11-2026_Huy_XGBoost_RMSE\\outputs\\cv_summary.csv": "5acc7d9a5943e3ce5fee91b982ce33f4df817f8445dd28db7b5d744c3d63fc1a",
+    "experiments\\17-11-2026_Huy_XGBoost_RMSE\\outputs\\run_config.json": "e12b57127c3cdad3ea187d3ecf7ae37fb17d80eeadff59852f278a54e1956955",
+    "experiments\\17-11-2026_Huy_XGBoost_RMSE\\outputs\\validation_daily_sse.csv": "e5e7169d3287c0a2e8d60fe9878abb3a8ed8bf19ed259cc4909896b8d76136cd",
+    "experiments\\17-11-2026_Huy_XGBoost_RMSE\\outputs\\validation_metrics.csv": "91051c3a68f0f086a87ab0d339d473dfe24634dec48846022de4367110cd4615",
+    "experiments\\17-11-2026_Huy_XGBoost_RMSE\\outputs\\validation_predictions.csv": "6e296f159ed38f0de25b60ceaded7a845bccf647b0a8406fd624127f3dec1afd"
+  },
+  "validator_sha256": "1782c4102a50157d99ea35cb8d5a37baaeac6828c11fd5501fc703901ce4df85",
+  "reconstruction": "archived results, no model refit",
+  "test_evaluated": false
+}

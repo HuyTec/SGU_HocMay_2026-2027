@@ -1,0 +1,4 @@
+model,weight,n,n_estimators,max_depth,min_samples_leaf,max_features,learning_rate,objective
+Random Forest,0.25,6050,100,,2.0,0.33,,
+XGBoost,0.25,6050,400,6.0,,,0.03,reg:squarederror
+ExtraTrees,0.5,6050,200,,2.0,0.8,,

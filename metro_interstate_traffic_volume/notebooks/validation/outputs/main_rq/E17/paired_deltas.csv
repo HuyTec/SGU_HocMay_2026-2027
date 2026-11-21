@@ -1,0 +1,2 @@
+experiment,model,reference,candidate,n,MAE_reference,MAE_candidate,MAE_reduction,RMSE_reduction,R2_change,paired_predictions_available,duplicate_of,chenh_lech_MAE,CI95_thap,CI95_cao,so_ngay
+E17,Random Forest,A12,B27,6086,241.98638889814188,240.15097935788825,1.835409540253636,-14.506345505633305,-0.002914611100214848,True,,1.8354095402536184,-6.323299426268535,8.939996959366693,255

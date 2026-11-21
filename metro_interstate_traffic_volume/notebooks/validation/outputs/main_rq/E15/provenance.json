@@ -1,0 +1,30 @@
+{
+  "experiment": "E15",
+  "title": "Phúc: RF với nhóm nhãn thời tiết",
+  "author": "Phúc",
+  "historical_date": "17/11/2026",
+  "rq": "RQ2-W; bổ trợ RQ1",
+  "role": "CHÍNH",
+  "metadata": {
+    "n_train": 28402,
+    "n": 6086,
+    "start": "2017-05-10 05:00:00",
+    "end": "2018-01-19 14:00:00",
+    "cohort_hash": "2fc566243148d6d1f9d28b87782df152ab8d53378b46a51cbef3b02a0c33338a",
+    "timestamps_verified": true,
+    "metric_verification": "MAE/RMSE/R2 khớp predictions trong 1e-8",
+    "precision": "Số đầy đủ từ CSV"
+  },
+  "protocol": "RF và dữ liệu như E13; thay nhóm đặc trưng trung gian bằng labels23.",
+  "limitation": "Các dòng A12/B27 được đối chiếu với E13 trước khi nối hai ablation; không dùng như bằng chứng độc lập.",
+  "source_hashes": {
+    "experiments\\17-11-2026_ConfigB_WeatherLabels_Phuc\\outputs\\20261117_203112_824733\\cv_fold_scores.csv": "bf57b2a4a9318f6532b39a4130aae474f87fea38b6209412da4076143bc75095",
+    "experiments\\17-11-2026_ConfigB_WeatherLabels_Phuc\\outputs\\20261117_203112_824733\\cv_summary.csv": "e0424ffb7808675aacead2dc80f05066345a8e77e87bbf3d8a5ab180ca80917a",
+    "experiments\\17-11-2026_ConfigB_WeatherLabels_Phuc\\outputs\\20261117_203112_824733\\run_config.json": "11ae98e6e4b7da35b6796bff8b4ea6c651f9a0684f514c05af620ae29d99a819",
+    "experiments\\17-11-2026_ConfigB_WeatherLabels_Phuc\\outputs\\20261117_203112_824733\\validation_metrics.csv": "cb5f247de89cffbbfee4b33273b6dc2b018f59587a130fcd572bd4654f83ee6c",
+    "experiments\\17-11-2026_ConfigB_WeatherLabels_Phuc\\outputs\\20261117_203112_824733\\validation_predictions.csv": "a6a8ab7d17b6a20f7af821ad7933384ffc978e204d57f22798e72ad6577fcd90"
+  },
+  "validator_sha256": "1782c4102a50157d99ea35cb8d5a37baaeac6828c11fd5501fc703901ce4df85",
+  "reconstruction": "archived results, no model refit",
+  "test_evaluated": false
+}

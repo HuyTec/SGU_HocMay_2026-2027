@@ -1,0 +1,28 @@
+{
+  "experiment": "E17",
+  "title": "Huy: RF A12/B27 và phân tích cao điểm",
+  "author": "Huy",
+  "historical_date": "17/11/2026",
+  "rq": "RQ2-W, RQ3",
+  "role": "CHÍNH",
+  "metadata": {
+    "n_train": 28402,
+    "n": 6086,
+    "start": "2017-05-10 05:00:00",
+    "end": "2018-01-19 14:00:00",
+    "cohort_hash": "2fc566243148d6d1f9d28b87782df152ab8d53378b46a51cbef3b02a0c33338a",
+    "timestamps_verified": true,
+    "metric_verification": "MAE/RMSE/R2 khớp predictions trong 1e-8",
+    "precision": "Số đầy đủ từ CSV"
+  },
+  "protocol": "RF cố định 400 cây/depth12/leaf5/max_features1.0; không có CV mới trong run này.",
+  "limitation": "Cùng tham số khai báo với Phúc nhưng dự đoán là run khác; không tráo metrics hoặc slice giữa hai run. has_rain là rain_1h>0 sau xử lý, không phải nhãn Rain.",
+  "source_hashes": {
+    "experiments\\17-11-2026_Huy_Xulydulieu\\outputs\\run_config.json": "50b38f9a1da4c2286320662439afc8fad4874d805f8ed8404ed8a518ed7778c3",
+    "experiments\\17-11-2026_Huy_Xulydulieu\\outputs\\validation_metrics.csv": "e1a88421dd30baea67f91d970a17331ee95bf41269f971d895e490d50cf8f23b",
+    "experiments\\17-11-2026_Huy_Xulydulieu\\outputs\\validation_predictions.csv": "1afdd208220ca664403b2ef1ef955a36f15245219f32ec5e80b8fc8a5d9aac5a"
+  },
+  "validator_sha256": "1782c4102a50157d99ea35cb8d5a37baaeac6828c11fd5501fc703901ce4df85",
+  "reconstruction": "archived results, no model refit",
+  "test_evaluated": false
+}

@@ -1,0 +1,4 @@
+experiment,model,variant,n,n_train,n_features,MAE,RMSE,R2,primary,reused_from,evidence,protocol_family
+E13,Random Forest,A12,6086,28402,12,241.96914789268908,380.9411463234997,0.9624450038111504,True,,Tính lại từ predictions,RF A12/B27 — nhánh Phúc
+E13,Random Forest,numeric16,6086,28402,16,242.268715002903,397.2134530303216,0.959168075324768,True,,Tính lại từ predictions,RF A12/B27 — nhánh Phúc
+E13,Random Forest,B27,6086,28402,27,240.09808540736063,395.4851762748995,0.9595226219449734,True,,Tính lại từ predictions,RF A12/B27 — nhánh Phúc

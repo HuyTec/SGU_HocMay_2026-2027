@@ -1,0 +1,30 @@
+{
+  "experiment": "E13",
+  "title": "Phúc: RF với nhóm thời tiết dạng số",
+  "author": "Phúc",
+  "historical_date": "17/11/2026",
+  "rq": "RQ2-W; bổ trợ RQ1",
+  "role": "CHÍNH",
+  "metadata": {
+    "n_train": 28402,
+    "n": 6086,
+    "start": "2017-05-10 05:00:00",
+    "end": "2018-01-19 14:00:00",
+    "cohort_hash": "2fc566243148d6d1f9d28b87782df152ab8d53378b46a51cbef3b02a0c33338a",
+    "timestamps_verified": true,
+    "metric_verification": "MAE/RMSE/R2 khớp predictions trong 1e-8",
+    "precision": "Số đầy đủ từ CSV"
+  },
+  "protocol": "RF 400 cây/depth12/leaf5/max_features1.0; ba cấu hình cùng tham số.",
+  "limitation": "A12/B27 trùng dự đoán với E15 trong sai số số học; không đếm là hai lần xác nhận độc lập.",
+  "source_hashes": {
+    "experiments\\17-11-2026_ConfigB_WeatherNumeric_Phuc\\outputs\\20261117_141557_451140\\cv_fold_scores.csv": "f66c5aa8468723dd8a8920a75133d0024bb42ae6d8e5b5c3ad4804bfbfb3a38f",
+    "experiments\\17-11-2026_ConfigB_WeatherNumeric_Phuc\\outputs\\20261117_141557_451140\\cv_summary.csv": "b533b8d813c86ce11af2815e41896b1999d55414a1b566183079c7256a1c416c",
+    "experiments\\17-11-2026_ConfigB_WeatherNumeric_Phuc\\outputs\\20261117_141557_451140\\run_config.json": "b52905710febe90b3a5b0251caf605fab1218a8584ab4f0bf520a1e442b2603a",
+    "experiments\\17-11-2026_ConfigB_WeatherNumeric_Phuc\\outputs\\20261117_141557_451140\\validation_metrics.csv": "feb0c9858a040d9b3b74629abd6bc1b2e3be4dcc4777dddfab1836b26ab50949",
+    "experiments\\17-11-2026_ConfigB_WeatherNumeric_Phuc\\outputs\\20261117_141557_451140\\validation_predictions.csv": "c30fd2c2c457bd92fd698684dd198290e9dbeef59091d35bf15e1043094a95bf"
+  },
+  "validator_sha256": "1782c4102a50157d99ea35cb8d5a37baaeac6828c11fd5501fc703901ce4df85",
+  "reconstruction": "archived results, no model refit",
+  "test_evaluated": false
+}

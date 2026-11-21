@@ -1,0 +1,4 @@
+experiment,model,variant,n,n_train,n_features,MAE,RMSE,R2,primary,reused_from,evidence,protocol_family
+E17,Baseline thứ–giờ,reference,6086,28402,2,285.0272011750431,501.4071626170648,0.9349371593454914,False,,Tính lại từ predictions,RF A12/B27 — nhánh Huy
+E17,Random Forest,A12,6086,28402,12,241.98638889814188,380.933524278457,0.9624465066312664,True,,Tính lại từ predictions,RF A12/B27 — nhánh Huy
+E17,Random Forest,B27,6086,28402,27,240.15097935788825,395.4398697840903,0.9595318955310516,True,,Tính lại từ predictions,RF A12/B27 — nhánh Huy

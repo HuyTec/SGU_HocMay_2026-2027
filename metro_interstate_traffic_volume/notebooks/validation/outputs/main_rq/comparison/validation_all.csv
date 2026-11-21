@@ -1,0 +1,23 @@
+experiment,model,variant,n,n_train,n_features,MAE,RMSE,R2,primary,reused_from,evidence,protocol_family,result_id,is_reused_reference
+E05,MLP,A17,6086,28402,17,232.197,359.991,0.9665,True,,XLSX làm tròn; chưa có predictions,A17/B71 — nhánh Hào,E05:MLP:A17,False
+E05,Random Forest,A17,6086,28402,17,312.801,467.374,0.9435,True,,XLSX làm tròn; chưa có predictions,A17/B71 — nhánh Hào,E05:Random Forest:A17,False
+E05,Gradient Boosting,A17,6086,28402,17,421.867,575.612,0.9143,True,,XLSX làm tròn; chưa có predictions,A17/B71 — nhánh Hào,E05:Gradient Boosting:A17,False
+E05,Linear Regression,A17,6086,28402,17,555.927,754.247,0.8528,True,,XLSX làm tròn; chưa có predictions,A17/B71 — nhánh Hào,E05:Linear Regression:A17,False
+E05,MLP,B71,6086,28402,71,260.358,385.209,0.9616,True,,XLSX làm tròn; chưa có predictions,A17/B71 — nhánh Hào,E05:MLP:B71,False
+E05,Random Forest,B71,6086,28402,71,311.192,466.996,0.9436,True,,XLSX làm tròn; chưa có predictions,A17/B71 — nhánh Hào,E05:Random Forest:B71,False
+E05,Gradient Boosting,B71,6086,28402,71,422.538,580.469,0.9128,True,,XLSX làm tròn; chưa có predictions,A17/B71 — nhánh Hào,E05:Gradient Boosting:B71,False
+E05,Linear Regression,B71,6086,28402,71,556.764,754.403,0.8527,True,,XLSX làm tròn; chưa có predictions,A17/B71 — nhánh Hào,E05:Linear Regression:B71,False
+E13,Random Forest,A12,6086,28402,12,241.96914789268908,380.9411463234997,0.9624450038111504,True,,Tính lại từ predictions,RF A12/B27 — nhánh Phúc,E13:Random Forest:A12,False
+E13,Random Forest,numeric16,6086,28402,16,242.268715002903,397.2134530303216,0.959168075324768,True,,Tính lại từ predictions,RF A12/B27 — nhánh Phúc,E13:Random Forest:numeric16,False
+E13,Random Forest,B27,6086,28402,27,240.09808540736063,395.4851762748995,0.9595226219449734,True,,Tính lại từ predictions,RF A12/B27 — nhánh Phúc,E13:Random Forest:B27,False
+E15,Random Forest,A12,6086,28402,12,241.9691478926891,380.9411463234997,0.9624450038111504,True,E13:Random Forest:A12,Tính lại từ predictions,RF A12/B27 — nhánh Phúc,E15:Random Forest:A12,True
+E15,Random Forest,labels23,6086,28402,23,241.6022427093149,386.6007641669248,0.961320810079174,True,,Tính lại từ predictions,RF A12/B27 — nhánh Phúc,E15:Random Forest:labels23,False
+E15,Random Forest,B27,6086,28402,27,240.0980854073606,395.4851762748995,0.9595226219449734,True,E13:Random Forest:B27,Tính lại từ predictions,RF A12/B27 — nhánh Phúc,E15:Random Forest:B27,True
+E17,Baseline thứ–giờ,reference,6086,28402,2,285.0272011750431,501.4071626170648,0.9349371593454914,False,,Tính lại từ predictions,RF A12/B27 — nhánh Huy,E17:Baseline thứ–giờ:reference,False
+E17,Random Forest,A12,6086,28402,12,241.98638889814188,380.933524278457,0.9624465066312664,True,,Tính lại từ predictions,RF A12/B27 — nhánh Huy,E17:Random Forest:A12,False
+E17,Random Forest,B27,6086,28402,27,240.15097935788825,395.4398697840903,0.9595318955310516,True,,Tính lại từ predictions,RF A12/B27 — nhánh Huy,E17:Random Forest:B27,False
+E18,Baseline thứ–giờ,reference,6086,28402,2,285.0272011750431,501.4071626170648,0.9349371593454914,False,E17:Baseline thứ–giờ:reference,Tính lại từ predictions,XGB A12/B27 — nhánh Huy,E18:Baseline thứ–giờ:reference,True
+E18,Random Forest,A12,6086,28402,12,241.98638889814188,380.933524278457,0.9624465066312664,False,E17:Random Forest:A12,Tính lại từ predictions,XGB A12/B27 — nhánh Huy,E18:Random Forest:A12,True
+E18,Random Forest,B27,6086,28402,27,240.15097935788825,395.4398697840903,0.9595318955310516,False,E17:Random Forest:B27,Tính lại từ predictions,XGB A12/B27 — nhánh Huy,E18:Random Forest:B27,True
+E18,XGBoost,A12,6086,28402,12,242.3480369976544,381.03803877729104,0.962425897140568,True,,Tính lại từ predictions,XGB A12/B27 — nhánh Huy,E18:XGBoost:A12,False
+E18,XGBoost,B27,6086,28402,27,241.43131642712996,389.4007071652723,0.960758515769844,True,,Tính lại từ predictions,XGB A12/B27 — nhánh Huy,E18:XGBoost:B27,False

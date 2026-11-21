@@ -1,0 +1,9 @@
+model,variant,parameters,n
+MLP,A17,"hidden_layer_sizes=(64, 32), activation=relu, solver=adam, alpha=0.0001, learning_rate_init=0.001, batch_size=256, max_iter=500, random_state=42",6086
+Random Forest,A17,"n_estimators=200, max_depth=16, min_samples_leaf=3, random_state=42, n_jobs=2",6086
+Gradient Boosting,A17,"n_estimators=300, learning_rate=0.05, max_depth=3, min_samples_leaf=3, loss=squared_error, random_state=42",6086
+Linear Regression,A17,fit_intercept=True,6086
+MLP,B71,"hidden_layer_sizes=(64, 32), activation=relu, solver=adam, alpha=0.0001, learning_rate_init=0.001, batch_size=256, max_iter=500, random_state=42",6086
+Random Forest,B71,"n_estimators=200, max_depth=16, min_samples_leaf=3, random_state=42, n_jobs=2",6086
+Gradient Boosting,B71,"n_estimators=300, learning_rate=0.05, max_depth=3, min_samples_leaf=3, loss=squared_error, random_state=42",6086
+Linear Regression,B71,fit_intercept=True,6086

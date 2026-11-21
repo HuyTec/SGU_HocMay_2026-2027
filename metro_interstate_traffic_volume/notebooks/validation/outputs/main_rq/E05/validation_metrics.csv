@@ -1,0 +1,9 @@
+experiment,model,variant,n,n_train,n_features,MAE,RMSE,R2,primary,reused_from,evidence,protocol_family
+E05,MLP,A17,6086,28402,17,232.197,359.991,0.9665,True,,XLSX làm tròn; chưa có predictions,A17/B71 — nhánh Hào
+E05,Random Forest,A17,6086,28402,17,312.801,467.374,0.9435,True,,XLSX làm tròn; chưa có predictions,A17/B71 — nhánh Hào
+E05,Gradient Boosting,A17,6086,28402,17,421.867,575.612,0.9143,True,,XLSX làm tròn; chưa có predictions,A17/B71 — nhánh Hào
+E05,Linear Regression,A17,6086,28402,17,555.927,754.247,0.8528,True,,XLSX làm tròn; chưa có predictions,A17/B71 — nhánh Hào
+E05,MLP,B71,6086,28402,71,260.358,385.209,0.9616,True,,XLSX làm tròn; chưa có predictions,A17/B71 — nhánh Hào
+E05,Random Forest,B71,6086,28402,71,311.192,466.996,0.9436,True,,XLSX làm tròn; chưa có predictions,A17/B71 — nhánh Hào
+E05,Gradient Boosting,B71,6086,28402,71,422.538,580.469,0.9128,True,,XLSX làm tròn; chưa có predictions,A17/B71 — nhánh Hào
+E05,Linear Regression,B71,6086,28402,71,556.764,754.403,0.8527,True,,XLSX làm tròn; chưa có predictions,A17/B71 — nhánh Hào

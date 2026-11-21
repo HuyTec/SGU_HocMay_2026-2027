@@ -1,0 +1,25 @@
+{
+  "seed": 42,
+  "n_oof": 16875,
+  "n_validation": 6050,
+  "weight_rf": 0.6,
+  "weight_xgb": 0.4,
+  "inputs_sha256": {
+    "experiments\\21-11-2026_Huy_C30_OOF\\outputs\\selected_weights.json": "efef9640cd6b28fbd08139dd0f097096e61c29e4837decb079e90db031079975",
+    "experiments\\21-11-2026_Huy_C30_OOF\\outputs\\oof_predictions.csv": "5853faa737b1715d926101c04332aa50d805f5a47f38e539c65b1e977d3fd702",
+    "experiments\\21-11-2026_Huy_C30_OOF\\outputs\\fold_manifest.csv": "178a25c50f43ca4c56500a41c6bb990b9d8571cc1c1b9c59a34eb1c3b32174f2",
+    "experiments\\21-11-2026_Huy_C30_OOF\\outputs\\weight_fold_scores.csv": "48fe2b99c43ec061e68a5e6d35bbb32de82ea8f76edaf028bb948fbf7c389d4a",
+    "experiments\\21-11-2026_Huy_C30_OOF\\outputs\\validation_predictions.csv": "939e05e2c6e82a7ea9151b783f593228d71db1d54a61b6eaa402bdc101da0683",
+    "experiments\\21-11-2026_Huy_C30_OOF\\outputs\\validation_metrics.csv": "9509aa1cadd5df17023aad20ee8d888341dc6e885151b8c3181b97a23129e47b"
+  },
+  "source_config_sha256": "8677e56dd3b48d6f524df12cb0b6973d9c2daed021206bf0e6b94a09be8e125b",
+  "n_bootstrap": 2000,
+  "bootstrap_unit": "calendar day",
+  "group_warning_n": 30,
+  "gap_definition": "[first observed timestamp after missing hours, +24 calendar hours)",
+  "weather_label_definition": "Rain/Snow/Drizzle/Thunderstorm/Squall/Fog/Mist",
+  "validation_previously_seen": true,
+  "model_refit": false,
+  "test_evaluated": false,
+  "decision": "Giữ ensemble 50/50 làm phương án hiện tại; trọng số OOF chưa cải thiện MAE validation."
+}

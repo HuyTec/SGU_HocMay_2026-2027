@@ -1,0 +1,2 @@
+config,n_train,n,validation_start,validation_end,n_features,n_oof
+C30,22503,6050,2017-05-10 05:00:00,2018-01-19 14:00:00,30,16875

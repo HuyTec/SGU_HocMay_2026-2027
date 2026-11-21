@@ -1,0 +1,15 @@
+{
+  "notebooks_executed": 6,
+  "code_cells_executed": 38,
+  "figures_verified": 13,
+  "validation_rows": 22,
+  "reused_rows": 5,
+  "unique_result_records": 17,
+  "metric_triplets_recomputed_from_predictions": 14,
+  "E05_archived_metric_rows": 8,
+  "E05_timestamp_verification_available": false,
+  "all_source_hashes_unchanged": true,
+  "final_C30_spec_sha256": "e32d793b4c10b14caeff443eb80920de31ea87d8e362ae816f9b074ced70b230",
+  "test_evaluated": false,
+  "E05_metric_triplets_independently_checked_with_openpyxl": 8
+}

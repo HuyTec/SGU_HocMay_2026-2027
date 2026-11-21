@@ -1,0 +1,29 @@
+{
+  "experiment": "E05",
+  "title": "Hào: A17 và B71 trên bốn mô hình",
+  "author": "Hào",
+  "historical_date": "12/11/2026",
+  "rq": "RQ2-M, RQ2-W",
+  "role": "CHÍNH",
+  "metadata": {
+    "n_train": 28402,
+    "n": 6086,
+    "start": "2017-05-10 05:00:00",
+    "end": null,
+    "cohort_hash": null,
+    "timestamps_verified": false,
+    "metric_verification": "Giá trị XLSX; n và kích thước lấy từ stdout notebook",
+    "precision": "MAE/RMSE 3 chữ số, R2 4 chữ số"
+  },
+  "protocol": "Tham số cố định cho LR/RF/GB/MLP; A17/B71 là số cột đầu vào trước one-hot.",
+  "limitation": "Chỉ còn metrics làm tròn trong XLSX; không có dự đoán theo giờ để xác minh cohort hoặc tính bootstrap. Snapshot lịch sử khác snapshot hiện tại.",
+  "source_hashes": {
+    "experiments\\12-11-2026_ConfigA_4Model-Hao\\V1_Config_Hao.xlsx": "5aa1598a15d057247f17126eb7bdad7d149853bce7b1e2513ccb317a9ed9941e",
+    "experiments\\12-11-2026_ConfigA_4Model-Hao\\V1_ConfigA_Hao.ipynb": "8c31586a4d4f87ab772571f1cf9821305b69c1608e0dbe31b81cc0a3db8f6fb9",
+    "experiments\\12-11-2026_ConfigA_4Model-Hao\\V2_ConfigB_Hao.ipynb": "0b78d96dc2f7bcf3ba063b1ae17f23a9a324816d800e9139ed3ecda907afbbc2",
+    "experiments\\12-11-2026_ConfigA_4Model-Hao\\V2_ConfigB_Hao.xlsx": "21a042c305139af83404de3887add42fbf8f9d6783b551c03bf1e20a741f6194"
+  },
+  "validator_sha256": "1782c4102a50157d99ea35cb8d5a37baaeac6828c11fd5501fc703901ce4df85",
+  "reconstruction": "archived results, no model refit",
+  "test_evaluated": false
+}

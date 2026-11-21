@@ -1,0 +1,31 @@
+{
+  "option": "ExtraTrees_leaf2__new_0.50",
+  "model": "ExtraTrees_leaf2",
+  "new_weight": 0.5,
+  "OOF_MAE": 225.27258074964197,
+  "baseline_OOF_MAE": 227.24100019849868,
+  "selection_rule": "mean fold MAE, mean fold RMSE, option ID",
+  "plan_sha256": "f33026574d19d41d0718c10638c1823672c34d9f1007589dbb01b2b1cdb5d4a5",
+  "candidate_params": {
+    "bootstrap": false,
+    "ccp_alpha": 0.0,
+    "criterion": "squared_error",
+    "max_depth": null,
+    "max_features": 0.8,
+    "max_leaf_nodes": null,
+    "max_samples": null,
+    "min_impurity_decrease": 0.0,
+    "min_samples_leaf": 2,
+    "min_samples_split": 2,
+    "min_weight_fraction_leaf": 0.0,
+    "monotonic_cst": null,
+    "n_estimators": 200,
+    "n_jobs": 4,
+    "oob_score": false,
+    "random_state": 42,
+    "verbose": 0,
+    "warm_start": false
+  },
+  "validation_used_for_selection": false,
+  "validation_previously_seen": true
+}

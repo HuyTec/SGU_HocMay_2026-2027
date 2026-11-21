@@ -1,0 +1,6 @@
+experiment,model,variant,n,n_train,n_features,MAE,RMSE,R2,primary,reused_from,evidence,protocol_family
+E18,Baseline thứ–giờ,reference,6086,28402,2,285.0272011750431,501.4071626170648,0.9349371593454914,False,E17:Baseline thứ–giờ:reference,Tính lại từ predictions,XGB A12/B27 — nhánh Huy
+E18,Random Forest,A12,6086,28402,12,241.98638889814188,380.933524278457,0.9624465066312664,False,E17:Random Forest:A12,Tính lại từ predictions,XGB A12/B27 — nhánh Huy
+E18,Random Forest,B27,6086,28402,27,240.15097935788825,395.4398697840903,0.9595318955310516,False,E17:Random Forest:B27,Tính lại từ predictions,XGB A12/B27 — nhánh Huy
+E18,XGBoost,A12,6086,28402,12,242.3480369976544,381.03803877729104,0.962425897140568,True,,Tính lại từ predictions,XGB A12/B27 — nhánh Huy
+E18,XGBoost,B27,6086,28402,27,241.43131642712996,389.4007071652723,0.960758515769844,True,,Tính lại từ predictions,XGB A12/B27 — nhánh Huy
