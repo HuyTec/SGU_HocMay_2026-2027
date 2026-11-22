@@ -1,0 +1,1 @@
+"""Isolated Streamlit demonstration package."""

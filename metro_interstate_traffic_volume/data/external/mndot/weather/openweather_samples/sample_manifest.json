@@ -1,0 +1,20 @@
+{
+  "purpose": "Public documentation samples only; NOT ATR301 weather, NOT normalized C30",
+  "sources": [
+    {
+      "url": "https://openweathermap.org/payload/api/files/file/history_bulk.json",
+      "file": "history_bulk.json",
+      "bytes": 17880,
+      "content_type": "application/json",
+      "sha256": "13897ff66cba523b481cf5f73edf57c9d24646fc718cac37668ef46acca8d304"
+    },
+    {
+      "url": "https://openweathermap.org/payload/api/files/file/history_bulk.csv",
+      "file": "history_bulk.csv",
+      "bytes": 7579,
+      "content_type": "text/csv",
+      "sha256": "e9650646641c5880a04177787503e836c8de61960030d31feb48c9a1f7fd5fa2"
+    }
+  ],
+  "checked_date_asia_saigon": "2026-11-22"
+}

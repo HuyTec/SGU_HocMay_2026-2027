@@ -27,6 +27,21 @@ WMO không cung cấp đầy đủ sự phân biệt giữa mọi nhóm `mist`, 
 
 Nguồn có các trường gần cấu trúc UCI hơn để xem xét là [OpenWeather History Bulk](https://openweathermap.org/api/history-bulk), gồm `rain.1h`, `snow.1h` theo mm nước và `clouds.all`; quyền truy cập và tọa độ weather ban đầu chưa được xác minh, chưa tải nguồn này.
 
+Cập nhật kiểm tra OpenWeather: đã tải **mẫu tài liệu công khai** vào `openweather_samples/`, chưa tải weather ATR301 năm 2018.
+Mẫu London có 48 giờ, nhưng 20 giờ nhãn Rain chỉ 2 giờ có rain.1h; 12 giờ có rain.3h và 6 giờ không có trường rain.
+Không thể tự coi mọi ô trống là 0 hoặc chia tổng 3h thành lượng 1h.
+Xem [báo cáo kiểm tra OpenWeather](../../../../app/docs/openweather_review.md) và manifest hash trong thư mục mẫu.
+
+## NOAA miễn phí · đã tải dữ liệu trạm 2018
+
+Đã tải hai file Global Hourly ISD 2018 từ kho NOAA NODD công khai vào `noaa/`:
+KSTP (St Paul Downtown) và KMSP (Minneapolis–St Paul). Mỗi trạm có bản tin phủ 8.760 giờ UTC,
+nhưng có nhiều bản tin trong giờ, sentinel và cờ chất lượng; chưa phải bảng giờ C30 chuẩn hóa.
+KSTP không có nhóm AJ/AL tuyết; KMSP có độ sâu/tích lũy, chưa tương đương `snow_1h`.
+Xem [kết quả kiểm tra NOAA](../../../../app/docs/noaa_review.md),
+`noaa/download_manifest.json` và `noaa/inspection_summary.json`.
+Không tốn phí, không cần API key; chưa ghép traffic, chưa dự đoán hoặc chấm MnDOT.
+
 ## Bước tiếp theo trước khi chấm mô hình
 
 1. Xác minh tọa độ weather cần dùng, quy ước timezone/CST/DST và mốc giờ đo của hai nguồn. Giữ UTC trong dữ liệu gốc, không ghép timestamp naive trước bước này.

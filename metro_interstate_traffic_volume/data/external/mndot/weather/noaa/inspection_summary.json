@@ -1,0 +1,292 @@
+[
+  {
+    "file": "72658414927.csv",
+    "sha256": "54290db6d77afa5f50f6653cfe941ac756538eef8e09c590cfc03c01f43a775d",
+    "station_ids": [
+      "72658414927"
+    ],
+    "station_names": [
+      "ST. PAUL DOWNTOWN AIRPORT, MN US"
+    ],
+    "coordinates_in_file": [
+      {
+        "LATITUDE": "44.9322",
+        "LONGITUDE": "-93.0558"
+      }
+    ],
+    "rows": 11740,
+    "start_utc": "2018-01-01 00:53:00+00:00",
+    "end_utc": "2018-12-31 23:53:00+00:00",
+    "report_types": {
+      "FM-15": 8761,
+      "FM-16": 2602,
+      "SOD  ": 365,
+      "SOM  ": 12
+    },
+    "routine_fm15_unique_utc_hour_buckets": 8760,
+    "expected_utc_hours_2018": 8760,
+    "utc_hour_buckets_with_any_report": 8760,
+    "missing_utc_hour_buckets_2018": 0,
+    "duplicate_exact_timestamps_rows_beyond_first": 14,
+    "records_not_at_start_of_hour": 11650,
+    "hour_buckets_with_multiple_reports": 1679,
+    "temperature_nonmissing_rows_before_qc": 11319,
+    "temperature_quality_codes": {
+      "5": 10890,
+      "9": 421,
+      "1": 418,
+      "6": 9,
+      "A": 1,
+      "2": 1
+    },
+    "precipitation_groups": [
+      {
+        "field": "AA1",
+        "rows_present": 10337,
+        "nonmissing_amount_by_period_hours": {
+          "01": 10009,
+          "24": 328
+        },
+        "one_hour_amount_rows": 10009,
+        "one_hour_unique_utc_hour_buckets": 8760,
+        "one_hour_condition_codes": {
+          "9": 8135,
+          "2": 1290,
+          "3": 584
+        },
+        "one_hour_qc_1_or_5_and_condition_9_or_2_hour_buckets": 8752,
+        "window_one_hour_qc_1_or_5_and_condition_9_or_2_hour_buckets": 1751,
+        "condition_codes": {
+          "9": 8418,
+          "2": 1335,
+          "3": 584
+        },
+        "quality_codes": {
+          "5": 9032,
+          "1": 1249,
+          "P": 4,
+          "6": 10,
+          "I": 42
+        }
+      },
+      {
+        "field": "AA2",
+        "rows_present": 616,
+        "nonmissing_amount_by_period_hours": {
+          "06": 328,
+          "03": 253,
+          "24": 35
+        },
+        "one_hour_amount_rows": 0,
+        "one_hour_unique_utc_hour_buckets": 0,
+        "one_hour_condition_codes": {},
+        "one_hour_qc_1_or_5_and_condition_9_or_2_hour_buckets": 0,
+        "window_one_hour_qc_1_or_5_and_condition_9_or_2_hour_buckets": 0,
+        "condition_codes": {
+          "2": 259,
+          "9": 336,
+          "3": 21
+        },
+        "quality_codes": {
+          "1": 606,
+          "2": 10
+        }
+      },
+      {
+        "field": "AA3",
+        "rows_present": 62,
+        "nonmissing_amount_by_period_hours": {
+          "24": 62
+        },
+        "one_hour_amount_rows": 0,
+        "one_hour_unique_utc_hour_buckets": 0,
+        "one_hour_condition_codes": {},
+        "one_hour_qc_1_or_5_and_condition_9_or_2_hour_buckets": 0,
+        "window_one_hour_qc_1_or_5_and_condition_9_or_2_hour_buckets": 0,
+        "condition_codes": {
+          "9": 62
+        },
+        "quality_codes": {
+          "1": 62
+        }
+      }
+    ],
+    "cloud_and_snow_groups_present": {
+      "GA1": 11077,
+      "GA2": 2440,
+      "GA3": 941,
+      "GD1": 11101,
+      "GD2": 2591,
+      "GD3": 988,
+      "GF1": 10858
+    },
+    "weather_groups_present": {
+      "AU1": 2662,
+      "AU2": 1026,
+      "AU3": 118,
+      "AW1": 3045,
+      "AW2": 1326,
+      "AW3": 180,
+      "AW4": 65,
+      "MW1": 1362
+    },
+    "rows_with_weather_group": 3061,
+    "utc_inspection_window": "2018-10-01 00:00Z <= t < 2018-12-13 00:00Z; NOT a traffic/timezone join",
+    "window_rows": 2445,
+    "window_utc_hour_buckets": 1752,
+    "window_temperature_nonmissing_hour_buckets": 1752,
+    "warning": "No resampling, report selection, quality acceptance, timezone join or C30 compatibility has been approved."
+  },
+  {
+    "file": "72658014922.csv",
+    "sha256": "19ca52f214718e43fe0f8180e4078ec0343c1d2812cdc79d4a38044908df9a07",
+    "station_ids": [
+      "72658014922"
+    ],
+    "station_names": [
+      "MINNEAPOLIS ST. PAUL INTERNATIONAL AIRPORT, MN US"
+    ],
+    "coordinates_in_file": [
+      {
+        "LATITUDE": "44.8831",
+        "LONGITUDE": "-93.2289"
+      }
+    ],
+    "rows": 13206,
+    "start_utc": "2018-01-01 00:00:00+00:00",
+    "end_utc": "2018-12-31 23:53:00+00:00",
+    "report_types": {
+      "FM-15": 8726,
+      "FM-16": 2590,
+      "FM-12": 1426,
+      "SOD  ": 365,
+      "SHEF ": 75,
+      "SOM  ": 12,
+      "SY-MT": 12
+    },
+    "routine_fm15_unique_utc_hour_buckets": 8726,
+    "expected_utc_hours_2018": 8760,
+    "utc_hour_buckets_with_any_report": 8760,
+    "missing_utc_hour_buckets_2018": 0,
+    "duplicate_exact_timestamps_rows_beyond_first": 98,
+    "records_not_at_start_of_hour": 11643,
+    "hour_buckets_with_multiple_reports": 2927,
+    "temperature_nonmissing_rows_before_qc": 12754,
+    "temperature_quality_codes": {
+      "5": 10585,
+      "1": 2155,
+      "9": 452,
+      "A": 14
+    },
+    "precipitation_groups": [
+      {
+        "field": "AA1",
+        "rows_present": 10413,
+        "nonmissing_amount_by_period_hours": {
+          "01": 9630,
+          "24": 414,
+          "06": 365,
+          "03": 4
+        },
+        "one_hour_amount_rows": 9630,
+        "one_hour_unique_utc_hour_buckets": 8258,
+        "one_hour_condition_codes": {
+          "9": 7522,
+          "2": 1348,
+          "3": 760
+        },
+        "one_hour_qc_1_or_5_and_condition_9_or_2_hour_buckets": 8209,
+        "window_one_hour_qc_1_or_5_and_condition_9_or_2_hour_buckets": 1590,
+        "condition_codes": {
+          "9": 7863,
+          "2": 1540,
+          "3": 1010
+        },
+        "quality_codes": {
+          "5": 8471,
+          "1": 1890,
+          "6": 35,
+          "A": 4,
+          "P": 7,
+          "U": 2,
+          "2": 4
+        }
+      },
+      {
+        "field": "AA2",
+        "rows_present": 749,
+        "nonmissing_amount_by_period_hours": {
+          "06": 355,
+          "03": 284,
+          "24": 110
+        },
+        "one_hour_amount_rows": 0,
+        "one_hour_unique_utc_hour_buckets": 0,
+        "one_hour_condition_codes": {},
+        "one_hour_qc_1_or_5_and_condition_9_or_2_hour_buckets": 0,
+        "window_one_hour_qc_1_or_5_and_condition_9_or_2_hour_buckets": 0,
+        "condition_codes": {
+          "2": 278,
+          "9": 407,
+          "3": 64
+        },
+        "quality_codes": {
+          "1": 730,
+          "2": 19
+        }
+      },
+      {
+        "field": "AA3",
+        "rows_present": 61,
+        "nonmissing_amount_by_period_hours": {
+          "24": 61
+        },
+        "one_hour_amount_rows": 0,
+        "one_hour_unique_utc_hour_buckets": 0,
+        "one_hour_condition_codes": {},
+        "one_hour_qc_1_or_5_and_condition_9_or_2_hour_buckets": 0,
+        "window_one_hour_qc_1_or_5_and_condition_9_or_2_hour_buckets": 0,
+        "condition_codes": {
+          "9": 61
+        },
+        "quality_codes": {
+          "1": 61
+        }
+      }
+    ],
+    "cloud_and_snow_groups_present": {
+      "AJ1": 1355,
+      "AL1": 118,
+      "GA1": 11331,
+      "GA2": 4267,
+      "GA3": 1589,
+      "GD1": 11223,
+      "GD2": 4397,
+      "GD3": 1661,
+      "GD4": 227,
+      "GF1": 12310
+    },
+    "weather_groups_present": {
+      "AU1": 2583,
+      "AU2": 1474,
+      "AU3": 176,
+      "AU4": 7,
+      "AU5": 2,
+      "AW1": 2978,
+      "AW2": 1581,
+      "AW3": 218,
+      "AW4": 78,
+      "AW5": 5,
+      "AW6": 2,
+      "MW1": 1725,
+      "MW2": 18,
+      "MW3": 6
+    },
+    "rows_with_weather_group": 3197,
+    "utc_inspection_window": "2018-10-01 00:00Z <= t < 2018-12-13 00:00Z; NOT a traffic/timezone join",
+    "window_rows": 2782,
+    "window_utc_hour_buckets": 1752,
+    "window_temperature_nonmissing_hour_buckets": 1752,
+    "warning": "No resampling, report selection, quality acceptance, timezone join or C30 compatibility has been approved."
+  }
+]
