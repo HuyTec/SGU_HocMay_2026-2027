@@ -1,0 +1,24 @@
+{
+  "request_url": "https://archive-api.open-meteo.com/v1/archive?latitude=44.95&longitude=-93.15&start_date=2018-01-01&end_date=2018-12-12&hourly=temperature_2m%2Crain%2Csnowfall%2Ccloud_cover%2Cweather_code&models=era5&timezone=UTC&timeformat=unixtime",
+  "requested_coordinate": {
+    "latitude": 44.95,
+    "longitude": -93.15,
+    "status": "approximate regional point west of N Victoria St, St Paul; not surveyed station coordinates"
+  },
+  "returned_coordinate": {
+    "latitude": 45.0,
+    "longitude": -93.25
+  },
+  "model": "era5",
+  "timezone": "UTC",
+  "raw_sha256": "0a5bf5111dac3f951349ad05f20b6d180ce89e7c7fc1f6a0631f66490d831ff6",
+  "n": 8304,
+  "units": {
+    "time": "unixtime",
+    "temperature_2m": "°C",
+    "rain": "mm",
+    "snowfall": "cm",
+    "cloud_cover": "%",
+    "weather_code": "wmo code"
+  }
+}

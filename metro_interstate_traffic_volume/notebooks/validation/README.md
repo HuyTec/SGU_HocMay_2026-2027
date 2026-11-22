@@ -2,6 +2,10 @@
 
 Mô hình được chốt ngày 22/11/2026: **C30, RF 25% + XGBoost 25% + ExtraTrees 50%**.
 
+## Diễn giải mô hình cho mục 4.7
+
+[interpretation_C30.ipynb](interpretation_C30.ipynb) fit lại đúng cấu hình trên cohort train, kiểm tra dự đoán validation với kết quả đã lưu, rồi đo permutation importance của ba nhóm và ba cột history. Bảng, hình và nhận xét lưu tại [outputs/interpretation_C30](outputs/interpretation_C30/). Artifact của notebook chỉ fit trên train để phân tích validation, chưa phải mô hình refit trên train + validation. Không dùng kết quả importance để chọn lại cấu hình.
+
 ## Mạch thực nghiệm chính từ 20/11
 
 Cùng C30, cohort 22.503 giờ train và 6.050 giờ validation, với quy tắc tạo history và tiền xử lý đã công bố. OOF chọn phương án trong train; validation kiểm tra phương án đã cố định. Validation đã được xem nhiều lần, cần ghi hạn chế này trong báo cáo.

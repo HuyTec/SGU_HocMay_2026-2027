@@ -1,0 +1,19 @@
+{
+  "report_claims": 97,
+  "trace_rows": 114,
+  "facts_B": 46,
+  "detailed_proposals": 17,
+  "source_anchor_checks": 239,
+  "invalid_anchors": [],
+  "snapshot_file_bytes_sha256": "02ccbdb7dd2134a99ab2fef7c31b27257e22a0ed36746c2dc1043c5146a5474a",
+  "snapshot_metadata_hash_matches": true,
+  "frozen_artifact_and_code_hashes_match": true,
+  "originals_edited": false,
+  "models_retrained": false,
+  "test_scored": false,
+  "limitations": [
+    "No rendered whole-document page layout QA",
+    "28 native equation glyphs unavailable",
+    "Current audit verifies saved artifacts rather than reproducing model fits"
+  ]
+}

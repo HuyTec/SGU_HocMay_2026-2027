@@ -1,0 +1,669 @@
+# Rà soát báo cáo Metro — 22/11/2026
+
+Nguồn: [Google Docs của nhóm](https://docs.google.com/document/d/1dHSWGm43qGQtsnvnaf_s-wlyw58mSSu5mB2gfmnBuVA/edit). Đối chiếu bản chụp 408 đoạn, 12 bảng với mã và kết quả hiện có trong repo. Chỉ tạo hồ sơ rà soát; không sửa Google Docs hoặc file nguồn, không huấn luyện lại và không chấm test.
+
+Vị trí P0001–P0408 và Docs indices nằm trong [bản chụp có định vị](agent_a/report_snapshot.txt). Đây không phải số trang. API không cung cấp revision ID; đã lưu SHA256, phạm vi và giới hạn trong [metadata](agent_a/snapshot_metadata.json). Gợi ý sửa chỉ áp dụng cho bản chụp này.
+
+## 1. Tóm tắt điều hành
+
+- Ma trận có 114 mục: 97 tuyên bố, 16 phần cần bổ sung và một mục kiểm công thức; **86 KHỚP, 3 LỆCH, 0 SAI/KHÔNG CÓ, 21 THIẾU, 4 CHƯA XÁC MINH**.
+- Vấn đề 1: 3.3–3.6 và phần lớn Chương 4–5 còn template, trong khi repo đã có kết quả; cần điền từ manifest/CSV, không từ lịch sử chat.
+- Vấn đề 2: P0319 mới mô tả RF/XGBoost, chưa cập nhật ExtraTrees và trọng số đã chốt.
+- Vấn đề 3: chưa ghi đủ cohort, fold, mốc thời gian và sự khác nhau giữa FE, tuning CV, validation.
+- Vấn đề 4: validation đã được xem nhiều lần; chưa refit cuối hoặc có điểm test của mô hình chốt. Bảng test trong báo cáo hiện trống, không phải một kết quả sai đã công bố.
+- Vấn đề 5: thiếu nguồn tái lập, có liên kết bàn giao vắng mặt và demo mới là chú thích; chưa thể báo hoàn thành triển khai.
+- Mô hình đã chốt: **C30, RF 25% + XGBoost 25% + ExtraTrees 50%**, MAE **190,1900**, RMSE **313,5266 xe/giờ**, R² **0,974527**, trên **6.050 giờ validation**; tốt nhất theo MAE trong bảng cùng cohort hiện lưu, kết quả thăm dò.
+- Các bảng dữ liệu/EDA đã đối chiếu nhìn chung khớp output; con số ùn tắc 49 giờ, một câu ký hiệu và 28 equation native còn cần xác minh.
+
+Các số trạng thái đếm từng hàng ma trận, không đếm số đề xuất. “KHỚP” ở phần mục tiêu chỉ xác nhận có hướng khảo sát tương ứng; không biến một mục tiêu thành kết quả đã hoàn thành. Với lý thuyết có equation native, phần văn bản được kiểm riêng với ký hiệu chưa đọc được. Không tìm thấy tuyên bố hoàn thành giả trong các kết quả thực nghiệm đang để trống.
+
+## 2. Bản đồ sự thật của dự án
+
+### Cấu trúc và điểm chạy
+
+```text
+data/Metro_Interstate_Traffic_Volume.csv   dữ liệu gốc
+data/preprocessed/hourly_unfilled.csv   bảng sạch, chưa học điền thiếu
+data/processed/                        đầu ra pipeline lịch sử
+notebooks/preprocessing/               xuất bảng sạch
+notebooks/eda/                         EDA_general toàn CSV; A/B/C trên train
+notebooks/features/                    năm phương án RF cố định
+notebooks/tuning/                      A12/B27/C30 cùng CV, chọn tham số
+experiments/20-11-2026_Huy_C30_Params*/ fit train và so validation hai bộ tham số
+experiments/21-11-2026_Huy_C30_OOF/      thử trọng số OOF
+experiments/22-11-2026_Huy_C30_MAE_Diversity/ thử loss/mô hình bổ sung
+notebooks/validation/outputs/final_C30/ đặc tả và bảng chốt, chưa phải checkpoint
+src/{data,preprocessing,features}.py    đọc, làm sạch, tạo đặc trưng
+src/feature_experiments.py             cohort, fold, dữ liệu FE
+src/{model,tuning_cv,evaluation}.py      mô hình, tìm kiếm chung, metrics
+src/eda/helpers.py                     thống kê và vẽ EDA
+src/{models_exp,tuning_exp}.py          mã thí nghiệm lịch sử
+src/prepare_data.py                    entrypoint processed lịch sử
+app/demo_time_weather.py               toàn bộ chú thích
+```
+
+Entry point thực nghiệm chính nằm trong notebook. FE gọi load_protocol → prepare_fold → run_configuration; tuning gọi src/tuning_cv.py. src/prepare_data.py:105 có entrypoint CLI lịch sử; không nhầm processed với nguồn preprocessed của FE hiện tại. Chưa tìm thấy entrypoint fit cuối/inference hoạt động hoặc checkpoint .pkl/.joblib/.ubj. README validation đang liên kết một số notebook/module không tồn tại (B-040).
+
+### Mô hình cuối và tham số
+
+| Thành phần | Tham số quan trọng | Nguồn |
+|---|---|---|
+| RF 25% | 100 cây; depth=None; leaf=2; max_features=0.33; bootstrap=True; criterion=squared_error | B-031 |
+| XGBoost 25% | 400 cây; depth=6; learning_rate=0.03; subsample=0.7; colsample_bytree=0.8; min_child_weight=1; objective=reg:squarederror; tree_method=hist | B-032 |
+| ExtraTrees 50% | 200 cây; depth=None; leaf=2; max_features=0.8; bootstrap=False; criterion=squared_error | B-033 |
+
+Cả ba seed=42, n_jobs=4. Mô hình cây không dùng epoch/batch size như MLP. Thư viện ghi theo frozen manifest; Python chỉ được xác minh từ log nguồn Params1 và bước tiền xử lý, không có trong frozen library_versions.
+
+Các bộ tham số tuning C30 dưới đây khác bộ cuối từ nhánh Claude tái dựng:
+
+| Mô hình tuning | best_params đã lưu |
+|---|---|
+| Ridge | `{"model__alpha": 0.1}` |
+| Random Forest | `{"model__n_estimators": 400, "model__min_samples_leaf": 5, "model__max_features": 0.33, "model__max_depth": 16}` |
+| Gradient Boosting | `{"model__n_estimators": 200, "model__max_depth": 3, "model__learning_rate": 0.1}` |
+| MLP | `{"model__regressor__learning_rate_init": 0.003, "model__regressor__hidden_layer_sizes": [64], "model__regressor__alpha": 0.01}` |
+| XGBoost | `{"model__subsample": 1.0, "model__min_child_weight": 1, "model__max_depth": 6, "model__learning_rate": 0.03}` |
+
+Nguồn: notebooks/tuning/outputs/C30/results.json. Ridge dùng one-hot weekday_hour/month và chuẩn hóa phần số; MLP scale X/y, max_iter=500. Số tham số học được, mặc định activation/solver/batch size và convergence từng fit chưa được xác minh từ artifact đã lưu.
+
+
+### Pipeline và phạm vi dữ liệu
+
+Bảng sạch có 40.575 giờ, còn 10 nhiệt độ và một giá trị mưa thiếu; chưa học điền thiếu. Split theo giờ quan sát là train 28.402 / validation 6.086 / test 6.087. FE và tuning lọc chung 22.503 giờ train đủ history, tạo 16.875 giờ OOF qua ba fold. Validation cuối giữ 6.050 giờ đủ history. Các quy tắc học thống kê chỉ fit trên phần train tương ứng. C30 dùng quan sát quá khứ theo timestamp; thời tiết cùng giờ được giả định sẵn có. Xem B-007–B-018 bên dưới.
+
+### Kết quả FE: chỉ xếp hạng trong RF cố định
+
+RF 400 cây, depth 12, leaf 5, max_features 1.0, seed 42; MAE/RMSE là mean ± SD giữa ba fold. n là tổng giờ OOF. Nguồn: B-019–B-020.
+
+| Hạng | Cấu hình | n | MAE (xe/giờ) | RMSE (xe/giờ) |
+|---:|---|---:|---:|---:|
+| 1 | V5_C30 | 16,875 | 247.9260 ± 12.4044 | 412.9069 ± 44.3461 |
+| 2 | V1_A12 | 16,875 | 288.3182 ± 35.4519 | 469.6859 ± 56.2775 |
+| 3 | V3_labels23 | 16,875 | 290.0372 ± 34.1182 | 470.7517 ± 59.2873 |
+| 4 | V4_B27 | 16,875 | 290.7253 ± 29.3237 | 473.6463 ± 59.5388 |
+| 5 | V2_numeric16 | 16,875 | 291.5528 ± 29.0594 | 476.4187 ± 56.6771 |
+
+### Tuning CV: xếp hạng trong từng cấu hình
+
+Ba cấu hình có cùng cohort, fold, seed và sáu ứng viên cho mỗi mô hình. Ngân sách là số ứng viên, không có nghĩa cùng thời gian tính toán. Điểm là mean ± SD giữa fold, không phải điểm validation. Nguồn: B-021–B-025; [CSV điểm tuning](../../../notebooks/tuning/outputs/comparison_summary.csv).
+
+| Cấu hình | Hạng MAE trong cấu hình | Mô hình | n OOF | MAE | RMSE | R² |
+|---|---:|---|---:|---:|---:|---:|
+| A12 | 1 | Random Forest | 16,875 | 288.1823 ± 20.6744 | 463.3795 ± 39.6543 | 0.944023 |
+| A12 | 2 | XGBoost | 16,875 | 290.4497 ± 34.4872 | 464.2758 ± 47.5288 | 0.943662 |
+| A12 | 3 | Gradient Boosting | 16,875 | 300.4987 ± 34.2745 | 470.4290 ± 54.8300 | 0.942034 |
+| A12 | 4 | MLP | 16,875 | 303.5790 ± 39.2734 | 475.7039 ± 65.2080 | 0.940525 |
+| A12 | 5 | Ridge | 16,875 | 317.0336 ± 33.2889 | 487.9294 ± 58.7529 | 0.937639 |
+| B27 | 1 | Random Forest | 16,875 | 286.8227 ± 29.2367 | 459.8624 ± 57.9625 | 0.944530 |
+| B27 | 2 | XGBoost | 16,875 | 296.1022 ± 30.6813 | 474.5419 ± 64.9655 | 0.940850 |
+| B27 | 3 | Gradient Boosting | 16,875 | 312.7118 ± 22.7651 | 482.7085 ± 55.6500 | 0.939020 |
+| B27 | 4 | Ridge | 16,875 | 314.8010 ± 33.3779 | 484.1522 ± 61.6106 | 0.938535 |
+| B27 | 5 | MLP | 16,875 | 356.4272 ± 21.0997 | 539.0668 ± 52.6193 | 0.924152 |
+| C30 | 1 | Random Forest | 16,875 | 231.0395 ± 11.8246 | 381.3597 ± 40.6606 | 0.962000 |
+| C30 | 2 | XGBoost | 16,875 | 235.9835 ± 11.3680 | 386.0600 ± 36.6811 | 0.961106 |
+| C30 | 3 | Gradient Boosting | 16,875 | 255.9309 ± 10.1680 | 410.3063 ± 40.6275 | 0.956038 |
+| C30 | 4 | Ridge | 16,875 | 261.9641 ± 12.2449 | 417.4234 ± 45.5097 | 0.954493 |
+| C30 | 5 | MLP | 16,875 | 277.1134 ± 19.0572 | 418.1760 ± 38.9309 | 0.954423 |
+
+### Validation C30: cùng 6.050 giờ chấm
+
+Fit trên cohort 22.503 giờ train; chấm từ 10/05/2017 05:00 đến 19/01/2018 14:00. Thứ hạng dưới đây chỉ mô tả những phương án có trong bảng hiện lưu, theo MAE. Chưa kiểm chứng mức hơn ExtraTrees đơn một cách độc lập (CI chênh MAE chứa 0). Nguồn: B-034–B-036.
+
+| Hạng | Phương án | n | MAE (xe/giờ) | RMSE (xe/giờ) | R² |
+|---:|---|---:|---:|---:|---:|
+| 1 | RF 25% + XGBoost 25% + ExtraTrees 50% | 6,050 | 190.1900 | 313.5266 | 0.974527 |
+| 2 | ExtraTrees | 6,050 | 191.2160 | 319.8542 | 0.973488 |
+| 3 | RF/XGBoost 50/50 | 6,050 | 193.8102 | 316.0848 | 0.974109 |
+| 4 | RF/XGBoost chọn trọng số OOF | 6,050 | 193.9326 | 317.5803 | 0.973864 |
+| 5 | Random Forest | 6,050 | 196.7748 | 326.7725 | 0.972329 |
+| 6 | XGBoost | 6,050 | 197.0314 | 313.6397 | 0.974508 |
+| 7 | Baseline thứ–giờ | 6,050 | 291.7388 | 503.2185 | 0.934378 |
+| 8 | Baseline seasonal naive | 6,050 | 330.1775 | 635.0735 | 0.895484 |
+
+CV 231,0395 và validation 190,1900 dùng những tập giờ và cách chọn khác nhau; không trừ hai số này để diễn giải mức cải thiện do một thay đổi mô hình. R² 0,974527 không có nghĩa 97,45% dự đoán đúng. Các thành phần của ensemble cuối dùng loss squared error theo đặc tả, dù nhánh bổ sung có thử loss MAE.
+
+### Danh mục sự thật và điểm neo nguồn
+
+Bằng chứng đầy đủ và giới hạn của từng fact nằm trong [facts.md](agent_b/facts.md) và [facts.json](agent_b/facts.json). Dòng notebook là dòng trong JSON `.ipynb`, không phải số cell.
+
+| fact_id | Nội dung đã đối chiếu | Điểm neo nguồn |
+|---|---|---|
+| B-001 | Rà soát chỉ đọc source, notebook và log; không huấn luyện hoặc chấm test. | [docs/report_review/2026-11-22/agent_b/read_only_checks.json:2](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/docs/report_review/2026-11-22/agent_b/read_only_checks.json:2>) |
+| B-002 | Dữ liệu gốc có 48.204 dòng, 9 cột, 40.575 timestamp; 7.629 dòng dư theo thời gian, 17 dòng trùng hoàn toàn và 11.976 giờ thiếu. | [notebooks/preprocessing/outputs/preprocessing_manifest.json:6](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/preprocessing/outputs/preprocessing_manifest.json:6>); [notebooks/eda/EDA_general.ipynb:749](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:749>) |
+| B-003 | Có 5.445 timestamp lặp với 13.074 dòng; target trong mỗi timestamp nhất quán. | [notebooks/eda/EDA_general.ipynb:749](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:749>); [notebooks/eda/EDA_general.ipynb:750](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:750>) |
+| B-004 | Đọc CSV với keep_default_na=False để giữ nhãn holiday="None". | [src/data.py:28](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/data.py:28>); [src/data.py:30](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/data.py:30>) |
+| B-005 | Gộp target nhất quán theo giờ; thời tiết lấy median các giá trị phân biệt, nhãn lấy tập hợp đã chuẩn hóa. | [src/preprocessing.py:8](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/preprocessing.py:8>); [src/preprocessing.py:23](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/preprocessing.py:23>) |
+| B-006 | Đánh dấu temp=0 K và đúng điểm mưa 9.831,3 mm là thiếu; giữ các giờ target=0. | [src/preprocessing.py:42](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/preprocessing.py:42>); [src/preprocessing.py:49](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/preprocessing.py:49>) |
+| B-007 | Một CSV sạch được xuất tại data/preprocessed/hourly_unfilled.csv: 40.575 dòng, 10 cột; còn 10 temp và 1 rain_1h thiếu. Chưa fit imputation; không điền target. | [notebooks/preprocessing/outputs/preprocessing_manifest.json:4](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/preprocessing/outputs/preprocessing_manifest.json:4>); [notebooks/preprocessing/outputs/preprocessing_manifest.json:21](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/preprocessing/outputs/preprocessing_manifest.json:21>) |
+| B-008 | Cờ ngày lễ áp dụng cho cả ngày có nhãn trong CSV; chưa bổ sung lịch ngoài. | [src/data.py:101](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/data.py:101>); [src/data.py:109](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/data.py:109>) |
+| B-009 | Chia theo thứ tự giờ quan sát 70/15/15: train 28.402, validation 6.086, test 6.087. Ranh giới train/validation là 10/05/2017 04:00/05:00; validation/test là 19/01/2018 14:00/15:00. | [src/preprocessing.py:137](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/preprocessing.py:137>); [src/preprocessing.py:140](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/preprocessing.py:140>) |
+| B-010 | Điền temp bằng quan sát gốc trước tối đa 6 giờ, rồi median tháng–giờ hoặc median toàn fit. Điền rain bằng median của fit. | [src/preprocessing.py:151](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/preprocessing.py:151>); [src/preprocessing.py:157](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/preprocessing.py:157>) |
+| B-011 | prepare_fold chỉ học median trên fold-train; giữ các quan sát thời tiết gốc ngoài cohort làm ngữ cảnh. Không điền median cho lag. | [src/feature_experiments.py:133](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/feature_experiments.py:133>); [src/feature_experiments.py:141](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/feature_experiments.py:141>) |
+| B-012 | A12 gồm 11 đặc trưng lịch và cờ is_holiday; 6 trong số đó là sin/cos của giờ, thứ, tháng. | [src/features.py:212](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/features.py:212>); [src/features.py:217](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/features.py:217>) |
+| B-013 | B27 thêm bốn biến thời tiết số và 11 cờ multi-label weather_main; temp đổi từ K sang °C. | [src/features.py:203](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/features.py:203>); [src/features.py:218](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/features.py:218>) |
+| B-014 | C30 thêm lag_24h, lag_168h và mean_24h. Lag tra đúng timestamp; mean lấy [t−24h,t) với ít nhất 18 quan sát. | [src/features.py:209](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/features.py:209>); [src/features.py:221](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/features.py:221>) |
+| B-015 | Đây là dự đoán tuần tự từng giờ với target quá khứ đã quan sát. Thời tiết cùng giờ được giả định sẵn có; chưa phải dự báo cả đoạn tương lai từ một mốc. | [src/features.py:273](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/features.py:273>); [src/feature_experiments.py:256](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/feature_experiments.py:256>) |
+| B-016 | Ba notebook EDA_A/B/C chỉ mô tả train và không chọn cấu hình bằng CV. EDA_general mô tả toàn CSV. FE riêng so năm nhóm bằng cùng RF, fold và cohort, không brute force từng cột. | [notebooks/eda/README.md:5](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/README.md:5>); [notebooks/eda/EDA_general.ipynb:16](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:16>) |
+| B-017 | Cả năm phương án FE dùng cohort train đủ history gồm 22.503 giờ. Ba fold có 5.625 mẫu chấm mỗi fold, tổng 16.875 OOF; số mẫu fit là 5.628, 11.253 và 16.878. | [src/feature_experiments.py:85](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/feature_experiments.py:85>); [src/feature_experiments.py:87](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/feature_experiments.py:87>) |
+| B-018 | Ba fold-score phủ 16.931, 10.163 và 5.867 giờ lịch; số mẫu bằng nhau không có nghĩa khoảng lịch bằng nhau. | [notebooks/features/outputs/e4bc1e064317af8c/fold_manifest.csv:2](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/features/outputs/e4bc1e064317af8c/fold_manifest.csv:2>); [notebooks/features/outputs/e4bc1e064317af8c/fold_manifest.csv:3](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/features/outputs/e4bc1e064317af8c/fold_manifest.csv:3>) |
+| B-019 | FE dùng RF cố định: 400 cây, depth=12, leaf=5, max_features=1.0, seed=42, n_jobs=4; ma trận float32. | [src/feature_experiments.py:41](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/feature_experiments.py:41>); [src/feature_experiments.py:42](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/feature_experiments.py:42>) |
+| B-020 | FE cùng RF cho MAE: C30=247,9260; A12=288,3182; labels23=290,0372; B27=290,7253; numeric16=291,5528. Không có bằng chứng mọi cột đều cần thiết. | [notebooks/features/outputs/e4bc1e064317af8c/feature_comparison.csv:2](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/features/outputs/e4bc1e064317af8c/feature_comparison.csv:2>); [notebooks/features/outputs/e4bc1e064317af8c/feature_comparison.csv:3](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/features/outputs/e4bc1e064317af8c/feature_comparison.csv:3>) |
+| B-021 | Tuning so Ridge, RF, Gradient Boosting, MLP và XGBoost trên A12/B27/C30. Mỗi cặp có 6 ứng viên × 3 fold; tổng 270 fit, seed=42. Không chấm validation hoặc test trong bước này. | [src/model.py:18](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/model.py:18>); [src/tuning_cv.py:22](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/tuning_cv.py:22>) |
+| B-022 | Ridge dùng one-hot weekday_hour/month và chuẩn hóa phần số; MLP chuẩn hóa X và y, max_iter=500. Không mô tả cả năm mô hình đều dùng cùng biểu diễn cột. | [src/model.py:84](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/model.py:84>); [src/model.py:118](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/model.py:118>) |
+| B-023 | tuning_compare kiểm tra protocol digest, candidates, timestamp/target/fold OOF, features, fold hash và điểm OOF. Ba protocol JSON hiện tại giống nhau; protocol_hash của ba results cùng khớp 6042efc8e56db7968fddaa33ee9d8b43d53c817fb778b15a7431d016a0576686. | [src/tuning_cv.py:197](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/tuning_cv.py:197>); [src/tuning_cv.py:203](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/tuning_cv.py:203>) |
+| B-024 | Lỗi sampler RF cũ đã được sửa và có log. Kết quả C30 RF hiện tại là MAE CV=231,03948, RMSE=381,35972; 247,926 là FE hoặc kết quả tuning lỗi cũ. | [notebooks/tuning/outputs/rf_sampling_correction.json:3](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/tuning/outputs/rf_sampling_correction.json:3>); [notebooks/tuning/outputs/rf_sampling_correction.json:4](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/tuning/outputs/rf_sampling_correction.json:4>) |
+| B-025 | MAE CV C30 hiện tại: RF=231,0395; XGBoost=235,9835; GB=255,9309; Ridge=261,9641; MLP=277,1134. Không so trực tiếp các điểm CV này với validation để kết luận mức cải thiện. | [notebooks/tuning/outputs/comparison_summary.csv:12](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/tuning/outputs/comparison_summary.csv:12>); [notebooks/tuning/outputs/comparison_summary.csv:13](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/tuning/outputs/comparison_summary.csv:13>) |
+| B-026 | Có hai baseline: trung bình thứ–giờ của train và seasonal naive lag_168h. Tất cả điểm qua regression_metrics đều cắt dự đoán âm về 0, rồi tính MAE, RMSE và R². | [src/evaluation.py:8](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/evaluation.py:8>); [src/evaluation.py:13](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/evaluation.py:13>) |
+| B-027 | Params1 chứa nhãn 02_claude_params và ensemble MAE validation=193,8102; Params2 chứa nhãn 01_current_params và MAE=197,2289. Tên thư mục không trùng thứ tự nhãn thí nghiệm. | [experiments/20-11-2026_Huy_C30_Params1/outputs/run_config.json:59](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/experiments/20-11-2026_Huy_C30_Params1/outputs/run_config.json:59>); [experiments/20-11-2026_Huy_C30_Params1/outputs/validation_metrics.csv:2](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/experiments/20-11-2026_Huy_C30_Params1/outputs/validation_metrics.csv:2>) |
+| B-028 | Lượt 21/11 chọn RF60/XGB40 bằng OOF; validation MAE=193,93255, chưa cải thiện RF50/XGB50=193,81022. | [experiments/21-11-2026_Huy_C30_OOF/outputs/selected_weights.json:52](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/experiments/21-11-2026_Huy_C30_OOF/outputs/selected_weights.json:52>); [notebooks/validation/outputs/final_C30/validation_comparison.csv:4](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/validation/outputs/final_C30/validation_comparison.csv:4>) |
+| B-029 | Lượt 22/11 thử năm cấu hình mô hình mới, 15 fit CV và 16 phương án OOF. OOF chọn 50% ExtraTrees_leaf2 + 50% ensemble cũ; MAE OOF=225,27258 so đối chứng 227,24100. | [experiments/22-11-2026_Huy_C30_MAE_Diversity/outputs/verification.json:2](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/experiments/22-11-2026_Huy_C30_MAE_Diversity/outputs/verification.json:2>); [experiments/22-11-2026_Huy_C30_MAE_Diversity/outputs/selected_option.json:2](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/experiments/22-11-2026_Huy_C30_MAE_Diversity/outputs/selected_option.json:2>) |
+| B-030 | Đặc tả được chốt: C30, RF25% + XGBoost25% + ExtraTrees50%, kết hợp bằng trung bình có trọng số. | [notebooks/validation/outputs/final_C30/selected_model.json:2](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/validation/outputs/final_C30/selected_model.json:2>); [notebooks/validation/outputs/final_C30/selected_model.json:3](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/validation/outputs/final_C30/selected_model.json:3>) |
+| B-031 | RF cuối: 100 cây, depth=None, leaf=2, max_features=0.33, bootstrap=True, squared_error, seed=42, n_jobs=4. | [notebooks/validation/outputs/final_C30/selected_model.json:50](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/validation/outputs/final_C30/selected_model.json:50>); [notebooks/validation/outputs/final_C30/selected_model.json:52](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/validation/outputs/final_C30/selected_model.json:52>) |
+| B-032 | XGBoost cuối: 400 cây, depth=6, learning_rate=0.03, subsample=0.7, colsample_bytree=0.8, min_child_weight=1, reg:squarederror, tree_method=hist, seed=42, n_jobs=4. | [notebooks/validation/outputs/final_C30/selected_model.json:73](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/validation/outputs/final_C30/selected_model.json:73>); [notebooks/validation/outputs/final_C30/selected_model.json:79](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/validation/outputs/final_C30/selected_model.json:79>) |
+| B-033 | ExtraTrees cuối: 200 cây, depth=None, leaf=2, max_features=0.8, bootstrap=False, squared_error, seed=42, n_jobs=4. Mô hình được chốt không dùng loss MAE. | [notebooks/validation/outputs/final_C30/selected_model.json:117](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/validation/outputs/final_C30/selected_model.json:117>); [notebooks/validation/outputs/final_C30/selected_model.json:119](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/validation/outputs/final_C30/selected_model.json:119>) |
+| B-034 | Trên 6.050 giờ validation đủ history, sau fit trên 22.503 giờ train, ensemble cuối đạt MAE=190,1899684; RMSE=313,5265898; R²=0,9745267. Đây là kết quả validation tốt nhất trong bảng cùng cohort đã lưu. | [notebooks/validation/outputs/final_C30/validation_scope.csv:2](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/validation/outputs/final_C30/validation_scope.csv:2>); [notebooks/validation/outputs/final_C30/validation_comparison.csv:2](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/validation/outputs/final_C30/validation_comparison.csv:2>) |
+| B-035 | So RF50/XGB50, MAE giảm 3,62025 xe/giờ, CI bootstrap 95%=[1,63028;5,79750]. So ExtraTrees đơn, CI của mức giảm chứa 0. Validation đã được xem nhiều lần nên đây là phân tích thăm dò. | [notebooks/validation/outputs/final_C30/paired_bootstrap.csv:2](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/validation/outputs/final_C30/paired_bootstrap.csv:2>); [notebooks/validation/outputs/final_C30/paired_bootstrap.csv:3](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/validation/outputs/final_C30/paired_bootstrap.csv:3>) |
+| B-036 | Đặc tả cuối đã khóa, nhưng refit_completed=false và test_evaluated=false. Quét repo không thấy checkpoint dạng .pkl/.joblib/.ubj. | [notebooks/validation/outputs/final_C30/selected_model.json:3](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/validation/outputs/final_C30/selected_model.json:3>); [notebooks/validation/outputs/final_C30/selected_model.json:193](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/validation/outputs/final_C30/selected_model.json:193>) |
+| B-037 | Tám artifact nguồn và bốn file source được hash trong frozen manifest đều tồn tại và khớp SHA256 hiện tại. Hash CSV gốc và CSV hourly khớp manifest tiền xử lý. | [notebooks/validation/outputs/final_C30/selected_model.json:147](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/validation/outputs/final_C30/selected_model.json:147>); [notebooks/validation/outputs/final_C30/selected_model.json:183](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/validation/outputs/final_C30/selected_model.json:183>) |
+| B-038 | Manifest cuối ghi numpy 2.5.3, pandas 3.0.6, scikit-learn 1.9.1 và xgboost 3.4.1, không ghi Python. run_config Params1 và manifest tiền xử lý ghi Python 3.14.7; requirements pin numpy 2.5.4 và comment Python 3.13.9. | [notebooks/validation/outputs/final_C30/selected_model.json:176](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/validation/outputs/final_C30/selected_model.json:176>); [experiments/20-11-2026_Huy_C30_Params1/outputs/run_config.json:1596](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/experiments/20-11-2026_Huy_C30_Params1/outputs/run_config.json:1596>) |
+| B-039 | app/demo_time_weather.py toàn bộ là chú thích. File mô tả demo Time + Weather bằng XGBoost B lịch sử; chưa có entrypoint inference hoạt động nối với C30 hiện tại. | [app/demo_time_weather.py:1](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/app/demo_time_weather.py:1>); [app/demo_time_weather.py:6](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/app/demo_time_weather.py:6>) |
+| B-040 | README validation liên kết validation_final_C30.ipynb, các notebook validation lịch sử và src/validation_main.py, nhưng các đường dẫn đại diện hiện không tồn tại. Thư mục kết quả final_C30 vẫn có. | [notebooks/validation/README.md:14](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/validation/README.md:14>); [notebooks/validation/README.md:33](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/validation/README.md:33>) |
+| B-041 | Thống kê full hourly trong báo cáo khớp output đã lưu: mean=3.290,650474; std=1.984,772909; Q1=1.248,5; median=3.427; Q3=4.952; IQR=3.703,5; min=0; max=7.280, n=40.575. | [notebooks/eda/EDA_general.ipynb:8344](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:8344>); [notebooks/eda/EDA_general.ipynb:8345](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:8345>) |
+| B-042 | Bảng tương quan sau gộp và mask khớp output: temp Pearson/Spearman=0,1392/0,1401 (n=40.565); rain=−0,0134/0,0043 (40.574); snow=−0,0021/−0,0052 và clouds=0,0783/0,0729 (40.575). | [notebooks/eda/EDA_general.ipynb:10391](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:10391>); [notebooks/eda/EDA_general.ipynb:10392](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:10392>) |
+| B-043 | Bảng 3.6 khớp output toàn hourly: giờ 16 có mean=5.708,614528/n=1.707; giờ 3 là 373,210306/1.669; thứ Sáu là 3.674,777608/5.877; Chủ nhật là 2.426,249484/5.812; tháng 8 là 3.430,323887/3.705; tháng 12 là 3.040,194486/3.337. | [notebooks/eda/EDA_general.ipynb:8650](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:8650>); [notebooks/eda/EDA_general.ipynb:8663](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:8663>) |
+| B-044 | Bảng 3.8 khớp số giờ theo từng nhãn: Clouds=15.127, Clear=13.371, Rain=5.563, Snow=2.795, Smoke=20, Squall=4. Có 5.349 giờ mang nhiều nhãn; một giờ có thể nằm trong nhiều nhóm. | [notebooks/eda/EDA_general.ipynb:1259](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:1259>); [notebooks/eda/EDA_general.ipynb:9589](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:9589>) |
+| B-045 | Output kiểm tra toàn CSV ghi 0 null và 0 chuỗi rỗng; temp=0 có 10 dòng. Điều này không mâu thuẫn CSV sạch còn 10 temp và 1 rain thiếu sau mask. | [notebooks/eda/EDA_general.ipynb:568](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:568>); [notebooks/eda/EDA_general.ipynb:575](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:575>) |
+| B-046 | Năm nhóm lịch sử E05/E13/E15/E17/E18 được tổng hợp riêng, không xếp hạng toàn cục: E05 chỉ còn metrics làm tròn trong XLSX và khác snapshot; E13/E15 lặp A/B; E18 đọc RF/baseline của E17. | [notebooks/validation/outputs/main_rq/comparison/summary.md:1](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/validation/outputs/main_rq/comparison/summary.md:1>); [notebooks/validation/outputs/main_rq/comparison/summary.md:13](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/validation/outputs/main_rq/comparison/summary.md:13>) |
+
+### Nguồn bổ sung do người điều phối kiểm tra
+
+| fact_id | Nội dung | Nguồn |
+|---|---|---|
+| X-001 | Nguồn UCI xác nhận Hogue 2019, ATR301 I-94 westbound, 48.204 mẫu, 8 đầu vào, định nghĩa cột và CC BY 4.0. | [Tài liệu chính thức](https://archive.ics.uci.edu/dataset/492/metro+interstate+traffic+volume) |
+| X-002 | TimeSeriesSplit mở rộng train; các mẫu phải cách đều để các tập chấm phủ cùng độ dài thời gian. | [Tài liệu chính thức](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.TimeSeriesSplit.html) |
+| X-003 | Tài liệu linear models mô tả OLS, Ridge và L2. Xác minh phần văn bản; chưa xác minh ký hiệu của equation native trong Docs. | [Tài liệu chính thức](https://scikit-learn.org/stable/modules/linear_model.html) |
+| X-004 | Tài liệu ensemble mô tả RF, ExtraTrees, gradient boosting, bootstrap và OOB có điều kiện; không xác nhận dự án đã dùng OOB. | [Tài liệu chính thức](https://scikit-learn.org/stable/modules/ensemble.html) |
+| X-005 | MLPRegressor dùng backpropagation, đầu ra hồi quy liên tục; cần lưu ý scaling và thiết lập thực nghiệm. | [Tài liệu chính thức](https://scikit-learn.org/stable/modules/neural_networks_supervised.html) |
+| X-006 | Tài liệu XGBoost có objective regularization, Taylor bậc hai, trọng số lá và gain. Hai ảnh công thức trong Docs đã xem phù hợp dạng này. | [Tài liệu chính thức](https://xgboost.readthedocs.io/en/stable/tutorials/model.html) |
+| X-007 | Kiểm CSV chỉ đọc xác nhận hai timestamp có target=0; ví dụ 10/10/2012 07:00 có Rain/Drizzle cùng lưu lượng 6.793; 61 dòng holiday khác None đều lúc 00:00; có hai cách viết nhãn clear. | [docs/report_review/2026-11-22/root_checks.json:3](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/docs/report_review/2026-11-22/root_checks.json:3>); [docs/report_review/2026-11-22/root_checks.json:7](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/docs/report_review/2026-11-22/root_checks.json:7>); [docs/report_review/2026-11-22/root_checks.json:31](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/docs/report_review/2026-11-22/root_checks.json:31>) |
+| X-008 | Đã xem contact sheet chín ảnh: công thức MAE/RMSE/R² đúng dạng; loại biểu đồ EDA phù hợp chú thích. Chưa kiểm bố cục trang hoặc 28 equation native. | [docs/report_review/2026-11-22/agent_a/README.md:14](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/docs/report_review/2026-11-22/agent_a/README.md:14>); [docs/report_review/2026-11-22/agent_a/report_images_contact.jpg](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/docs/report_review/2026-11-22/agent_a/report_images_contact.jpg>) |
+
+## 3. Ma trận truy vết
+
+Toàn bộ 114 hàng được ghi dưới đây. [CSV đầy đủ](trace_matrix.csv) và [JSON đầy đủ](trace_matrix.json) có thêm trích nguyên văn và giải thích trạng thái. ADD là phần hiện thiếu trong báo cáo; QA là giới hạn kiểm công thức, không phải tuyên bố mô hình. Với hàng mục tiêu/gợi ý, trạng thái không đồng nghĩa thực nghiệm đã hoàn thành.
+
+| claim_id | Vị trí trong báo cáo | fact_id | Trạng thái | Bằng chứng |
+|---|---|---|---|---|
+| A-001 | 1.1. Bối cảnh và ý nghĩa đề tài; P0026 | — | ❓ CHƯA XÁC MINH | `agent_a/report_snapshot.txt; P0026` |
+| A-002 | 1.2. Mục tiêu và câu hỏi nghiên cứu; P0028 | B-012, B-015, X-001 | ✅ KHỚP | [src/features.py:212](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/features.py:212>); [src/features.py:217](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/features.py:217>); [src/features.py:223](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/features.py:223>) |
+| A-003 | 1.2. Mục tiêu và câu hỏi nghiên cứu; P0030 | B-016, B-043 | ✅ KHỚP | [notebooks/eda/README.md:5](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/README.md:5>); [notebooks/eda/EDA_general.ipynb:16](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:16>); [notebooks/features/README.md:15](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/features/README.md:15>) |
+| A-004 | 1.2. Mục tiêu và câu hỏi nghiên cứu; P0031 | B-020, B-042 | ✅ KHỚP | [notebooks/features/outputs/e4bc1e064317af8c/feature_comparison.csv:2](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/features/outputs/e4bc1e064317af8c/feature_comparison.csv:2>); [notebooks/features/outputs/e4bc1e064317af8c/feature_comparison.csv:3](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/features/outputs/e4bc1e064317af8c/feature_comparison.csv:3>); [notebooks/features/outputs/e4bc1e064317af8c/feature_comparison.csv:4](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/features/outputs/e4bc1e064317af8c/feature_comparison.csv:4>) |
+| A-005 | 1.2. Mục tiêu và câu hỏi nghiên cứu; P0032 | B-008, B-016 | ✅ KHỚP | [src/data.py:101](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/data.py:101>); [src/data.py:109](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/data.py:109>); [src/data.py:115](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/data.py:115>) |
+| A-006 | 1.2. Mục tiêu và câu hỏi nghiên cứu; P0033 | B-021, B-025, B-034 | ✅ KHỚP | [src/model.py:18](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/model.py:18>); [src/tuning_cv.py:22](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/tuning_cv.py:22>); [src/tuning_cv.py:56](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/tuning_cv.py:56>) |
+| A-007 | 1.2. Mục tiêu và câu hỏi nghiên cứu; P0034 | — | ❓ CHƯA XÁC MINH | `agent_a/report_snapshot.txt; P0034` |
+| A-008 | 2.1. Bài toán hồi quy và mô hình baseline; P0040 | B-026 | ✅ KHỚP | [src/evaluation.py:8](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/evaluation.py:8>); [src/evaluation.py:13](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/evaluation.py:13>); [src/evaluation.py:23](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/evaluation.py:23>) |
+| A-009 | 2.2. Các thuật toán sử dụng; P0055 | X-003 | ✅ KHỚP | [Nguồn chính thức](https://scikit-learn.org/stable/modules/linear_model.html) |
+| A-010 | 2.2. Các thuật toán sử dụng; P0057 | X-003, B-022 | ✅ KHỚP | [Nguồn chính thức](https://scikit-learn.org/stable/modules/linear_model.html); [src/model.py:84](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/model.py:84>); [src/model.py:118](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/model.py:118>) |
+| A-011 | 2.2. Các thuật toán sử dụng; P0059 | X-003, B-022 | ✅ KHỚP | [Nguồn chính thức](https://scikit-learn.org/stable/modules/linear_model.html); [src/model.py:84](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/model.py:84>); [src/model.py:118](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/model.py:118>) |
+| A-012 | 2.2. Các thuật toán sử dụng; P0060 | X-004, B-019 | ✅ KHỚP | [Nguồn chính thức](https://scikit-learn.org/stable/modules/ensemble.html); [src/feature_experiments.py:41](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/feature_experiments.py:41>); [src/feature_experiments.py:42](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/feature_experiments.py:42>) |
+| A-013 | 2.2. Các thuật toán sử dụng; P0062 | X-004, B-017, B-031 | ⚠️ LỆCH | [Nguồn chính thức](https://scikit-learn.org/stable/modules/ensemble.html); [src/feature_experiments.py:85](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/feature_experiments.py:85>); [src/feature_experiments.py:87](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/feature_experiments.py:87>) |
+| A-014 | 2.2. Các thuật toán sử dụng; P0063 | X-004 | ✅ KHỚP | [Nguồn chính thức](https://scikit-learn.org/stable/modules/ensemble.html) |
+| A-015 | 2.2. Các thuật toán sử dụng; P0066 | X-004, B-021 | ⚠️ LỆCH | [Nguồn chính thức](https://scikit-learn.org/stable/modules/ensemble.html); [src/model.py:18](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/model.py:18>); [src/tuning_cv.py:22](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/tuning_cv.py:22>) |
+| A-016 | 2.2. Các thuật toán sử dụng; P0067 | X-005, B-022 | ✅ KHỚP | [Nguồn chính thức](https://scikit-learn.org/stable/modules/neural_networks_supervised.html); [src/model.py:84](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/model.py:84>); [src/model.py:118](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/model.py:118>) |
+| A-017 | 2.2. Các thuật toán sử dụng; P0069 | X-005, B-022 | ✅ KHỚP | [Nguồn chính thức](https://scikit-learn.org/stable/modules/neural_networks_supervised.html); [src/model.py:84](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/model.py:84>); [src/model.py:118](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/model.py:118>) |
+| A-018 | 2.2. Các thuật toán sử dụng; P0070 | X-006 | ✅ KHỚP | [Nguồn chính thức](https://xgboost.readthedocs.io/en/stable/tutorials/model.html) |
+| A-019 | 2.2. Các thuật toán sử dụng; P0071 | X-006, X-008 | ✅ KHỚP | [Nguồn chính thức](https://xgboost.readthedocs.io/en/stable/tutorials/model.html); [docs/report_review/2026-11-22/agent_a/README.md:14](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/docs/report_review/2026-11-22/agent_a/README.md:14>); [docs/report_review/2026-11-22/agent_a/report_images_contact.jpg](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/docs/report_review/2026-11-22/agent_a/report_images_contact.jpg>) |
+| A-020 | 2.2. Các thuật toán sử dụng; P0072 | X-006, X-008 | ✅ KHỚP | [Nguồn chính thức](https://xgboost.readthedocs.io/en/stable/tutorials/model.html); [docs/report_review/2026-11-22/agent_a/README.md:14](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/docs/report_review/2026-11-22/agent_a/README.md:14>); [docs/report_review/2026-11-22/agent_a/report_images_contact.jpg](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/docs/report_review/2026-11-22/agent_a/report_images_contact.jpg>) |
+| A-021 | 2.2. Các thuật toán sử dụng; P0073 | X-006 | ❓ CHƯA XÁC MINH | [Nguồn chính thức](https://xgboost.readthedocs.io/en/stable/tutorials/model.html) |
+| A-022 | 2.3. Độ đo đánh giá hồi quy; P0075 | B-026 | ✅ KHỚP | [src/evaluation.py:8](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/evaluation.py:8>); [src/evaluation.py:13](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/evaluation.py:13>); [src/evaluation.py:23](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/evaluation.py:23>) |
+| A-023 | 2.3. Độ đo đánh giá hồi quy; P0076 | B-026, X-008 | ✅ KHỚP | [src/evaluation.py:8](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/evaluation.py:8>); [src/evaluation.py:13](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/evaluation.py:13>); [src/evaluation.py:23](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/evaluation.py:23>) |
+| A-024 | 2.3. Độ đo đánh giá hồi quy; P0077 | B-026, X-008 | ✅ KHỚP | [src/evaluation.py:8](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/evaluation.py:8>); [src/evaluation.py:13](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/evaluation.py:13>); [src/evaluation.py:23](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/evaluation.py:23>) |
+| A-025 | 2.3. Độ đo đánh giá hồi quy; P0078 | B-026, X-008 | ✅ KHỚP | [src/evaluation.py:8](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/evaluation.py:8>); [src/evaluation.py:13](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/evaluation.py:13>); [src/evaluation.py:23](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/evaluation.py:23>) |
+| A-026 | 2.3. Độ đo đánh giá hồi quy; P0079 | B-026 | ✅ KHỚP | [src/evaluation.py:8](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/evaluation.py:8>); [src/evaluation.py:13](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/evaluation.py:13>); [src/evaluation.py:23](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/evaluation.py:23>) |
+| A-027 | 2.3. Độ đo đánh giá hồi quy; P0080 | B-026, B-034 | ✅ KHỚP | [src/evaluation.py:8](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/evaluation.py:8>); [src/evaluation.py:13](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/evaluation.py:13>); [src/evaluation.py:23](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/evaluation.py:23>) |
+| A-028 | 2.4. Dữ liệu chuỗi thời gian, chia dữ liệu theo thời gian và data leakage; P0082 | B-009, B-011, B-021, B-022 | ✅ KHỚP | [src/preprocessing.py:137](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/preprocessing.py:137>); [src/preprocessing.py:140](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/preprocessing.py:140>); [src/preprocessing.py:147](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/preprocessing.py:147>) |
+| A-029 | 2.4. Dữ liệu chuỗi thời gian, chia dữ liệu theo thời gian và data leakage; P0083 | B-018, X-002 | ✅ KHỚP | [notebooks/features/outputs/e4bc1e064317af8c/fold_manifest.csv:2](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/features/outputs/e4bc1e064317af8c/fold_manifest.csv:2>); [notebooks/features/outputs/e4bc1e064317af8c/fold_manifest.csv:3](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/features/outputs/e4bc1e064317af8c/fold_manifest.csv:3>); [notebooks/features/outputs/e4bc1e064317af8c/fold_manifest.csv:4](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/features/outputs/e4bc1e064317af8c/fold_manifest.csv:4>) |
+| A-030 | 3.1.1. Nguồn dữ liệu và phạm vi và quy mô; P0087 | B-002, X-001 | ✅ KHỚP | [notebooks/preprocessing/outputs/preprocessing_manifest.json:6](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/preprocessing/outputs/preprocessing_manifest.json:6>); [notebooks/eda/EDA_general.ipynb:749](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:749>); [docs/report_review/2026-11-22/agent_b/read_only_checks.json:3](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/docs/report_review/2026-11-22/agent_b/read_only_checks.json:3>) |
+| A-031 | 3.1.1. Nguồn dữ liệu và phạm vi và quy mô; P0088 | B-002 | ✅ KHỚP | [notebooks/preprocessing/outputs/preprocessing_manifest.json:6](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/preprocessing/outputs/preprocessing_manifest.json:6>); [notebooks/eda/EDA_general.ipynb:749](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:749>); [docs/report_review/2026-11-22/agent_b/read_only_checks.json:3](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/docs/report_review/2026-11-22/agent_b/read_only_checks.json:3>) |
+| A-032 | 3.2.1 Tổng quan và chất lượng dữ liệu; P0135 | B-003, B-005 | ✅ KHỚP | [notebooks/eda/EDA_general.ipynb:749](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:749>); [notebooks/eda/EDA_general.ipynb:750](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:750>); [notebooks/eda/EDA_general.ipynb:1078](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:1078>) |
+| A-033 | 3.2.1 Tổng quan và chất lượng dữ liệu; P0170 | B-006, B-007 | ✅ KHỚP | [src/preprocessing.py:42](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/preprocessing.py:42>); [src/preprocessing.py:49](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/preprocessing.py:49>); [notebooks/eda/EDA_general.ipynb:3187](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:3187>) |
+| A-034 | 3.2.2. Phân bố lưu lượng giao thông; P0172 | B-016, B-041 | ✅ KHỚP | [notebooks/eda/README.md:5](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/README.md:5>); [notebooks/eda/EDA_general.ipynb:16](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:16>); [notebooks/features/README.md:15](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/features/README.md:15>) |
+| A-035 | 3.2.2. Phân bố lưu lượng giao thông; P0196 | B-041 | ✅ KHỚP | [notebooks/eda/EDA_general.ipynb:8344](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:8344>); [notebooks/eda/EDA_general.ipynb:8345](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:8345>); [notebooks/eda/EDA_general.ipynb:8346](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:8346>) |
+| A-036 | 3.2.2. Phân bố lưu lượng giao thông; P0198 | X-008, B-041 | ✅ KHỚP | [docs/report_review/2026-11-22/agent_a/README.md:14](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/docs/report_review/2026-11-22/agent_a/README.md:14>); [docs/report_review/2026-11-22/agent_a/report_images_contact.jpg](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/docs/report_review/2026-11-22/agent_a/report_images_contact.jpg>); [notebooks/eda/EDA_general.ipynb:8344](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:8344>) |
+| A-037 | 3.2.2. Phân bố lưu lượng giao thông; P0199 | X-008, B-041 | ✅ KHỚP | [docs/report_review/2026-11-22/agent_a/README.md:14](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/docs/report_review/2026-11-22/agent_a/README.md:14>); [docs/report_review/2026-11-22/agent_a/report_images_contact.jpg](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/docs/report_review/2026-11-22/agent_a/report_images_contact.jpg>); [notebooks/eda/EDA_general.ipynb:8344](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:8344>) |
+| A-038 | 3.2.2. Phân bố lưu lượng giao thông; P0200 | X-008, B-041 | ✅ KHỚP | [docs/report_review/2026-11-22/agent_a/README.md:14](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/docs/report_review/2026-11-22/agent_a/README.md:14>); [docs/report_review/2026-11-22/agent_a/report_images_contact.jpg](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/docs/report_review/2026-11-22/agent_a/report_images_contact.jpg>); [notebooks/eda/EDA_general.ipynb:8344](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:8344>) |
+| A-039 | 3.2.3. Lưu lượng theo thời gian; P0202 | B-016, B-043 | ✅ KHỚP | [notebooks/eda/README.md:5](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/README.md:5>); [notebooks/eda/EDA_general.ipynb:16](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:16>); [notebooks/features/README.md:15](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/features/README.md:15>) |
+| A-040 | 3.2.3. Lưu lượng theo thời gian; P0206 | B-043, X-008 | ✅ KHỚP | [notebooks/eda/EDA_general.ipynb:8650](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:8650>); [notebooks/eda/EDA_general.ipynb:8663](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:8663>); [notebooks/eda/EDA_general.ipynb:8769](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:8769>) |
+| A-041 | 3.2.3. Lưu lượng theo thời gian; P0239 | X-008 | ✅ KHỚP | [docs/report_review/2026-11-22/agent_a/README.md:14](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/docs/report_review/2026-11-22/agent_a/README.md:14>); [docs/report_review/2026-11-22/agent_a/report_images_contact.jpg](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/docs/report_review/2026-11-22/agent_a/report_images_contact.jpg>) |
+| A-042 | 3.2.3. Lưu lượng theo thời gian; P0240 | B-016, X-008 | ✅ KHỚP | [notebooks/eda/README.md:5](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/README.md:5>); [notebooks/eda/EDA_general.ipynb:16](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:16>); [notebooks/features/README.md:15](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/features/README.md:15>) |
+| A-043 | 3.2.4. Mối liên  hệ giữa thời tiết và lưu lượng; P0243 | B-005, B-006, B-042 | ✅ KHỚP | [src/preprocessing.py:8](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/preprocessing.py:8>); [src/preprocessing.py:23](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/preprocessing.py:23>); [src/preprocessing.py:56](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/preprocessing.py:56>) |
+| A-044 | 3.2.4. Mối liên  hệ giữa thời tiết và lưu lượng; P0265 | B-042 | ✅ KHỚP | [notebooks/eda/EDA_general.ipynb:10391](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:10391>); [notebooks/eda/EDA_general.ipynb:10392](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:10392>); [notebooks/eda/EDA_general.ipynb:10393](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:10393>) |
+| A-045 | 3.2.4. Mối liên  hệ giữa thời tiết và lưu lượng; P0269 | B-044, X-008 | ✅ KHỚP | [notebooks/eda/EDA_general.ipynb:1259](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:1259>); [notebooks/eda/EDA_general.ipynb:9589](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:9589>); [notebooks/eda/EDA_general.ipynb:9590](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:9590>) |
+| A-046 | 3.2.4. Mối liên  hệ giữa thời tiết và lưu lượng; P0287 | B-044 | ✅ KHỚP | [notebooks/eda/EDA_general.ipynb:1259](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:1259>); [notebooks/eda/EDA_general.ipynb:9589](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:9589>); [notebooks/eda/EDA_general.ipynb:9590](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:9590>) |
+| A-047 | 3.2.4. Mối liên  hệ giữa thời tiết và lưu lượng; P0288 | B-020, B-042 | ✅ KHỚP | [notebooks/features/outputs/e4bc1e064317af8c/feature_comparison.csv:2](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/features/outputs/e4bc1e064317af8c/feature_comparison.csv:2>); [notebooks/features/outputs/e4bc1e064317af8c/feature_comparison.csv:3](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/features/outputs/e4bc1e064317af8c/feature_comparison.csv:3>); [notebooks/features/outputs/e4bc1e064317af8c/feature_comparison.csv:4](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/features/outputs/e4bc1e064317af8c/feature_comparison.csv:4>) |
+| A-048 | 3.5. Pipeline học máy; P0301 | B-007, B-009, B-011, B-036 | ➕ THIẾU | [notebooks/preprocessing/outputs/preprocessing_manifest.json:4](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/preprocessing/outputs/preprocessing_manifest.json:4>); [notebooks/preprocessing/outputs/preprocessing_manifest.json:21](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/preprocessing/outputs/preprocessing_manifest.json:21>); [notebooks/preprocessing/outputs/preprocessing_manifest.json:30](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/preprocessing/outputs/preprocessing_manifest.json:30>) |
+| A-049 | 3.6.2. Kiểm soát data leakage và tính công bằng khi so sánh; P0308 | B-011, B-021, B-036 | ➕ THIẾU | [src/feature_experiments.py:133](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/feature_experiments.py:133>); [src/feature_experiments.py:141](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/feature_experiments.py:141>); [src/feature_experiments.py:148](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/feature_experiments.py:148>) |
+| A-050 | 3.6.4. Độ đo và phương án tinh chỉnh siêu tham số; P0313 | B-021, B-024 | ➕ THIẾU | [src/model.py:18](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/model.py:18>); [src/tuning_cv.py:22](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/tuning_cv.py:22>); [src/tuning_cv.py:56](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/tuning_cv.py:56>) |
+| A-051 | 3.6.5. Thiết kế thí nghiệm đối chứng đặc trưng; P0316 | B-017, B-019, B-020 | ➕ THIẾU | [src/feature_experiments.py:85](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/feature_experiments.py:85>); [src/feature_experiments.py:87](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/feature_experiments.py:87>); [notebooks/features/outputs/e4bc1e064317af8c/protocol.json:183](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/features/outputs/e4bc1e064317af8c/protocol.json:183>) |
+| A-052 | 3.6.5. Thiết kế thí nghiệm đối chứng đặc trưng; P0318 | B-017, B-023 | ✅ KHỚP | [src/feature_experiments.py:85](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/feature_experiments.py:85>); [src/feature_experiments.py:87](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/feature_experiments.py:87>); [notebooks/features/outputs/e4bc1e064317af8c/protocol.json:183](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/features/outputs/e4bc1e064317af8c/protocol.json:183>) |
+| A-053 | 3.6.5. Thiết kế thí nghiệm đối chứng đặc trưng; P0319 | B-027, B-028, B-029, B-030 | ⚠️ LỆCH | [experiments/20-11-2026_Huy_C30_Params1/outputs/run_config.json:59](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/experiments/20-11-2026_Huy_C30_Params1/outputs/run_config.json:59>); [experiments/20-11-2026_Huy_C30_Params1/outputs/validation_metrics.csv:2](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/experiments/20-11-2026_Huy_C30_Params1/outputs/validation_metrics.csv:2>); [experiments/20-11-2026_Huy_C30_Params2/outputs/run_config.json:57](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/experiments/20-11-2026_Huy_C30_Params2/outputs/run_config.json:57>) |
+| A-054 | 3.6.5. Thiết kế thí nghiệm đối chứng đặc trưng; P0320 | B-029, B-036 | ✅ KHỚP | [experiments/22-11-2026_Huy_C30_MAE_Diversity/outputs/verification.json:2](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/experiments/22-11-2026_Huy_C30_MAE_Diversity/outputs/verification.json:2>); [experiments/22-11-2026_Huy_C30_MAE_Diversity/outputs/selected_option.json:2](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/experiments/22-11-2026_Huy_C30_MAE_Diversity/outputs/selected_option.json:2>); [experiments/22-11-2026_Huy_C30_MAE_Diversity/outputs/selected_option.json:5](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/experiments/22-11-2026_Huy_C30_MAE_Diversity/outputs/selected_option.json:5>) |
+| A-055 | 4.4. So sánh các mô hình trên tập test; P0332 | B-036 | ➕ THIẾU | [notebooks/validation/outputs/final_C30/selected_model.json:3](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/validation/outputs/final_C30/selected_model.json:3>); [notebooks/validation/outputs/final_C30/selected_model.json:193](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/validation/outputs/final_C30/selected_model.json:193>); [notebooks/validation/outputs/final_C30/selected_model.json:194](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/validation/outputs/final_C30/selected_model.json:194>) |
+| A-056 | 2.2. Các thuật toán sử dụng; P0044, P0045 | X-003, B-021 | ✅ KHỚP | [Nguồn chính thức](https://scikit-learn.org/stable/modules/linear_model.html); [src/model.py:18](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/model.py:18>); [src/tuning_cv.py:22](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/tuning_cv.py:22>) |
+| A-057 | 2.2. Các thuật toán sử dụng; P0046, P0047 | X-004, B-019 | ✅ KHỚP | [Nguồn chính thức](https://scikit-learn.org/stable/modules/ensemble.html); [src/feature_experiments.py:41](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/feature_experiments.py:41>); [src/feature_experiments.py:42](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/feature_experiments.py:42>) |
+| A-058 | 2.2. Các thuật toán sử dụng; P0048, P0049 | X-004, B-021 | ✅ KHỚP | [Nguồn chính thức](https://scikit-learn.org/stable/modules/ensemble.html); [src/model.py:18](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/model.py:18>); [src/tuning_cv.py:22](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/tuning_cv.py:22>) |
+| A-059 | 2.2. Các thuật toán sử dụng; P0050, P0051 | X-005, B-022 | ✅ KHỚP | [Nguồn chính thức](https://scikit-learn.org/stable/modules/neural_networks_supervised.html); [src/model.py:84](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/model.py:84>); [src/model.py:118](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/model.py:118>) |
+| A-060 | 2.2. Các thuật toán sử dụng; P0052, P0053 | X-006, B-021 | ✅ KHỚP | [Nguồn chính thức](https://xgboost.readthedocs.io/en/stable/tutorials/model.html); [src/model.py:18](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/model.py:18>); [src/tuning_cv.py:22](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/tuning_cv.py:22>) |
+| A-061 | 3.1.2. Danh sách thuộc tính và biến mục tiêu; P0093, P0094, P0095 | B-004, B-008, X-001 | ✅ KHỚP | [src/data.py:28](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/data.py:28>); [src/data.py:30](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/data.py:30>); [src/data.py:101](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/data.py:101>) |
+| A-062 | 3.1.2. Danh sách thuộc tính và biến mục tiêu; P0096, P0097, P0098 | B-013, X-001 | ✅ KHỚP | [src/features.py:203](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/features.py:203>); [src/features.py:218](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/features.py:218>); [src/features.py:224](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/features.py:224>) |
+| A-063 | 3.1.2. Danh sách thuộc tính và biến mục tiêu; P0099, P0100, P0101 | X-001 | ✅ KHỚP | [Nguồn chính thức](https://archive.ics.uci.edu/dataset/492/metro+interstate+traffic+volume) |
+| A-064 | 3.1.2. Danh sách thuộc tính và biến mục tiêu; P0102, P0103, P0104 | X-001 | ✅ KHỚP | [Nguồn chính thức](https://archive.ics.uci.edu/dataset/492/metro+interstate+traffic+volume) |
+| A-065 | 3.1.2. Danh sách thuộc tính và biến mục tiêu; P0105, P0106, P0107 | X-001 | ✅ KHỚP | [Nguồn chính thức](https://archive.ics.uci.edu/dataset/492/metro+interstate+traffic+volume) |
+| A-066 | 3.1.2. Danh sách thuộc tính và biến mục tiêu; P0108, P0109, P0110 | X-001 | ✅ KHỚP | [Nguồn chính thức](https://archive.ics.uci.edu/dataset/492/metro+interstate+traffic+volume) |
+| A-067 | 3.1.2. Danh sách thuộc tính và biến mục tiêu; P0111, P0112, P0113 | B-012, X-001 | ✅ KHỚP | [src/features.py:212](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/features.py:212>); [src/features.py:217](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/features.py:217>); [src/features.py:223](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/features.py:223>) |
+| A-068 | 3.1.2. Danh sách thuộc tính và biến mục tiêu; P0114, P0115, P0116 | B-002, X-001 | ✅ KHỚP | [notebooks/preprocessing/outputs/preprocessing_manifest.json:6](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/preprocessing/outputs/preprocessing_manifest.json:6>); [notebooks/eda/EDA_general.ipynb:749](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:749>); [docs/report_review/2026-11-22/agent_b/read_only_checks.json:3](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/docs/report_review/2026-11-22/agent_b/read_only_checks.json:3>) |
+| A-069 | 3.2.1 Tổng quan và chất lượng dữ liệu; P0125, P0126 | B-045 | ✅ KHỚP | [notebooks/eda/EDA_general.ipynb:568](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:568>); [notebooks/eda/EDA_general.ipynb:575](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:575>); [notebooks/eda/EDA_general.ipynb:2961](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:2961>) |
+| A-070 | 3.2.1 Tổng quan và chất lượng dữ liệu; P0127, P0128 | B-002 | ✅ KHỚP | [notebooks/preprocessing/outputs/preprocessing_manifest.json:6](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/preprocessing/outputs/preprocessing_manifest.json:6>); [notebooks/eda/EDA_general.ipynb:749](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:749>); [docs/report_review/2026-11-22/agent_b/read_only_checks.json:3](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/docs/report_review/2026-11-22/agent_b/read_only_checks.json:3>) |
+| A-071 | 3.2.1 Tổng quan và chất lượng dữ liệu; P0129, P0130 | B-003 | ✅ KHỚP | [notebooks/eda/EDA_general.ipynb:749](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:749>); [notebooks/eda/EDA_general.ipynb:750](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:750>); [notebooks/eda/EDA_general.ipynb:1078](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:1078>) |
+| A-072 | 3.2.1 Tổng quan và chất lượng dữ liệu; P0131, P0132 | B-003 | ✅ KHỚP | [notebooks/eda/EDA_general.ipynb:749](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:749>); [notebooks/eda/EDA_general.ipynb:750](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:750>); [notebooks/eda/EDA_general.ipynb:1078](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:1078>) |
+| A-073 | 3.2.1 Tổng quan và chất lượng dữ liệu; P0133, P0134 | B-003 | ✅ KHỚP | [notebooks/eda/EDA_general.ipynb:749](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:749>); [notebooks/eda/EDA_general.ipynb:750](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:750>); [notebooks/eda/EDA_general.ipynb:1078](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:1078>) |
+| A-074 | 3.2.1 Tổng quan và chất lượng dữ liệu; P0141, P0142, P0143, P0144 | X-007 | ✅ KHỚP | [docs/report_review/2026-11-22/root_checks.json:3](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/docs/report_review/2026-11-22/root_checks.json:3>); [docs/report_review/2026-11-22/root_checks.json:7](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/docs/report_review/2026-11-22/root_checks.json:7>); [docs/report_review/2026-11-22/root_checks.json:31](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/docs/report_review/2026-11-22/root_checks.json:31>) |
+| A-075 | 3.2.1 Tổng quan và chất lượng dữ liệu; P0145, P0146, P0147, P0148 | X-007 | ✅ KHỚP | [docs/report_review/2026-11-22/root_checks.json:3](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/docs/report_review/2026-11-22/root_checks.json:3>); [docs/report_review/2026-11-22/root_checks.json:7](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/docs/report_review/2026-11-22/root_checks.json:7>); [docs/report_review/2026-11-22/root_checks.json:31](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/docs/report_review/2026-11-22/root_checks.json:31>) |
+| A-076 | 3.2.1 Tổng quan và chất lượng dữ liệu; P0155, P0156, P0157 | B-006, B-045 | ✅ KHỚP | [src/preprocessing.py:42](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/preprocessing.py:42>); [src/preprocessing.py:49](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/preprocessing.py:49>); [notebooks/eda/EDA_general.ipynb:3187](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:3187>) |
+| A-077 | 3.2.1 Tổng quan và chất lượng dữ liệu; P0158, P0159, P0160 | B-006 | ✅ KHỚP | [src/preprocessing.py:42](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/preprocessing.py:42>); [src/preprocessing.py:49](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/preprocessing.py:49>); [notebooks/eda/EDA_general.ipynb:3187](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:3187>) |
+| A-078 | 3.2.1 Tổng quan và chất lượng dữ liệu; P0161, P0162, P0163 | X-007, B-006 | ✅ KHỚP | [docs/report_review/2026-11-22/root_checks.json:3](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/docs/report_review/2026-11-22/root_checks.json:3>); [docs/report_review/2026-11-22/root_checks.json:7](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/docs/report_review/2026-11-22/root_checks.json:7>); [docs/report_review/2026-11-22/root_checks.json:31](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/docs/report_review/2026-11-22/root_checks.json:31>) |
+| A-079 | 3.2.1 Tổng quan và chất lượng dữ liệu; P0164, P0165, P0166 | X-007, B-005 | ✅ KHỚP | [docs/report_review/2026-11-22/root_checks.json:3](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/docs/report_review/2026-11-22/root_checks.json:3>); [docs/report_review/2026-11-22/root_checks.json:7](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/docs/report_review/2026-11-22/root_checks.json:7>); [docs/report_review/2026-11-22/root_checks.json:31](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/docs/report_review/2026-11-22/root_checks.json:31>) |
+| A-080 | 3.2.1 Tổng quan và chất lượng dữ liệu; P0167, P0168, P0169 | X-007, B-008 | ✅ KHỚP | [docs/report_review/2026-11-22/root_checks.json:3](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/docs/report_review/2026-11-22/root_checks.json:3>); [docs/report_review/2026-11-22/root_checks.json:7](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/docs/report_review/2026-11-22/root_checks.json:7>); [docs/report_review/2026-11-22/root_checks.json:31](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/docs/report_review/2026-11-22/root_checks.json:31>) |
+| A-081 | 3.2.2. Phân bố lưu lượng giao thông; P0180, P0181, P0182, P0183 | B-041 | ✅ KHỚP | [notebooks/eda/EDA_general.ipynb:8344](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:8344>); [notebooks/eda/EDA_general.ipynb:8345](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:8345>); [notebooks/eda/EDA_general.ipynb:8346](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:8346>) |
+| A-082 | 3.2.2. Phân bố lưu lượng giao thông; P0184, P0185, P0186, P0187 | B-041 | ✅ KHỚP | [notebooks/eda/EDA_general.ipynb:8344](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:8344>); [notebooks/eda/EDA_general.ipynb:8345](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:8345>); [notebooks/eda/EDA_general.ipynb:8346](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:8346>) |
+| A-083 | 3.2.2. Phân bố lưu lượng giao thông; P0188, P0189, P0190, P0191 | B-041 | ✅ KHỚP | [notebooks/eda/EDA_general.ipynb:8344](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:8344>); [notebooks/eda/EDA_general.ipynb:8345](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:8345>); [notebooks/eda/EDA_general.ipynb:8346](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:8346>) |
+| A-084 | 3.2.2. Phân bố lưu lượng giao thông; P0192, P0193, P0194, P0195 | B-041 | ✅ KHỚP | [notebooks/eda/EDA_general.ipynb:8344](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:8344>); [notebooks/eda/EDA_general.ipynb:8345](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:8345>); [notebooks/eda/EDA_general.ipynb:8346](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:8346>) |
+| A-085 | 3.2.3. Lưu lượng theo thời gian; P0212, P0213, P0214, P0215 | B-043 | ✅ KHỚP | [notebooks/eda/EDA_general.ipynb:8650](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:8650>); [notebooks/eda/EDA_general.ipynb:8663](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:8663>); [notebooks/eda/EDA_general.ipynb:8769](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:8769>) |
+| A-086 | 3.2.3. Lưu lượng theo thời gian; P0216, P0217, P0218, P0219 | B-043 | ✅ KHỚP | [notebooks/eda/EDA_general.ipynb:8650](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:8650>); [notebooks/eda/EDA_general.ipynb:8663](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:8663>); [notebooks/eda/EDA_general.ipynb:8769](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:8769>) |
+| A-087 | 3.2.3. Lưu lượng theo thời gian; P0220, P0221, P0222, P0223 | B-043 | ✅ KHỚP | [notebooks/eda/EDA_general.ipynb:8650](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:8650>); [notebooks/eda/EDA_general.ipynb:8663](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:8663>); [notebooks/eda/EDA_general.ipynb:8769](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:8769>) |
+| A-088 | 3.2.3. Lưu lượng theo thời gian; P0224, P0225, P0226, P0227 | B-043 | ✅ KHỚP | [notebooks/eda/EDA_general.ipynb:8650](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:8650>); [notebooks/eda/EDA_general.ipynb:8663](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:8663>); [notebooks/eda/EDA_general.ipynb:8769](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:8769>) |
+| A-089 | 3.2.3. Lưu lượng theo thời gian; P0228, P0229, P0230, P0231 | B-043 | ✅ KHỚP | [notebooks/eda/EDA_general.ipynb:8650](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:8650>); [notebooks/eda/EDA_general.ipynb:8663](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:8663>); [notebooks/eda/EDA_general.ipynb:8769](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:8769>) |
+| A-090 | 3.2.3. Lưu lượng theo thời gian; P0232, P0233, P0234, P0235 | B-043 | ✅ KHỚP | [notebooks/eda/EDA_general.ipynb:8650](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:8650>); [notebooks/eda/EDA_general.ipynb:8663](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:8663>); [notebooks/eda/EDA_general.ipynb:8769](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:8769>) |
+| A-091 | 3.2.4. Mối liên  hệ giữa thời tiết và lưu lượng; P0249, P0250, P0251, P0252 | B-042 | ✅ KHỚP | [notebooks/eda/EDA_general.ipynb:10391](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:10391>); [notebooks/eda/EDA_general.ipynb:10392](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:10392>); [notebooks/eda/EDA_general.ipynb:10393](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:10393>) |
+| A-092 | 3.2.4. Mối liên  hệ giữa thời tiết và lưu lượng; P0253, P0254, P0255, P0256 | B-042 | ✅ KHỚP | [notebooks/eda/EDA_general.ipynb:10391](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:10391>); [notebooks/eda/EDA_general.ipynb:10392](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:10392>); [notebooks/eda/EDA_general.ipynb:10393](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:10393>) |
+| A-093 | 3.2.4. Mối liên  hệ giữa thời tiết và lưu lượng; P0257, P0258, P0259, P0260 | B-042 | ✅ KHỚP | [notebooks/eda/EDA_general.ipynb:10391](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:10391>); [notebooks/eda/EDA_general.ipynb:10392](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:10392>); [notebooks/eda/EDA_general.ipynb:10393](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:10393>) |
+| A-094 | 3.2.4. Mối liên  hệ giữa thời tiết và lưu lượng; P0261, P0262, P0263, P0264 | B-042 | ✅ KHỚP | [notebooks/eda/EDA_general.ipynb:10391](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:10391>); [notebooks/eda/EDA_general.ipynb:10392](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:10392>); [notebooks/eda/EDA_general.ipynb:10393](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:10393>) |
+| A-095 | 3.2.4. Mối liên  hệ giữa thời tiết và lưu lượng; P0275, P0276, P0277, P0278 | B-044 | ✅ KHỚP | [notebooks/eda/EDA_general.ipynb:1259](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:1259>); [notebooks/eda/EDA_general.ipynb:9589](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:9589>); [notebooks/eda/EDA_general.ipynb:9590](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:9590>) |
+| A-096 | 3.2.4. Mối liên  hệ giữa thời tiết và lưu lượng; P0279, P0280, P0281, P0282 | B-044 | ✅ KHỚP | [notebooks/eda/EDA_general.ipynb:1259](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:1259>); [notebooks/eda/EDA_general.ipynb:9589](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:9589>); [notebooks/eda/EDA_general.ipynb:9590](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:9590>) |
+| A-097 | 3.2.4. Mối liên  hệ giữa thời tiết và lưu lượng; P0283, P0284, P0285, P0286 | B-044 | ✅ KHỚP | [notebooks/eda/EDA_general.ipynb:1259](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:1259>); [notebooks/eda/EDA_general.ipynb:9589](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:9589>); [notebooks/eda/EDA_general.ipynb:9590](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:9590>) |
+| ADD-001 | 3.3; P0291–P0296 | B-004, B-005, B-006, B-007, B-008, B-010, B-011 | ➕ THIẾU | [src/data.py:28](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/data.py:28>); [src/data.py:30](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/data.py:30>); [src/preprocessing.py:8](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/preprocessing.py:8>) |
+| ADD-002 | 3.4; P0299 | B-012, B-013, B-014 | ➕ THIẾU | [src/features.py:212](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/features.py:212>); [src/features.py:217](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/features.py:217>); [src/features.py:223](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/features.py:223>) |
+| ADD-003 | 3.6.1; P0306 | B-009, B-017, B-018 | ➕ THIẾU | [src/preprocessing.py:137](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/preprocessing.py:137>); [src/preprocessing.py:140](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/preprocessing.py:140>); [src/preprocessing.py:147](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/preprocessing.py:147>) |
+| ADD-004 | 4.8; P0363 | B-019, B-020 | ➕ THIẾU | [src/feature_experiments.py:41](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/feature_experiments.py:41>); [src/feature_experiments.py:42](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/feature_experiments.py:42>); [src/feature_experiments.py:153](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/feature_experiments.py:153>) |
+| ADD-005 | 4.3; P0330 | B-021, B-023, B-024, B-025 | ➕ THIẾU | [src/model.py:18](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/model.py:18>); [src/tuning_cv.py:22](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/tuning_cv.py:22>); [src/tuning_cv.py:56](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/tuning_cv.py:56>) |
+| ADD-006 | 4.1; P0325 | B-022, B-038 | ➕ THIẾU | [src/model.py:84](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/model.py:84>); [src/model.py:118](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/model.py:118>); [src/model.py:128](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/model.py:128>) |
+| ADD-007 | 3.6.6 đề xuất / 5.1; P0319/P0370 | B-029, B-030, B-031, B-032, B-033, B-034 | ➕ THIẾU | [experiments/22-11-2026_Huy_C30_MAE_Diversity/outputs/verification.json:2](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/experiments/22-11-2026_Huy_C30_MAE_Diversity/outputs/verification.json:2>); [experiments/22-11-2026_Huy_C30_MAE_Diversity/outputs/selected_option.json:2](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/experiments/22-11-2026_Huy_C30_MAE_Diversity/outputs/selected_option.json:2>); [experiments/22-11-2026_Huy_C30_MAE_Diversity/outputs/selected_option.json:5](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/experiments/22-11-2026_Huy_C30_MAE_Diversity/outputs/selected_option.json:5>) |
+| ADD-008 | 4.5 / 5.2; P0355/P0373 | B-035, B-036 | ➕ THIẾU | [notebooks/validation/outputs/final_C30/paired_bootstrap.csv:2](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/validation/outputs/final_C30/paired_bootstrap.csv:2>); [notebooks/validation/outputs/final_C30/paired_bootstrap.csv:3](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/validation/outputs/final_C30/paired_bootstrap.csv:3>); [notebooks/validation/outputs/final_C30/selected_model.json:3](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/validation/outputs/final_C30/selected_model.json:3>) |
+| ADD-009 | 5.3 / Phụ lục A; P0375/P0382 | B-039, B-040 | ➕ THIẾU | [app/demo_time_weather.py:1](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/app/demo_time_weather.py:1>); [app/demo_time_weather.py:6](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/app/demo_time_weather.py:6>); [docs/report_review/2026-11-22/agent_b/read_only_checks.json:112](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/docs/report_review/2026-11-22/agent_b/read_only_checks.json:112>) |
+| ADD-010 | 4.9; P0366 | B-020, B-025, B-042 | ➕ THIẾU | [notebooks/features/outputs/e4bc1e064317af8c/feature_comparison.csv:2](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/features/outputs/e4bc1e064317af8c/feature_comparison.csv:2>); [notebooks/features/outputs/e4bc1e064317af8c/feature_comparison.csv:3](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/features/outputs/e4bc1e064317af8c/feature_comparison.csv:3>); [notebooks/features/outputs/e4bc1e064317af8c/feature_comparison.csv:4](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/features/outputs/e4bc1e064317af8c/feature_comparison.csv:4>) |
+| ADD-011 | 1.3 đề xuất; trước P0035 | B-015, B-017 | ➕ THIẾU | [src/features.py:273](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/features.py:273>); [src/feature_experiments.py:256](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/src/feature_experiments.py:256>); [notebooks/features/README.md:17](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/features/README.md:17>) |
+| ADD-012 | 3.2 / 5.2; P0172/P0373 | B-016 | ➕ THIẾU | [notebooks/eda/README.md:5](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/README.md:5>); [notebooks/eda/EDA_general.ipynb:16](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/eda/EDA_general.ipynb:16>); [notebooks/features/README.md:15](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/features/README.md:15>) |
+| ADD-013 | Phụ lục B; P0384 | B-046 | ➕ THIẾU | [notebooks/validation/outputs/main_rq/comparison/summary.md:1](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/validation/outputs/main_rq/comparison/summary.md:1>); [notebooks/validation/outputs/main_rq/comparison/summary.md:13](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/validation/outputs/main_rq/comparison/summary.md:13>); [notebooks/validation/outputs/main_rq/comparison/summary.md:25](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/validation/outputs/main_rq/comparison/summary.md:25>) |
+| ADD-014 | 1.4 / Tài liệu tham khảo; P0035/P0378 | X-001, X-002, X-003, X-004, X-005, X-006 | ➕ THIẾU | [Nguồn chính thức](https://archive.ics.uci.edu/dataset/492/metro+interstate+traffic+volume); [Nguồn chính thức](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.TimeSeriesSplit.html); [Nguồn chính thức](https://scikit-learn.org/stable/modules/linear_model.html) |
+| ADD-015 | 4.6 / 4.7; P0358/P0361 | B-028, B-029, B-030 | ➕ THIẾU | [experiments/21-11-2026_Huy_C30_OOF/outputs/selected_weights.json:52](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/experiments/21-11-2026_Huy_C30_OOF/outputs/selected_weights.json:52>); [notebooks/validation/outputs/final_C30/validation_comparison.csv:4](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/validation/outputs/final_C30/validation_comparison.csv:4>); [notebooks/validation/outputs/final_C30/validation_comparison.csv:5](<E:/Project/SGU_HocMay_2026-2027/metro_interstate_traffic_volume/notebooks/validation/outputs/final_C30/validation_comparison.csv:5>) |
+| ADD-016 | Thông tin chung / Phụ lục C; P0008/P0010/P0018/P0391–P0405 | Bản chụp báo cáo | ➕ THIẾU | `agent_a/report_snapshot.txt; Thôngtinchung,camkết,PhụlụcC;P0008/P0010/P0018/P0391–P0405` |
+| QA-001 | 2.2; 28 equation native | X-008 | ❓ CHƯA XÁC MINH | `agent_a/snapshot_metadata.json`; `agent_a/report_snapshot.txt` |
+
+Ba hàng LỆCH là A-013 (giới hạn OOB/bias), A-015 (khẳng định khái quát tốt hơn không có điều kiện), A-053 (mô tả ensemble mới dừng ở hai thành phần). Đây không phải bằng chứng code bị lỗi. A-001/A-007/A-021 và QA-001 còn thiếu chứng cứ ở phạm vi nêu trong ma trận.
+
+[Danh mục 28 vấn đề biên tập của Agent A](agent_a/issues.md) giữ toàn bộ vị trí và nguyên văn. Các đề xuất dưới đây hợp nhất những vấn đề liên quan, không tự động sửa bản gốc.
+
+## 4. Danh sách đề xuất sửa đổi chi tiết
+
+**[SỬA-001] | Mức độ: Trung bình | Loại: THIẾU**
+
+- **Vị trí:** 1.1, P0026.
+- **Nội dung hiện tại:** “Mỗi năm, một tài xế ở Mỹ mất trung 49 giờ vì tắc đường”.
+- **Vấn đề:** Thiếu nguồn, năm khảo sát và phạm vi của con số; dữ liệu I-94 không tự chứng minh thống kê này.
+- **Bằng chứng:** A-001; [UCI, phần Dataset Information](https://archive.ics.uci.edu/dataset/492/metro+interstate+traffic+volume) chỉ mô tả bộ dữ liệu, không cung cấp số giờ ùn tắc này.
+- **Nội dung thay thế đề xuất:**
+
+> Lưu lượng giao thông thay đổi theo giờ trong ngày và loại ngày. Đề tài sử dụng dữ liệu tại trạm ATR 301 trên đường I-94 hướng Tây để khảo sát các mẫu hình này và xây dựng mô hình dự đoán lưu lượng theo giờ. Kết quả được giới hạn trong phạm vi trạm và giai đoạn quan sát của bộ dữ liệu.
+
+- **Cần cập nhật kèm theo:** Tài liệu tham khảo; phần mở đầu slide nếu đang dùng con số 49 giờ.
+- **Độ tin cậy:** Cao về việc thiếu nguồn; chưa xác minh con số 49 giờ đúng hay sai.
+
+**[SỬA-002] | Mức độ: Cao | Loại: THIẾU**
+
+- **Vị trí:** 1.2, P0028–P0034; chèn 1.3 trước P0035.
+- **Nội dung hiện tại:** “Đánh giá ảnh hưởng của thời tiết đến lưu lượng”; “Xây dựng và so sánh các mô hình dự báo lưu lượng”.
+- **Vấn đề:** Mục có tên câu hỏi nghiên cứu nhưng mới liệt kê mục tiêu; chưa định nghĩa thời điểm dự đoán và điều kiện có history. Số mục nhảy từ 1.2 sang 1.4.
+- **Bằng chứng:** A-002–A-007 ↔ B-012–B-017; `src/features.py:270`; `notebooks/features/README.md:17`.
+- **Nội dung thay thế đề xuất:**
+
+> Nhóm xây dựng mô hình hồi quy dự đoán `traffic_volume`, đơn vị xe/giờ, tại trạm ATR 301 trên I-94 hướng Tây. Ba câu hỏi nghiên cứu gồm: (RQ1) Lưu lượng thay đổi theo giờ, thứ, ngày lễ và điều kiện thời tiết như thế nào? (RQ2) Khi giữ cùng mô hình và các giờ chấm, bổ sung thời tiết và lịch sử lưu lượng làm thay đổi MAE bao nhiêu? (RQ3) Phương án mô hình nào phù hợp nhất trong phạm vi đã thử, và sai số tập trung ở những điều kiện nào?
+>
+> **1.3. Phạm vi và kịch bản dự đoán**
+>
+> Với cấu hình C30, đánh giá được thực hiện tuần tự theo giờ. Tại giờ cần dự đoán, mô hình sử dụng lưu lượng đã quan sát ở những giờ trước và giả định thông tin thời tiết cùng giờ đã sẵn có. Đây là điều kiện của thực nghiệm; khả năng nhận dữ liệu thời tiết đúng thời điểm khi triển khai chưa được kiểm chứng. Kết quả C30 áp dụng cho các giờ đủ history theo quy tắc của dự án. Các phân tích mối liên hệ trong EDA không được diễn giải thành tác động nhân quả.
+
+- **Cần cập nhật kèm theo:** 3.4, 3.6, 4.9, 5.2; mục lục và slide phạm vi.
+- **Độ tin cậy:** Cao.
+
+**[SỬA-003] | Mức độ: Trung bình | Loại: LỆCH**
+
+- **Vị trí:** 2.2, P0062 và P0066; bổ sung ExtraTrees sau phần RF.
+- **Nội dung hiện tại:** “Sai số out-of-bag (OOB) cho ước lượng đánh giá mà không cần tập validation riêng”; “khái quát tốt hơn”.
+- **Vấn đề:** Đây là mô tả lý thuyết, chưa phải tuyên bố dự án dùng OOB. Tuy nhiên cách viết dễ làm lẫn với giao thức theo thời gian; learning rate nhỏ cũng không bảo đảm khái quát tốt hơn trong mọi trường hợp. Thiếu ExtraTrees là thành phần mô hình đã chốt.
+- **Bằng chứng:** A-013, A-015 ↔ B-017, B-021, B-033; `notebooks/validation/outputs/final_C30/selected_model.json:129`; [tài liệu ensemble của scikit-learn](https://scikit-learn.org/stable/modules/ensemble.html).
+- **Nội dung thay thế đề xuất:**
+
+> Random Forest hồi quy lấy trung bình dự đoán của nhiều cây. OOB là một cách đánh giá có thể dùng với bootstrap, nhưng trong dự án này mô hình được lựa chọn bằng CV theo thời gian và validation. Với Gradient Boosting, learning rate điều chỉnh mức đóng góp của từng cây; giá trị phù hợp được chọn bằng thực nghiệm.
+>
+> ExtraTrees cũng kết hợp nhiều cây, đồng thời tăng tính ngẫu nhiên khi chọn ngưỡng chia. Cấu hình ExtraTrees được chọn trong dự án dùng toàn bộ mẫu huấn luyện cho mỗi cây (`bootstrap=False`). Nhóm thử bổ sung mô hình này vào ensemble RF/XGBoost để kiểm tra khả năng giảm sai số trên cùng các giờ chấm.
+
+- **Cần cập nhật kèm theo:** Bảng thuật toán 2.2; bảng tham số 4.1; 3.6 và 5.1.
+- **Độ tin cậy:** Cao; không kết luận đoạn cũ đã báo cáo chạy OOB.
+
+**[SỬA-004] | Mức độ: Cao | Loại: THIẾU**
+
+- **Vị trí:** 3.3.1–3.3.3, P0291–P0296.
+- **Nội dung hiện tại:** “[Nhóm bổ sung]”; “chỉ fit trên tập train”.
+- **Vấn đề:** Chưa phân biệt làm sạch cố định với điền thiếu có học thống kê; thiếu chính sách gộp nhiều bản ghi cùng giờ.
+- **Bằng chứng:** B-004–B-011, B-022; `src/preprocessing.py:8`, `src/preprocessing.py:42`, `src/preprocessing.py:65`, `src/preprocessing.py:151`; `src/feature_experiments.py:141`; `src/model.py:128`.
+- **Nội dung thay thế đề xuất:**
+
+> **3.3.1. Giá trị thiếu, timestamp trùng và định dạng**
+>
+> CSV được đọc với `keep_default_na=False` để giữ chuỗi `None` của `holiday`. Nhóm kiểm tra tính nhất quán của mục tiêu rồi giữ một giá trị `traffic_volume` cho mỗi timestamp, không cộng lưu lượng của các dòng cùng giờ. Số đo thời tiết được gộp bằng median của các giá trị phân biệt; nhãn được bỏ khoảng trắng, chuyển về chữ thường và hợp các nhãn duy nhất. Nhãn ngày lễ được áp dụng cho các giờ cùng ngày có sự kiện trong CSV, chưa bổ sung lịch lễ ngoài.
+>
+> **3.3.2. Ngoại lệ và nhiễu**
+>
+> Nhóm đánh dấu 10 giá trị nhiệt độ 0 K và điểm `rain_1h=9831.3` tại 11/07/2016 17:00 là thiếu. Các giờ có lưu lượng bằng 0 được giữ vì chưa xác minh nguyên nhân. Không bổ sung mục tiêu cho các giờ vắng bản ghi. Kết quả làm sạch là `hourly_unfilled.csv`, gồm 40.575 giờ và 10 cột; còn 10 giá trị nhiệt độ và một giá trị mưa thiếu.
+>
+> **3.3.3. Encoding, điền thiếu và scaling**
+>
+> Điền thiếu được thực hiện trong từng fold. Nhiệt độ thiếu ưu tiên quan sát gốc trước đó trong tối đa sáu giờ, sau đó dùng median theo tháng–giờ, cuối cùng là median toàn phần huấn luyện tương ứng. Mưa thiếu dùng median của phần huấn luyện. Không điền median cho lag và không nội suy mục tiêu. Các cờ thời tiết được tạo theo từng nhãn, cho phép nhiều nhãn cùng xuất hiện trong một giờ. Ridge dùng one-hot cho `weekday_hour` và `month`, đồng thời chuẩn hóa các cột số còn lại; MLP chuẩn hóa đầu vào và mục tiêu. Encoder và scaler chỉ được fit trên fold-train.
+
+- **Cần cập nhật kèm theo:** 3.4–3.6, sơ đồ pipeline, phụ lục hướng dẫn chạy.
+- **Độ tin cậy:** Cao.
+
+**[SỬA-005] | Mức độ: Cao | Loại: THIẾU**
+
+- **Vị trí:** 3.4, P0298–P0299.
+- **Nội dung hiện tại:** “History (lag, rolling) nếu dùng”.
+- **Vấn đề:** History đã được dùng và là điều kiện quan trọng của mô hình cuối; cần công thức và số cột chính xác.
+- **Bằng chứng:** B-012–B-014, B-019; `src/features.py:212`, `src/features.py:223`, `src/features.py:279`, `src/features.py:283`.
+- **Nội dung thay thế đề xuất:**
+
+> Nhóm sử dụng ba cấu hình tích lũy. A12 gồm `hour`, `day_of_week`, `month`, `is_weekend`, `is_rush_hour`, `is_holiday` và sáu cột sin/cos của giờ, thứ, tháng. B27 bổ sung `temp_c`, `rain_1h`, `snow_1h`, `clouds_all` và 11 cờ `weather_main`. C30 bổ sung `lag_24h`, `lag_168h`, `mean_24h`.
+>
+> Hai lag được tra bằng timestamp đúng tại t−24 giờ và t−168 giờ. `mean_24h` là trung bình trên khoảng [t−24 giờ, t), yêu cầu ít nhất 18 giờ quan sát; giờ đang dự đoán không tham gia. Các giờ thiếu một trong ba giá trị history bị loại khỏi cohort đối chứng chung. Vì dữ liệu có giờ thiếu, dịch theo số hàng không tương đương với tra theo giờ thực.
+>
+> Ngoài A12, B27 và C30, phần FE có hai phương án trung gian: A12 cộng bốn biến thời tiết dạng số (16 cột), và A12 cộng 11 cờ thời tiết (23 cột). Cả năm phương án dùng cùng RF cố định để đánh giá đóng góp của nhóm đặc trưng. Thí nghiệm này chưa tách riêng đóng góp của từng cột.
+
+- **Cần cập nhật kèm theo:** 3.6.5, 4.8; bảng đặc trưng và tên cấu hình trên slide.
+- **Độ tin cậy:** Cao.
+
+**[SỬA-006] | Mức độ: Cao | Loại: THIẾU**
+
+- **Vị trí:** 3.5 và 3.6.1–3.6.2, P0301–P0309.
+- **Nội dung hiện tại:** “dữ liệu → tiền xử lý → đặc trưng → chia tập → huấn luyện/tuning → đánh giá → demo”; “[Nhóm bổ sung]”.
+- **Vấn đề:** Sơ đồ gợi ý chưa biểu diễn ranh giới học thống kê, cohort chung và bước test còn chờ.
+- **Bằng chứng:** B-007–B-018, B-036; `src/feature_experiments.py:85`; `notebooks/features/outputs/e4bc1e064317af8c/fold_manifest.csv:2`; `notebooks/validation/outputs/final_C30/selected_model.json:194`.
+- **Nội dung thay thế đề xuất:**
+
+> Pipeline gồm: CSV gốc → kiểm tra và gộp theo giờ → `hourly_unfilled.csv` → chia theo thời gian → tạo đặc trưng theo thông tin sẵn có → FE và tuning trong train → đối chiếu validation → khóa cấu hình. Bước tiếp theo là refit trên train + validation rồi đánh giá test một lần cho mô hình đã khóa; bước này chưa hoàn thành tại thời điểm báo cáo.
+>
+> Dữ liệu được chia theo thứ tự các giờ quan sát, với 28.402 giờ train (đến 10/05/2017 04:00), 6.086 giờ validation (10/05/2017 05:00 đến 19/01/2018 14:00) và 6.087 giờ test (19/01/2018 15:00 đến 30/09/2018 23:00). Tỷ lệ 70/15/15 tính theo số mẫu, không phải độ dài lịch.
+>
+> Để so sánh công bằng với C30, FE và tuning dùng chung 22.503 giờ train đủ history cho cả A12 và B27. Ba fold có lần lượt 5.628, 11.253 và 16.878 mẫu fit; mỗi fold chấm 5.625 mẫu, tổng cộng 16.875 dự đoán OOF. Các đoạn chấm phủ 16.931, 10.163 và 5.867 giờ lịch nên không được xem là ba cửa sổ lịch bằng nhau. Validation C30 giữ 6.050 giờ đủ history. Điền thiếu, encoding và scaling có học thống kê chỉ dùng phần huấn luyện tương ứng.
+
+- **Cần cập nhật kèm theo:** Sơ đồ 3.5, bảng fold, mọi bảng n ở Chương 4, hạn chế 5.2.
+- **Độ tin cậy:** Cao.
+
+**[SỬA-007] | Mức độ: Cao | Loại: THIẾU**
+
+- **Vị trí:** 3.6.3–3.6.5, P0311–P0317.
+- **Nội dung hiện tại:** “không gian tham số, chỉ số chọn mô hình trên validation”; “[Nhóm bổ sung]”.
+- **Vấn đề:** Gợi ý chưa nêu cách tuning thực tế. Tham số được chọn bằng mean fold MAE trong train; cần tách FE, tuning và lựa chọn trên validation.
+- **Bằng chứng:** A-008, A-050–A-051 ↔ B-019–B-026; `src/tuning_cv.py:22`, `src/tuning_cv.py:56`, `src/tuning_cv.py:83`; `src/model.py:19`.
+- **Nội dung thay thế đề xuất:**
+
+> Hai baseline gồm trung bình lưu lượng theo thứ–giờ của phần train tương ứng, với trung bình toàn train làm giá trị dự phòng, và seasonal naive dùng `lag_168h`. Chúng được chấm trên cùng các timestamp với mô hình.
+>
+> FE cố định Random Forest với 400 cây, `max_depth=12`, `min_samples_leaf=5`, `max_features=1.0`, `random_state=42`. Chỉ nhóm đặc trưng thay đổi giữa năm phương án.
+>
+> Tuning đánh giá Ridge, Random Forest, Gradient Boosting, MLP và XGBoost trên A12, B27, C30. Mỗi cặp mô hình–cấu hình có sáu ứng viên được lấy bằng `ParameterSampler`, seed 42, dùng cùng ba fold và cohort của FE. Tổng ngân sách là 270 lượt fit. Tham số được chọn theo MAE trung bình fold, sau đó RMSE trung bình fold và thứ tự ứng viên nếu cần phá hòa. Không gian tìm kiếm và danh sách ứng viên được lưu cùng giao thức; bảng tham số chi tiết đặt ở phụ lục. Validation và test không tham gia bước tuning CV này.
+
+- **Cần cập nhật kèm theo:** 4.3, 4.8; phụ lục search space và ứng viên. Dùng kết quả tuning sau sửa sampler, không chép bảng RF cũ bằng điểm FE.
+- **Độ tin cậy:** Cao.
+
+**[SỬA-008] | Mức độ: Cao | Loại: LỆCH**
+
+- **Vị trí:** Sau 3.6.5, P0318–P0320; nên tách thành 3.6.6 “OOF và ensemble”.
+- **Nội dung hiện tại:** “Trong thí nghiệm ensemble, Random Forest và XGBoost sử dụng cùng cấu hình đặc trưng”; “hai mô hình được huấn luyện lại trên toàn bộ tập train”.
+- **Vấn đề:** Mô tả phù hợp nhánh hai mô hình nhưng chưa bao quát phương án ExtraTrees cuối; “toàn bộ train” cần nói rõ cohort 22.503 giờ.
+- **Bằng chứng:** A-052–A-054 ↔ B-027–B-036; `experiments/21-11-2026_Huy_C30_OOF/outputs/selected_weights.json:52`; `experiments/22-11-2026_Huy_C30_MAE_Diversity/outputs/selected_option.json:2`; `notebooks/validation/outputs/final_C30/selected_model.json:40`.
+- **Nội dung thay thế đề xuất:**
+
+> Dự đoán OOF được tạo bằng ba fold theo thời gian trong train. Mỗi dự đoán do mô hình chỉ học từ phần quá khứ của fold tạo ra; các bước tiền xử lý có học thống kê cũng chỉ fit trên phần đó. Các dự đoán được ghép theo timestamp để chọn phương án kết hợp. Điểm OOF được dùng để lựa chọn nên chưa phải ước lượng đánh giá độc lập sau lựa chọn.
+>
+> Ngày 20/11, nhóm đối chiếu hai bộ tham số RF/XGBoost trên cùng C30 và giữ ensemble 50/50 làm đối chứng. Ngày 21/11, lựa chọn bằng OOF cho tỷ trọng RF/XGBoost 60/40 nhưng không cải thiện MAE validation so với 50/50. Ngày 22/11, nhóm thử năm cấu hình mô hình bổ sung với ba tỷ trọng kết hợp cho mỗi cấu hình, tổng cộng 16 phương án OOF khi tính cả đối chứng. OOF chọn ExtraTrees chiếm 50% và ensemble RF/XGBoost cũ chiếm 50%, tương đương RF 25%, XGBoost 25%, ExtraTrees 50%.
+>
+> Các thành phần được fit trên cohort 22.503 giờ train để chấm 6.050 giờ validation đủ history. Nhóm chốt phương án ba mô hình sau khi đối chiếu kết quả. Validation đã được xem trong nhiều vòng phát triển, do đó kết quả được xem là thăm dò. Đặc tả đã khóa chưa phải mô hình được refit trên train + validation, và chưa có điểm test của phương án cuối.
+
+- **Cần cập nhật kèm theo:** 2.2, 4.3–4.6, 5.1–5.2, sơ đồ pipeline và slide kết luận.
+- **Độ tin cậy:** Cao; không gọi đoạn cũ sai cho chính thí nghiệm hai thành phần.
+
+**[SỬA-009] | Mức độ: Trung bình | Loại: THIẾU**
+
+- **Vị trí:** 4.1, P0324–P0325.
+- **Nội dung hiện tại:** “Phiên bản Python/thư viện, seed, phần cứng, liên kết mã và log”.
+- **Vấn đề:** Chưa có môi trường của lượt chạy; `requirements.txt` khác manifest về NumPy nên không dùng nó thay cho lịch sử runtime.
+- **Bằng chứng:** B-031–B-033, B-037–B-038; `notebooks/validation/outputs/final_C30/selected_model.json:176`; `requirements.txt:4`.
+- **Nội dung thay thế đề xuất:**
+
+> Manifest của mô hình chốt ghi NumPy 2.5.3, pandas 3.0.6, scikit-learn 1.9.1 và XGBoost 3.4.1. Các mô hình thành phần dùng `random_state=42`, `n_jobs=4`. File `requirements.txt` hiện ghi NumPy 2.5.4; vì vậy phiên bản tái lập cần được đối chiếu theo manifest của từng lượt. Thông tin CPU, RAM và thời gian huấn luyện chưa được tổng hợp đủ để báo cáo.
+
+- **Cần cập nhật kèm theo:** Phụ lục A và bảng cấu hình; chỉ thêm phiên bản Python khi có nguồn runtime tương ứng, không suy từ tên kernel notebook.
+- **Độ tin cậy:** Cao cho phiên bản thư viện được ghi, chưa xác minh phần cứng và thời gian chạy.
+
+**[SỬA-010] | Mức độ: Cao | Loại: THIẾU**
+
+- **Vị trí:** 4.2–4.3, P0327–P0330.
+- **Nội dung hiện tại:** “[Nhóm bổ sung]”; “Tham số tối ưu, kết quả trên validation”.
+- **Vấn đề:** Chưa có kết quả đã chạy; dễ gộp điểm CV và validation thành cùng bảng xếp hạng.
+- **Bằng chứng:** B-021–B-025, B-027, B-034; `notebooks/tuning/outputs/comparison_summary.csv:12`; `notebooks/validation/outputs/final_C30/validation_comparison.csv:8`.
+- **Nội dung thay thế đề xuất:**
+
+> Trên 16.875 dự đoán OOF thuộc train, C30 có MAE trung bình fold lần lượt là 231,0395 với Random Forest; 235,9835 với XGBoost; 255,9309 với Gradient Boosting; 261,9641 với Ridge; và 277,1134 với MLP. Đây là kết quả tuning hiện lưu sau khi sửa cách lấy mẫu ứng viên RF. Mức 247,9260 thuộc RF cố định ở bước FE, không phải điểm RF tốt nhất của lượt tuning hiện tại.
+>
+> Các tham số dùng trong mạch validation từ 20/11 được ghi riêng theo `run_config.json` của từng thí nghiệm. Bộ tham số tái dựng từ Claude là một nhánh đối chiếu, không được mô tả là đầu ra trực tiếp của lượt tuning chung. Trên cùng 6.050 giờ validation C30, baseline trung bình thứ–giờ đạt MAE 291,7388, RMSE 503,2185, R² 0,934378; seasonal naive đạt MAE 330,1775, RMSE 635,0735, R² 0,895484. Bảng chọn phương án validation được trình bày riêng ở mục tiếp theo.
+
+- **Cần cập nhật kèm theo:** Bảng CV phải có SD và n từng fold; bảng validation có n=6.050 và mốc lịch; phụ lục lưu đường dẫn run.
+- **Độ tin cậy:** Cao về kết quả lưu; nguồn tham số Claude ban đầu chưa xác minh độc lập.
+
+**[SỬA-011] | Mức độ: Cao | Loại: THIẾU**
+
+- **Vị trí:** 4.4, P0331–P0352, gồm bảng trống.
+- **Nội dung hiện tại:** “4.4. So sánh các mô hình trên tập test”; “Chỉ đánh giá test một lần cho mô hình đã chốt”.
+- **Vấn đề:** Đây là khung kế hoạch, chưa phải điểm test đã công bố. Kết quả hiện có là validation; không điền các số 190–198 vào bảng mang tên test.
+- **Bằng chứng:** A-055 ↔ B-030, B-034–B-036; `notebooks/validation/outputs/final_C30/validation_comparison.csv:2`; `notebooks/validation/outputs/final_C30/selected_model.json:195`.
+- **Nội dung thay thế đề xuất:**
+
+> **4.4. Đối chiếu validation và trạng thái đánh giá test**
+>
+> Các phương án dưới đây sử dụng cùng C30, cohort train và 6.050 giờ validation đủ history. Ensemble RF 25% + XGBoost 25% + ExtraTrees 50% có MAE thấp nhất trong bảng: 190,1900 xe/giờ; RMSE 313,5266 xe/giờ; R² 0,974527. So với RF/XGBoost 50/50, MAE giảm 3,6203 và RMSE giảm 2,5582 xe/giờ. R² không phải tỷ lệ số giờ được dự đoán đúng.
+>
+> Đến thời điểm khóa báo cáo, cấu hình đã được chốt nhưng chưa refit trên train + validation và chưa đánh giá test cho mô hình cuối. Vì vậy bảng này chỉ phản ánh validation; kết quả test sẽ được bổ sung sau bước đánh giá cuối theo cấu hình đã khóa.
+
+Chèn bảng validation cùng cohort ở mục 2 của bản rà soát; nguồn duy nhất là `validation_comparison.csv`. Để trống kết quả test cho đến khi có log thật.
+
+- **Cần cập nhật kèm theo:** Tên bảng, 5.1, tóm tắt, slide kết quả; nếu giữ mục test riêng thì thêm 4.4.2 “Chưa thực hiện”.
+- **Độ tin cậy:** Cao; không kết luận toàn bộ lịch sử dự án chưa từng xem test.
+
+**[SỬA-012] | Mức độ: Cao | Loại: THIẾU**
+
+- **Vị trí:** 4.5 và 5.2, P0354–P0355, P0372–P0373.
+- **Nội dung hiện tại:** “So sánh train–validation–test”; “[Nhóm bổ sung]”.
+- **Vấn đề:** Chưa có đánh giá test cuối hoặc learning curve tương ứng để chẩn đoán overfitting; thiếu hạn chế do lặp lại validation và chọn trên OOF.
+- **Bằng chứng:** B-015, B-017–B-018, B-029, B-035–B-036; `notebooks/validation/outputs/final_C30/paired_bootstrap.csv:2`; `notebooks/validation/outputs/final_C30/selected_model.json:193`.
+- **Nội dung thay thế đề xuất:**
+
+> Kết quả hiện tại được giới hạn bởi ba fold theo thời gian, một seed và ngân sách tìm kiếm nhỏ. Các fold có cùng số mẫu chấm nhưng độ dài lịch khác nhau. Cohort đủ history loại những giờ mà A12 hoặc B27 vẫn có thể dự đoán, nên kết luận đối chứng áp dụng cho cohort này.
+>
+> OOF được dùng để chọn tham số hoặc phương án kết hợp, còn validation đã được xem nhiều lần trong quá trình phát triển. So với ensemble 50/50, bootstrap theo ngày cho chênh lệch MAE của phương án chốt có khoảng 95% từ 1,6303 đến 5,7975 xe/giờ. So với ExtraTrees đơn, khoảng tương ứng chứa 0, từ −0,9887 đến 2,9426 xe/giờ. Các khoảng này có tính thăm dò và không thay thế đánh giá độc lập trên test. Chưa đủ bằng chứng để kết luận mức cải thiện so với ExtraTrees đơn ổn định trên dữ liệu tương lai.
+>
+> Thời tiết cùng giờ được giả định sẵn có; nhãn ngày lễ chỉ lấy từ CSV; chưa phân tích DST. EDA tổng quan đã sử dụng toàn bộ dữ liệu để mô tả, vì vậy cần phân biệt việc chưa chấm test của mô hình cuối với việc chưa từng xem bất kỳ thông tin nào từ giai đoạn test. Chưa có đủ kết quả để kết luận overfitting chỉ từ chênh lệch giữa điểm CV và validation.
+
+- **Cần cập nhật kèm theo:** 3.6.2, 4.4, 5.1 và mọi kết luận “tốt nhất”.
+- **Độ tin cậy:** Cao cho giới hạn thiết kế; không tuyên bố kiểm định độc lập.
+
+**[SỬA-013] | Mức độ: Cao | Loại: THIẾU**
+
+- **Vị trí:** 4.8, P0362–P0363.
+- **Nội dung hiện tại:** “[Nhóm bổ sung]”.
+- **Vấn đề:** Thiếu kết quả trả lời đóng góp nhóm đặc trưng; mô hình C30 thắng không tự chứng minh thời tiết hữu ích hoặc vô ích.
+- **Bằng chứng:** B-019–B-020, B-025; `notebooks/features/outputs/e4bc1e064317af8c/feature_comparison.csv:2`; `notebooks/tuning/outputs/paired_block_bootstrap.csv:3`.
+- **Nội dung thay thế đề xuất:**
+
+> Với cùng RF cố định, ba fold và 16.875 giờ chấm, MAE trung bình fold của A12 là 288,3182; thêm thời tiết dạng số là 291,5528; thêm cờ thời tiết là 290,0372; B27 là 290,7253; C30 là 247,9260 xe/giờ. C30 tốt nhất trong năm nhóm đã thử, trong khi B27 chưa cải thiện A12 ở cấu hình RF cố định này.
+>
+> Sau tuning, RF A12 và B27 có MAE lần lượt 288,1823 và 286,8227. Chênh lệch 1,3595 xe/giờ có khoảng bootstrap theo khối bảy ngày từ −3,8586 đến 7,1612 nên chưa tách được chiều cải thiện trong phân tích có điều kiện này. C30 đạt 231,0395 với RF. Kết quả ủng hộ giá trị của nhóm history trong phạm vi thực nghiệm, nhưng chưa tách đóng góp của từng lag và chưa cho phép kết luận chung rằng thời tiết không có ích.
+
+- **Cần cập nhật kèm theo:** 1.2, 4.9, 5.1; không gộp năm validation lịch sử vào bảng FE đồng nhất này.
+- **Độ tin cậy:** Cao; các khoảng từ OOF đã dùng chọn tham số, không phải kiểm định độc lập.
+
+**[SỬA-014] | Mức độ: Cao | Loại: THIẾU**
+
+- **Vị trí:** 5.1, P0370; thêm bảng tham số tại 4.1 hoặc phụ lục A.
+- **Nội dung hiện tại:** “[Nhóm bổ sung]”.
+- **Vấn đề:** Chưa ghi mô hình đã chốt, trạng thái artifact và kết quả có thể tái lập.
+- **Bằng chứng:** B-030–B-037; `notebooks/validation/outputs/final_C30/selected_components.csv:2`; `notebooks/validation/outputs/final_C30/selected_model.json:194`.
+- **Nội dung thay thế đề xuất:**
+
+> Nhóm chốt cấu hình C30 với dự đoán bằng 0,25 lần Random Forest, cộng 0,25 lần XGBoost và 0,50 lần ExtraTrees. Trên 6.050 giờ validation đủ history, phương án đạt MAE 190,1900 xe/giờ, RMSE 313,5266 xe/giờ và R² 0,974527. Đây là phương án có MAE thấp nhất trong bảng validation cùng cohort hiện lưu. Kết luận còn giới hạn bởi việc validation đã được sử dụng trong nhiều vòng phát triển. File `selected_model.json` ghi cấu hình đã khóa; bước refit trên train + validation và đánh giá test cuối chưa hoàn thành.
+
+| Thành phần | Tỷ trọng | Tham số chính đã khóa |
+|---|---:|---|
+| Random Forest | 0,25 | `n_estimators=100`, `max_depth=None`, `min_samples_leaf=2`, `max_features=0.33`, `bootstrap=True` |
+| XGBoost | 0,25 | `n_estimators=400`, `max_depth=6`, `learning_rate=0.03`, `subsample=0.7`, `colsample_bytree=0.8`, `min_child_weight=1`, `objective='reg:squarederror'`, `tree_method='hist'` |
+| ExtraTrees | 0,50 | `n_estimators=200`, `max_depth=None`, `min_samples_leaf=2`, `max_features=0.8`, `bootstrap=False` |
+
+> Các thành phần dùng seed 42, `n_jobs=4`. Dự đoán thành phần và dự đoán cuối được cắt phần âm về 0. Việc đã thử loss MAE trong nhánh bổ sung không có nghĩa các thành phần cuối đều được fit bằng loss MAE.
+
+- **Cần cập nhật kèm theo:** 2.2, 3.6.6, 4.4, slide và phụ lục hướng dẫn; không gọi JSON đặc tả là checkpoint đã fit.
+- **Độ tin cậy:** Cao.
+
+**[SỬA-015] | Mức độ: Trung bình | Loại: THIẾU**
+
+- **Vị trí:** 5.3 và phụ lục A, P0375, P0381–P0382.
+- **Nội dung hiện tại:** “[Nhóm bổ sung]”; “hướng dẫn cài đặt và tái lập kết quả”.
+- **Vấn đề:** Demo chưa có code chạy và một số liên kết README không tồn tại ở snapshot repo hiện tại; chưa được báo cáo là đã triển khai.
+- **Bằng chứng:** B-036, B-039–B-040; `app/demo_time_weather.py:1`; `docs/report_review/2026-11-22/agent_b/read_only_checks.json:106`; proposal P0088 trong `context/ML_Project_Proposal.txt`.
+- **Nội dung thay thế đề xuất:**
+
+> Công việc tiếp theo là hoàn tất refit và đánh giá test theo cấu hình đã khóa, lưu mô hình cùng quy tắc tiền xử lý và thứ tự đặc trưng, rồi xây dựng demo. File demo hiện mới chứa phần chú thích nên chưa có sản phẩm inference hoạt động. Phạm vi demo cần được chốt: Time + Weather theo đề cương, hoặc C30 với đầu vào history bổ sung. Danh mục notebook và hướng dẫn chạy sẽ được kiểm tra lại theo các file thực sự có trong bản bàn giao.
+
+- **Cần cập nhật kèm theo:** Phụ lục mã nguồn, README, slide tiến độ; sửa đường dẫn là công việc riêng, chưa thực hiện trong đợt rà soát này.
+- **Độ tin cậy:** Cao về hiện trạng file; lựa chọn phạm vi demo cần nhóm quyết định.
+
+**[SỬA-016] | Mức độ: Thấp | Loại: LỆCH**
+
+- **Vị trí:** 3.2.1 và các bảng EDA, P0122/P0125/P0131/P0136/P0139/P0160/P0211/P0272/P0274.
+- **Nội dung hiện tại:** “timestamp lăpk”; “timestamo”; “weather _description”; “Giờ”; “dương..”.
+- **Vấn đề:** Lỗi gõ và tên cột không nhất quán; “Giờ” ở cột đếm mẫu dễ bị hiểu là giờ trong ngày.
+- **Bằng chứng:** A-I014, A-I028 trong `agent_a/issues.json`; A-072, A-074, A-085, A-095; các đoạn gốc tương ứng trong `agent_a/report_snapshot.txt`.
+- **Nội dung thay thế đề xuất:** Dùng lần lượt các ô/caption hoàn chỉnh sau tại đúng vị trí: “Bảng 3.2. Kết quả kiểm tra giá trị thiếu và timestamp lặp”; “Giá trị null, chuỗi rỗng hoặc chỉ có khoảng trắng”; “Tổng số dòng thuộc các timestamp lặp”; “Bảng 3.3. Hai bản ghi cùng timestamp nhưng khác nhãn thời tiết”; “weather_description”; “Giá trị nghi vấn; không dùng IQR để loại mọi lượng mưa dương.” Đổi tiêu đề cột đếm mẫu thành “n (giờ quan sát)”.
+- **Cần cập nhật kèm theo:** Danh mục bảng; tên cột trong slide, giữ nguyên mọi số liệu.
+- **Độ tin cậy:** Cao.
+
+**[SỬA-017] | Mức độ: Trung bình | Loại: THIẾU**
+
+- **Vị trí:** Caption Hình 3.1–3.4, P0199/P0206/P0239/P0269; 1.5, P0036.
+- **Nội dung hiện tại:** “Hình 3.4. Lưu lượng trung bình theo nhãn thời tiết”; “1.5. Bố cục báo cáo” chưa có nội dung.
+- **Vấn đề:** Hình chưa gắn đủ phạm vi và nguồn tái lập; thiếu đoạn giới thiệu bố cục.
+- **Bằng chứng:** A-036–A-045 ↔ B-041–B-044, X-008; `notebooks/eda/EDA_general.ipynb:8650`, `notebooks/eda/EDA_general.ipynb:9589`; bản chụp P0036.
+- **Nội dung thay thế đề xuất:**
+
+> Hình 3.1. Phân bố lưu lượng trên 40.575 giờ quan sát duy nhất. Nguồn: `notebooks/eda/EDA_general.ipynb`, toàn bộ giai đoạn dữ liệu.
+>
+> Hình 3.2. Lưu lượng trung bình theo giờ, thứ và tháng trên 40.575 giờ quan sát duy nhất; số mẫu các nhóm nổi bật ở Bảng 3.6. Nguồn: `notebooks/eda/EDA_general.ipynb`.
+>
+> Hình 3.3. Lưu lượng trung bình theo cặp thứ–giờ trên toàn bộ giai đoạn dữ liệu, chỉ tính các giờ có quan sát. Nguồn: `notebooks/eda/EDA_general.ipynb`.
+>
+> Hình 3.4. Lưu lượng trung bình theo từng nhãn thời tiết; một giờ có thể thuộc nhiều nhóm. Số mẫu các nhóm được ghi ở Bảng 3.8 và bảng đầy đủ trong notebook nguồn. Nguồn: `notebooks/eda/EDA_general.ipynb`, toàn bộ giai đoạn dữ liệu.
+>
+> Báo cáo gồm năm chương. Chương 1 giới thiệu bài toán và câu hỏi nghiên cứu. Chương 2 trình bày thuật toán, độ đo và nguyên tắc đánh giá theo thời gian. Chương 3 mô tả dữ liệu, tiền xử lý, đặc trưng và thiết kế thực nghiệm. Chương 4 trình bày các kết quả đã lưu, đối chứng và giới hạn diễn giải. Chương 5 tổng hợp mô hình được lựa chọn và công việc còn lại.
+
+- **Cần cập nhật kèm theo:** Danh mục hình, mục lục; bản bàn giao cần giữ notebook và hình nguồn thực sự tồn tại.
+- **Độ tin cậy:** Cao; chưa kiểm tra bố cục toàn trang sau khi dán.
+
+## 5. Nội dung nên bổ sung (➕ THIẾU)
+
+Các mục dưới đây bổ sung phần chưa có mà không tạo thêm thí nghiệm.
+
+### 5.1. Bảng fold tại cuối mục 3.6.1
+
+| Fold | Fit đến | Đoạn chấm | n fit | n chấm | Độ dài lịch đoạn chấm (giờ) |
+|---|---|---|---:|---:|---:|
+| 1 | 05/08/2013 19:00 | 05/08/2013 20:00 đến 12/07/2015 06:00 | 5.628 | 5.625 | 16.931 |
+| 2 | 12/07/2015 06:00 | 12/07/2015 07:00 đến 07/09/2016 17:00 | 11.253 | 5.625 | 10.163 |
+| 3 | 07/09/2016 17:00 | 07/09/2016 18:00 đến 10/05/2017 04:00 | 16.878 | 5.625 | 5.867 |
+
+Phần fit của cả ba fold bắt đầu tại 09/10/2012 09:00. Nguồn: B-017–B-018, `notebooks/features/outputs/e4bc1e064317af8c/fold_manifest.csv:2`–`:4`. Tổng n chấm là 16.875.
+
+### 5.2. Phạm vi của EDA trước mục 3.2.2
+
+> EDA tổng quan mô tả toàn bộ 40.575 giờ quan sát, còn các notebook EDA_A, EDA_B, EDA_C phục vụ khảo sát trên train. Hai phạm vi có thể cho số trung bình khác nhau. Kết quả mô tả toàn bộ dữ liệu không được dùng làm điểm đánh giá độc lập cho mô hình; các tham số có học thống kê của FE và tuning vẫn được fit trong phần train tương ứng.
+
+Nguồn: A-034, A-039 ↔ B-016, B-041–B-042; `notebooks/eda/README.md:5`, `src/feature_experiments.py:141`. Không tự gọi việc EDA toàn dữ liệu là bằng chứng một mô hình cụ thể đã rò rỉ; cần truy vết quyết định phát sinh từ EDA.
+
+### 5.3. Phân tích sai số tại 4.6
+
+> Mạch thí nghiệm ngày 21/11 phân tích sai số của RF/XGBoost nhằm tìm hướng bổ sung mô hình. Phân tích này thuộc ensemble hai thành phần. Mô hình cuối có thêm ExtraTrees nên cần ghi rõ phiên bản mô hình trên từng hình và bảng sai số. Khi chưa có bảng phân nhóm của mô hình cuối, nhóm chưa kết luận riêng về mức sai số của nó trên ngày lễ, thời tiết hiếm hoặc các giờ sau khoảng trống dữ liệu.
+
+Nguồn: B-028–B-030; `experiments/21-11-2026_Huy_C30_OOF/outputs/assessment.md:1`; `experiments/22-11-2026_Huy_C30_MAE_Diversity/outputs/assessment.md:1`. Đây là đoạn mô tả giới hạn; không gán số liệu của mô hình cũ sang mô hình cuối.
+
+### 5.4. Trả lời câu hỏi nghiên cứu tại 4.9
+
+> RQ1: EDA ghi nhận khác biệt lưu lượng theo giờ và loại ngày; các mối liên hệ thời tiết được mô tả có kèm số mẫu. Chênh lệch này chưa chứng minh quan hệ nhân quả. Phần so sánh ngày lễ cùng thứ–giờ cần bổ sung từ notebook train với đúng số mẫu.
+>
+> RQ2: Trên cohort đối chứng chung, C30 có MAE thấp nhất trong FE dùng RF cố định. Bổ sung thời tiết chưa cải thiện ở lượt RF cố định; sau tuning RF, mức cải thiện B27 so với A12 còn nhỏ và khoảng bootstrap có điều kiện chứa 0. Kết quả chưa cho phép khẳng định lợi ích của thời tiết ổn định trong mọi cấu hình.
+>
+> RQ3: Phương án đã chốt là RF 25% + XGBoost 25% + ExtraTrees 50%, có MAE validation thấp nhất trong bảng cùng cohort hiện lưu. Kết quả phân tích sai số cần phân biệt ensemble hai thành phần với mô hình cuối; đánh giá test cuối chưa có.
+
+Nguồn: A-042, A-044, A-047 ↔ B-020, B-025, B-028, B-034–B-036; `notebooks/tuning/outputs/paired_block_bootstrap.csv:3`. Chỉ dán phần ngày lễ khi đã kiểm bảng `matched_holidays`, không tự điền số từ EDA toàn CSV.
+
+### 5.5. Nghiên cứu liên quan, tài liệu tham khảo và diễn giải mô hình
+
+- **1.4 (P0035):** Chèn trước một đoạn xác định nguồn dữ liệu: “Metro Interstate Traffic Volume được Hogue công bố trên UCI năm 2019. Đây là bộ dữ liệu của đề tài; phần nghiên cứu liên quan cần trình bày riêng các công trình dùng dữ liệu giao thông và chỉ so sánh chỉ số khi giao thức đánh giá tương thích.” Nguồn: [UCI](https://archive.ics.uci.edu/dataset/492/metro+interstate+traffic+volume), A-030. Chưa chọn và kiểm chứng một paper thực nghiệm cụ thể, nên chưa viết bảng so sánh thành tích với paper.
+- **Tài liệu tham khảo (P0378):** Thay ví dụ bằng “Hogue, J. (2019). Metro Interstate Traffic Volume [Dataset]. UCI Machine Learning Repository. https://doi.org/10.24432/C5X60B.” Thêm tài liệu chính thức của scikit-learn/XGBoost cho lý thuyết và giao thức, rồi thống nhất kiểu trích dẫn.
+- **4.7 (P0361):** Nếu chưa có artifact diễn giải của mô hình chốt, dùng: “Nhóm chưa tổng hợp phân tích độ quan trọng đặc trưng cho ensemble cuối. Kết quả đối chứng nhóm đặc trưng ở mục 4.8 cung cấp bằng chứng về hiệu quả dự đoán trong giao thức đã thử, chưa phải ước lượng tác động nhân quả của từng biến.” Căn cứ: B-020 và B-030; tính đầy đủ của SHAP/permutation importance cho mô hình cuối còn CHƯA XÁC MINH.
+- **Thông tin đầu báo cáo và phụ lục C:** Điền giảng viên, lớp, đóng góp và nguồn AI theo xác nhận của nhóm. P0008/P0010/P0018/P0391–P0405 vẫn là chỗ trống. Không suy tên tác giả từ người chạy notebook hay người tạo file.
+
+### 5.6. Cách sắp xếp mạch thực nghiệm
+
+Chương 3 trình bày phương pháp theo thứ tự tiền xử lý → đặc trưng → giao thức FE/CV → OOF/ensemble. Chương 4 trình bày bằng chứng theo FE → tuning → đối chiếu tham số ngày 20/11 → thử trọng số ngày 21/11 → ExtraTrees ngày 22/11 → chốt validation. Các thí nghiệm lịch sử trước 20/11 đặt trong phụ lục với giao thức riêng, không biến thành năm bước chọn mô hình cuối.
+
+Căn cứ: `notebooks/validation/README.md:5`, `notebooks/validation/README.md:27`; B-016–B-030. README chỉ chứng minh cách phân loại dự kiến; các notebook được liên kết nhưng vắng mặt phải được đánh dấu chưa có trong bản bàn giao (B-040).
+
+## 6. Việc cần xác nhận hoặc thu thập thêm
+
+1. **Con số 49 giờ:** cần nguồn gốc, năm và phạm vi; nếu không có, dùng SỬA-001.
+2. **28 equation node gốc:** API không trả nội dung ký hiệu. Năm ảnh công thức đã xem không thay thế việc kiểm các equation native. Cần xuất PDF từ Docs để đối chiếu ký hiệu, chỉ số, dấu tổng và quy ước loss. Không suy công thức sai vì API trống.
+3. **Phần cứng, runtime Python, thời gian fit và convergence MLP:** cần log đúng lượt; `requirements.txt` hoặc tên kernel không đủ chứng minh. Không ghi thời gian huấn luyện hay số tham số NN khi chưa có.
+4. **Tham số Claude gốc:** repo có cấu hình tái dựng và kết quả, chưa đủ chứng minh nguồn `summary_row.json` ban đầu. Giữ cách gọi “bộ tham số tái dựng” khi chưa nhận được nguồn.
+5. **Ngày lễ cùng thứ–giờ và phân tích sai số cuối:** kiểm output đúng notebook/cohort; không chép số từ model cũ. Feature importance/SHAP của mô hình cuối chưa xác minh đủ.
+6. **Artifact và demo:** xác nhận phạm vi demo B27 hay C30; sửa các liên kết bàn giao thiếu trong một công việc riêng. Đợt rà soát này không tạo lại notebook và không fit/test.
+
+Các lệnh dưới đây chỉ đọc thông tin để chuẩn bị bằng chứng, không huấn luyện lại:
+
+```powershell
+# Chạy trong thư mục repo; rg giới hạn dòng dài để tránh in base64 notebook.
+Get-Content notebooks/validation/outputs/final_C30/selected_model.json
+Get-Content notebooks/tuning/outputs/comparison_summary.csv
+rg -n --max-columns 220 --max-columns-preview 'matched_holidays|holiday|bootstrap|n_iter_|ConvergenceWarning' notebooks/eda/eda_A.ipynb src/eda/helpers.py notebooks/tuning
+rg -n --max-columns 220 --max-columns-preview 'python|versions|runtime|elapsed|duration' experiments/22-11-2026_Huy_C30_MAE_Diversity/outputs
+Get-FileHash data/preprocessed/hourly_unfilled.csv -Algorithm SHA256
+Test-Path src/validation_main.py
+Test-Path notebooks/validation/validation_final_C30.ipynb
+```
+
+Để xác định môi trường **đang mở** có thể chạy `python --version` và `python -m pip freeze`; kết quả này chỉ mô tả môi trường hiện tại, không thay cho log của lượt cũ. Chưa cung cấp lệnh test cuối vì cần entry point refit/eval được kiểm tra và thống nhất trước; không chạy đại một notebook lịch sử lên test.

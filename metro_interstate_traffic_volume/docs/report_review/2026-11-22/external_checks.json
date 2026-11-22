@@ -1,0 +1,49 @@
+[
+  {
+    "fact_id": "X-001",
+    "statement": "Nguồn UCI xác nhận Hogue 2019, ATR301 I-94 westbound, 48.204 mẫu, 8 đầu vào, định nghĩa cột và CC BY 4.0.",
+    "url": "https://archive.ics.uci.edu/dataset/492/metro+interstate+traffic+volume"
+  },
+  {
+    "fact_id": "X-002",
+    "statement": "TimeSeriesSplit mở rộng train; các mẫu phải cách đều để các tập chấm phủ cùng độ dài thời gian.",
+    "url": "https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.TimeSeriesSplit.html"
+  },
+  {
+    "fact_id": "X-003",
+    "statement": "Tài liệu linear models mô tả OLS, Ridge và L2. Xác minh phần văn bản; chưa xác minh ký hiệu của equation native trong Docs.",
+    "url": "https://scikit-learn.org/stable/modules/linear_model.html"
+  },
+  {
+    "fact_id": "X-004",
+    "statement": "Tài liệu ensemble mô tả RF, ExtraTrees, gradient boosting, bootstrap và OOB có điều kiện; không xác nhận dự án đã dùng OOB.",
+    "url": "https://scikit-learn.org/stable/modules/ensemble.html"
+  },
+  {
+    "fact_id": "X-005",
+    "statement": "MLPRegressor dùng backpropagation, đầu ra hồi quy liên tục; cần lưu ý scaling và thiết lập thực nghiệm.",
+    "url": "https://scikit-learn.org/stable/modules/neural_networks_supervised.html"
+  },
+  {
+    "fact_id": "X-006",
+    "statement": "Tài liệu XGBoost có objective regularization, Taylor bậc hai, trọng số lá và gain. Hai ảnh công thức trong Docs đã xem phù hợp dạng này.",
+    "url": "https://xgboost.readthedocs.io/en/stable/tutorials/model.html"
+  },
+  {
+    "fact_id": "X-007",
+    "statement": "Kiểm CSV chỉ đọc xác nhận hai timestamp có target=0; ví dụ 10/10/2012 07:00 có Rain/Drizzle cùng lưu lượng 6.793; 61 dòng holiday khác None đều lúc 00:00; có hai cách viết nhãn clear.",
+    "evidence": [
+      "docs/report_review/2026-11-22/root_checks.json:3",
+      "docs/report_review/2026-11-22/root_checks.json:7",
+      "docs/report_review/2026-11-22/root_checks.json:31"
+    ]
+  },
+  {
+    "fact_id": "X-008",
+    "statement": "Đã xem contact sheet chín ảnh: công thức MAE/RMSE/R² đúng dạng; loại biểu đồ EDA phù hợp chú thích. Chưa kiểm bố cục trang hoặc 28 equation native.",
+    "evidence": [
+      "docs/report_review/2026-11-22/agent_a/README.md:14",
+      "docs/report_review/2026-11-22/agent_a/report_images_contact.jpg"
+    ]
+  }
+]

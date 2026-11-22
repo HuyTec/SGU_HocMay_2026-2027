@@ -1,0 +1,191 @@
+P0001: [TÊN TRƯỜNG / KHOA]
+P0002: [TÊN HỌC PHẦN / LỚP]
+P0006: BÁO CÁO TIẾN ĐỘ GIỮA KỲ
+P0007: MÔN MÁY HỌC
+P0008: ĐỀ TÀI
+P0009: DỰ ĐOÁN LƯU LƯỢNG GIAO THÔNG THEO GIỜ DỰA TRÊN ĐẶC TRƯNG THỜI GIAN VÀ ĐIỀU KIỆN THỜI TIẾT
+P0011: Nhóm: 07   |   Nhóm trưởng: Trần Nhựt Huy
+P0012: Giảng viên hướng dẫn: [Điền thông tin]
+P0013: Lớp học phần: [Điền thông tin]
+P0014: Thời gian báo cáo: [Điền ngày/tháng/năm]
+P0016: MỤC LỤC
+P0017: Gợi ý: Trong Word, nhấp phải vào mục lục và chọn Update Field → Update entire table sau khi hoàn thiện nội dung.
+P0018: [Cập nhật mục lục trong Word]
+P0020: 1. THÔNG TIN ĐỀ TÀI VÀ NHÓM
+P0021: 1.1. Thông tin chung
+P0022: Gợi ý: Điền tên đề tài, học phần, giảng viên, lớp và thời điểm báo cáo.
+P0023: [Nội dung nhóm bổ sung]
+P0024: 1.2. Thành viên và phân công dự kiến
+P0025: Gợi ý: Các nhiệm vụ dưới đây dựa trên proposal; cập nhật cột thực tế ở mục 8 theo bằng chứng, không mặc định đã hoàn thành.
+P0026: Thành viên / MSSV
+P0027: Nhiệm vụ dự kiến
+P0028: Tiến độ / bằng chứng thực tế
+P0029: Phùng Anh Vũ3124411351
+P0030: Thu thập và kiểm tra nguồn dữ liệu; EDA; trực quan hóa phân phối lưu lượng, thời gian và thời tiết; xuất hình EDA.
+P0031: [Điền công việc, trạng thái, file/cell]
+P0032: Nguyễn Hoàng Phúc3124411236
+P0033: Tiền xử lý; quy tắc gộp timestamp; xử lý thiếu, bất thường; encoding, scaling và xây dựng đặc trưng.
+P0034: [Điền công việc, trạng thái, file/cell]
+P0035: Trần Nhựt Huy3124411112
+P0036: Xây dựng baseline và mô hình chính; thiết kế thực nghiệm, tinh chỉnh, đối chứng đặc trưng, trực quan hóa và phân tích sai số.
+P0037: [Điền công việc, trạng thái, file/cell]
+P0038: Bùi Nhật Hào3124411077
+P0039: Phối hợp đánh giá; xây dựng demo; tổng hợp báo cáo, slide và tài liệu bàn giao.
+P0040: [Điền công việc, trạng thái, file/cell]
+P0042: 2. GIỚI THIỆU BÀI TOÁN
+P0043: 2.1. Bối cảnh và lý do chọn đề tài
+P0044: Gợi ý: Mô tả ngắn bối cảnh, vấn đề và lý do lựa chọn; dẫn nguồn khi đưa ra số liệu.
+P0045: [Nội dung nhóm bổ sung]
+P0046: 2.2. Mục tiêu và ý nghĩa
+P0047: Gợi ý: Nêu mục tiêu giữa kỳ, mục tiêu cuối kỳ và ý nghĩa dự kiến; tránh khẳng định tác động chưa kiểm chứng.
+P0048: [Nội dung nhóm bổ sung]
+P0049: 2.3. Đầu vào, đầu ra và loại bài toán
+P0050: Gợi ý: Mô tả Input, Output, đơn vị mục tiêu và học có giám sát / hồi quy.
+P0051: [Nội dung nhóm bổ sung]
+P0052: 2.4. Kịch bản dự đoán và câu hỏi nghiên cứu
+P0053: Gợi ý: Chốt giờ dự đoán, thời điểm ra dự đoán, dữ liệu sẵn có và giả định về thời tiết; nêu các câu hỏi nghiên cứu.
+P0054: [Nội dung nhóm bổ sung]
+P0055: 3. MÔ TẢ DỮ LIỆU
+P0056: 3.1. Nguồn dữ liệu và phạm vi
+P0057: Gợi ý: Ghi tên bộ dữ liệu, URL nguồn, giấy phép nếu cần, phạm vi địa lý và thời gian quan sát.
+P0058: [Nội dung nhóm bổ sung]
+P0059: 3.2. Quy mô và cấu trúc
+P0060: Gợi ý: Ghi số mẫu, số thuộc tính, số timestamp duy nhất, kiểu dữ liệu và số liệu sau xử lý khi đã kiểm tra.
+P0061: [Nội dung nhóm bổ sung]
+P0062: 3.3. Danh sách thuộc tính và biến mục tiêu
+P0063: Thuộc tính
+P0064: Kiểu / đơn vị
+P0065: Vai trò và mô tả
+P0066: [Tên cột]
+P0067: [Kiểu / đơn vị]
+P0068: [Đầu vào / mục tiêu; ý nghĩa]
+P0069: [Bổ sung]
+P0070: [Bổ sung]
+P0071: [Bổ sung]
+P0073: 3.4. Đặc điểm và giới hạn dữ liệu
+P0074: Gợi ý: Nêu timestamp trùng, giờ thiếu, bất thường và khả năng áp dụng; dẫn tới notebook/cell liên quan.
+P0075: [Nội dung nhóm bổ sung]
+P0076: 4. KHÁM PHÁ VÀ TIỀN XỬ LÝ DỮ LIỆU
+P0077: 4.1. Quy trình kiểm tra và EDA
+P0078: Gợi ý: Mô tả notebook, nội dung kiểm tra và phương pháp thống kê đã thực hiện.
+P0079: [Nội dung nhóm bổ sung]
+P0080: 4.2. Kết quả EDA và trực quan hóa
+P0081: Gợi ý: Chèn hình có số thứ tự, chú thích, nguồn và nhận xét về phân phối, giờ/thứ và thời tiết; điền số liệu đã kiểm chứng.
+P0082: [Nội dung nhóm bổ sung]
+P0083: 4.3. Giá trị thiếu, timestamp trùng và ngoại lệ
+P0084: Gợi ý: Ghi số lượng, quy tắc xử lý, số dòng trước/sau và hạn chế. Phân biệt quyết định dự kiến với xử lý đã chạy.
+P0085: [Nội dung nhóm bổ sung]
+P0086: 4.4. Encoding và scaling
+P0087: Gợi ý: Nêu cột áp dụng, phương pháp và tập dùng để fit; nếu chưa thực hiện ghi rõ trạng thái.
+P0088: [Nội dung nhóm bổ sung]
+P0089: 4.5. Xây dựng đặc trưng
+P0090: Gợi ý: Mô tả đặc trưng thời gian, thời tiết và lịch sử nếu có; đảm bảo đầu vào sẵn có tại thời điểm dự đoán.
+P0091: [Nội dung nhóm bổ sung]
+P0092: 5. PHƯƠNG PHÁP VÀ THIẾT KẾ THỰC NGHIỆM
+P0093: 5.1. Pipeline học máy
+P0094: Gợi ý: Chèn sơ đồ pipeline gốc và mô tả nguồn dữ liệu → xử lý → chia tập → huấn luyện → đánh giá.
+P0095: [Nội dung nhóm bổ sung]
+P0096: 5.2. Các mô hình và baseline
+P0097: Gợi ý: Nêu cơ sở lựa chọn từng mô hình, baseline thống kê và các mô hình đã chạy hoặc dự kiến; ghi rõ trạng thái.
+P0098: [Nội dung nhóm bổ sung]
+P0099: 5.3. Phương pháp chia dữ liệu và kiểm soát rò rỉ
+P0100: Gợi ý: Nêu tỷ lệ, số mẫu và mốc thời gian thực tế; giải thích cách fit preprocessing và sử dụng tập validation/test.
+P0101: [Nội dung nhóm bổ sung]
+P0102: 5.4. Độ đo và phương án tinh chỉnh
+P0103: Gợi ý: Giải thích MAE, RMSE, R², phương pháp CV theo thời gian, tham số thử và chỉ số chọn mô hình.
+P0104: [Nội dung nhóm bổ sung]
+P0105: 5.5. Thiết kế thí nghiệm đối chứng
+P0106: Gợi ý: Mô tả Time, Time + Weather và History nếu thực hiện; so sánh cùng thuật toán, tập giờ và mốc chia.
+P0107: [Nội dung nhóm bổ sung]
+P0108: 6. KẾT QUẢ THỰC NGHIỆM BƯỚC ĐẦU
+P0109: 6.1. Môi trường và các lần chạy
+P0110: Gợi ý: Ghi phiên bản phần mềm, dữ liệu, mã, liên kết experiment log và điều kiện chạy; chưa chạy thì ghi rõ.
+P0111: [Nội dung nhóm bổ sung]
+P0112: 6.2. Bảng kết quả
+P0113: Gợi ý: Chỉ điền kết quả đo được; nêu tập đánh giá và liên kết đúng run_id trong nhật ký.
+P0114: Run ID / mô hình
+P0115: Đặc trưng / tập
+P0116: MAE
+P0117: RMSE
+P0118: R²
+P0119: [Điền]
+P0120: [Điền]
+P0121: [ ]
+P0122: [ ]
+P0123: [ ]
+P0124: [Điền]
+P0125: [Điền]
+P0126: [ ]
+P0127: [ ]
+P0128: [ ]
+P0130: 6.3. Biểu đồ so sánh và phân tích sai số
+P0131: Gợi ý: Chèn biểu đồ gốc, nhận xét theo giờ, ngày lễ hoặc thời tiết; ghi số mẫu cho từng nhóm.
+P0132: [Nội dung nhóm bổ sung]
+P0133: 6.4. Nhận xét và giới hạn ban đầu
+P0134: Gợi ý: Nêu so sánh có căn cứ, điểm chưa chắc chắn và việc chưa thực hiện; không suy diễn quan hệ nhân quả.
+P0135: [Nội dung nhóm bổ sung]
+P0136: 7. ĐÁNH GIÁ TIẾN ĐỘ VÀ KẾ HOẠCH
+P0137: 7.1. Tổng hợp tiến độ
+P0138: Công việc
+P0139: Trạng thái
+P0140: Bằng chứng / giới hạn
+P0141: [EDA / tiền xử lý / mô hình / báo cáo]
+P0142: [Hoàn thành / đang làm / chưa làm]
+P0143: [File, cell, run ID hoặc mô tả]
+P0144: [Bổ sung]
+P0145: [Điền]
+P0146: [Điền]
+P0148: 7.2. Khó khăn và hạn chế
+P0149: Gợi ý: Nêu khó khăn thực tế, tác động và cách xử lý; tách giới hạn dữ liệu, kỹ thuật và thời gian.
+P0150: [Nội dung nhóm bổ sung]
+P0151: 7.3. Kế hoạch hoàn thành cuối kỳ
+P0152: Công việc còn lại
+P0153: Phụ trách
+P0154: Thời hạn dự kiến
+P0155: Đầu ra / điều kiện hoàn thành
+P0156: [Điền]
+P0157: [Điền]
+P0158: [Điền]
+P0159: [Điền]
+P0160: [Điền]
+P0161: [Điền]
+P0162: [Điền]
+P0163: [Điền]
+P0165: 8. PHÂN CÔNG VÀ ĐÓNG GÓP THỰC TẾ
+P0166: Gợi ý: Từng thành viên ghi việc thực sự đã thực hiện, sản phẩm, bằng chứng và thời điểm; không bắt buộc đưa tỷ lệ phần trăm khi chưa thống nhất cách tính.
+P0167: Thành viên
+P0168: Công việc thực tế
+P0169: Sản phẩm / bằng chứng
+P0170: Ghi chú
+P0171: Phùng Anh Vũ
+P0172: [Điền]
+P0173: [File / link / cell]
+P0174: [Điền]
+P0175: Nguyễn Hoàng Phúc
+P0176: [Điền]
+P0177: [File / link / cell]
+P0178: [Điền]
+P0179: Trần Nhựt Huy
+P0180: [Điền]
+P0181: [File / link / cell]
+P0182: [Điền]
+P0183: Bùi Nhật Hào
+P0184: [Điền]
+P0185: [File / link / cell]
+P0186: [Điền]
+P0188: 9. TÀI LIỆU THAM KHẢO
+P0189: Gợi ý: Liệt kê nguồn dữ liệu, tài liệu thuật toán, thư viện và tài liệu tham khảo theo cùng một kiểu trích dẫn.
+P0190: [1] Tác giả / tổ chức. Tên tài liệu. Đường dẫn. Ngày truy cập.
+P0191: 10. PHỤ LỤC VÀ DANH MỤC SẢN PHẨM
+P0192: 10.1. Danh mục mã nguồn và hướng dẫn chạy
+P0193: Gợi ý: Ghi đường dẫn notebook, file Python, cấu hình, README và hướng dẫn tái lập.
+P0194: [Nội dung nhóm bổ sung]
+P0195: 10.2. Nhật ký thực nghiệm và hình gốc
+P0196: Gợi ý: Ghi đường dẫn log, run ID và các file hình gốc dùng trong báo cáo.
+P0197: [Nội dung nhóm bổ sung]
+P0198: 10.3. Dataset và tài nguyên khác
+P0199: Gợi ý: Ghi đường dẫn dữ liệu / nguồn, mô hình đã huấn luyện nếu có, slide và tài liệu hỗ trợ.
+P0200: [Nội dung nhóm bổ sung]
+P0201: 10.4. Kiểm tra trước khi nộp
+P0202: Gợi ý: Đối chiếu báo cáo, slide, mã, log và hình; nén theo Nhom??_TenDeTai_GiuaKy.zip; kiểm tra hạn trên Classroom.
+P0203: [Nội dung nhóm bổ sung]

@@ -1,0 +1,1917 @@
+[
+  {
+    "claim_id": "A-001",
+    "report_location": "1.1. Bối cảnh và ý nghĩa đề tài; P0026",
+    "fact_id": "—",
+    "status": "❓ CHƯA XÁC MINH",
+    "evidence": [
+      "agent_a/report_snapshot.txt; P0026"
+    ],
+    "note": "Chưa có nguồn, năm hoặc phạm vi của con số 49 giờ; không kết luận nó sai.",
+    "quote": "Mỗi năm, một tài xế ở Mỹ mất trung 49 giờ vì tắc đường vậy muốn biết giờ nào đường nào sẽ đông thì sao?Cùng một con đường  7 giờ sáng và 10 giờ sáng có thể khác nhau hoàn toàn để biết trước các khung giờ trên có lưu lượng như thế nào đó là mục tiêu của đề tài này."
+  },
+  {
+    "claim_id": "A-002",
+    "report_location": "1.2. Mục tiêu và câu hỏi nghiên cứu; P0028",
+    "fact_id": "B-012, B-015, X-001",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "src/features.py:212",
+      "src/features.py:217",
+      "src/features.py:223",
+      "src/features.py:239",
+      "src/features.py:273",
+      "src/feature_experiments.py:256",
+      "notebooks/features/README.md:17",
+      "https://archive.ics.uci.edu/dataset/492/metro+interstate+traffic+volume"
+    ],
+    "note": "Khớp mục tiêu hồi quy tại trạm; cần bổ sung kịch bản và tránh diễn giải nhân quả.",
+    "quote": "Mục tiêu nghiên cứu xác định các yếu tố ảnh hưởng đến lưu lượng giao thông trên đường I-94 và xây dựng mô hình dự đoán lưu lượng theo thời gian."
+  },
+  {
+    "claim_id": "A-003",
+    "report_location": "1.2. Mục tiêu và câu hỏi nghiên cứu; P0030",
+    "fact_id": "B-016, B-043",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "notebooks/eda/README.md:5",
+      "notebooks/eda/EDA_general.ipynb:16",
+      "notebooks/features/README.md:15",
+      "notebooks/eda/EDA_general.ipynb:8650",
+      "notebooks/eda/EDA_general.ipynb:8663",
+      "notebooks/eda/EDA_general.ipynb:8769",
+      "notebooks/eda/EDA_general.ipynb:8771",
+      "notebooks/eda/EDA_general.ipynb:8903",
+      "notebooks/eda/EDA_general.ipynb:8907"
+    ],
+    "note": "Đây là mục tiêu; đã có EDA. Không xác nhận tất cả khảo sát ngày/mùa/năm đã trình bày đầy đủ trong báo cáo.",
+    "quote": "Làm sạch dữ liệu và mô tả quy luật lưu lượng theo giờ , thứ , ngày , tháng, mua và theo năm."
+  },
+  {
+    "claim_id": "A-004",
+    "report_location": "1.2. Mục tiêu và câu hỏi nghiên cứu; P0031",
+    "fact_id": "B-020, B-042",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "notebooks/features/outputs/e4bc1e064317af8c/feature_comparison.csv:2",
+      "notebooks/features/outputs/e4bc1e064317af8c/feature_comparison.csv:3",
+      "notebooks/features/outputs/e4bc1e064317af8c/feature_comparison.csv:4",
+      "notebooks/features/outputs/e4bc1e064317af8c/feature_comparison.csv:5",
+      "notebooks/features/outputs/e4bc1e064317af8c/feature_comparison.csv:6",
+      "notebooks/eda/EDA_general.ipynb:10391",
+      "notebooks/eda/EDA_general.ipynb:10392",
+      "notebooks/eda/EDA_general.ipynb:10393",
+      "notebooks/eda/EDA_general.ipynb:10394"
+    ],
+    "note": "Có EDA và đối chứng nhóm; ảnh hưởng ở đây chỉ được hiểu là liên hệ/giá trị dự đoán.",
+    "quote": "Đánh giá ảnh hưởng của thời tiết đến lưu lượng"
+  },
+  {
+    "claim_id": "A-005",
+    "report_location": "1.2. Mục tiêu và câu hỏi nghiên cứu; P0032",
+    "fact_id": "B-008, B-016",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "src/data.py:101",
+      "src/data.py:109",
+      "src/data.py:115",
+      "src/data.py:117",
+      "notebooks/preprocessing/outputs/preprocessing_manifest.json:30",
+      "notebooks/eda/README.md:5",
+      "notebooks/eda/EDA_general.ipynb:16",
+      "notebooks/features/README.md:15"
+    ],
+    "note": "Đây là mục tiêu, chưa có kết quả matched weekday-hour trong báo cáo. Có helper/notebook; số liệu chưa tổng hợp ở đợt này.",
+    "quote": "Đánh giá ảnh hưởng của ngày lễ so với ngày thường cùng thứ."
+  },
+  {
+    "claim_id": "A-006",
+    "report_location": "1.2. Mục tiêu và câu hỏi nghiên cứu; P0033",
+    "fact_id": "B-021, B-025, B-034",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "src/model.py:18",
+      "src/tuning_cv.py:22",
+      "src/tuning_cv.py:56",
+      "src/tuning_cv.py:86",
+      "notebooks/tuning/outputs/rf_sampling_correction.json:408",
+      "notebooks/tuning/outputs/comparison_summary.csv:12",
+      "notebooks/tuning/outputs/comparison_summary.csv:13",
+      "notebooks/tuning/outputs/comparison_summary.csv:14",
+      "notebooks/tuning/outputs/comparison_summary.csv:15",
+      "notebooks/tuning/outputs/comparison_summary.csv:16",
+      "notebooks/validation/outputs/final_C30/validation_scope.csv:2",
+      "notebooks/validation/outputs/final_C30/validation_comparison.csv:2"
+    ],
+    "note": "Có mô hình và bảng điểm đã lưu; phương pháp/kết quả trong báo cáo còn trống.",
+    "quote": "Xây dựng và so sánh các mô hình dự báo lưu lượng"
+  },
+  {
+    "claim_id": "A-007",
+    "report_location": "1.2. Mục tiêu và câu hỏi nghiên cứu; P0034",
+    "fact_id": "—",
+    "status": "❓ CHƯA XÁC MINH",
+    "evidence": [
+      "agent_a/report_snapshot.txt; P0034"
+    ],
+    "note": "Đây là mục tiêu ứng dụng; chưa có bằng chứng đánh giá hiệu quả quản lý giao thông.",
+    "quote": "Rút ra gợi ý cho quản lý giao thông."
+  },
+  {
+    "claim_id": "A-008",
+    "report_location": "2.1. Bài toán hồi quy và mô hình baseline; P0040",
+    "fact_id": "B-026",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "src/evaluation.py:8",
+      "src/evaluation.py:13",
+      "src/evaluation.py:23",
+      "src/evaluation.py:32"
+    ],
+    "note": "Khớp với dữ liệu, output đã lưu hoặc định nghĩa trong nguồn tương ứng.",
+    "quote": "Baseline thứ–giờ dự đoán bằng trung bình traffic_volume của cùng thứ và giờ trong train, dùng trung bình toàn train nếu thiếu nhóm. Seasonal naive dự đoán bằng quan sát tại t−168h; chỉ so trên cohort đủ lịch sử."
+  },
+  {
+    "claim_id": "A-009",
+    "report_location": "2.2. Các thuật toán sử dụng; P0055",
+    "fact_id": "X-003",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "https://scikit-learn.org/stable/modules/linear_model.html"
+    ],
+    "note": "Phần diễn giải văn bản phù hợp tài liệu/code tương ứng; ký hiệu trong28 equation native chưa được xác minh. ",
+    "quote": "Linear Regression giả định đầu ra là tổ hợp tuyến tính của các đặc trưng: [EQUATION]. Tham số được chọn để cực tiểu sai số bình phương trung bình:"
+  },
+  {
+    "claim_id": "A-010",
+    "report_location": "2.2. Các thuật toán sử dụng; P0057",
+    "fact_id": "X-003, B-022",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "https://scikit-learn.org/stable/modules/linear_model.html",
+      "src/model.py:84",
+      "src/model.py:118",
+      "src/model.py:128",
+      "src/model.py:129",
+      "src/model.py:135"
+    ],
+    "note": "Phần diễn giải văn bản phù hợp tài liệu/code tương ứng; ký hiệu trong28 equation native chưa được xác minh. ",
+    "quote": "Ridge thêm số hạng phạt L2 để thu nhỏ trọng số, giúp giảm phương sai khi các đặc trưng tương quan mạnh với nhau:"
+  },
+  {
+    "claim_id": "A-011",
+    "report_location": "2.2. Các thuật toán sử dụng; P0059",
+    "fact_id": "X-003, B-022",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "https://scikit-learn.org/stable/modules/linear_model.html",
+      "src/model.py:84",
+      "src/model.py:118",
+      "src/model.py:128",
+      "src/model.py:129",
+      "src/model.py:135"
+    ],
+    "note": "Phần diễn giải văn bản phù hợp tài liệu/code tương ứng; ký hiệu trong28 equation native chưa được xác minh. ",
+    "quote": "Hệ số [EQUATION] điều chỉnh mức phạt (thường không phạt [EQUATION]). Do phạt phụ thuộc độ lớn của [EQUATION], các đặc trưng cần được chuẩn hóa trước khi huấn luyện."
+  },
+  {
+    "claim_id": "A-012",
+    "report_location": "2.2. Các thuật toán sử dụng; P0060",
+    "fact_id": "X-004, B-019",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "https://scikit-learn.org/stable/modules/ensemble.html",
+      "src/feature_experiments.py:41",
+      "src/feature_experiments.py:42",
+      "src/feature_experiments.py:153"
+    ],
+    "note": "Phần diễn giải văn bản phù hợp tài liệu/code tương ứng; ký hiệu trong28 equation native chưa được xác minh. ",
+    "quote": "Random Forest (RF): huấn luyện với [EQUATION] cây quyết định, mỗi cây trên một mẫu bootstrap của dữ liệu. Tại mỗi nút, cây chỉ xét một tập con ngẫu nhiên [EQUATION] đặc trưng để chọn điểm chia. Hai nguồn ngẫu nhiên này làm các cây ít tương quan với nhau."
+  },
+  {
+    "claim_id": "A-013",
+    "report_location": "2.2. Các thuật toán sử dụng; P0062",
+    "fact_id": "X-004, B-017, B-031",
+    "status": "⚠️ LỆCH",
+    "evidence": [
+      "https://scikit-learn.org/stable/modules/ensemble.html",
+      "src/feature_experiments.py:85",
+      "src/feature_experiments.py:87",
+      "notebooks/features/outputs/e4bc1e064317af8c/protocol.json:183",
+      "notebooks/features/outputs/e4bc1e064317af8c/fold_manifest.csv:2",
+      "notebooks/validation/outputs/final_C30/selected_model.json:50",
+      "notebooks/validation/outputs/final_C30/selected_model.json:52",
+      "notebooks/validation/outputs/final_C30/selected_model.json:54",
+      "notebooks/validation/outputs/final_C30/selected_model.json:58",
+      "notebooks/validation/outputs/final_C30/selected_model.json:62",
+      "notebooks/validation/outputs/final_C30/selected_model.json:65"
+    ],
+    "note": "Lý thuyết OOB không chứng minh đã dùng OOB; khẳng định không cần validation và gần như không tăng bias cần giới hạn trong bài toán theo thời gian.",
+    "quote": "Với bài toán phân loại, kết quả lấy theo đa số phiếu. Việc lấy trung bình giúp giảm phương sai so với một cây đơn mà gần như không tăng độ chệch. Sai số out-of-bag (OOB) cho ước lượng đánh giá mà không cần tập validation riêng."
+  },
+  {
+    "claim_id": "A-014",
+    "report_location": "2.2. Các thuật toán sử dụng; P0063",
+    "fact_id": "X-004",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "https://scikit-learn.org/stable/modules/ensemble.html"
+    ],
+    "note": "Phần diễn giải văn bản phù hợp tài liệu/code tương ứng; ký hiệu trong28 equation native chưa được xác minh. ",
+    "quote": "Gradient Boosting (GB): xây mô hình cộng tính, mỗi cây mới sửa lỗi của mô hình hiện tại. Tại bước [EQUATION], cây [EQUATION] được khớp vào phần dư giả (âm gradient của hàm loss):"
+  },
+  {
+    "claim_id": "A-015",
+    "report_location": "2.2. Các thuật toán sử dụng; P0066",
+    "fact_id": "X-004, B-021",
+    "status": "⚠️ LỆCH",
+    "evidence": [
+      "https://scikit-learn.org/stable/modules/ensemble.html",
+      "src/model.py:18",
+      "src/tuning_cv.py:22",
+      "src/tuning_cv.py:56",
+      "src/tuning_cv.py:86",
+      "notebooks/tuning/outputs/rf_sampling_correction.json:408"
+    ],
+    "note": "Learning rate nhỏ không bảo đảm khái quát tốt hơn trong mọi trường hợp; cần mô tả phụ thuộc tuning.",
+    "quote": "Với loss bình phương, [EQUATION], tức đúng là phần dư. Tốc độ học [EQUATION] làm mỗi cây đóng góp nhỏ, đổi lại cần nhiều cây hơn nhưng khái quát tốt hơn."
+  },
+  {
+    "claim_id": "A-016",
+    "report_location": "2.2. Các thuật toán sử dụng; P0067",
+    "fact_id": "X-005, B-022",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "https://scikit-learn.org/stable/modules/neural_networks_supervised.html",
+      "src/model.py:84",
+      "src/model.py:118",
+      "src/model.py:128",
+      "src/model.py:129",
+      "src/model.py:135"
+    ],
+    "note": "Phần diễn giải văn bản phù hợp tài liệu/code tương ứng; ký hiệu trong28 equation native chưa được xác minh. ",
+    "quote": "MLP: gồm nhiều tầng, mỗi tầng là phép biến đổi tuyến tính theo sau bởi hàm kích hoạt phi tuyến [EQUATION] (ReLU, GELU, ...):"
+  },
+  {
+    "claim_id": "A-017",
+    "report_location": "2.2. Các thuật toán sử dụng; P0069",
+    "fact_id": "X-005, B-022",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "https://scikit-learn.org/stable/modules/neural_networks_supervised.html",
+      "src/model.py:84",
+      "src/model.py:118",
+      "src/model.py:128",
+      "src/model.py:129",
+      "src/model.py:135"
+    ],
+    "note": "Phần diễn giải văn bản phù hợp tài liệu/code tương ứng; ký hiệu trong28 equation native chưa được xác minh. ",
+    "quote": "Tham số [EQUATION] được cập nhật bằng lan truyền ngược và gradient descent: [EQUATION] (hoặc biến thể như Adam). MLP nhạy với thang đo của đầu vào nên cần chuẩn hóa dữ liệu. Kết quả cũng phụ thuộc nhiều vào khởi tạo, tốc độ học [EQUATION] và điều kiện dừng."
+  },
+  {
+    "claim_id": "A-018",
+    "report_location": "2.2. Các thuật toán sử dụng; P0070",
+    "fact_id": "X-006",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "https://xgboost.readthedocs.io/en/stable/tutorials/model.html"
+    ],
+    "note": "Phần diễn giải văn bản phù hợp tài liệu/code tương ứng; ký hiệu trong28 equation native chưa được xác minh. ",
+    "quote": "XGBoost (XGB): là Gradient Boosting có thêm regularization trực tiếp trong hàm mục tiêu, và dùng khai triển Taylor bậc hai của loss:"
+  },
+  {
+    "claim_id": "A-019",
+    "report_location": "2.2. Các thuật toán sử dụng; P0071",
+    "fact_id": "X-006, X-008",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "https://xgboost.readthedocs.io/en/stable/tutorials/model.html",
+      "docs/report_review/2026-11-22/agent_a/README.md:14",
+      "docs/report_review/2026-11-22/agent_a/report_images_contact.jpg"
+    ],
+    "note": "Phần diễn giải văn bản phù hợp tài liệu/code tương ứng; ký hiệu trong28 equation native chưa được xác minh. ",
+    "quote": "[IMAGE kix.w9z2mkqqadwv]Trong đó [EQUATION] là số lá và [EQUATION] là trọng số lá. Với [EQUATION] là đạo hàm bậc một và bậc hai của loss, [EQUATION] và [EQUATION], trọng số tối ưu của lá và độ lợi khi chia nút là:"
+  },
+  {
+    "claim_id": "A-020",
+    "report_location": "2.2. Các thuật toán sử dụng; P0072",
+    "fact_id": "X-006, X-008",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "https://xgboost.readthedocs.io/en/stable/tutorials/model.html",
+      "docs/report_review/2026-11-22/agent_a/README.md:14",
+      "docs/report_review/2026-11-22/agent_a/report_images_contact.jpg"
+    ],
+    "note": "Khớp với dữ liệu, output đã lưu hoặc định nghĩa trong nguồn tương ứng.",
+    "quote": "[IMAGE kix.9ruxm9cqjlyg]"
+  },
+  {
+    "claim_id": "A-021",
+    "report_location": "2.2. Các thuật toán sử dụng; P0073",
+    "fact_id": "X-006",
+    "status": "❓ CHƯA XÁC MINH",
+    "evidence": [
+      "https://xgboost.readthedocs.io/en/stable/tutorials/model.html"
+    ],
+    "note": "Không đọc được tên các ký hiệu native nên chưa kiểm dấu và định nghĩa cụ thể.",
+    "quote": "Tham số [EQUATION] và [EQUATION] kiểm soát độ phức tạp của cây: nút chỉ được chia khi độ lợi lớn hơn [EQUATION]."
+  },
+  {
+    "claim_id": "A-022",
+    "report_location": "2.3. Độ đo đánh giá hồi quy; P0075",
+    "fact_id": "B-026",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "src/evaluation.py:8",
+      "src/evaluation.py:13",
+      "src/evaluation.py:23",
+      "src/evaluation.py:32"
+    ],
+    "note": "Khớp với dữ liệu, output đã lưu hoặc định nghĩa trong nguồn tương ứng.",
+    "quote": "Đánh giá hồi quy bằng 3 thông số sau, với eᵢ = yᵢ − ŷᵢ và ȳ là trung bình y trên tập đang xét:"
+  },
+  {
+    "claim_id": "A-023",
+    "report_location": "2.3. Độ đo đánh giá hồi quy; P0076",
+    "fact_id": "B-026, X-008",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "src/evaluation.py:8",
+      "src/evaluation.py:13",
+      "src/evaluation.py:23",
+      "src/evaluation.py:32",
+      "docs/report_review/2026-11-22/agent_a/README.md:14",
+      "docs/report_review/2026-11-22/agent_a/report_images_contact.jpg"
+    ],
+    "note": "Khớp với dữ liệu, output đã lưu hoặc định nghĩa trong nguồn tương ứng.",
+    "quote": "[IMAGE kix.3xshvl3zek52]"
+  },
+  {
+    "claim_id": "A-024",
+    "report_location": "2.3. Độ đo đánh giá hồi quy; P0077",
+    "fact_id": "B-026, X-008",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "src/evaluation.py:8",
+      "src/evaluation.py:13",
+      "src/evaluation.py:23",
+      "src/evaluation.py:32",
+      "docs/report_review/2026-11-22/agent_a/README.md:14",
+      "docs/report_review/2026-11-22/agent_a/report_images_contact.jpg"
+    ],
+    "note": "Khớp với dữ liệu, output đã lưu hoặc định nghĩa trong nguồn tương ứng.",
+    "quote": "[IMAGE kix.ojenq5gde4a2]"
+  },
+  {
+    "claim_id": "A-025",
+    "report_location": "2.3. Độ đo đánh giá hồi quy; P0078",
+    "fact_id": "B-026, X-008",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "src/evaluation.py:8",
+      "src/evaluation.py:13",
+      "src/evaluation.py:23",
+      "src/evaluation.py:32",
+      "docs/report_review/2026-11-22/agent_a/README.md:14",
+      "docs/report_review/2026-11-22/agent_a/report_images_contact.jpg"
+    ],
+    "note": "Khớp với dữ liệu, output đã lưu hoặc định nghĩa trong nguồn tương ứng.",
+    "quote": "[IMAGE kix.107jhofbxxr9]"
+  },
+  {
+    "claim_id": "A-026",
+    "report_location": "2.3. Độ đo đánh giá hồi quy; P0079",
+    "fact_id": "B-026",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "src/evaluation.py:8",
+      "src/evaluation.py:13",
+      "src/evaluation.py:23",
+      "src/evaluation.py:32"
+    ],
+    "note": "Khớp với dữ liệu, output đã lưu hoặc định nghĩa trong nguồn tương ứng.",
+    "quote": "MAE và RMSE có đơn vị xe/giờ. MAE là sai số tuyệt đối trung bình, còn RMSE phạt nặng hơn các sai số lớn. R² không có đơn vị: nó so sai số của mô hình với sai số của cách luôn dự đoán ȳ, bằng 1 khi dự đoán hoàn hảo, bằng 0 khi ngang cách đó và âm khi kém hơn."
+  },
+  {
+    "claim_id": "A-027",
+    "report_location": "2.3. Độ đo đánh giá hồi quy; P0080",
+    "fact_id": "B-026, B-034",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "src/evaluation.py:8",
+      "src/evaluation.py:13",
+      "src/evaluation.py:23",
+      "src/evaluation.py:32",
+      "notebooks/validation/outputs/final_C30/validation_scope.csv:2",
+      "notebooks/validation/outputs/final_C30/validation_comparison.csv:2"
+    ],
+    "note": "Khớp với dữ liệu, output đã lưu hoặc định nghĩa trong nguồn tương ứng.",
+    "quote": "MAE và RMSE có thể xếp hạng các mô hình khác nhau, nên báo cáo cả hai và nêu rõ metric dùng để chọn tham số. Các hàm đánh giá hiện tại cắt dự đoán âm về 0 trước khi tính điểm, nên mọi mô hình được so sánh phải dùng cùng quy tắc này."
+  },
+  {
+    "claim_id": "A-028",
+    "report_location": "2.4. Dữ liệu chuỗi thời gian, chia dữ liệu theo thời gian và data leakage; P0082",
+    "fact_id": "B-009, B-011, B-021, B-022",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "src/preprocessing.py:137",
+      "src/preprocessing.py:140",
+      "src/preprocessing.py:147",
+      "docs/report_review/2026-11-22/agent_b/read_only_checks.json:41",
+      "src/feature_experiments.py:133",
+      "src/feature_experiments.py:141",
+      "src/feature_experiments.py:148",
+      "src/feature_experiments.py:153",
+      "src/model.py:18",
+      "src/tuning_cv.py:22",
+      "src/tuning_cv.py:56",
+      "src/tuning_cv.py:86",
+      "notebooks/tuning/outputs/rf_sampling_correction.json:408",
+      "src/model.py:84",
+      "src/model.py:118",
+      "src/model.py:128",
+      "src/model.py:129",
+      "src/model.py:135"
+    ],
+    "note": "Khớp mạch FE/tuning hiện hành; không khẳng định mọi thí nghiệm lịch sử đều dùng cùng pipeline.",
+    "quote": "Dữ liệu được sắp theo timestamp, nên phần huấn luyện luôn đứng trước phần đánh giá. Tuning dùng Time Series Split trên tập train. Imputation, encoder và scaler có học thống kê phải được fit trên fold-train tương ứng."
+  },
+  {
+    "claim_id": "A-029",
+    "report_location": "2.4. Dữ liệu chuỗi thời gian, chia dữ liệu theo thời gian và data leakage; P0083",
+    "fact_id": "B-018, X-002",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "notebooks/features/outputs/e4bc1e064317af8c/fold_manifest.csv:2",
+      "notebooks/features/outputs/e4bc1e064317af8c/fold_manifest.csv:3",
+      "notebooks/features/outputs/e4bc1e064317af8c/fold_manifest.csv:4",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.TimeSeriesSplit.html"
+    ],
+    "note": "Caveat đúng, fold manifest còn thiếu trong báo cáo.",
+    "quote": "Theo tài liệu TimeSeriesSplit, các fold đánh giá chỉ phủ cùng một khoảng thời gian khi các mẫu cách đều. Dữ liệu ở đây thiếu giờ, nên các fold có cùng số hàng chưa chắc phủ cùng khoảng lịch. Vì vậy, khi diễn giải độ ổn định, cần ghi mốc thời gian và số mẫu của từng fold, và chỉ mô tả các fold là cửa sổ lịch bằng nhau nếu đã kiểm tra. [PAGE BREAK]"
+  },
+  {
+    "claim_id": "A-030",
+    "report_location": "3.1.1. Nguồn dữ liệu và phạm vi và quy mô; P0087",
+    "fact_id": "B-002, X-001",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "notebooks/preprocessing/outputs/preprocessing_manifest.json:6",
+      "notebooks/eda/EDA_general.ipynb:749",
+      "docs/report_review/2026-11-22/agent_b/read_only_checks.json:3",
+      "https://archive.ics.uci.edu/dataset/492/metro+interstate+traffic+volume"
+    ],
+    "note": "Khớp với dữ liệu, output đã lưu hoặc định nghĩa trong nguồn tương ứng.",
+    "quote": "Bộ Metro Interstate Traffic Volume do John Hogue công bố trên UCI năm 2019. Dữ liệu ghi lưu lượng theo giờ tại trạm ATR 301, I-94 hướng Tây, khu vực Minneapolis-St Paul, và phát hành theo CC BY 4.0. CSV của dự án có 48.204 dòng, 9 cột gồm 8 đầu vào và một biến mục tiêu; timestamp trải từ 02/10/2012 09:00 đến 30/09/2018 23:00. Nguồn: UCI."
+  },
+  {
+    "claim_id": "A-031",
+    "report_location": "3.1.1. Nguồn dữ liệu và phạm vi và quy mô; P0088",
+    "fact_id": "B-002",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "notebooks/preprocessing/outputs/preprocessing_manifest.json:6",
+      "notebooks/eda/EDA_general.ipynb:749",
+      "docs/report_review/2026-11-22/agent_b/read_only_checks.json:3"
+    ],
+    "note": "Khớp với dữ liệu, output đã lưu hoặc định nghĩa trong nguồn tương ứng.",
+    "quote": "Các số kiểm tra riêng từ CSV: 40.575 timestamp duy nhất, 7.629 dòng vượt số timestamp duy nhất và 11.976 giờ không có quan sát trong lưới giờ từ đầu đến cuối. 7.629 là số dòng dư theo khóa thời gian, chưa chắc là số bản ghi trùng hoàn toàn. Số giờ thiếu tính trên timestamp không gắn timezone như trong file; chưa phân tích DST."
+  },
+  {
+    "claim_id": "A-032",
+    "report_location": "3.2.1 Tổng quan và chất lượng dữ liệu; P0135",
+    "fact_id": "B-003, B-005",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "notebooks/eda/EDA_general.ipynb:749",
+      "notebooks/eda/EDA_general.ipynb:750",
+      "notebooks/eda/EDA_general.ipynb:1078",
+      "notebooks/eda/EDA_general.ipynb:1079",
+      "src/preprocessing.py:8",
+      "src/preprocessing.py:23",
+      "src/preprocessing.py:56",
+      "src/preprocessing.py:65",
+      "src/preprocessing.py:71"
+    ],
+    "note": "Khớp với dữ liệu, output đã lưu hoặc định nghĩa trong nguồn tương ứng.",
+    "quote": "Timestamp lặp không đồng nghĩa với dòng trùng hoàn toàn. Các dòng cùng giờ có lưu lượng nhất quán nhưng có thể khác nhãn thời tiết, như minh họa ở Bảng 3.3. Vì vậy, không được cộng lặp traffic_volume khi tổng hợp theo giờ."
+  },
+  {
+    "claim_id": "A-033",
+    "report_location": "3.2.1 Tổng quan và chất lượng dữ liệu; P0170",
+    "fact_id": "B-006, B-007",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "src/preprocessing.py:42",
+      "src/preprocessing.py:49",
+      "notebooks/eda/EDA_general.ipynb:3187",
+      "notebooks/eda/EDA_general.ipynb:3261",
+      "notebooks/eda/EDA_general.ipynb:3262",
+      "notebooks/preprocessing/outputs/preprocessing_manifest.json:4",
+      "notebooks/preprocessing/outputs/preprocessing_manifest.json:21",
+      "notebooks/preprocessing/outputs/preprocessing_manifest.json:30",
+      "docs/report_review/2026-11-22/agent_b/read_only_checks.json:22"
+    ],
+    "note": "Khớp với dữ liệu, output đã lưu hoặc định nghĩa trong nguồn tương ứng.",
+    "quote": "Không có null không đồng nghĩa dữ liệu hoàn toàn sạch. Giờ vắng bản ghi ở mục 3.1 không được quy thành lưu lượng 0. Với mưa/tuyết, Q1 và Q3 đều bằng 0 nên IQR có thể gắn cờ cả các giá trị dương hợp lý. Các vấn đề trên được xử lý tại mục 3.3."
+  },
+  {
+    "claim_id": "A-034",
+    "report_location": "3.2.2. Phân bố lưu lượng giao thông; P0172",
+    "fact_id": "B-016, B-041",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "notebooks/eda/README.md:5",
+      "notebooks/eda/EDA_general.ipynb:16",
+      "notebooks/features/README.md:15",
+      "notebooks/eda/EDA_general.ipynb:8344",
+      "notebooks/eda/EDA_general.ipynb:8345",
+      "notebooks/eda/EDA_general.ipynb:8346",
+      "notebooks/eda/EDA_general.ipynb:8348",
+      "notebooks/eda/EDA_general.ipynb:8351"
+    ],
+    "note": "Khớp phạm vi toàn bộ dữ liệu theo giờ; khác phạm vi train của EDA_A/B/C.",
+    "quote": "Sau bước kiểm tra chất lượng dữ liệu, nhóm khảo sát phân bố của biến mục tiêu traffic_volume trên 40.575 giờ quan sát duy nhất. Mỗi timestamp chỉ được tính một lần; các thống kê dưới đây sử dụng toàn bộ dữ liệu theo giờ."
+  },
+  {
+    "claim_id": "A-035",
+    "report_location": "3.2.2. Phân bố lưu lượng giao thông; P0196",
+    "fact_id": "B-041",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "notebooks/eda/EDA_general.ipynb:8344",
+      "notebooks/eda/EDA_general.ipynb:8345",
+      "notebooks/eda/EDA_general.ipynb:8346",
+      "notebooks/eda/EDA_general.ipynb:8348",
+      "notebooks/eda/EDA_general.ipynb:8351"
+    ],
+    "note": "Khớp với dữ liệu, output đã lưu hoặc định nghĩa trong nguồn tương ứng.",
+    "quote": "Trung bình thấp hơn trung vị khoảng 136,35 xe/giờ. Một nửa số giờ quan sát có lưu lượng từ 1.248,50 đến 4.952 xe/giờ; độ lệch chuẩn khoảng 1.984,77 xe/giờ cho thấy lưu lượng phân tán đáng kể quanh giá trị trung bình.[PAGE BREAK]"
+  },
+  {
+    "claim_id": "A-036",
+    "report_location": "3.2.2. Phân bố lưu lượng giao thông; P0198",
+    "fact_id": "X-008, B-041",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "docs/report_review/2026-11-22/agent_a/README.md:14",
+      "docs/report_review/2026-11-22/agent_a/report_images_contact.jpg",
+      "notebooks/eda/EDA_general.ipynb:8344",
+      "notebooks/eda/EDA_general.ipynb:8345",
+      "notebooks/eda/EDA_general.ipynb:8346",
+      "notebooks/eda/EDA_general.ipynb:8348",
+      "notebooks/eda/EDA_general.ipynb:8351"
+    ],
+    "note": "Khớp với dữ liệu, output đã lưu hoặc định nghĩa trong nguồn tương ứng.",
+    "quote": "Hình 3.1 kết hợp histogram và boxplot để thể hiện tần suất quan sát, trung vị và khoảng phân bố của lưu lượng.[IMAGE kix.exjdsthkcy2o]"
+  },
+  {
+    "claim_id": "A-037",
+    "report_location": "3.2.2. Phân bố lưu lượng giao thông; P0199",
+    "fact_id": "X-008, B-041",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "docs/report_review/2026-11-22/agent_a/README.md:14",
+      "docs/report_review/2026-11-22/agent_a/report_images_contact.jpg",
+      "notebooks/eda/EDA_general.ipynb:8344",
+      "notebooks/eda/EDA_general.ipynb:8345",
+      "notebooks/eda/EDA_general.ipynb:8346",
+      "notebooks/eda/EDA_general.ipynb:8348",
+      "notebooks/eda/EDA_general.ipynb:8351"
+    ],
+    "note": "Khớp với dữ liệu, output đã lưu hoặc định nghĩa trong nguồn tương ứng.",
+    "quote": "Hình 3.1. Phân bố lưu lượng giao thông trên các giờ quan sát duy nhất"
+  },
+  {
+    "claim_id": "A-038",
+    "report_location": "3.2.2. Phân bố lưu lượng giao thông; P0200",
+    "fact_id": "X-008, B-041",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "docs/report_review/2026-11-22/agent_a/README.md:14",
+      "docs/report_review/2026-11-22/agent_a/report_images_contact.jpg",
+      "notebooks/eda/EDA_general.ipynb:8344",
+      "notebooks/eda/EDA_general.ipynb:8345",
+      "notebooks/eda/EDA_general.ipynb:8346",
+      "notebooks/eda/EDA_general.ipynb:8348",
+      "notebooks/eda/EDA_general.ipynb:8351"
+    ],
+    "note": "Khớp với dữ liệu, output đã lưu hoặc định nghĩa trong nguồn tương ứng.",
+    "quote": "Histogram có nhiều vùng tập trung, không thể hiện một đỉnh duy nhất rõ rệt. Boxplot cho thấy khoảng giữa Q1 và Q3 khá rộng, phù hợp với mức phân tán trong Bảng 3.5. Phân bố tổng thể chưa cho biết các vùng lưu lượng này xuất hiện vào thời điểm nào; mục tiếp theo phân tích theo giờ, thứ và loại ngày để làm rõ mẫu hình thời gian."
+  },
+  {
+    "claim_id": "A-039",
+    "report_location": "3.2.3. Lưu lượng theo thời gian; P0202",
+    "fact_id": "B-016, B-043",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "notebooks/eda/README.md:5",
+      "notebooks/eda/EDA_general.ipynb:16",
+      "notebooks/features/README.md:15",
+      "notebooks/eda/EDA_general.ipynb:8650",
+      "notebooks/eda/EDA_general.ipynb:8663",
+      "notebooks/eda/EDA_general.ipynb:8769",
+      "notebooks/eda/EDA_general.ipynb:8771",
+      "notebooks/eda/EDA_general.ipynb:8903",
+      "notebooks/eda/EDA_general.ipynb:8907"
+    ],
+    "note": "Khớp thống kê toàn bộ dữ liệu theo giờ; đây không phải metric test.",
+    "quote": "Nhóm phân tích lưu lượng theo giờ, thứ và tháng trên toàn bộ 40.575 timestamp duy nhất. Các thống kê chỉ tính giờ có bản ghi, không gán lưu lượng 0 cho giờ thiếu."
+  },
+  {
+    "claim_id": "A-040",
+    "report_location": "3.2.3. Lưu lượng theo thời gian; P0206",
+    "fact_id": "B-043, X-008",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "notebooks/eda/EDA_general.ipynb:8650",
+      "notebooks/eda/EDA_general.ipynb:8663",
+      "notebooks/eda/EDA_general.ipynb:8769",
+      "notebooks/eda/EDA_general.ipynb:8771",
+      "notebooks/eda/EDA_general.ipynb:8903",
+      "notebooks/eda/EDA_general.ipynb:8907",
+      "docs/report_review/2026-11-22/agent_a/README.md:14",
+      "docs/report_review/2026-11-22/agent_a/report_images_contact.jpg"
+    ],
+    "note": "Khớp với dữ liệu, output đã lưu hoặc định nghĩa trong nguồn tương ứng.",
+    "quote": "Hình 3.2. Lưu lượng trung bình theo giờ, thứ trong tuần và tháng[PAGE BREAK]"
+  },
+  {
+    "claim_id": "A-041",
+    "report_location": "3.2.3. Lưu lượng theo thời gian; P0239",
+    "fact_id": "X-008",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "docs/report_review/2026-11-22/agent_a/README.md:14",
+      "docs/report_review/2026-11-22/agent_a/report_images_contact.jpg"
+    ],
+    "note": "Khớp với dữ liệu, output đã lưu hoặc định nghĩa trong nguồn tương ứng.",
+    "quote": "Hình 3.3 lưu lượng trung bình theo tổ hợp thứ trong tuần và giờ"
+  },
+  {
+    "claim_id": "A-042",
+    "report_location": "3.2.3. Lưu lượng theo thời gian; P0240",
+    "fact_id": "B-016, X-008",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "notebooks/eda/README.md:5",
+      "notebooks/eda/EDA_general.ipynb:16",
+      "notebooks/features/README.md:15",
+      "docs/report_review/2026-11-22/agent_a/README.md:14",
+      "docs/report_review/2026-11-22/agent_a/report_images_contact.jpg"
+    ],
+    "note": "Khớp với dữ liệu, output đã lưu hoặc định nghĩa trong nguồn tương ứng.",
+    "quote": "Từ thứ Hai đến thứ Sáu, lưu lượng cao tập trung vào buổi sáng và chiều; cuối tuần tăng muộn hơn, tập trung quanh giữa ngày. Kết quả gợi ý xem xét đồng thời giờ, thứ và cờ cuối tuần; giá trị dự đoán cần kiểm chứng ở phần thực nghiệm."
+  },
+  {
+    "claim_id": "A-043",
+    "report_location": "3.2.4. Mối liên  hệ giữa thời tiết và lưu lượng; P0243",
+    "fact_id": "B-005, B-006, B-042",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "src/preprocessing.py:8",
+      "src/preprocessing.py:23",
+      "src/preprocessing.py:56",
+      "src/preprocessing.py:65",
+      "src/preprocessing.py:71",
+      "src/preprocessing.py:42",
+      "src/preprocessing.py:49",
+      "notebooks/eda/EDA_general.ipynb:3187",
+      "notebooks/eda/EDA_general.ipynb:3261",
+      "notebooks/eda/EDA_general.ipynb:3262",
+      "notebooks/eda/EDA_general.ipynb:10391",
+      "notebooks/eda/EDA_general.ipynb:10392",
+      "notebooks/eda/EDA_general.ipynb:10393",
+      "notebooks/eda/EDA_general.ipynb:10394"
+    ],
+    "note": "Khớp với dữ liệu, output đã lưu hoặc định nghĩa trong nguồn tương ứng.",
+    "quote": "Bảng 3.7 tính sau khi đánh dấu nhiệt độ 0 K và điểm mưa 9.831,3 mm là thiếu, rồi gộp thời tiết theo giờ bằng median các giá trị phân biệt. n là số cặp quan sát hợp lệ của từng biến với lưu lượng."
+  },
+  {
+    "claim_id": "A-044",
+    "report_location": "3.2.4. Mối liên  hệ giữa thời tiết và lưu lượng; P0265",
+    "fact_id": "B-042",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "notebooks/eda/EDA_general.ipynb:10391",
+      "notebooks/eda/EDA_general.ipynb:10392",
+      "notebooks/eda/EDA_general.ipynb:10393",
+      "notebooks/eda/EDA_general.ipynb:10394"
+    ],
+    "note": "Khớp với dữ liệu, output đã lưu hoặc định nghĩa trong nguồn tương ứng.",
+    "quote": "Nhiệt độ có tương quan dương yếu; mưa và tuyết có hệ số gần 0. Tương quan riêng lẻ thấp chưa loại trừ quan hệ phi tuyến hoặc giá trị bổ sung khi kết hợp với thời gian"
+  },
+  {
+    "claim_id": "A-045",
+    "report_location": "3.2.4. Mối liên  hệ giữa thời tiết và lưu lượng; P0269",
+    "fact_id": "B-044, X-008",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "notebooks/eda/EDA_general.ipynb:1259",
+      "notebooks/eda/EDA_general.ipynb:9589",
+      "notebooks/eda/EDA_general.ipynb:9590",
+      "notebooks/eda/EDA_general.ipynb:9592",
+      "notebooks/eda/EDA_general.ipynb:9593",
+      "notebooks/eda/EDA_general.ipynb:9598",
+      "notebooks/eda/EDA_general.ipynb:9599",
+      "docs/report_review/2026-11-22/agent_a/README.md:14",
+      "docs/report_review/2026-11-22/agent_a/report_images_contact.jpg"
+    ],
+    "note": "Khớp với dữ liệu, output đã lưu hoặc định nghĩa trong nguồn tương ứng.",
+    "quote": "Hình 3.4. Lưu lượng trung bình theo nhãn thời tiết"
+  },
+  {
+    "claim_id": "A-046",
+    "report_location": "3.2.4. Mối liên  hệ giữa thời tiết và lưu lượng; P0287",
+    "fact_id": "B-044",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "notebooks/eda/EDA_general.ipynb:1259",
+      "notebooks/eda/EDA_general.ipynb:9589",
+      "notebooks/eda/EDA_general.ipynb:9590",
+      "notebooks/eda/EDA_general.ipynb:9592",
+      "notebooks/eda/EDA_general.ipynb:9593",
+      "notebooks/eda/EDA_general.ipynb:9598",
+      "notebooks/eda/EDA_general.ipynb:9599"
+    ],
+    "note": "Khớp với dữ liệu, output đã lưu hoặc định nghĩa trong nguồn tương ứng.",
+    "quote": "Một giờ được tính một lần trong mỗi nhóm nhưng có thể mang nhiều nhãn; có 5.349 giờ như vậy. Clouds có trung bình cao nhất, còn Squall thấp nhất nhưng chỉ có 4 giờ. Nhóm Smoke cũng hiếm (20 giờ), nên cần thận trọng khi diễn giải."
+  },
+  {
+    "claim_id": "A-047",
+    "report_location": "3.2.4. Mối liên  hệ giữa thời tiết và lưu lượng; P0288",
+    "fact_id": "B-020, B-042",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "notebooks/features/outputs/e4bc1e064317af8c/feature_comparison.csv:2",
+      "notebooks/features/outputs/e4bc1e064317af8c/feature_comparison.csv:3",
+      "notebooks/features/outputs/e4bc1e064317af8c/feature_comparison.csv:4",
+      "notebooks/features/outputs/e4bc1e064317af8c/feature_comparison.csv:5",
+      "notebooks/features/outputs/e4bc1e064317af8c/feature_comparison.csv:6",
+      "notebooks/eda/EDA_general.ipynb:10391",
+      "notebooks/eda/EDA_general.ipynb:10392",
+      "notebooks/eda/EDA_general.ipynb:10393",
+      "notebooks/eda/EDA_general.ipynb:10394"
+    ],
+    "note": "Khớp với dữ liệu, output đã lưu hoặc định nghĩa trong nguồn tương ứng.",
+    "quote": "Chênh lệch giữa các nhãn có thể gắn với giờ và mùa, không chứng minh nhân quả. Ích lợi dự đoán của thời tiết cần được kiểm chứng bằng đối chứng cùng mô hình và tập giờ ở phần thực nghiệm."
+  },
+  {
+    "claim_id": "A-048",
+    "report_location": "3.5. Pipeline học máy; P0301",
+    "fact_id": "B-007, B-009, B-011, B-036",
+    "status": "➕ THIẾU",
+    "evidence": [
+      "notebooks/preprocessing/outputs/preprocessing_manifest.json:4",
+      "notebooks/preprocessing/outputs/preprocessing_manifest.json:21",
+      "notebooks/preprocessing/outputs/preprocessing_manifest.json:30",
+      "docs/report_review/2026-11-22/agent_b/read_only_checks.json:22",
+      "src/preprocessing.py:137",
+      "src/preprocessing.py:140",
+      "src/preprocessing.py:147",
+      "docs/report_review/2026-11-22/agent_b/read_only_checks.json:41",
+      "src/feature_experiments.py:133",
+      "src/feature_experiments.py:141",
+      "src/feature_experiments.py:148",
+      "src/feature_experiments.py:153",
+      "notebooks/validation/outputs/final_C30/selected_model.json:3",
+      "notebooks/validation/outputs/final_C30/selected_model.json:193",
+      "notebooks/validation/outputs/final_C30/selected_model.json:194",
+      "notebooks/validation/outputs/final_C30/selected_model.json:195",
+      "docs/report_review/2026-11-22/agent_b/read_only_checks.json:105"
+    ],
+    "note": "Gợi ý/template chưa mô tả pipeline thực, không coi là code đã làm sai.",
+    "quote": "Gợi ý: Chèn sơ đồ pipeline: dữ liệu → tiền xử lý → đặc trưng → chia tập → huấn luyện/tuning → đánh giá → demo."
+  },
+  {
+    "claim_id": "A-049",
+    "report_location": "3.6.2. Kiểm soát data leakage và tính công bằng khi so sánh; P0308",
+    "fact_id": "B-011, B-021, B-036",
+    "status": "➕ THIẾU",
+    "evidence": [
+      "src/feature_experiments.py:133",
+      "src/feature_experiments.py:141",
+      "src/feature_experiments.py:148",
+      "src/feature_experiments.py:153",
+      "src/model.py:18",
+      "src/tuning_cv.py:22",
+      "src/tuning_cv.py:56",
+      "src/tuning_cv.py:86",
+      "notebooks/tuning/outputs/rf_sampling_correction.json:408",
+      "notebooks/validation/outputs/final_C30/selected_model.json:3",
+      "notebooks/validation/outputs/final_C30/selected_model.json:193",
+      "notebooks/validation/outputs/final_C30/selected_model.json:194",
+      "notebooks/validation/outputs/final_C30/selected_model.json:195",
+      "docs/report_review/2026-11-22/agent_b/read_only_checks.json:105"
+    ],
+    "note": "Nguyên tắc dự kiến phù hợp đườngCV hiện tại; phần báo cáo chưa điền cụ thể.",
+    "quote": "Gợi ý: Cách fit preprocessing chỉ trên train; không dùng test để chọn mô hình/tuning; các mô hình dùng cùng tập, cùng mốc chia, cùng metric."
+  },
+  {
+    "claim_id": "A-050",
+    "report_location": "3.6.4. Độ đo và phương án tinh chỉnh siêu tham số; P0313",
+    "fact_id": "B-021, B-024",
+    "status": "➕ THIẾU",
+    "evidence": [
+      "src/model.py:18",
+      "src/tuning_cv.py:22",
+      "src/tuning_cv.py:56",
+      "src/tuning_cv.py:86",
+      "notebooks/tuning/outputs/rf_sampling_correction.json:408",
+      "notebooks/tuning/outputs/rf_sampling_correction.json:3",
+      "notebooks/tuning/outputs/rf_sampling_correction.json:4",
+      "notebooks/tuning/outputs/rf_sampling_correction.json:415"
+    ],
+    "note": "Template thiếu ParameterSampler, sáu ứng viên và ba fold; chọn theo mean fold MAE khác chấm validation.",
+    "quote": "Gợi ý: Phương pháp (Grid/Random Search + CV theo thời gian), không gian tham số, chỉ số chọn mô hình trên validation."
+  },
+  {
+    "claim_id": "A-051",
+    "report_location": "3.6.5. Thiết kế thí nghiệm đối chứng đặc trưng; P0316",
+    "fact_id": "B-017, B-019, B-020",
+    "status": "➕ THIẾU",
+    "evidence": [
+      "src/feature_experiments.py:85",
+      "src/feature_experiments.py:87",
+      "notebooks/features/outputs/e4bc1e064317af8c/protocol.json:183",
+      "notebooks/features/outputs/e4bc1e064317af8c/fold_manifest.csv:2",
+      "src/feature_experiments.py:41",
+      "src/feature_experiments.py:42",
+      "src/feature_experiments.py:153",
+      "notebooks/features/outputs/e4bc1e064317af8c/feature_comparison.csv:2",
+      "notebooks/features/outputs/e4bc1e064317af8c/feature_comparison.csv:3",
+      "notebooks/features/outputs/e4bc1e064317af8c/feature_comparison.csv:4",
+      "notebooks/features/outputs/e4bc1e064317af8c/feature_comparison.csv:5",
+      "notebooks/features/outputs/e4bc1e064317af8c/feature_comparison.csv:6"
+    ],
+    "note": "Template đúng hướng nhưng thiếu năm phương án, RF cố định và cohort chung; chưa phải kết quả.",
+    "quote": "Gợi ý: Time, Time + Weather, Time + Weather + History: cùng thuật toán, cùng tập và mốc chia, để trả lời câu hỏi nghiên cứu."
+  },
+  {
+    "claim_id": "A-052",
+    "report_location": "3.6.5. Thiết kế thí nghiệm đối chứng đặc trưng; P0318",
+    "fact_id": "B-017, B-023",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "src/feature_experiments.py:85",
+      "src/feature_experiments.py:87",
+      "notebooks/features/outputs/e4bc1e064317af8c/protocol.json:183",
+      "notebooks/features/outputs/e4bc1e064317af8c/fold_manifest.csv:2",
+      "src/tuning_cv.py:197",
+      "src/tuning_cv.py:203",
+      "src/tuning_cv.py:215",
+      "src/tuning_cv.py:228",
+      "src/tuning_cv.py:235",
+      "src/tuning_cv.py:240",
+      "docs/report_review/2026-11-22/agent_b/read_only_checks.json:118"
+    ],
+    "note": "Khớp ba fold OOF; thiếu n và mốc lịch. History trong fold-score dùng các quan sát quá khứ tuần tự.",
+    "quote": "Dự đoán ngoài fold (Out-of-Fold — OOF) được tạo bằng phương pháp TimeSeriesSplit với ba fold. Ở mỗi fold, mô hình được huấn luyện trên dữ liệu quá khứ và dự đoán trên đoạn dữ liệu tiếp theo; các bước tiền xử lý có học thống kê cũng chỉ được fit trên phần huấn luyện tương ứng. Các dự đoán được ghép theo timestamp để đánh giá trên những quan sát chưa tham gia huấn luyện mô hình tạo ra chúng."
+  },
+  {
+    "claim_id": "A-053",
+    "report_location": "3.6.5. Thiết kế thí nghiệm đối chứng đặc trưng; P0319",
+    "fact_id": "B-027, B-028, B-029, B-030",
+    "status": "⚠️ LỆCH",
+    "evidence": [
+      "experiments/20-11-2026_Huy_C30_Params1/outputs/run_config.json:59",
+      "experiments/20-11-2026_Huy_C30_Params1/outputs/validation_metrics.csv:2",
+      "experiments/20-11-2026_Huy_C30_Params2/outputs/run_config.json:57",
+      "experiments/20-11-2026_Huy_C30_Params2/outputs/validation_metrics.csv:2",
+      "experiments/21-11-2026_Huy_C30_OOF/outputs/selected_weights.json:52",
+      "notebooks/validation/outputs/final_C30/validation_comparison.csv:4",
+      "notebooks/validation/outputs/final_C30/validation_comparison.csv:5",
+      "experiments/22-11-2026_Huy_C30_MAE_Diversity/outputs/verification.json:2",
+      "experiments/22-11-2026_Huy_C30_MAE_Diversity/outputs/selected_option.json:2",
+      "experiments/22-11-2026_Huy_C30_MAE_Diversity/outputs/selected_option.json:5",
+      "experiments/22-11-2026_Huy_C30_MAE_Diversity/outputs/selected_option.json:7",
+      "notebooks/validation/outputs/final_C30/selected_model.json:2",
+      "notebooks/validation/outputs/final_C30/selected_model.json:3",
+      "notebooks/validation/outputs/final_C30/selected_components.csv:2",
+      "notebooks/validation/outputs/final_C30/selected_components.csv:3",
+      "notebooks/validation/outputs/final_C30/selected_components.csv:4"
+    ],
+    "note": "Đúng cho nhánh hai mô hình ngày 20–21/11; chưa có ExtraTrees của mô hình cuối. Toàn train ở đây là cohort 22.503 giờ.",
+    "quote": "Trong thí nghiệm ensemble, Random Forest và XGBoost sử dụng cùng cấu hình đặc trưng, bộ chia và các giờ chấm. Trọng số kết hợp được lựa chọn theo MAE trên dự đoán OOF thuộc tập train. Sau khi chọn trọng số, hai mô hình được huấn luyện lại trên toàn bộ tập train và ensemble được đánh giá trên validation."
+  },
+  {
+    "claim_id": "A-054",
+    "report_location": "3.6.5. Thiết kế thí nghiệm đối chứng đặc trưng; P0320",
+    "fact_id": "B-029, B-036",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "experiments/22-11-2026_Huy_C30_MAE_Diversity/outputs/verification.json:2",
+      "experiments/22-11-2026_Huy_C30_MAE_Diversity/outputs/selected_option.json:2",
+      "experiments/22-11-2026_Huy_C30_MAE_Diversity/outputs/selected_option.json:5",
+      "experiments/22-11-2026_Huy_C30_MAE_Diversity/outputs/selected_option.json:7",
+      "notebooks/validation/outputs/final_C30/selected_model.json:3",
+      "notebooks/validation/outputs/final_C30/selected_model.json:193",
+      "notebooks/validation/outputs/final_C30/selected_model.json:194",
+      "notebooks/validation/outputs/final_C30/selected_model.json:195",
+      "docs/report_review/2026-11-22/agent_b/read_only_checks.json:105"
+    ],
+    "note": "Cảnh báo điểm OOF sau selection đúng; cần thêm hạn chế validation đã được xem nhiều lần.",
+    "quote": "Do OOF được sử dụng để lựa chọn trọng số, MAE OOF tại trọng số được chọn là điểm phục vụ lựa chọn, chưa phải đánh giá độc lập cuối cùng."
+  },
+  {
+    "claim_id": "A-055",
+    "report_location": "4.4. So sánh các mô hình trên tập test; P0332",
+    "fact_id": "B-036",
+    "status": "➕ THIẾU",
+    "evidence": [
+      "notebooks/validation/outputs/final_C30/selected_model.json:3",
+      "notebooks/validation/outputs/final_C30/selected_model.json:193",
+      "notebooks/validation/outputs/final_C30/selected_model.json:194",
+      "notebooks/validation/outputs/final_C30/selected_model.json:195",
+      "docs/report_review/2026-11-22/agent_b/read_only_checks.json:105"
+    ],
+    "note": "Bảng test còn trống, không phải tuyên bố đã chạy test. Không điền MAE validation 190,19 vào bảng test.",
+    "quote": "Gợi ý: Chỉ đánh giá test một lần cho mô hình đã chốt; so sánh công bằng cùng tập và tiêu chí."
+  },
+  {
+    "claim_id": "A-056",
+    "report_location": "2.2. Các thuật toán sử dụng; P0044, P0045",
+    "fact_id": "X-003, B-021",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "https://scikit-learn.org/stable/modules/linear_model.html",
+      "src/model.py:18",
+      "src/tuning_cv.py:22",
+      "src/tuning_cv.py:56",
+      "src/tuning_cv.py:86",
+      "notebooks/tuning/outputs/rf_sampling_correction.json:408"
+    ],
+    "note": "Khớp với dữ liệu, output đã lưu hoặc định nghĩa trong nguồn tương ứng.",
+    "quote": "Linear Regression (LR)/ Ridge | Quan hệ tuyến tính, ngoài ra Ridge còn có phạt thêm L2"
+  },
+  {
+    "claim_id": "A-057",
+    "report_location": "2.2. Các thuật toán sử dụng; P0046, P0047",
+    "fact_id": "X-004, B-019",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "https://scikit-learn.org/stable/modules/ensemble.html",
+      "src/feature_experiments.py:41",
+      "src/feature_experiments.py:42",
+      "src/feature_experiments.py:153"
+    ],
+    "note": "Khớp với dữ liệu, output đã lưu hoặc định nghĩa trong nguồn tương ứng.",
+    "quote": "Random Forest ̣(RF) | Trung bình dự đoán của nhiều cây"
+  },
+  {
+    "claim_id": "A-058",
+    "report_location": "2.2. Các thuật toán sử dụng; P0048, P0049",
+    "fact_id": "X-004, B-021",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "https://scikit-learn.org/stable/modules/ensemble.html",
+      "src/model.py:18",
+      "src/tuning_cv.py:22",
+      "src/tuning_cv.py:56",
+      "src/tuning_cv.py:86",
+      "notebooks/tuning/outputs/rf_sampling_correction.json:408"
+    ],
+    "note": "Khớp với dữ liệu, output đã lưu hoặc định nghĩa trong nguồn tương ứng.",
+    "quote": "Gradient Boosting | Bổ sung cây tuần tự để cải thiện hàm loss"
+  },
+  {
+    "claim_id": "A-059",
+    "report_location": "2.2. Các thuật toán sử dụng; P0050, P0051",
+    "fact_id": "X-005, B-022",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "https://scikit-learn.org/stable/modules/neural_networks_supervised.html",
+      "src/model.py:84",
+      "src/model.py:118",
+      "src/model.py:128",
+      "src/model.py:129",
+      "src/model.py:135"
+    ],
+    "note": "Khớp với dữ liệu, output đã lưu hoặc định nghĩa trong nguồn tương ứng.",
+    "quote": "MLP | Nhiều tầng phi tuyến, nhạy với thang đo và tối ưu hóa"
+  },
+  {
+    "claim_id": "A-060",
+    "report_location": "2.2. Các thuật toán sử dụng; P0052, P0053",
+    "fact_id": "X-006, B-021",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "https://xgboost.readthedocs.io/en/stable/tutorials/model.html",
+      "src/model.py:18",
+      "src/tuning_cv.py:22",
+      "src/tuning_cv.py:56",
+      "src/tuning_cv.py:86",
+      "notebooks/tuning/outputs/rf_sampling_correction.json:408"
+    ],
+    "note": "Khớp với dữ liệu, output đã lưu hoặc định nghĩa trong nguồn tương ứng.",
+    "quote": "XGBoost | Boosting  các cây theo cơ chế regularization"
+  },
+  {
+    "claim_id": "A-061",
+    "report_location": "3.1.2. Danh sách thuộc tính và biến mục tiêu; P0093, P0094, P0095",
+    "fact_id": "B-004, B-008, X-001",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "src/data.py:28",
+      "src/data.py:30",
+      "src/data.py:101",
+      "src/data.py:109",
+      "src/data.py:115",
+      "src/data.py:117",
+      "notebooks/preprocessing/outputs/preprocessing_manifest.json:30",
+      "https://archive.ics.uci.edu/dataset/492/metro+interstate+traffic+volume"
+    ],
+    "note": "Khớp với dữ liệu, output đã lưu hoặc định nghĩa trong nguồn tương ứng.",
+    "quote": "holiday | Nhãn | Ngày lễ quốc gia Mỹ và ngày lễ khu vực (Minnesota State Fair). Chuỗi None là một nhãn hợp lệ, không phải giá trị thiếu."
+  },
+  {
+    "claim_id": "A-062",
+    "report_location": "3.1.2. Danh sách thuộc tính và biến mục tiêu; P0096, P0097, P0098",
+    "fact_id": "B-013, X-001",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "src/features.py:203",
+      "src/features.py:218",
+      "src/features.py:224",
+      "src/features.py:259",
+      "src/features.py:262",
+      "https://archive.ics.uci.edu/dataset/492/metro+interstate+traffic+volume"
+    ],
+    "note": "Khớp với dữ liệu, output đã lưu hoặc định nghĩa trong nguồn tương ứng.",
+    "quote": "temp | Số thực, K | Nhiệt độ trung bình theo giờ; đổi sang °C khi tạo đặc trưng."
+  },
+  {
+    "claim_id": "A-063",
+    "report_location": "3.1.2. Danh sách thuộc tính và biến mục tiêu; P0099, P0100, P0101",
+    "fact_id": "X-001",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "https://archive.ics.uci.edu/dataset/492/metro+interstate+traffic+volume"
+    ],
+    "note": "Khớp với dữ liệu, output đã lưu hoặc định nghĩa trong nguồn tương ứng.",
+    "quote": "rain_1h, snow_1h | Số thực, mm | Lượng mưa và lượng tuyết trong giờ."
+  },
+  {
+    "claim_id": "A-064",
+    "report_location": "3.1.2. Danh sách thuộc tính và biến mục tiêu; P0102, P0103, P0104",
+    "fact_id": "X-001",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "https://archive.ics.uci.edu/dataset/492/metro+interstate+traffic+volume"
+    ],
+    "note": "Khớp với dữ liệu, output đã lưu hoặc định nghĩa trong nguồn tương ứng.",
+    "quote": "clouds_all | Số nguyên, % | Độ che phủ mây."
+  },
+  {
+    "claim_id": "A-065",
+    "report_location": "3.1.2. Danh sách thuộc tính và biến mục tiêu; P0105, P0106, P0107",
+    "fact_id": "X-001",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "https://archive.ics.uci.edu/dataset/492/metro+interstate+traffic+volume"
+    ],
+    "note": "Khớp với dữ liệu, output đã lưu hoặc định nghĩa trong nguồn tương ứng.",
+    "quote": "weather_main | Nhãn văn bản | Mô tả thời tiết ngắn (nhóm lớn)."
+  },
+  {
+    "claim_id": "A-066",
+    "report_location": "3.1.2. Danh sách thuộc tính và biến mục tiêu; P0108, P0109, P0110",
+    "fact_id": "X-001",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "https://archive.ics.uci.edu/dataset/492/metro+interstate+traffic+volume"
+    ],
+    "note": "Khớp với dữ liệu, output đã lưu hoặc định nghĩa trong nguồn tương ứng.",
+    "quote": "weather_description | Nhãn văn bản | Mô tả thời tiết chi tiết hơn weather_main."
+  },
+  {
+    "claim_id": "A-067",
+    "report_location": "3.1.2. Danh sách thuộc tính và biến mục tiêu; P0111, P0112, P0113",
+    "fact_id": "B-012, X-001",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "src/features.py:212",
+      "src/features.py:217",
+      "src/features.py:223",
+      "src/features.py:239",
+      "https://archive.ics.uci.edu/dataset/492/metro+interstate+traffic+volume"
+    ],
+    "note": "Khớp với dữ liệu, output đã lưu hoặc định nghĩa trong nguồn tương ứng.",
+    "quote": "date_time | Timestamp | Khóa thời gian; nguồn tạo đặc trưng lịch."
+  },
+  {
+    "claim_id": "A-068",
+    "report_location": "3.1.2. Danh sách thuộc tính và biến mục tiêu; P0114, P0115, P0116",
+    "fact_id": "B-002, X-001",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "notebooks/preprocessing/outputs/preprocessing_manifest.json:6",
+      "notebooks/eda/EDA_general.ipynb:749",
+      "docs/report_review/2026-11-22/agent_b/read_only_checks.json:3",
+      "https://archive.ics.uci.edu/dataset/492/metro+interstate+traffic+volume"
+    ],
+    "note": "Khớp với dữ liệu, output đã lưu hoặc định nghĩa trong nguồn tương ứng.",
+    "quote": "traffic_volume | Số nguyên, xe/giờ | Biến mục tiêu."
+  },
+  {
+    "claim_id": "A-069",
+    "report_location": "3.2.1 Tổng quan và chất lượng dữ liệu; P0125, P0126",
+    "fact_id": "B-045",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "notebooks/eda/EDA_general.ipynb:568",
+      "notebooks/eda/EDA_general.ipynb:575",
+      "notebooks/eda/EDA_general.ipynb:2961",
+      "docs/report_review/2026-11-22/agent_b/read_only_checks.json:22"
+    ],
+    "note": "Khớp với dữ liệu, output đã lưu hoặc định nghĩa trong nguồn tương ứng.",
+    "quote": "Giá trị Null,Giá trị null; chuỗi rỗng hoặc chỉ có khoảng trắng | 0"
+  },
+  {
+    "claim_id": "A-070",
+    "report_location": "3.2.1 Tổng quan và chất lượng dữ liệu; P0127, P0128",
+    "fact_id": "B-002",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "notebooks/preprocessing/outputs/preprocessing_manifest.json:6",
+      "notebooks/eda/EDA_general.ipynb:749",
+      "docs/report_review/2026-11-22/agent_b/read_only_checks.json:3"
+    ],
+    "note": "Khớp với dữ liệu, output đã lưu hoặc định nghĩa trong nguồn tương ứng.",
+    "quote": "Dòng trùng hoàn toàn, không tính lần xuất hiện đầu. | 17 dòng"
+  },
+  {
+    "claim_id": "A-071",
+    "report_location": "3.2.1 Tổng quan và chất lượng dữ liệu; P0129, P0130",
+    "fact_id": "B-003",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "notebooks/eda/EDA_general.ipynb:749",
+      "notebooks/eda/EDA_general.ipynb:750",
+      "notebooks/eda/EDA_general.ipynb:1078",
+      "notebooks/eda/EDA_general.ipynb:1079"
+    ],
+    "note": "Khớp với dữ liệu, output đã lưu hoặc định nghĩa trong nguồn tương ứng.",
+    "quote": "Timestamp xuất hiện nhiều lần | 5.445 timestamp"
+  },
+  {
+    "claim_id": "A-072",
+    "report_location": "3.2.1 Tổng quan và chất lượng dữ liệu; P0131, P0132",
+    "fact_id": "B-003",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "notebooks/eda/EDA_general.ipynb:749",
+      "notebooks/eda/EDA_general.ipynb:750",
+      "notebooks/eda/EDA_general.ipynb:1078",
+      "notebooks/eda/EDA_general.ipynb:1079"
+    ],
+    "note": "Khớp với dữ liệu, output đã lưu hoặc định nghĩa trong nguồn tương ứng.",
+    "quote": "Tổng số dòng thuộc các timestamp lăpk | 13.074 dòng"
+  },
+  {
+    "claim_id": "A-073",
+    "report_location": "3.2.1 Tổng quan và chất lượng dữ liệu; P0133, P0134",
+    "fact_id": "B-003",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "notebooks/eda/EDA_general.ipynb:749",
+      "notebooks/eda/EDA_general.ipynb:750",
+      "notebooks/eda/EDA_general.ipynb:1078",
+      "notebooks/eda/EDA_general.ipynb:1079"
+    ],
+    "note": "Khớp với dữ liệu, output đã lưu hoặc định nghĩa trong nguồn tương ứng.",
+    "quote": "Timestamp có nhiều giá trị Traffic_volume khác nhau | 0"
+  },
+  {
+    "claim_id": "A-074",
+    "report_location": "3.2.1 Tổng quan và chất lượng dữ liệu; P0141, P0142, P0143, P0144",
+    "fact_id": "X-007",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "docs/report_review/2026-11-22/root_checks.json:3",
+      "docs/report_review/2026-11-22/root_checks.json:7",
+      "docs/report_review/2026-11-22/root_checks.json:31"
+    ],
+    "note": "Khớp với dữ liệu, output đã lưu hoặc định nghĩa trong nguồn tương ứng.",
+    "quote": "10/10/2012 07:00 | Rain | light rain | 6.793"
+  },
+  {
+    "claim_id": "A-075",
+    "report_location": "3.2.1 Tổng quan và chất lượng dữ liệu; P0145, P0146, P0147, P0148",
+    "fact_id": "X-007",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "docs/report_review/2026-11-22/root_checks.json:3",
+      "docs/report_review/2026-11-22/root_checks.json:7",
+      "docs/report_review/2026-11-22/root_checks.json:31"
+    ],
+    "note": "Khớp với dữ liệu, output đã lưu hoặc định nghĩa trong nguồn tương ứng.",
+    "quote": "10/10/2012 07:00 | Drizzle | light intensity drizzle | 6.793"
+  },
+  {
+    "claim_id": "A-076",
+    "report_location": "3.2.1 Tổng quan và chất lượng dữ liệu; P0155, P0156, P0157",
+    "fact_id": "B-006, B-045",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "src/preprocessing.py:42",
+      "src/preprocessing.py:49",
+      "notebooks/eda/EDA_general.ipynb:3187",
+      "notebooks/eda/EDA_general.ipynb:3261",
+      "notebooks/eda/EDA_general.ipynb:3262",
+      "notebooks/eda/EDA_general.ipynb:568",
+      "notebooks/eda/EDA_general.ipynb:575",
+      "notebooks/eda/EDA_general.ipynb:2961",
+      "docs/report_review/2026-11-22/agent_b/read_only_checks.json:22"
+    ],
+    "note": "Khớp với dữ liệu, output đã lưu hoặc định nghĩa trong nguồn tương ứng.",
+    "quote": "Nhiệt độ bằng 0 K | 10 dòng tại 10 giờ quan sát. | Không phù hợp với điều kiện quan trắc ngoài trời; cần xử lý riêng."
+  },
+  {
+    "claim_id": "A-077",
+    "report_location": "3.2.1 Tổng quan và chất lượng dữ liệu; P0158, P0159, P0160",
+    "fact_id": "B-006",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "src/preprocessing.py:42",
+      "src/preprocessing.py:49",
+      "notebooks/eda/EDA_general.ipynb:3187",
+      "notebooks/eda/EDA_general.ipynb:3261",
+      "notebooks/eda/EDA_general.ipynb:3262"
+    ],
+    "note": "Khớp với dữ liệu, output đã lưu hoặc định nghĩa trong nguồn tương ứng.",
+    "quote": "Lượng mưa cực lớn | 9.831,3 mm tại 11/07/2016 17:00. | Giá trị nghi vấn; không dùng IQR để loại mọi lượng mưa dương.."
+  },
+  {
+    "claim_id": "A-078",
+    "report_location": "3.2.1 Tổng quan và chất lượng dữ liệu; P0161, P0162, P0163",
+    "fact_id": "X-007, B-006",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "docs/report_review/2026-11-22/root_checks.json:3",
+      "docs/report_review/2026-11-22/root_checks.json:7",
+      "docs/report_review/2026-11-22/root_checks.json:31",
+      "src/preprocessing.py:42",
+      "src/preprocessing.py:49",
+      "notebooks/eda/EDA_general.ipynb:3187",
+      "notebooks/eda/EDA_general.ipynb:3261",
+      "notebooks/eda/EDA_general.ipynb:3262"
+    ],
+    "note": "Khớp với dữ liệu, output đã lưu hoặc định nghĩa trong nguồn tương ứng.",
+    "quote": "Lưu lượng bằng 0 | 23/07/2016 lúc 18:00 và 23:00. | Chưa xác minh nguyên nhân; chưa đủ căn cứ tự động xoá."
+  },
+  {
+    "claim_id": "A-079",
+    "report_location": "3.2.1 Tổng quan và chất lượng dữ liệu; P0164, P0165, P0166",
+    "fact_id": "X-007, B-005",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "docs/report_review/2026-11-22/root_checks.json:3",
+      "docs/report_review/2026-11-22/root_checks.json:7",
+      "docs/report_review/2026-11-22/root_checks.json:31",
+      "src/preprocessing.py:8",
+      "src/preprocessing.py:23",
+      "src/preprocessing.py:56",
+      "src/preprocessing.py:65",
+      "src/preprocessing.py:71"
+    ],
+    "note": "Khớp với dữ liệu, output đã lưu hoặc định nghĩa trong nguồn tương ứng.",
+    "quote": "Khác cách viết nhãn | sky is clear và Sky is Clear. | Cùng nội dung nhưng khác chữ hoa/thường."
+  },
+  {
+    "claim_id": "A-080",
+    "report_location": "3.2.1 Tổng quan và chất lượng dữ liệu; P0167, P0168, P0169",
+    "fact_id": "X-007, B-008",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "docs/report_review/2026-11-22/root_checks.json:3",
+      "docs/report_review/2026-11-22/root_checks.json:7",
+      "docs/report_review/2026-11-22/root_checks.json:31",
+      "src/data.py:101",
+      "src/data.py:109",
+      "src/data.py:115",
+      "src/data.py:117",
+      "notebooks/preprocessing/outputs/preprocessing_manifest.json:30"
+    ],
+    "note": "Khớp với dữ liệu, output đã lưu hoặc định nghĩa trong nguồn tương ứng.",
+    "quote": "Nhãn ngày lễ | Nhãn sự kiện thường ghi lúc 00:00. | Cần kiểm tra nhãn theo ngày; không suy mọi giờ có holiday = None đều là ngày thường."
+  },
+  {
+    "claim_id": "A-081",
+    "report_location": "3.2.2. Phân bố lưu lượng giao thông; P0180, P0181, P0182, P0183",
+    "fact_id": "B-041",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "notebooks/eda/EDA_general.ipynb:8344",
+      "notebooks/eda/EDA_general.ipynb:8345",
+      "notebooks/eda/EDA_general.ipynb:8346",
+      "notebooks/eda/EDA_general.ipynb:8348",
+      "notebooks/eda/EDA_general.ipynb:8351"
+    ],
+    "note": "Khớp với dữ liệu, output đã lưu hoặc định nghĩa trong nguồn tương ứng.",
+    "quote": "Trung bình | 3.290,65 | Trung vị (Q2) | 3.427,00"
+  },
+  {
+    "claim_id": "A-082",
+    "report_location": "3.2.2. Phân bố lưu lượng giao thông; P0184, P0185, P0186, P0187",
+    "fact_id": "B-041",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "notebooks/eda/EDA_general.ipynb:8344",
+      "notebooks/eda/EDA_general.ipynb:8345",
+      "notebooks/eda/EDA_general.ipynb:8346",
+      "notebooks/eda/EDA_general.ipynb:8348",
+      "notebooks/eda/EDA_general.ipynb:8351"
+    ],
+    "note": "Khớp với dữ liệu, output đã lưu hoặc định nghĩa trong nguồn tương ứng.",
+    "quote": "Độ lệch chuẩn mẫu | 1.984,77 | Khoảng tứ phân vị (IQR) | 3.703,50"
+  },
+  {
+    "claim_id": "A-083",
+    "report_location": "3.2.2. Phân bố lưu lượng giao thông; P0188, P0189, P0190, P0191",
+    "fact_id": "B-041",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "notebooks/eda/EDA_general.ipynb:8344",
+      "notebooks/eda/EDA_general.ipynb:8345",
+      "notebooks/eda/EDA_general.ipynb:8346",
+      "notebooks/eda/EDA_general.ipynb:8348",
+      "notebooks/eda/EDA_general.ipynb:8351"
+    ],
+    "note": "Khớp với dữ liệu, output đã lưu hoặc định nghĩa trong nguồn tương ứng.",
+    "quote": "Phân vị 25% (Q1) | 1.248,50 | Phân vị 75% (Q3) | 4.952,00"
+  },
+  {
+    "claim_id": "A-084",
+    "report_location": "3.2.2. Phân bố lưu lượng giao thông; P0192, P0193, P0194, P0195",
+    "fact_id": "B-041",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "notebooks/eda/EDA_general.ipynb:8344",
+      "notebooks/eda/EDA_general.ipynb:8345",
+      "notebooks/eda/EDA_general.ipynb:8346",
+      "notebooks/eda/EDA_general.ipynb:8348",
+      "notebooks/eda/EDA_general.ipynb:8351"
+    ],
+    "note": "Khớp với dữ liệu, output đã lưu hoặc định nghĩa trong nguồn tương ứng.",
+    "quote": "Nhỏ nhất | 0 | Lớn nhất | 7.280"
+  },
+  {
+    "claim_id": "A-085",
+    "report_location": "3.2.3. Lưu lượng theo thời gian; P0212, P0213, P0214, P0215",
+    "fact_id": "B-043",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "notebooks/eda/EDA_general.ipynb:8650",
+      "notebooks/eda/EDA_general.ipynb:8663",
+      "notebooks/eda/EDA_general.ipynb:8769",
+      "notebooks/eda/EDA_general.ipynb:8771",
+      "notebooks/eda/EDA_general.ipynb:8903",
+      "notebooks/eda/EDA_general.ipynb:8907"
+    ],
+    "note": "Khớp với dữ liệu, output đã lưu hoặc định nghĩa trong nguồn tương ứng.",
+    "quote": "Giờ trong ngày — 16:00 | Cao nhất | 5.708,61 | 1.707"
+  },
+  {
+    "claim_id": "A-086",
+    "report_location": "3.2.3. Lưu lượng theo thời gian; P0216, P0217, P0218, P0219",
+    "fact_id": "B-043",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "notebooks/eda/EDA_general.ipynb:8650",
+      "notebooks/eda/EDA_general.ipynb:8663",
+      "notebooks/eda/EDA_general.ipynb:8769",
+      "notebooks/eda/EDA_general.ipynb:8771",
+      "notebooks/eda/EDA_general.ipynb:8903",
+      "notebooks/eda/EDA_general.ipynb:8907"
+    ],
+    "note": "Khớp với dữ liệu, output đã lưu hoặc định nghĩa trong nguồn tương ứng.",
+    "quote": "Giờ trong ngày — 03:00 | Thấp nhất | 373,21 | 1.669"
+  },
+  {
+    "claim_id": "A-087",
+    "report_location": "3.2.3. Lưu lượng theo thời gian; P0220, P0221, P0222, P0223",
+    "fact_id": "B-043",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "notebooks/eda/EDA_general.ipynb:8650",
+      "notebooks/eda/EDA_general.ipynb:8663",
+      "notebooks/eda/EDA_general.ipynb:8769",
+      "notebooks/eda/EDA_general.ipynb:8771",
+      "notebooks/eda/EDA_general.ipynb:8903",
+      "notebooks/eda/EDA_general.ipynb:8907"
+    ],
+    "note": "Khớp với dữ liệu, output đã lưu hoặc định nghĩa trong nguồn tương ứng.",
+    "quote": "Thứ trong tuần — Thứ Sáu | Cao nhất | 3.674,78 | 5.877"
+  },
+  {
+    "claim_id": "A-088",
+    "report_location": "3.2.3. Lưu lượng theo thời gian; P0224, P0225, P0226, P0227",
+    "fact_id": "B-043",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "notebooks/eda/EDA_general.ipynb:8650",
+      "notebooks/eda/EDA_general.ipynb:8663",
+      "notebooks/eda/EDA_general.ipynb:8769",
+      "notebooks/eda/EDA_general.ipynb:8771",
+      "notebooks/eda/EDA_general.ipynb:8903",
+      "notebooks/eda/EDA_general.ipynb:8907"
+    ],
+    "note": "Khớp với dữ liệu, output đã lưu hoặc định nghĩa trong nguồn tương ứng.",
+    "quote": "Thứ trong tuần — Chủ nhật | Thấp nhất | 2.426,25 | 5.812"
+  },
+  {
+    "claim_id": "A-089",
+    "report_location": "3.2.3. Lưu lượng theo thời gian; P0228, P0229, P0230, P0231",
+    "fact_id": "B-043",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "notebooks/eda/EDA_general.ipynb:8650",
+      "notebooks/eda/EDA_general.ipynb:8663",
+      "notebooks/eda/EDA_general.ipynb:8769",
+      "notebooks/eda/EDA_general.ipynb:8771",
+      "notebooks/eda/EDA_general.ipynb:8903",
+      "notebooks/eda/EDA_general.ipynb:8907"
+    ],
+    "note": "Khớp với dữ liệu, output đã lưu hoặc định nghĩa trong nguồn tương ứng.",
+    "quote": "Tháng trong năm — Tháng 8 | Cao nhất | 3.430,32 | 3.705"
+  },
+  {
+    "claim_id": "A-090",
+    "report_location": "3.2.3. Lưu lượng theo thời gian; P0232, P0233, P0234, P0235",
+    "fact_id": "B-043",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "notebooks/eda/EDA_general.ipynb:8650",
+      "notebooks/eda/EDA_general.ipynb:8663",
+      "notebooks/eda/EDA_general.ipynb:8769",
+      "notebooks/eda/EDA_general.ipynb:8771",
+      "notebooks/eda/EDA_general.ipynb:8903",
+      "notebooks/eda/EDA_general.ipynb:8907"
+    ],
+    "note": "Khớp với dữ liệu, output đã lưu hoặc định nghĩa trong nguồn tương ứng.",
+    "quote": "Tháng trong năm — Tháng 12 | Thấp nhất | 3.040,19 | 3.337"
+  },
+  {
+    "claim_id": "A-091",
+    "report_location": "3.2.4. Mối liên  hệ giữa thời tiết và lưu lượng; P0249, P0250, P0251, P0252",
+    "fact_id": "B-042",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "notebooks/eda/EDA_general.ipynb:10391",
+      "notebooks/eda/EDA_general.ipynb:10392",
+      "notebooks/eda/EDA_general.ipynb:10393",
+      "notebooks/eda/EDA_general.ipynb:10394"
+    ],
+    "note": "Khớp với dữ liệu, output đã lưu hoặc định nghĩa trong nguồn tương ứng.",
+    "quote": "Nhiệt độ | 0,1392 | 0,1401 | 40.565"
+  },
+  {
+    "claim_id": "A-092",
+    "report_location": "3.2.4. Mối liên  hệ giữa thời tiết và lưu lượng; P0253, P0254, P0255, P0256",
+    "fact_id": "B-042",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "notebooks/eda/EDA_general.ipynb:10391",
+      "notebooks/eda/EDA_general.ipynb:10392",
+      "notebooks/eda/EDA_general.ipynb:10393",
+      "notebooks/eda/EDA_general.ipynb:10394"
+    ],
+    "note": "Khớp với dữ liệu, output đã lưu hoặc định nghĩa trong nguồn tương ứng.",
+    "quote": "Lượng mưa | −0,0134 | 0,0043 | 40.574"
+  },
+  {
+    "claim_id": "A-093",
+    "report_location": "3.2.4. Mối liên  hệ giữa thời tiết và lưu lượng; P0257, P0258, P0259, P0260",
+    "fact_id": "B-042",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "notebooks/eda/EDA_general.ipynb:10391",
+      "notebooks/eda/EDA_general.ipynb:10392",
+      "notebooks/eda/EDA_general.ipynb:10393",
+      "notebooks/eda/EDA_general.ipynb:10394"
+    ],
+    "note": "Khớp với dữ liệu, output đã lưu hoặc định nghĩa trong nguồn tương ứng.",
+    "quote": "Lượng tuyết | −0,0021 | −0,0052 | 40.575"
+  },
+  {
+    "claim_id": "A-094",
+    "report_location": "3.2.4. Mối liên  hệ giữa thời tiết và lưu lượng; P0261, P0262, P0263, P0264",
+    "fact_id": "B-042",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "notebooks/eda/EDA_general.ipynb:10391",
+      "notebooks/eda/EDA_general.ipynb:10392",
+      "notebooks/eda/EDA_general.ipynb:10393",
+      "notebooks/eda/EDA_general.ipynb:10394"
+    ],
+    "note": "Khớp với dữ liệu, output đã lưu hoặc định nghĩa trong nguồn tương ứng.",
+    "quote": "Tỷ lệ mây che phủ | 0,0783 | 0,0729 | 40.575"
+  },
+  {
+    "claim_id": "A-095",
+    "report_location": "3.2.4. Mối liên  hệ giữa thời tiết và lưu lượng; P0275, P0276, P0277, P0278",
+    "fact_id": "B-044",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "notebooks/eda/EDA_general.ipynb:1259",
+      "notebooks/eda/EDA_general.ipynb:9589",
+      "notebooks/eda/EDA_general.ipynb:9590",
+      "notebooks/eda/EDA_general.ipynb:9592",
+      "notebooks/eda/EDA_general.ipynb:9593",
+      "notebooks/eda/EDA_general.ipynb:9598",
+      "notebooks/eda/EDA_general.ipynb:9599"
+    ],
+    "note": "Khớp với dữ liệu, output đã lưu hoặc định nghĩa trong nguồn tương ứng.",
+    "quote": "Clouds | 15.127 | Snow | 2.795"
+  },
+  {
+    "claim_id": "A-096",
+    "report_location": "3.2.4. Mối liên  hệ giữa thời tiết và lưu lượng; P0279, P0280, P0281, P0282",
+    "fact_id": "B-044",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "notebooks/eda/EDA_general.ipynb:1259",
+      "notebooks/eda/EDA_general.ipynb:9589",
+      "notebooks/eda/EDA_general.ipynb:9590",
+      "notebooks/eda/EDA_general.ipynb:9592",
+      "notebooks/eda/EDA_general.ipynb:9593",
+      "notebooks/eda/EDA_general.ipynb:9598",
+      "notebooks/eda/EDA_general.ipynb:9599"
+    ],
+    "note": "Khớp với dữ liệu, output đã lưu hoặc định nghĩa trong nguồn tương ứng.",
+    "quote": "Clear | 13.371 | Smoke | 20"
+  },
+  {
+    "claim_id": "A-097",
+    "report_location": "3.2.4. Mối liên  hệ giữa thời tiết và lưu lượng; P0283, P0284, P0285, P0286",
+    "fact_id": "B-044",
+    "status": "✅ KHỚP",
+    "evidence": [
+      "notebooks/eda/EDA_general.ipynb:1259",
+      "notebooks/eda/EDA_general.ipynb:9589",
+      "notebooks/eda/EDA_general.ipynb:9590",
+      "notebooks/eda/EDA_general.ipynb:9592",
+      "notebooks/eda/EDA_general.ipynb:9593",
+      "notebooks/eda/EDA_general.ipynb:9598",
+      "notebooks/eda/EDA_general.ipynb:9599"
+    ],
+    "note": "Khớp với dữ liệu, output đã lưu hoặc định nghĩa trong nguồn tương ứng.",
+    "quote": "Rain | 5.563 | Squall | 4"
+  },
+  {
+    "claim_id": "ADD-001",
+    "report_location": "3.3; P0291–P0296",
+    "fact_id": "B-004, B-005, B-006, B-007, B-008, B-010, B-011",
+    "status": "➕ THIẾU",
+    "evidence": [
+      "src/data.py:28",
+      "src/data.py:30",
+      "src/preprocessing.py:8",
+      "src/preprocessing.py:23",
+      "src/preprocessing.py:56",
+      "src/preprocessing.py:65",
+      "src/preprocessing.py:71",
+      "src/preprocessing.py:42",
+      "src/preprocessing.py:49",
+      "notebooks/eda/EDA_general.ipynb:3187",
+      "notebooks/eda/EDA_general.ipynb:3261",
+      "notebooks/eda/EDA_general.ipynb:3262",
+      "notebooks/preprocessing/outputs/preprocessing_manifest.json:4",
+      "notebooks/preprocessing/outputs/preprocessing_manifest.json:21",
+      "notebooks/preprocessing/outputs/preprocessing_manifest.json:30",
+      "docs/report_review/2026-11-22/agent_b/read_only_checks.json:22",
+      "src/data.py:101",
+      "src/data.py:109",
+      "src/data.py:115",
+      "src/data.py:117",
+      "src/preprocessing.py:151",
+      "src/preprocessing.py:157",
+      "src/preprocessing.py:198",
+      "src/preprocessing.py:216",
+      "src/preprocessing.py:235",
+      "src/preprocessing.py:251",
+      "src/feature_experiments.py:133",
+      "src/feature_experiments.py:141",
+      "src/feature_experiments.py:148",
+      "src/feature_experiments.py:153"
+    ],
+    "note": "Thiếu quy tắc tiền xử lý, CSV bàn giao và điền thiếu theo fold.",
+    "quote": "[Nhóm bổ sung] / chưa có nội dung tại vị trí nêu trên"
+  },
+  {
+    "claim_id": "ADD-002",
+    "report_location": "3.4; P0299",
+    "fact_id": "B-012, B-013, B-014",
+    "status": "➕ THIẾU",
+    "evidence": [
+      "src/features.py:212",
+      "src/features.py:217",
+      "src/features.py:223",
+      "src/features.py:239",
+      "src/features.py:203",
+      "src/features.py:218",
+      "src/features.py:224",
+      "src/features.py:259",
+      "src/features.py:262",
+      "src/features.py:209",
+      "src/features.py:221",
+      "src/features.py:225",
+      "src/features.py:279",
+      "src/features.py:283"
+    ],
+    "note": "Thiếu A12/B27/C30 và mean_24h với tối thiểu 18 quan sát.",
+    "quote": "[Nhóm bổ sung] / chưa có nội dung tại vị trí nêu trên"
+  },
+  {
+    "claim_id": "ADD-003",
+    "report_location": "3.6.1; P0306",
+    "fact_id": "B-009, B-017, B-018",
+    "status": "➕ THIẾU",
+    "evidence": [
+      "src/preprocessing.py:137",
+      "src/preprocessing.py:140",
+      "src/preprocessing.py:147",
+      "docs/report_review/2026-11-22/agent_b/read_only_checks.json:41",
+      "src/feature_experiments.py:85",
+      "src/feature_experiments.py:87",
+      "notebooks/features/outputs/e4bc1e064317af8c/protocol.json:183",
+      "notebooks/features/outputs/e4bc1e064317af8c/fold_manifest.csv:2",
+      "notebooks/features/outputs/e4bc1e064317af8c/fold_manifest.csv:3",
+      "notebooks/features/outputs/e4bc1e064317af8c/fold_manifest.csv:4"
+    ],
+    "note": "Thiếu split, cohort, fold thực và mốc thời gian.",
+    "quote": "[Nhóm bổ sung] / chưa có nội dung tại vị trí nêu trên"
+  },
+  {
+    "claim_id": "ADD-004",
+    "report_location": "4.8; P0363",
+    "fact_id": "B-019, B-020",
+    "status": "➕ THIẾU",
+    "evidence": [
+      "src/feature_experiments.py:41",
+      "src/feature_experiments.py:42",
+      "src/feature_experiments.py:153",
+      "notebooks/features/outputs/e4bc1e064317af8c/feature_comparison.csv:2",
+      "notebooks/features/outputs/e4bc1e064317af8c/feature_comparison.csv:3",
+      "notebooks/features/outputs/e4bc1e064317af8c/feature_comparison.csv:4",
+      "notebooks/features/outputs/e4bc1e064317af8c/feature_comparison.csv:5",
+      "notebooks/features/outputs/e4bc1e064317af8c/feature_comparison.csv:6"
+    ],
+    "note": "Thiếu năm phương án FE cùng mô hình và tham số.",
+    "quote": "[Nhóm bổ sung] / chưa có nội dung tại vị trí nêu trên"
+  },
+  {
+    "claim_id": "ADD-005",
+    "report_location": "4.3; P0330",
+    "fact_id": "B-021, B-023, B-024, B-025",
+    "status": "➕ THIẾU",
+    "evidence": [
+      "src/model.py:18",
+      "src/tuning_cv.py:22",
+      "src/tuning_cv.py:56",
+      "src/tuning_cv.py:86",
+      "notebooks/tuning/outputs/rf_sampling_correction.json:408",
+      "src/tuning_cv.py:197",
+      "src/tuning_cv.py:203",
+      "src/tuning_cv.py:215",
+      "src/tuning_cv.py:228",
+      "src/tuning_cv.py:235",
+      "src/tuning_cv.py:240",
+      "docs/report_review/2026-11-22/agent_b/read_only_checks.json:118",
+      "notebooks/tuning/outputs/rf_sampling_correction.json:3",
+      "notebooks/tuning/outputs/rf_sampling_correction.json:4",
+      "notebooks/tuning/outputs/rf_sampling_correction.json:415",
+      "notebooks/tuning/outputs/comparison_summary.csv:12",
+      "notebooks/tuning/outputs/comparison_summary.csv:13",
+      "notebooks/tuning/outputs/comparison_summary.csv:14",
+      "notebooks/tuning/outputs/comparison_summary.csv:15",
+      "notebooks/tuning/outputs/comparison_summary.csv:16"
+    ],
+    "note": "Thiếu kết quả tuning sau sửa sampler RF.",
+    "quote": "[Nhóm bổ sung] / chưa có nội dung tại vị trí nêu trên"
+  },
+  {
+    "claim_id": "ADD-006",
+    "report_location": "4.1; P0325",
+    "fact_id": "B-022, B-038",
+    "status": "➕ THIẾU",
+    "evidence": [
+      "src/model.py:84",
+      "src/model.py:118",
+      "src/model.py:128",
+      "src/model.py:129",
+      "src/model.py:135",
+      "notebooks/validation/outputs/final_C30/selected_model.json:176",
+      "experiments/20-11-2026_Huy_C30_Params1/outputs/run_config.json:1596",
+      "notebooks/preprocessing/outputs/preprocessing_manifest.json:42",
+      "requirements.txt:1",
+      "requirements.txt:4"
+    ],
+    "note": "Thiếu phiên bản thực và biểu diễn riêng của Ridge/MLP.",
+    "quote": "[Nhóm bổ sung] / chưa có nội dung tại vị trí nêu trên"
+  },
+  {
+    "claim_id": "ADD-007",
+    "report_location": "3.6.6 đề xuất / 5.1; P0319/P0370",
+    "fact_id": "B-029, B-030, B-031, B-032, B-033, B-034",
+    "status": "➕ THIẾU",
+    "evidence": [
+      "experiments/22-11-2026_Huy_C30_MAE_Diversity/outputs/verification.json:2",
+      "experiments/22-11-2026_Huy_C30_MAE_Diversity/outputs/selected_option.json:2",
+      "experiments/22-11-2026_Huy_C30_MAE_Diversity/outputs/selected_option.json:5",
+      "experiments/22-11-2026_Huy_C30_MAE_Diversity/outputs/selected_option.json:7",
+      "notebooks/validation/outputs/final_C30/selected_model.json:2",
+      "notebooks/validation/outputs/final_C30/selected_model.json:3",
+      "notebooks/validation/outputs/final_C30/selected_components.csv:2",
+      "notebooks/validation/outputs/final_C30/selected_components.csv:3",
+      "notebooks/validation/outputs/final_C30/selected_components.csv:4",
+      "notebooks/validation/outputs/final_C30/selected_model.json:50",
+      "notebooks/validation/outputs/final_C30/selected_model.json:52",
+      "notebooks/validation/outputs/final_C30/selected_model.json:54",
+      "notebooks/validation/outputs/final_C30/selected_model.json:58",
+      "notebooks/validation/outputs/final_C30/selected_model.json:62",
+      "notebooks/validation/outputs/final_C30/selected_model.json:65",
+      "notebooks/validation/outputs/final_C30/selected_model.json:73",
+      "notebooks/validation/outputs/final_C30/selected_model.json:79",
+      "notebooks/validation/outputs/final_C30/selected_model.json:90",
+      "notebooks/validation/outputs/final_C30/selected_model.json:95",
+      "notebooks/validation/outputs/final_C30/selected_model.json:97",
+      "notebooks/validation/outputs/final_C30/selected_model.json:100",
+      "notebooks/validation/outputs/final_C30/selected_model.json:108",
+      "notebooks/validation/outputs/final_C30/selected_model.json:138",
+      "notebooks/validation/outputs/final_C30/selected_model.json:117",
+      "notebooks/validation/outputs/final_C30/selected_model.json:119",
+      "notebooks/validation/outputs/final_C30/selected_model.json:121",
+      "notebooks/validation/outputs/final_C30/selected_model.json:125",
+      "notebooks/validation/outputs/final_C30/selected_model.json:129",
+      "notebooks/validation/outputs/final_C30/selected_model.json:132",
+      "notebooks/validation/outputs/final_C30/validation_scope.csv:2",
+      "notebooks/validation/outputs/final_C30/validation_comparison.csv:2"
+    ],
+    "note": "Thiếu ExtraTrees, trọng số cuối, tham số và điểm validation.",
+    "quote": "[Nhóm bổ sung] / chưa có nội dung tại vị trí nêu trên"
+  },
+  {
+    "claim_id": "ADD-008",
+    "report_location": "4.5 / 5.2; P0355/P0373",
+    "fact_id": "B-035, B-036",
+    "status": "➕ THIẾU",
+    "evidence": [
+      "notebooks/validation/outputs/final_C30/paired_bootstrap.csv:2",
+      "notebooks/validation/outputs/final_C30/paired_bootstrap.csv:3",
+      "notebooks/validation/outputs/final_C30/selected_model.json:3",
+      "notebooks/validation/outputs/final_C30/selected_model.json:193",
+      "notebooks/validation/outputs/final_C30/selected_model.json:194",
+      "notebooks/validation/outputs/final_C30/selected_model.json:195",
+      "docs/report_review/2026-11-22/agent_b/read_only_checks.json:105"
+    ],
+    "note": "Thiếu hạn chế do xem lại validation, CI thăm dò và trạng thái refit/test.",
+    "quote": "[Nhóm bổ sung] / chưa có nội dung tại vị trí nêu trên"
+  },
+  {
+    "claim_id": "ADD-009",
+    "report_location": "5.3 / Phụ lục A; P0375/P0382",
+    "fact_id": "B-039, B-040",
+    "status": "➕ THIẾU",
+    "evidence": [
+      "app/demo_time_weather.py:1",
+      "app/demo_time_weather.py:6",
+      "docs/report_review/2026-11-22/agent_b/read_only_checks.json:112",
+      "notebooks/validation/README.md:14",
+      "notebooks/validation/README.md:33",
+      "notebooks/validation/README.md:41",
+      "docs/report_review/2026-11-22/agent_b/read_only_checks.json:106"
+    ],
+    "note": "Thiếu trạng thái demo và liên kết artifact vắng mặt.",
+    "quote": "[Nhóm bổ sung] / chưa có nội dung tại vị trí nêu trên"
+  },
+  {
+    "claim_id": "ADD-010",
+    "report_location": "4.9; P0366",
+    "fact_id": "B-020, B-025, B-042",
+    "status": "➕ THIẾU",
+    "evidence": [
+      "notebooks/features/outputs/e4bc1e064317af8c/feature_comparison.csv:2",
+      "notebooks/features/outputs/e4bc1e064317af8c/feature_comparison.csv:3",
+      "notebooks/features/outputs/e4bc1e064317af8c/feature_comparison.csv:4",
+      "notebooks/features/outputs/e4bc1e064317af8c/feature_comparison.csv:5",
+      "notebooks/features/outputs/e4bc1e064317af8c/feature_comparison.csv:6",
+      "notebooks/tuning/outputs/comparison_summary.csv:12",
+      "notebooks/tuning/outputs/comparison_summary.csv:13",
+      "notebooks/tuning/outputs/comparison_summary.csv:14",
+      "notebooks/tuning/outputs/comparison_summary.csv:15",
+      "notebooks/tuning/outputs/comparison_summary.csv:16",
+      "notebooks/eda/EDA_general.ipynb:10391",
+      "notebooks/eda/EDA_general.ipynb:10392",
+      "notebooks/eda/EDA_general.ipynb:10393",
+      "notebooks/eda/EDA_general.ipynb:10394"
+    ],
+    "note": "Thiếu câu trả lời RQ có bằng chứng; không suy ra thời tiết vô ích.",
+    "quote": "[Nhóm bổ sung] / chưa có nội dung tại vị trí nêu trên"
+  },
+  {
+    "claim_id": "ADD-011",
+    "report_location": "1.3 đề xuất; trước P0035",
+    "fact_id": "B-015, B-017",
+    "status": "➕ THIẾU",
+    "evidence": [
+      "src/features.py:273",
+      "src/feature_experiments.py:256",
+      "notebooks/features/README.md:17",
+      "src/feature_experiments.py:85",
+      "src/feature_experiments.py:87",
+      "notebooks/features/outputs/e4bc1e064317af8c/protocol.json:183",
+      "notebooks/features/outputs/e4bc1e064317af8c/fold_manifest.csv:2"
+    ],
+    "note": "Thiếu kịch bản thời tiết cùng giờ và dự đoán tuần tự.",
+    "quote": "[Nhóm bổ sung] / chưa có nội dung tại vị trí nêu trên"
+  },
+  {
+    "claim_id": "ADD-012",
+    "report_location": "3.2 / 5.2; P0172/P0373",
+    "fact_id": "B-016",
+    "status": "➕ THIẾU",
+    "evidence": [
+      "notebooks/eda/README.md:5",
+      "notebooks/eda/EDA_general.ipynb:16",
+      "notebooks/features/README.md:15"
+    ],
+    "note": "Thiếu phân biệt EDA toàn CSV và EDA train; không gọi toàn bộ test chưa từng được xem.",
+    "quote": "[Nhóm bổ sung] / chưa có nội dung tại vị trí nêu trên"
+  },
+  {
+    "claim_id": "ADD-013",
+    "report_location": "Phụ lục B; P0384",
+    "fact_id": "B-046",
+    "status": "➕ THIẾU",
+    "evidence": [
+      "notebooks/validation/outputs/main_rq/comparison/summary.md:1",
+      "notebooks/validation/outputs/main_rq/comparison/summary.md:13",
+      "notebooks/validation/outputs/main_rq/comparison/summary.md:25"
+    ],
+    "note": "Thiếu phân loại lịch sử khác giao thức; không xếp hạng chung.",
+    "quote": "[Nhóm bổ sung] / chưa có nội dung tại vị trí nêu trên"
+  },
+  {
+    "claim_id": "ADD-014",
+    "report_location": "1.4 / Tài liệu tham khảo; P0035/P0378",
+    "fact_id": "X-001, X-002, X-003, X-004, X-005, X-006",
+    "status": "➕ THIẾU",
+    "evidence": [
+      "https://archive.ics.uci.edu/dataset/492/metro+interstate+traffic+volume",
+      "https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.TimeSeriesSplit.html",
+      "https://scikit-learn.org/stable/modules/linear_model.html",
+      "https://scikit-learn.org/stable/modules/ensemble.html",
+      "https://scikit-learn.org/stable/modules/neural_networks_supervised.html",
+      "https://xgboost.readthedocs.io/en/stable/tutorials/model.html"
+    ],
+    "note": "Thiếu nghiên cứu liên quan và trích dẫn dữ liệu, thuật toán.",
+    "quote": "[Nhóm bổ sung] / chưa có nội dung tại vị trí nêu trên"
+  },
+  {
+    "claim_id": "ADD-015",
+    "report_location": "4.6 / 4.7; P0358/P0361",
+    "fact_id": "B-028, B-029, B-030",
+    "status": "➕ THIẾU",
+    "evidence": [
+      "experiments/21-11-2026_Huy_C30_OOF/outputs/selected_weights.json:52",
+      "notebooks/validation/outputs/final_C30/validation_comparison.csv:4",
+      "notebooks/validation/outputs/final_C30/validation_comparison.csv:5",
+      "experiments/22-11-2026_Huy_C30_MAE_Diversity/outputs/verification.json:2",
+      "experiments/22-11-2026_Huy_C30_MAE_Diversity/outputs/selected_option.json:2",
+      "experiments/22-11-2026_Huy_C30_MAE_Diversity/outputs/selected_option.json:5",
+      "experiments/22-11-2026_Huy_C30_MAE_Diversity/outputs/selected_option.json:7",
+      "notebooks/validation/outputs/final_C30/selected_model.json:2",
+      "notebooks/validation/outputs/final_C30/selected_model.json:3",
+      "notebooks/validation/outputs/final_C30/selected_components.csv:2",
+      "notebooks/validation/outputs/final_C30/selected_components.csv:3",
+      "notebooks/validation/outputs/final_C30/selected_components.csv:4"
+    ],
+    "note": "Thiếu phân biệt sai số của mô hình cũ và mô hình cuối; importance cuối chưa xác minh.",
+    "quote": "[Nhóm bổ sung] / chưa có nội dung tại vị trí nêu trên"
+  },
+  {
+    "claim_id": "ADD-016",
+    "report_location": "Thông tin chung / Phụ lục C; P0008/P0010/P0018/P0391–P0405",
+    "fact_id": "Bản chụp báo cáo",
+    "status": "➕ THIẾU",
+    "evidence": [
+      "agent_a/report_snapshot.txt; Thôngtinchung,camkết,PhụlụcC;P0008/P0010/P0018/P0391–P0405"
+    ],
+    "note": "Thông tin hành chính, đóng góp và nguồn AI còn trống; cần nhóm xác nhận.",
+    "quote": "[Nhóm bổ sung] / chưa có nội dung tại vị trí nêu trên"
+  },
+  {
+    "claim_id": "QA-001",
+    "report_location": "2.2; 28 equation native",
+    "fact_id": "X-008",
+    "status": "❓ CHƯA XÁC MINH",
+    "evidence": [
+      "agent_a/snapshot_metadata.json",
+      "agent_a/report_snapshot.txt"
+    ],
+    "note": "API trả nội dung rỗng cho 28 equation native. Đã xem chín ảnh nhưng chưa kiểm ký hiệu native và bố cục trang.",
+    "quote": "[EQUATION] là ký hiệu của bản trích xuất, không phải nội dung trống đã xác nhận trong Docs."
+  }
+]

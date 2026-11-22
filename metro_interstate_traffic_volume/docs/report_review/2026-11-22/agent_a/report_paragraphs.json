@@ -1,0 +1,3266 @@
+[
+  {
+    "id": "P0001",
+    "location": "Tab t.0/body",
+    "startIndex": 1,
+    "endIndex": 29,
+    "style": "HEADING_1",
+    "text": "BÁO CÁO CUỐI KỲ MÔN MÁY HỌC"
+  },
+  {
+    "id": "P0002",
+    "location": "Tab t.0/body",
+    "startIndex": 29,
+    "endIndex": 119,
+    "style": "NORMAL_TEXT",
+    "text": "DỰ ĐOÁN LƯU LƯỢNG GIAO THÔNG THEO GIỜ DỰA TRÊN ĐẶC TRƯNG THỜI GIAN VÀ ĐIỀU KIỆN THỜI TIẾT"
+  },
+  {
+    "id": "P0003",
+    "location": "Tab t.0/body",
+    "startIndex": 119,
+    "endIndex": 156,
+    "style": "NORMAL_TEXT",
+    "text": "Nhóm 07 | Nhóm trưởng: Trần Nhựt Huy"
+  },
+  {
+    "id": "P0004",
+    "location": "Tab t.0/body",
+    "startIndex": 156,
+    "endIndex": 172,
+    "style": "HEADING_2",
+    "text": "Thông tin chung"
+  },
+  {
+    "id": "P0005",
+    "location": "Tab t.0/body/Table1/R1C1",
+    "startIndex": 175,
+    "endIndex": 184,
+    "style": "NORMAL_TEXT",
+    "text": "Hạng mục"
+  },
+  {
+    "id": "P0006",
+    "location": "Tab t.0/body/Table1/R1C2",
+    "startIndex": 185,
+    "endIndex": 194,
+    "style": "NORMAL_TEXT",
+    "text": "Nội dung"
+  },
+  {
+    "id": "P0007",
+    "location": "Tab t.0/body/Table1/R2C1",
+    "startIndex": 196,
+    "endIndex": 217,
+    "style": "NORMAL_TEXT",
+    "text": "Giảng viên hướng dẫn"
+  },
+  {
+    "id": "P0008",
+    "location": "Tab t.0/body/Table1/R2C2",
+    "startIndex": 218,
+    "endIndex": 221,
+    "style": "NORMAL_TEXT",
+    "text": "[Đ"
+  },
+  {
+    "id": "P0009",
+    "location": "Tab t.0/body/Table1/R3C1",
+    "startIndex": 223,
+    "endIndex": 236,
+    "style": "NORMAL_TEXT",
+    "text": "Lớp học phần"
+  },
+  {
+    "id": "P0010",
+    "location": "Tab t.0/body/Table1/R3C2",
+    "startIndex": 237,
+    "endIndex": 244,
+    "style": "NORMAL_TEXT",
+    "text": "[Điền]"
+  },
+  {
+    "id": "P0011",
+    "location": "Tab t.0/body/Table1/R4C1",
+    "startIndex": 246,
+    "endIndex": 257,
+    "style": "NORMAL_TEXT",
+    "text": "Thành viên"
+  },
+  {
+    "id": "P0012",
+    "location": "Tab t.0/body/Table1/R4C2",
+    "startIndex": 258,
+    "endIndex": 286,
+    "style": "NORMAL_TEXT",
+    "text": "Phùng Anh Vũ (3124411351);"
+  },
+  {
+    "id": "P0013",
+    "location": "Tab t.0/body/Table1/R4C2",
+    "startIndex": 286,
+    "endIndex": 319,
+    "style": "NORMAL_TEXT",
+    "text": "Nguyễn Hoàng Phúc (3124411236);"
+  },
+  {
+    "id": "P0014",
+    "location": "Tab t.0/body/Table1/R4C2",
+    "startIndex": 319,
+    "endIndex": 348,
+    "style": "NORMAL_TEXT",
+    "text": "Trần Nhựt Huy (3124411112);"
+  },
+  {
+    "id": "P0015",
+    "location": "Tab t.0/body/Table1/R4C2",
+    "startIndex": 348,
+    "endIndex": 374,
+    "style": "NORMAL_TEXT",
+    "text": "Bùi Nhật Hào (3124411077)"
+  },
+  {
+    "id": "P0016",
+    "location": "Tab t.0/body",
+    "startIndex": 375,
+    "endIndex": 420,
+    "style": "HEADING_2",
+    "text": "Cam kết trung thực học thuật và nguồn hỗ trợ"
+  },
+  {
+    "id": "P0017",
+    "location": "Tab t.0/body",
+    "startIndex": 420,
+    "endIndex": 571,
+    "style": "NORMAL_TEXT",
+    "text": "Gợi ý: Cam kết sản phẩm là của nhóm; ghi rõ nguồn mã, notebook, thư viện và công cụ AI đã tham khảo/sử dụng (đề bài yêu cầu trích dẫn khi có dùng AI)."
+  },
+  {
+    "id": "P0018",
+    "location": "Tab t.0/body",
+    "startIndex": 571,
+    "endIndex": 586,
+    "style": "NORMAL_TEXT",
+    "text": "[Nhóm bổ sung]"
+  },
+  {
+    "id": "P0019",
+    "location": "Tab t.0/body",
+    "startIndex": 586,
+    "endIndex": 588,
+    "style": "HEADING_2",
+    "text": "[PAGE BREAK]"
+  },
+  {
+    "id": "P0020",
+    "location": "Tab t.0/body",
+    "startIndex": 588,
+    "endIndex": 596,
+    "style": "HEADING_2",
+    "text": "Mục lục"
+  },
+  {
+    "id": "P0021",
+    "location": "Tab t.0/body",
+    "startIndex": 596,
+    "endIndex": 728,
+    "style": "NORMAL_TEXT",
+    "text": "Gợi ý: Word/Docs: chèn mục lục tự động sau khi hoàn thiện nội dung. Có thể thêm Danh mục hình, Danh mục bảng, Danh mục từ viết tắt."
+  },
+  {
+    "id": "P0022",
+    "location": "Tab t.0/body",
+    "startIndex": 728,
+    "endIndex": 747,
+    "style": "NORMAL_TEXT",
+    "text": "[Cập nhật mục lục]"
+  },
+  {
+    "id": "P0023",
+    "location": "Tab t.0/body",
+    "startIndex": 747,
+    "endIndex": 749,
+    "style": "HEADING_2",
+    "text": "[PAGE BREAK]"
+  },
+  {
+    "id": "P0024",
+    "location": "Tab t.0/body",
+    "startIndex": 749,
+    "endIndex": 770,
+    "style": "HEADING_2",
+    "text": "Chương 1. Giới thiệu"
+  },
+  {
+    "id": "P0025",
+    "location": "Tab t.0/body",
+    "startIndex": 770,
+    "endIndex": 802,
+    "style": "HEADING_3",
+    "text": "1.1. Bối cảnh và ý nghĩa đề tài"
+  },
+  {
+    "id": "P0026",
+    "location": "Tab t.0/body",
+    "startIndex": 802,
+    "endIndex": 1069,
+    "style": "NORMAL_TEXT",
+    "text": "Mỗi năm, một tài xế ở Mỹ mất trung 49 giờ vì tắc đường vậy muốn biết giờ nào đường nào sẽ đông thì sao?Cùng một con đường  7 giờ sáng và 10 giờ sáng có thể khác nhau hoàn toàn để biết trước các khung giờ trên có lưu lượng như thế nào đó là mục tiêu của đề tài này."
+  },
+  {
+    "id": "P0027",
+    "location": "Tab t.0/body",
+    "startIndex": 1069,
+    "endIndex": 1105,
+    "style": "HEADING_3",
+    "text": "1.2. Mục tiêu và câu hỏi nghiên cứu"
+  },
+  {
+    "id": "P0028",
+    "location": "Tab t.0/body",
+    "startIndex": 1105,
+    "endIndex": 1251,
+    "style": "NORMAL_TEXT",
+    "text": "Mục tiêu nghiên cứu xác định các yếu tố ảnh hưởng đến lưu lượng giao thông trên đường I-94 và xây dựng mô hình dự đoán lưu lượng theo thời gian."
+  },
+  {
+    "id": "P0029",
+    "location": "Tab t.0/body",
+    "startIndex": 1251,
+    "endIndex": 1268,
+    "style": "NORMAL_TEXT",
+    "text": "Mục tiêu cụ thể:"
+  },
+  {
+    "id": "P0030",
+    "location": "Tab t.0/body",
+    "startIndex": 1268,
+    "endIndex": 1361,
+    "style": "NORMAL_TEXT",
+    "text": "Làm sạch dữ liệu và mô tả quy luật lưu lượng theo giờ , thứ , ngày , tháng, mua và theo năm."
+  },
+  {
+    "id": "P0031",
+    "location": "Tab t.0/body",
+    "startIndex": 1361,
+    "endIndex": 1408,
+    "style": "NORMAL_TEXT",
+    "text": "Đánh giá ảnh hưởng của thời tiết đến lưu lượng"
+  },
+  {
+    "id": "P0032",
+    "location": "Tab t.0/body",
+    "startIndex": 1408,
+    "endIndex": 1468,
+    "style": "NORMAL_TEXT",
+    "text": "Đánh giá ảnh hưởng của ngày lễ so với ngày thường cùng thứ."
+  },
+  {
+    "id": "P0033",
+    "location": "Tab t.0/body",
+    "startIndex": 1468,
+    "endIndex": 1517,
+    "style": "NORMAL_TEXT",
+    "text": "Xây dựng và so sánh các mô hình dự báo lưu lượng"
+  },
+  {
+    "id": "P0034",
+    "location": "Tab t.0/body",
+    "startIndex": 1517,
+    "endIndex": 1554,
+    "style": "NORMAL_TEXT",
+    "text": "Rút ra gợi ý cho quản lý giao thông."
+  },
+  {
+    "id": "P0035",
+    "location": "Tab t.0/body",
+    "startIndex": 1554,
+    "endIndex": 1612,
+    "style": "HEADING_3",
+    "text": "1.4. Tổng quan các nghiên cứu và hướng tiếp cận liên quan"
+  },
+  {
+    "id": "P0036",
+    "location": "Tab t.0/body",
+    "startIndex": 1612,
+    "endIndex": 1632,
+    "style": "HEADING_3",
+    "text": "1.5. Bố cục báo cáo"
+  },
+  {
+    "id": "P0037",
+    "location": "Tab t.0/body",
+    "startIndex": 1632,
+    "endIndex": 1634,
+    "style": "HEADING_2",
+    "text": "[PAGE BREAK]"
+  },
+  {
+    "id": "P0038",
+    "location": "Tab t.0/body",
+    "startIndex": 1634,
+    "endIndex": 1684,
+    "style": "HEADING_2",
+    "text": "Chương 2. Cơ sở lý thuyết và nghiên cứu liên quan"
+  },
+  {
+    "id": "P0039",
+    "location": "Tab t.0/body",
+    "startIndex": 1684,
+    "endIndex": 1726,
+    "style": "HEADING_3",
+    "text": "2.1. Bài toán hồi quy và mô hình baseline"
+  },
+  {
+    "id": "P0040",
+    "location": "Tab t.0/body",
+    "startIndex": 1726,
+    "endIndex": 1938,
+    "style": "NORMAL_TEXT",
+    "text": "Baseline thứ–giờ dự đoán bằng trung bình traffic_volume của cùng thứ và giờ trong train, dùng trung bình toàn train nếu thiếu nhóm. Seasonal naive dự đoán bằng quan sát tại t−168h; chỉ so trên cohort đủ lịch sử."
+  },
+  {
+    "id": "P0041",
+    "location": "Tab t.0/body",
+    "startIndex": 1938,
+    "endIndex": 1966,
+    "style": "HEADING_3",
+    "text": "2.2. Các thuật toán sử dụng"
+  },
+  {
+    "id": "P0042",
+    "location": "Tab t.0/body/Table2/R1C1",
+    "startIndex": 1969,
+    "endIndex": 1980,
+    "style": "NORMAL_TEXT",
+    "text": "Thuật toán"
+  },
+  {
+    "id": "P0043",
+    "location": "Tab t.0/body/Table2/R1C2",
+    "startIndex": 1981,
+    "endIndex": 1990,
+    "style": "NORMAL_TEXT",
+    "text": "Ý nghĩa"
+  },
+  {
+    "id": "P0044",
+    "location": "Tab t.0/body/Table2/R2C1",
+    "startIndex": 1992,
+    "endIndex": 2022,
+    "style": "NORMAL_TEXT",
+    "text": "Linear Regression (LR)/ Ridge"
+  },
+  {
+    "id": "P0045",
+    "location": "Tab t.0/body/Table2/R2C2",
+    "startIndex": 2023,
+    "endIndex": 2078,
+    "style": "NORMAL_TEXT",
+    "text": "Quan hệ tuyến tính, ngoài ra Ridge còn có phạt thêm L2"
+  },
+  {
+    "id": "P0046",
+    "location": "Tab t.0/body/Table2/R3C1",
+    "startIndex": 2080,
+    "endIndex": 2100,
+    "style": "NORMAL_TEXT",
+    "text": "Random Forest ̣(RF)"
+  },
+  {
+    "id": "P0047",
+    "location": "Tab t.0/body/Table2/R3C2",
+    "startIndex": 2101,
+    "endIndex": 2134,
+    "style": "NORMAL_TEXT",
+    "text": "Trung bình dự đoán của nhiều cây"
+  },
+  {
+    "id": "P0048",
+    "location": "Tab t.0/body/Table2/R4C1",
+    "startIndex": 2136,
+    "endIndex": 2154,
+    "style": "NORMAL_TEXT",
+    "text": "Gradient Boosting"
+  },
+  {
+    "id": "P0049",
+    "location": "Tab t.0/body/Table2/R4C2",
+    "startIndex": 2155,
+    "endIndex": 2197,
+    "style": "NORMAL_TEXT",
+    "text": "Bổ sung cây tuần tự để cải thiện hàm loss"
+  },
+  {
+    "id": "P0050",
+    "location": "Tab t.0/body/Table2/R5C1",
+    "startIndex": 2199,
+    "endIndex": 2203,
+    "style": "NORMAL_TEXT",
+    "text": "MLP"
+  },
+  {
+    "id": "P0051",
+    "location": "Tab t.0/body/Table2/R5C2",
+    "startIndex": 2204,
+    "endIndex": 2258,
+    "style": "NORMAL_TEXT",
+    "text": "Nhiều tầng phi tuyến, nhạy với thang đo và tối ưu hóa"
+  },
+  {
+    "id": "P0052",
+    "location": "Tab t.0/body/Table2/R6C1",
+    "startIndex": 2260,
+    "endIndex": 2269,
+    "style": "NORMAL_TEXT",
+    "text": "XGBoost"
+  },
+  {
+    "id": "P0053",
+    "location": "Tab t.0/body/Table2/R6C2",
+    "startIndex": 2270,
+    "endIndex": 2315,
+    "style": "NORMAL_TEXT",
+    "text": "Boosting  các cây theo cơ chế regularization"
+  },
+  {
+    "id": "P0054",
+    "location": "Tab t.0/body",
+    "startIndex": 2317,
+    "endIndex": 2350,
+    "style": "NORMAL_TEXT",
+    "text": "Linear Regression (LR) và Ridge:"
+  },
+  {
+    "id": "P0055",
+    "location": "Tab t.0/body",
+    "startIndex": 2350,
+    "endIndex": 2502,
+    "style": "NORMAL_TEXT",
+    "text": "Linear Regression giả định đầu ra là tổ hợp tuyến tính của các đặc trưng: [EQUATION]. Tham số được chọn để cực tiểu sai số bình phương trung bình:"
+  },
+  {
+    "id": "P0056",
+    "location": "Tab t.0/body",
+    "startIndex": 2502,
+    "endIndex": 2580,
+    "style": "NORMAL_TEXT",
+    "text": "[EQUATION]"
+  },
+  {
+    "id": "P0057",
+    "location": "Tab t.0/body",
+    "startIndex": 2580,
+    "endIndex": 2694,
+    "style": "NORMAL_TEXT",
+    "text": "Ridge thêm số hạng phạt L2 để thu nhỏ trọng số, giúp giảm phương sai khi các đặc trưng tương quan mạnh với nhau:"
+  },
+  {
+    "id": "P0058",
+    "location": "Tab t.0/body",
+    "startIndex": 2694,
+    "endIndex": 2756,
+    "style": "NORMAL_TEXT",
+    "text": "[EQUATION]"
+  },
+  {
+    "id": "P0059",
+    "location": "Tab t.0/body",
+    "startIndex": 2756,
+    "endIndex": 2903,
+    "style": "NORMAL_TEXT",
+    "text": "Hệ số [EQUATION] điều chỉnh mức phạt (thường không phạt [EQUATION]). Do phạt phụ thuộc độ lớn của [EQUATION], các đặc trưng cần được chuẩn hóa trước khi huấn luyện."
+  },
+  {
+    "id": "P0060",
+    "location": "Tab t.0/body",
+    "startIndex": 2903,
+    "endIndex": 3145,
+    "style": "NORMAL_TEXT",
+    "text": "Random Forest (RF): huấn luyện với [EQUATION] cây quyết định, mỗi cây trên một mẫu bootstrap của dữ liệu. Tại mỗi nút, cây chỉ xét một tập con ngẫu nhiên [EQUATION] đặc trưng để chọn điểm chia. Hai nguồn ngẫu nhiên này làm các cây ít tương quan với nhau."
+  },
+  {
+    "id": "P0061",
+    "location": "Tab t.0/body",
+    "startIndex": 3146,
+    "endIndex": 3176,
+    "style": "NORMAL_TEXT",
+    "text": "[EQUATION]"
+  },
+  {
+    "id": "P0062",
+    "location": "Tab t.0/body",
+    "startIndex": 3176,
+    "endIndex": 3405,
+    "style": "NORMAL_TEXT",
+    "text": "Với bài toán phân loại, kết quả lấy theo đa số phiếu. Việc lấy trung bình giúp giảm phương sai so với một cây đơn mà gần như không tăng độ chệch. Sai số out-of-bag (OOB) cho ước lượng đánh giá mà không cần tập validation riêng."
+  },
+  {
+    "id": "P0063",
+    "location": "Tab t.0/body",
+    "startIndex": 3405,
+    "endIndex": 3575,
+    "style": "NORMAL_TEXT",
+    "text": "Gradient Boosting (GB): xây mô hình cộng tính, mỗi cây mới sửa lỗi của mô hình hiện tại. Tại bước [EQUATION], cây [EQUATION] được khớp vào phần dư giả (âm gradient của hàm loss):"
+  },
+  {
+    "id": "P0064",
+    "location": "Tab t.0/body",
+    "startIndex": 3575,
+    "endIndex": 3632,
+    "style": "NORMAL_TEXT",
+    "text": "[EQUATION]"
+  },
+  {
+    "id": "P0065",
+    "location": "Tab t.0/body",
+    "startIndex": 3632,
+    "endIndex": 3666,
+    "style": "NORMAL_TEXT",
+    "text": "[EQUATION]"
+  },
+  {
+    "id": "P0066",
+    "location": "Tab t.0/body",
+    "startIndex": 3666,
+    "endIndex": 3839,
+    "style": "NORMAL_TEXT",
+    "text": "Với loss bình phương, [EQUATION], tức đúng là phần dư. Tốc độ học [EQUATION] làm mỗi cây đóng góp nhỏ, đổi lại cần nhiều cây hơn nhưng khái quát tốt hơn."
+  },
+  {
+    "id": "P0067",
+    "location": "Tab t.0/body",
+    "startIndex": 3839,
+    "endIndex": 3958,
+    "style": "NORMAL_TEXT",
+    "text": "MLP: gồm nhiều tầng, mỗi tầng là phép biến đổi tuyến tính theo sau bởi hàm kích hoạt phi tuyến [EQUATION] (ReLU, GELU, ...):"
+  },
+  {
+    "id": "P0068",
+    "location": "Tab t.0/body",
+    "startIndex": 3958,
+    "endIndex": 4035,
+    "style": "NORMAL_TEXT",
+    "text": "[EQUATION]"
+  },
+  {
+    "id": "P0069",
+    "location": "Tab t.0/body",
+    "startIndex": 4035,
+    "endIndex": 4283,
+    "style": "NORMAL_TEXT",
+    "text": "Tham số [EQUATION] được cập nhật bằng lan truyền ngược và gradient descent: [EQUATION] (hoặc biến thể như Adam). MLP nhạy với thang đo của đầu vào nên cần chuẩn hóa dữ liệu. Kết quả cũng phụ thuộc nhiều vào khởi tạo, tốc độ học [EQUATION] và điều kiện dừng."
+  },
+  {
+    "id": "P0070",
+    "location": "Tab t.0/body",
+    "startIndex": 4283,
+    "endIndex": 4416,
+    "style": "NORMAL_TEXT",
+    "text": "XGBoost (XGB): là Gradient Boosting có thêm regularization trực tiếp trong hàm mục tiêu, và dùng khai triển Taylor bậc hai của loss:"
+  },
+  {
+    "id": "P0071",
+    "location": "Tab t.0/body",
+    "startIndex": 4416,
+    "endIndex": 4619,
+    "style": "NORMAL_TEXT",
+    "text": "[IMAGE kix.w9z2mkqqadwv]Trong đó [EQUATION] là số lá và [EQUATION] là trọng số lá. Với [EQUATION] là đạo hàm bậc một và bậc hai của loss, [EQUATION] và [EQUATION], trọng số tối ưu của lá và độ lợi khi chia nút là:"
+  },
+  {
+    "id": "P0072",
+    "location": "Tab t.0/body",
+    "startIndex": 4619,
+    "endIndex": 4621,
+    "style": "NORMAL_TEXT",
+    "text": "[IMAGE kix.9ruxm9cqjlyg]"
+  },
+  {
+    "id": "P0073",
+    "location": "Tab t.0/body",
+    "startIndex": 4621,
+    "endIndex": 4714,
+    "style": "NORMAL_TEXT",
+    "text": "Tham số [EQUATION] và [EQUATION] kiểm soát độ phức tạp của cây: nút chỉ được chia khi độ lợi lớn hơn [EQUATION]."
+  },
+  {
+    "id": "P0074",
+    "location": "Tab t.0/body",
+    "startIndex": 4714,
+    "endIndex": 4742,
+    "style": "HEADING_3",
+    "text": "2.3. Độ đo đánh giá hồi quy"
+  },
+  {
+    "id": "P0075",
+    "location": "Tab t.0/body",
+    "startIndex": 4742,
+    "endIndex": 4837,
+    "style": "NORMAL_TEXT",
+    "text": "Đánh giá hồi quy bằng 3 thông số sau, với eᵢ = yᵢ − ŷᵢ và ȳ là trung bình y trên tập đang xét:"
+  },
+  {
+    "id": "P0076",
+    "location": "Tab t.0/body",
+    "startIndex": 4837,
+    "endIndex": 4839,
+    "style": "NORMAL_TEXT",
+    "text": "[IMAGE kix.3xshvl3zek52]"
+  },
+  {
+    "id": "P0077",
+    "location": "Tab t.0/body",
+    "startIndex": 4839,
+    "endIndex": 4841,
+    "style": "NORMAL_TEXT",
+    "text": "[IMAGE kix.ojenq5gde4a2]"
+  },
+  {
+    "id": "P0078",
+    "location": "Tab t.0/body",
+    "startIndex": 4841,
+    "endIndex": 4843,
+    "style": "NORMAL_TEXT",
+    "text": "[IMAGE kix.107jhofbxxr9]"
+  },
+  {
+    "id": "P0079",
+    "location": "Tab t.0/body",
+    "startIndex": 4843,
+    "endIndex": 5103,
+    "style": "NORMAL_TEXT",
+    "text": "MAE và RMSE có đơn vị xe/giờ. MAE là sai số tuyệt đối trung bình, còn RMSE phạt nặng hơn các sai số lớn. R² không có đơn vị: nó so sai số của mô hình với sai số của cách luôn dự đoán ȳ, bằng 1 khi dự đoán hoàn hảo, bằng 0 khi ngang cách đó và âm khi kém hơn."
+  },
+  {
+    "id": "P0080",
+    "location": "Tab t.0/body",
+    "startIndex": 5103,
+    "endIndex": 5337,
+    "style": "NORMAL_TEXT",
+    "text": "MAE và RMSE có thể xếp hạng các mô hình khác nhau, nên báo cáo cả hai và nêu rõ metric dùng để chọn tham số. Các hàm đánh giá hiện tại cắt dự đoán âm về 0 trước khi tính điểm, nên mọi mô hình được so sánh phải dùng cùng quy tắc này."
+  },
+  {
+    "id": "P0081",
+    "location": "Tab t.0/body",
+    "startIndex": 5337,
+    "endIndex": 5411,
+    "style": "HEADING_3",
+    "text": "2.4. Dữ liệu chuỗi thời gian, chia dữ liệu theo thời gian và data leakage"
+  },
+  {
+    "id": "P0082",
+    "location": "Tab t.0/body",
+    "startIndex": 5411,
+    "endIndex": 5629,
+    "style": "NORMAL_TEXT",
+    "text": "Dữ liệu được sắp theo timestamp, nên phần huấn luyện luôn đứng trước phần đánh giá. Tuning dùng Time Series Split trên tập train. Imputation, encoder và scaler có học thống kê phải được fit trên fold-train tương ứng."
+  },
+  {
+    "id": "P0083",
+    "location": "Tab t.0/body",
+    "startIndex": 5629,
+    "endIndex": 5967,
+    "style": "HEADING_2",
+    "text": "Theo tài liệu TimeSeriesSplit, các fold đánh giá chỉ phủ cùng một khoảng thời gian khi các mẫu cách đều. Dữ liệu ở đây thiếu giờ, nên các fold có cùng số hàng chưa chắc phủ cùng khoảng lịch. Vì vậy, khi diễn giải độ ổn định, cần ghi mốc thời gian và số mẫu của từng fold, và chỉ mô tả các fold là cửa sổ lịch bằng nhau nếu đã kiểm tra. [PAGE BREAK]"
+  },
+  {
+    "id": "P0084",
+    "location": "Tab t.0/body",
+    "startIndex": 5967,
+    "endIndex": 6000,
+    "style": "HEADING_2",
+    "text": "Chương 3. Dữ liệu và phương pháp"
+  },
+  {
+    "id": "P0085",
+    "location": "Tab t.0/body",
+    "startIndex": 6000,
+    "endIndex": 6019,
+    "style": "HEADING_3",
+    "text": "3.1. Mô tả dữ liệu"
+  },
+  {
+    "id": "P0086",
+    "location": "Tab t.0/body",
+    "startIndex": 6019,
+    "endIndex": 6061,
+    "style": "HEADING_4",
+    "text": "3.1.1. Nguồn dữ liệu và phạm vi và quy mô"
+  },
+  {
+    "id": "P0087",
+    "location": "Tab t.0/body",
+    "startIndex": 6061,
+    "endIndex": 6402,
+    "style": "NORMAL_TEXT",
+    "text": "Bộ Metro Interstate Traffic Volume do John Hogue công bố trên UCI năm 2019. Dữ liệu ghi lưu lượng theo giờ tại trạm ATR 301, I-94 hướng Tây, khu vực Minneapolis-St Paul, và phát hành theo CC BY 4.0. CSV của dự án có 48.204 dòng, 9 cột gồm 8 đầu vào và một biến mục tiêu; timestamp trải từ 02/10/2012 09:00 đến 30/09/2018 23:00. Nguồn: UCI."
+  },
+  {
+    "id": "P0088",
+    "location": "Tab t.0/body",
+    "startIndex": 6402,
+    "endIndex": 6732,
+    "style": "NORMAL_TEXT",
+    "text": "Các số kiểm tra riêng từ CSV: 40.575 timestamp duy nhất, 7.629 dòng vượt số timestamp duy nhất và 11.976 giờ không có quan sát trong lưới giờ từ đầu đến cuối. 7.629 là số dòng dư theo khóa thời gian, chưa chắc là số bản ghi trùng hoàn toàn. Số giờ thiếu tính trên timestamp không gắn timezone như trong file; chưa phân tích DST."
+  },
+  {
+    "id": "P0089",
+    "location": "Tab t.0/body",
+    "startIndex": 6732,
+    "endIndex": 6777,
+    "style": "HEADING_4",
+    "text": "3.1.2. Danh sách thuộc tính và biến mục tiêu"
+  },
+  {
+    "id": "P0090",
+    "location": "Tab t.0/body/Table3/R1C1",
+    "startIndex": 6780,
+    "endIndex": 6791,
+    "style": "NORMAL_TEXT",
+    "text": "Thuộc tính"
+  },
+  {
+    "id": "P0091",
+    "location": "Tab t.0/body/Table3/R1C2",
+    "startIndex": 6792,
+    "endIndex": 6806,
+    "style": "NORMAL_TEXT",
+    "text": "Kiểu / đơn vị"
+  },
+  {
+    "id": "P0092",
+    "location": "Tab t.0/body/Table3/R1C3",
+    "startIndex": 6807,
+    "endIndex": 6824,
+    "style": "NORMAL_TEXT",
+    "text": "Vai trò và mô tả"
+  },
+  {
+    "id": "P0093",
+    "location": "Tab t.0/body/Table3/R2C1",
+    "startIndex": 6826,
+    "endIndex": 6834,
+    "style": "NORMAL_TEXT",
+    "text": "holiday"
+  },
+  {
+    "id": "P0094",
+    "location": "Tab t.0/body/Table3/R2C2",
+    "startIndex": 6835,
+    "endIndex": 6840,
+    "style": "NORMAL_TEXT",
+    "text": "Nhãn"
+  },
+  {
+    "id": "P0095",
+    "location": "Tab t.0/body/Table3/R2C3",
+    "startIndex": 6841,
+    "endIndex": 6961,
+    "style": "NORMAL_TEXT",
+    "text": "Ngày lễ quốc gia Mỹ và ngày lễ khu vực (Minnesota State Fair). Chuỗi None là một nhãn hợp lệ, không phải giá trị thiếu."
+  },
+  {
+    "id": "P0096",
+    "location": "Tab t.0/body/Table3/R3C1",
+    "startIndex": 6963,
+    "endIndex": 6968,
+    "style": "NORMAL_TEXT",
+    "text": "temp"
+  },
+  {
+    "id": "P0097",
+    "location": "Tab t.0/body/Table3/R3C2",
+    "startIndex": 6969,
+    "endIndex": 6980,
+    "style": "NORMAL_TEXT",
+    "text": "Số thực, K"
+  },
+  {
+    "id": "P0098",
+    "location": "Tab t.0/body/Table3/R3C3",
+    "startIndex": 6981,
+    "endIndex": 7042,
+    "style": "NORMAL_TEXT",
+    "text": "Nhiệt độ trung bình theo giờ; đổi sang °C khi tạo đặc trưng."
+  },
+  {
+    "id": "P0099",
+    "location": "Tab t.0/body/Table3/R4C1",
+    "startIndex": 7044,
+    "endIndex": 7061,
+    "style": "NORMAL_TEXT",
+    "text": "rain_1h, snow_1h"
+  },
+  {
+    "id": "P0100",
+    "location": "Tab t.0/body/Table3/R4C2",
+    "startIndex": 7062,
+    "endIndex": 7074,
+    "style": "NORMAL_TEXT",
+    "text": "Số thực, mm"
+  },
+  {
+    "id": "P0101",
+    "location": "Tab t.0/body/Table3/R4C3",
+    "startIndex": 7075,
+    "endIndex": 7111,
+    "style": "NORMAL_TEXT",
+    "text": "Lượng mưa và lượng tuyết trong giờ."
+  },
+  {
+    "id": "P0102",
+    "location": "Tab t.0/body/Table3/R5C1",
+    "startIndex": 7113,
+    "endIndex": 7124,
+    "style": "NORMAL_TEXT",
+    "text": "clouds_all"
+  },
+  {
+    "id": "P0103",
+    "location": "Tab t.0/body/Table3/R5C2",
+    "startIndex": 7125,
+    "endIndex": 7138,
+    "style": "NORMAL_TEXT",
+    "text": "Số nguyên, %"
+  },
+  {
+    "id": "P0104",
+    "location": "Tab t.0/body/Table3/R5C3",
+    "startIndex": 7139,
+    "endIndex": 7155,
+    "style": "NORMAL_TEXT",
+    "text": "Độ che phủ mây."
+  },
+  {
+    "id": "P0105",
+    "location": "Tab t.0/body/Table3/R6C1",
+    "startIndex": 7157,
+    "endIndex": 7170,
+    "style": "NORMAL_TEXT",
+    "text": "weather_main"
+  },
+  {
+    "id": "P0106",
+    "location": "Tab t.0/body/Table3/R6C2",
+    "startIndex": 7171,
+    "endIndex": 7184,
+    "style": "NORMAL_TEXT",
+    "text": "Nhãn văn bản"
+  },
+  {
+    "id": "P0107",
+    "location": "Tab t.0/body/Table3/R6C3",
+    "startIndex": 7185,
+    "endIndex": 7218,
+    "style": "NORMAL_TEXT",
+    "text": "Mô tả thời tiết ngắn (nhóm lớn)."
+  },
+  {
+    "id": "P0108",
+    "location": "Tab t.0/body/Table3/R7C1",
+    "startIndex": 7220,
+    "endIndex": 7240,
+    "style": "NORMAL_TEXT",
+    "text": "weather_description"
+  },
+  {
+    "id": "P0109",
+    "location": "Tab t.0/body/Table3/R7C2",
+    "startIndex": 7241,
+    "endIndex": 7254,
+    "style": "NORMAL_TEXT",
+    "text": "Nhãn văn bản"
+  },
+  {
+    "id": "P0110",
+    "location": "Tab t.0/body/Table3/R7C3",
+    "startIndex": 7255,
+    "endIndex": 7298,
+    "style": "NORMAL_TEXT",
+    "text": "Mô tả thời tiết chi tiết hơn weather_main."
+  },
+  {
+    "id": "P0111",
+    "location": "Tab t.0/body/Table3/R8C1",
+    "startIndex": 7300,
+    "endIndex": 7310,
+    "style": "NORMAL_TEXT",
+    "text": "date_time"
+  },
+  {
+    "id": "P0112",
+    "location": "Tab t.0/body/Table3/R8C2",
+    "startIndex": 7311,
+    "endIndex": 7321,
+    "style": "NORMAL_TEXT",
+    "text": "Timestamp"
+  },
+  {
+    "id": "P0113",
+    "location": "Tab t.0/body/Table3/R8C3",
+    "startIndex": 7322,
+    "endIndex": 7364,
+    "style": "NORMAL_TEXT",
+    "text": "Khóa thời gian; nguồn tạo đặc trưng lịch."
+  },
+  {
+    "id": "P0114",
+    "location": "Tab t.0/body/Table3/R9C1",
+    "startIndex": 7366,
+    "endIndex": 7381,
+    "style": "NORMAL_TEXT",
+    "text": "traffic_volume"
+  },
+  {
+    "id": "P0115",
+    "location": "Tab t.0/body/Table3/R9C2",
+    "startIndex": 7382,
+    "endIndex": 7400,
+    "style": "NORMAL_TEXT",
+    "text": "Số nguyên, xe/giờ"
+  },
+  {
+    "id": "P0116",
+    "location": "Tab t.0/body/Table3/R9C3",
+    "startIndex": 7401,
+    "endIndex": 7416,
+    "style": "NORMAL_TEXT",
+    "text": "Biến mục tiêu."
+  },
+  {
+    "id": "P0117",
+    "location": "Tab t.0/body",
+    "startIndex": 7418,
+    "endIndex": 7446,
+    "style": "HEADING_3",
+    "text": "3.2. Khám phá dữ liệu (EDA)"
+  },
+  {
+    "id": "P0118",
+    "location": "Tab t.0/body",
+    "startIndex": 7446,
+    "endIndex": 7484,
+    "style": "HEADING_4",
+    "text": "3.2.1 Tổng quan và chất lượng dữ liệu"
+  },
+  {
+    "id": "P0119",
+    "location": "Tab t.0/body",
+    "startIndex": 7484,
+    "endIndex": 7659,
+    "style": "NORMAL_TEXT",
+    "text": "Trên cơ sở mô tả ở mục 3.1, nhóm kiểm tra toàn bộ CSV gốc nhằm xác định giá trị thiếu, mức độ lặp theo thời gian và các quan sát nghi vấn. Mục này trình bày kết quả kiểm tra."
+  },
+  {
+    "id": "P0120",
+    "location": "Tab t.0/body",
+    "startIndex": 7659,
+    "endIndex": 7699,
+    "style": "NORMAL_TEXT",
+    "text": "Giá trị thiếu và bản ghi theo thời gian"
+  },
+  {
+    "id": "P0121",
+    "location": "Tab t.0/body",
+    "startIndex": 7699,
+    "endIndex": 7781,
+    "style": "NORMAL_TEXT",
+    "text": "Kết quả kiểm tra thiếu và  mức độ lặp theo thời gian được tổng hợp trong Bảng 3.2"
+  },
+  {
+    "id": "P0122",
+    "location": "Tab t.0/body",
+    "startIndex": 7781,
+    "endIndex": 7833,
+    "style": "NORMAL_TEXT",
+    "text": "Bảng3.2. kết quả tra giá trị thiếu và timestamp lặp"
+  },
+  {
+    "id": "P0123",
+    "location": "Tab t.0/body/Table4/R1C1",
+    "startIndex": 7836,
+    "endIndex": 7854,
+    "style": "NORMAL_TEXT",
+    "text": "Nội dung kiểm tra"
+  },
+  {
+    "id": "P0124",
+    "location": "Tab t.0/body/Table4/R1C2",
+    "startIndex": 7855,
+    "endIndex": 7863,
+    "style": "NORMAL_TEXT",
+    "text": "Kết quả"
+  },
+  {
+    "id": "P0125",
+    "location": "Tab t.0/body/Table4/R2C1",
+    "startIndex": 7865,
+    "endIndex": 7928,
+    "style": "NORMAL_TEXT",
+    "text": "Giá trị Null,Giá trị null; chuỗi rỗng hoặc chỉ có khoảng trắng"
+  },
+  {
+    "id": "P0126",
+    "location": "Tab t.0/body/Table4/R2C2",
+    "startIndex": 7929,
+    "endIndex": 7931,
+    "style": "NORMAL_TEXT",
+    "text": "0"
+  },
+  {
+    "id": "P0127",
+    "location": "Tab t.0/body/Table4/R3C1",
+    "startIndex": 7933,
+    "endIndex": 7985,
+    "style": "NORMAL_TEXT",
+    "text": "Dòng trùng hoàn toàn, không tính lần xuất hiện đầu."
+  },
+  {
+    "id": "P0128",
+    "location": "Tab t.0/body/Table4/R3C2",
+    "startIndex": 7986,
+    "endIndex": 7994,
+    "style": "NORMAL_TEXT",
+    "text": "17 dòng"
+  },
+  {
+    "id": "P0129",
+    "location": "Tab t.0/body/Table4/R4C1",
+    "startIndex": 7996,
+    "endIndex": 8026,
+    "style": "NORMAL_TEXT",
+    "text": "Timestamp xuất hiện nhiều lần"
+  },
+  {
+    "id": "P0130",
+    "location": "Tab t.0/body/Table4/R4C2",
+    "startIndex": 8027,
+    "endIndex": 8043,
+    "style": "NORMAL_TEXT",
+    "text": "5.445 timestamp"
+  },
+  {
+    "id": "P0131",
+    "location": "Tab t.0/body/Table4/R5C1",
+    "startIndex": 8045,
+    "endIndex": 8083,
+    "style": "NORMAL_TEXT",
+    "text": "Tổng số dòng thuộc các timestamp lăpk"
+  },
+  {
+    "id": "P0132",
+    "location": "Tab t.0/body/Table4/R5C2",
+    "startIndex": 8084,
+    "endIndex": 8096,
+    "style": "NORMAL_TEXT",
+    "text": "13.074 dòng"
+  },
+  {
+    "id": "P0133",
+    "location": "Tab t.0/body/Table4/R6C1",
+    "startIndex": 8098,
+    "endIndex": 8150,
+    "style": "NORMAL_TEXT",
+    "text": "Timestamp có nhiều giá trị Traffic_volume khác nhau"
+  },
+  {
+    "id": "P0134",
+    "location": "Tab t.0/body/Table4/R6C2",
+    "startIndex": 8151,
+    "endIndex": 8153,
+    "style": "NORMAL_TEXT",
+    "text": "0"
+  },
+  {
+    "id": "P0135",
+    "location": "Tab t.0/body",
+    "startIndex": 8154,
+    "endIndex": 8377,
+    "style": "NORMAL_TEXT",
+    "text": "Timestamp lặp không đồng nghĩa với dòng trùng hoàn toàn. Các dòng cùng giờ có lưu lượng nhất quán nhưng có thể khác nhãn thời tiết, như minh họa ở Bảng 3.3. Vì vậy, không được cộng lặp traffic_volume khi tổng hợp theo giờ."
+  },
+  {
+    "id": "P0136",
+    "location": "Tab t.0/body",
+    "startIndex": 8377,
+    "endIndex": 8438,
+    "style": "NORMAL_TEXT",
+    "text": "Bảng3.3 hai bản ghi cùng timestamo nhưng khác nhãn thời tiết"
+  },
+  {
+    "id": "P0137",
+    "location": "Tab t.0/body/Table5/R1C1",
+    "startIndex": 8441,
+    "endIndex": 8451,
+    "style": "NORMAL_TEXT",
+    "text": "Timestamp"
+  },
+  {
+    "id": "P0138",
+    "location": "Tab t.0/body/Table5/R1C2",
+    "startIndex": 8452,
+    "endIndex": 8465,
+    "style": "NORMAL_TEXT",
+    "text": "weather_main"
+  },
+  {
+    "id": "P0139",
+    "location": "Tab t.0/body/Table5/R1C3",
+    "startIndex": 8466,
+    "endIndex": 8487,
+    "style": "NORMAL_TEXT",
+    "text": "weather _description"
+  },
+  {
+    "id": "P0140",
+    "location": "Tab t.0/body/Table5/R1C4",
+    "startIndex": 8488,
+    "endIndex": 8498,
+    "style": "NORMAL_TEXT",
+    "text": "Lưu lượng"
+  },
+  {
+    "id": "P0141",
+    "location": "Tab t.0/body/Table5/R2C1",
+    "startIndex": 8500,
+    "endIndex": 8517,
+    "style": "NORMAL_TEXT",
+    "text": "10/10/2012 07:00"
+  },
+  {
+    "id": "P0142",
+    "location": "Tab t.0/body/Table5/R2C2",
+    "startIndex": 8518,
+    "endIndex": 8523,
+    "style": "NORMAL_TEXT",
+    "text": "Rain"
+  },
+  {
+    "id": "P0143",
+    "location": "Tab t.0/body/Table5/R2C3",
+    "startIndex": 8524,
+    "endIndex": 8535,
+    "style": "NORMAL_TEXT",
+    "text": "light rain"
+  },
+  {
+    "id": "P0144",
+    "location": "Tab t.0/body/Table5/R2C4",
+    "startIndex": 8536,
+    "endIndex": 8542,
+    "style": "NORMAL_TEXT",
+    "text": "6.793"
+  },
+  {
+    "id": "P0145",
+    "location": "Tab t.0/body/Table5/R3C1",
+    "startIndex": 8544,
+    "endIndex": 8561,
+    "style": "NORMAL_TEXT",
+    "text": "10/10/2012 07:00"
+  },
+  {
+    "id": "P0146",
+    "location": "Tab t.0/body/Table5/R3C2",
+    "startIndex": 8562,
+    "endIndex": 8570,
+    "style": "NORMAL_TEXT",
+    "text": "Drizzle"
+  },
+  {
+    "id": "P0147",
+    "location": "Tab t.0/body/Table5/R3C3",
+    "startIndex": 8571,
+    "endIndex": 8595,
+    "style": "NORMAL_TEXT",
+    "text": "light intensity drizzle"
+  },
+  {
+    "id": "P0148",
+    "location": "Tab t.0/body/Table5/R3C4",
+    "startIndex": 8596,
+    "endIndex": 8602,
+    "style": "NORMAL_TEXT",
+    "text": "6.793"
+  },
+  {
+    "id": "P0149",
+    "location": "Tab t.0/body",
+    "startIndex": 8603,
+    "endIndex": 8648,
+    "style": "NORMAL_TEXT",
+    "text": "Giá trị nghi vấn và tính nhất quán của nhãn"
+  },
+  {
+    "id": "P0150",
+    "location": "Tab t.0/body",
+    "startIndex": 8648,
+    "endIndex": 8721,
+    "style": "NORMAL_TEXT",
+    "text": "Các giá trị nghi vấn và nhãn chưa nhất quán cần xem xét trước khi xử lý."
+  },
+  {
+    "id": "P0151",
+    "location": "Tab t.0/body",
+    "startIndex": 8721,
+    "endIndex": 8771,
+    "style": "NORMAL_TEXT",
+    "text": "Bảng3.4. Các điểm cần lưu ý về chất lượng dữ liệu"
+  },
+  {
+    "id": "P0152",
+    "location": "Tab t.0/body/Table6/R1C1",
+    "startIndex": 8774,
+    "endIndex": 8782,
+    "style": "NORMAL_TEXT",
+    "text": "Vấn đề"
+  },
+  {
+    "id": "P0153",
+    "location": "Tab t.0/body/Table6/R1C2",
+    "startIndex": 8783,
+    "endIndex": 8805,
+    "style": "NORMAL_TEXT",
+    "text": "Bằng chứng từ dữ liệu"
+  },
+  {
+    "id": "P0154",
+    "location": "Tab t.0/body/Table6/R1C3",
+    "startIndex": 8806,
+    "endIndex": 8816,
+    "style": "NORMAL_TEXT",
+    "text": "Nhận định"
+  },
+  {
+    "id": "P0155",
+    "location": "Tab t.0/body/Table6/R2C1",
+    "startIndex": 8818,
+    "endIndex": 8836,
+    "style": "NORMAL_TEXT",
+    "text": "Nhiệt độ bằng 0 K"
+  },
+  {
+    "id": "P0156",
+    "location": "Tab t.0/body/Table6/R2C2",
+    "startIndex": 8837,
+    "endIndex": 8866,
+    "style": "NORMAL_TEXT",
+    "text": "10 dòng tại 10 giờ quan sát."
+  },
+  {
+    "id": "P0157",
+    "location": "Tab t.0/body/Table6/R2C3",
+    "startIndex": 8867,
+    "endIndex": 8934,
+    "style": "NORMAL_TEXT",
+    "text": "Không phù hợp với điều kiện quan trắc ngoài trời; cần xử lý riêng."
+  },
+  {
+    "id": "P0158",
+    "location": "Tab t.0/body/Table6/R3C1",
+    "startIndex": 8936,
+    "endIndex": 8954,
+    "style": "NORMAL_TEXT",
+    "text": "Lượng mưa cực lớn"
+  },
+  {
+    "id": "P0159",
+    "location": "Tab t.0/body/Table6/R3C2",
+    "startIndex": 8955,
+    "endIndex": 8988,
+    "style": "NORMAL_TEXT",
+    "text": "9.831,3 mm tại 11/07/2016 17:00."
+  },
+  {
+    "id": "P0160",
+    "location": "Tab t.0/body/Table6/R3C3",
+    "startIndex": 8989,
+    "endIndex": 9052,
+    "style": "NORMAL_TEXT",
+    "text": "Giá trị nghi vấn; không dùng IQR để loại mọi lượng mưa dương.."
+  },
+  {
+    "id": "P0161",
+    "location": "Tab t.0/body/Table6/R4C1",
+    "startIndex": 9054,
+    "endIndex": 9071,
+    "style": "NORMAL_TEXT",
+    "text": "Lưu lượng bằng 0"
+  },
+  {
+    "id": "P0162",
+    "location": "Tab t.0/body/Table6/R4C2",
+    "startIndex": 9072,
+    "endIndex": 9103,
+    "style": "NORMAL_TEXT",
+    "text": "23/07/2016 lúc 18:00 và 23:00."
+  },
+  {
+    "id": "P0163",
+    "location": "Tab t.0/body/Table6/R4C3",
+    "startIndex": 9104,
+    "endIndex": 9159,
+    "style": "NORMAL_TEXT",
+    "text": "Chưa xác minh nguyên nhân; chưa đủ căn cứ tự động xoá."
+  },
+  {
+    "id": "P0164",
+    "location": "Tab t.0/body/Table6/R5C1",
+    "startIndex": 9161,
+    "endIndex": 9181,
+    "style": "NORMAL_TEXT",
+    "text": "Khác cách viết nhãn"
+  },
+  {
+    "id": "P0165",
+    "location": "Tab t.0/body/Table6/R5C2",
+    "startIndex": 9182,
+    "endIndex": 9212,
+    "style": "NORMAL_TEXT",
+    "text": "sky is clear và Sky is Clear."
+  },
+  {
+    "id": "P0166",
+    "location": "Tab t.0/body/Table6/R5C3",
+    "startIndex": 9213,
+    "endIndex": 9254,
+    "style": "NORMAL_TEXT",
+    "text": "Cùng nội dung nhưng khác chữ hoa/thường."
+  },
+  {
+    "id": "P0167",
+    "location": "Tab t.0/body/Table6/R6C1",
+    "startIndex": 9256,
+    "endIndex": 9269,
+    "style": "NORMAL_TEXT",
+    "text": "Nhãn ngày lễ"
+  },
+  {
+    "id": "P0168",
+    "location": "Tab t.0/body/Table6/R6C2",
+    "startIndex": 9270,
+    "endIndex": 9305,
+    "style": "NORMAL_TEXT",
+    "text": "Nhãn sự kiện thường ghi lúc 00:00."
+  },
+  {
+    "id": "P0169",
+    "location": "Tab t.0/body/Table6/R6C3",
+    "startIndex": 9306,
+    "endIndex": 9391,
+    "style": "NORMAL_TEXT",
+    "text": "Cần kiểm tra nhãn theo ngày; không suy mọi giờ có holiday = None đều là ngày thường."
+  },
+  {
+    "id": "P0170",
+    "location": "Tab t.0/body",
+    "startIndex": 9392,
+    "endIndex": 9634,
+    "style": "NORMAL_TEXT",
+    "text": "Không có null không đồng nghĩa dữ liệu hoàn toàn sạch. Giờ vắng bản ghi ở mục 3.1 không được quy thành lưu lượng 0. Với mưa/tuyết, Q1 và Q3 đều bằng 0 nên IQR có thể gắn cờ cả các giá trị dương hợp lý. Các vấn đề trên được xử lý tại mục 3.3."
+  },
+  {
+    "id": "P0171",
+    "location": "Tab t.0/body",
+    "startIndex": 9634,
+    "endIndex": 9670,
+    "style": "HEADING_4",
+    "text": "3.2.2. Phân bố lưu lượng giao thông"
+  },
+  {
+    "id": "P0172",
+    "location": "Tab t.0/body",
+    "startIndex": 9670,
+    "endIndex": 9891,
+    "style": "NORMAL_TEXT",
+    "text": "Sau bước kiểm tra chất lượng dữ liệu, nhóm khảo sát phân bố của biến mục tiêu traffic_volume trên 40.575 giờ quan sát duy nhất. Mỗi timestamp chỉ được tính một lần; các thống kê dưới đây sử dụng toàn bộ dữ liệu theo giờ."
+  },
+  {
+    "id": "P0173",
+    "location": "Tab t.0/body",
+    "startIndex": 9891,
+    "endIndex": 9909,
+    "style": "NORMAL_TEXT",
+    "text": "a. Thống kê mô tả"
+  },
+  {
+    "id": "P0174",
+    "location": "Tab t.0/body",
+    "startIndex": 9909,
+    "endIndex": 9980,
+    "style": "NORMAL_TEXT",
+    "text": "Mức lưu lượng điển hình, độ phân tán và các phân vị của biến mục tiêu."
+  },
+  {
+    "id": "P0175",
+    "location": "Tab t.0/body",
+    "startIndex": 9980,
+    "endIndex": 10035,
+    "style": "NORMAL_TEXT",
+    "text": "Bảng 3.5. Thống kê mô tả lưu lượng giao thông theo giờ"
+  },
+  {
+    "id": "P0176",
+    "location": "Tab t.0/body/Table7/R1C1",
+    "startIndex": 10038,
+    "endIndex": 10047,
+    "style": "NORMAL_TEXT",
+    "text": "Chỉ tiêu"
+  },
+  {
+    "id": "P0177",
+    "location": "Tab t.0/body/Table7/R1C2",
+    "startIndex": 10048,
+    "endIndex": 10056,
+    "style": "NORMAL_TEXT",
+    "text": "Giá trị"
+  },
+  {
+    "id": "P0178",
+    "location": "Tab t.0/body/Table7/R1C3",
+    "startIndex": 10057,
+    "endIndex": 10066,
+    "style": "NORMAL_TEXT",
+    "text": "Chỉ tiêu"
+  },
+  {
+    "id": "P0179",
+    "location": "Tab t.0/body/Table7/R1C4",
+    "startIndex": 10067,
+    "endIndex": 10075,
+    "style": "NORMAL_TEXT",
+    "text": "Giá trị"
+  },
+  {
+    "id": "P0180",
+    "location": "Tab t.0/body/Table7/R2C1",
+    "startIndex": 10077,
+    "endIndex": 10088,
+    "style": "NORMAL_TEXT",
+    "text": "Trung bình"
+  },
+  {
+    "id": "P0181",
+    "location": "Tab t.0/body/Table7/R2C2",
+    "startIndex": 10089,
+    "endIndex": 10098,
+    "style": "NORMAL_TEXT",
+    "text": "3.290,65"
+  },
+  {
+    "id": "P0182",
+    "location": "Tab t.0/body/Table7/R2C3",
+    "startIndex": 10099,
+    "endIndex": 10113,
+    "style": "NORMAL_TEXT",
+    "text": "Trung vị (Q2)"
+  },
+  {
+    "id": "P0183",
+    "location": "Tab t.0/body/Table7/R2C4",
+    "startIndex": 10114,
+    "endIndex": 10123,
+    "style": "NORMAL_TEXT",
+    "text": "3.427,00"
+  },
+  {
+    "id": "P0184",
+    "location": "Tab t.0/body/Table7/R3C1",
+    "startIndex": 10125,
+    "endIndex": 10143,
+    "style": "NORMAL_TEXT",
+    "text": "Độ lệch chuẩn mẫu"
+  },
+  {
+    "id": "P0185",
+    "location": "Tab t.0/body/Table7/R3C2",
+    "startIndex": 10144,
+    "endIndex": 10153,
+    "style": "NORMAL_TEXT",
+    "text": "1.984,77"
+  },
+  {
+    "id": "P0186",
+    "location": "Tab t.0/body/Table7/R3C3",
+    "startIndex": 10154,
+    "endIndex": 10178,
+    "style": "NORMAL_TEXT",
+    "text": "Khoảng tứ phân vị (IQR)"
+  },
+  {
+    "id": "P0187",
+    "location": "Tab t.0/body/Table7/R3C4",
+    "startIndex": 10179,
+    "endIndex": 10188,
+    "style": "NORMAL_TEXT",
+    "text": "3.703,50"
+  },
+  {
+    "id": "P0188",
+    "location": "Tab t.0/body/Table7/R4C1",
+    "startIndex": 10190,
+    "endIndex": 10207,
+    "style": "NORMAL_TEXT",
+    "text": "Phân vị 25% (Q1)"
+  },
+  {
+    "id": "P0189",
+    "location": "Tab t.0/body/Table7/R4C2",
+    "startIndex": 10208,
+    "endIndex": 10217,
+    "style": "NORMAL_TEXT",
+    "text": "1.248,50"
+  },
+  {
+    "id": "P0190",
+    "location": "Tab t.0/body/Table7/R4C3",
+    "startIndex": 10218,
+    "endIndex": 10235,
+    "style": "NORMAL_TEXT",
+    "text": "Phân vị 75% (Q3)"
+  },
+  {
+    "id": "P0191",
+    "location": "Tab t.0/body/Table7/R4C4",
+    "startIndex": 10236,
+    "endIndex": 10245,
+    "style": "NORMAL_TEXT",
+    "text": "4.952,00"
+  },
+  {
+    "id": "P0192",
+    "location": "Tab t.0/body/Table7/R5C1",
+    "startIndex": 10247,
+    "endIndex": 10256,
+    "style": "NORMAL_TEXT",
+    "text": "Nhỏ nhất"
+  },
+  {
+    "id": "P0193",
+    "location": "Tab t.0/body/Table7/R5C2",
+    "startIndex": 10257,
+    "endIndex": 10259,
+    "style": "NORMAL_TEXT",
+    "text": "0"
+  },
+  {
+    "id": "P0194",
+    "location": "Tab t.0/body/Table7/R5C3",
+    "startIndex": 10260,
+    "endIndex": 10269,
+    "style": "NORMAL_TEXT",
+    "text": "Lớn nhất"
+  },
+  {
+    "id": "P0195",
+    "location": "Tab t.0/body/Table7/R5C4",
+    "startIndex": 10270,
+    "endIndex": 10276,
+    "style": "NORMAL_TEXT",
+    "text": "7.280"
+  },
+  {
+    "id": "P0196",
+    "location": "Tab t.0/body",
+    "startIndex": 10277,
+    "endIndex": 10495,
+    "style": "NORMAL_TEXT",
+    "text": "Trung bình thấp hơn trung vị khoảng 136,35 xe/giờ. Một nửa số giờ quan sát có lưu lượng từ 1.248,50 đến 4.952 xe/giờ; độ lệch chuẩn khoảng 1.984,77 xe/giờ cho thấy lưu lượng phân tán đáng kể quanh giá trị trung bình.[PAGE BREAK]"
+  },
+  {
+    "id": "P0197",
+    "location": "Tab t.0/body",
+    "startIndex": 10496,
+    "endIndex": 10518,
+    "style": "NORMAL_TEXT",
+    "text": "b. Hình dạng phân bố."
+  },
+  {
+    "id": "P0198",
+    "location": "Tab t.0/body",
+    "startIndex": 10518,
+    "endIndex": 10630,
+    "style": "NORMAL_TEXT",
+    "text": "Hình 3.1 kết hợp histogram và boxplot để thể hiện tần suất quan sát, trung vị và khoảng phân bố của lưu lượng.[IMAGE kix.exjdsthkcy2o]"
+  },
+  {
+    "id": "P0199",
+    "location": "Tab t.0/body",
+    "startIndex": 10630,
+    "endIndex": 10700,
+    "style": "NORMAL_TEXT",
+    "text": "Hình 3.1. Phân bố lưu lượng giao thông trên các giờ quan sát duy nhất"
+  },
+  {
+    "id": "P0200",
+    "location": "Tab t.0/body",
+    "startIndex": 10700,
+    "endIndex": 11029,
+    "style": "NORMAL_TEXT",
+    "text": "Histogram có nhiều vùng tập trung, không thể hiện một đỉnh duy nhất rõ rệt. Boxplot cho thấy khoảng giữa Q1 và Q3 khá rộng, phù hợp với mức phân tán trong Bảng 3.5. Phân bố tổng thể chưa cho biết các vùng lưu lượng này xuất hiện vào thời điểm nào; mục tiếp theo phân tích theo giờ, thứ và loại ngày để làm rõ mẫu hình thời gian."
+  },
+  {
+    "id": "P0201",
+    "location": "Tab t.0/body",
+    "startIndex": 11029,
+    "endIndex": 11061,
+    "style": "HEADING_4",
+    "text": "3.2.3. Lưu lượng theo thời gian"
+  },
+  {
+    "id": "P0202",
+    "location": "Tab t.0/body",
+    "startIndex": 11061,
+    "endIndex": 11224,
+    "style": "NORMAL_TEXT",
+    "text": "Nhóm phân tích lưu lượng theo giờ, thứ và tháng trên toàn bộ 40.575 timestamp duy nhất. Các thống kê chỉ tính giờ có bản ghi, không gán lưu lượng 0 cho giờ thiếu."
+  },
+  {
+    "id": "P0203",
+    "location": "Tab t.0/body",
+    "startIndex": 11224,
+    "endIndex": 11269,
+    "style": "NORMAL_TEXT",
+    "text": "Lưu lượng theo giờ , thứ trong tuần và tháng"
+  },
+  {
+    "id": "P0204",
+    "location": "Tab t.0/body",
+    "startIndex": 11269,
+    "endIndex": 11351,
+    "style": "NORMAL_TEXT",
+    "text": "Hình 3.2 và Bảng 3.6 thể hiện mẫu hình thời gian cùng các mức trung bình nổi bật."
+  },
+  {
+    "id": "P0205",
+    "location": "Tab t.0/body",
+    "startIndex": 11351,
+    "endIndex": 11353,
+    "style": "NORMAL_TEXT",
+    "text": "[IMAGE kix.6gh76c1699pk]"
+  },
+  {
+    "id": "P0206",
+    "location": "Tab t.0/body",
+    "startIndex": 11353,
+    "endIndex": 11419,
+    "style": "NORMAL_TEXT",
+    "text": "Hình 3.2. Lưu lượng trung bình theo giờ, thứ trong tuần và tháng[PAGE BREAK]"
+  },
+  {
+    "id": "P0207",
+    "location": "Tab t.0/body",
+    "startIndex": 11420,
+    "endIndex": 11495,
+    "style": "NORMAL_TEXT",
+    "text": "Bảng 3.6. Các nhóm thời gian có lưu lượng trung bình cao nhất và thấp nhất"
+  },
+  {
+    "id": "P0208",
+    "location": "Tab t.0/body/Table8/R1C1",
+    "startIndex": 11498,
+    "endIndex": 11513,
+    "style": "NORMAL_TEXT",
+    "text": "Nhóm thời gian"
+  },
+  {
+    "id": "P0209",
+    "location": "Tab t.0/body/Table8/R1C2",
+    "startIndex": 11514,
+    "endIndex": 11518,
+    "style": "NORMAL_TEXT",
+    "text": "Mức"
+  },
+  {
+    "id": "P0210",
+    "location": "Tab t.0/body/Table8/R1C3",
+    "startIndex": 11519,
+    "endIndex": 11539,
+    "style": "NORMAL_TEXT",
+    "text": "Trung bình (xe/giờ)"
+  },
+  {
+    "id": "P0211",
+    "location": "Tab t.0/body/Table8/R1C4",
+    "startIndex": 11540,
+    "endIndex": 11544,
+    "style": "NORMAL_TEXT",
+    "text": "giờ"
+  },
+  {
+    "id": "P0212",
+    "location": "Tab t.0/body/Table8/R2C1",
+    "startIndex": 11546,
+    "endIndex": 11569,
+    "style": "NORMAL_TEXT",
+    "text": "Giờ trong ngày — 16:00"
+  },
+  {
+    "id": "P0213",
+    "location": "Tab t.0/body/Table8/R2C2",
+    "startIndex": 11570,
+    "endIndex": 11579,
+    "style": "NORMAL_TEXT",
+    "text": "Cao nhất"
+  },
+  {
+    "id": "P0214",
+    "location": "Tab t.0/body/Table8/R2C3",
+    "startIndex": 11580,
+    "endIndex": 11589,
+    "style": "NORMAL_TEXT",
+    "text": "5.708,61"
+  },
+  {
+    "id": "P0215",
+    "location": "Tab t.0/body/Table8/R2C4",
+    "startIndex": 11590,
+    "endIndex": 11596,
+    "style": "NORMAL_TEXT",
+    "text": "1.707"
+  },
+  {
+    "id": "P0216",
+    "location": "Tab t.0/body/Table8/R3C1",
+    "startIndex": 11598,
+    "endIndex": 11621,
+    "style": "NORMAL_TEXT",
+    "text": "Giờ trong ngày — 03:00"
+  },
+  {
+    "id": "P0217",
+    "location": "Tab t.0/body/Table8/R3C2",
+    "startIndex": 11622,
+    "endIndex": 11633,
+    "style": "NORMAL_TEXT",
+    "text": "Thấp nhất"
+  },
+  {
+    "id": "P0218",
+    "location": "Tab t.0/body/Table8/R3C3",
+    "startIndex": 11634,
+    "endIndex": 11641,
+    "style": "NORMAL_TEXT",
+    "text": "373,21"
+  },
+  {
+    "id": "P0219",
+    "location": "Tab t.0/body/Table8/R3C4",
+    "startIndex": 11642,
+    "endIndex": 11648,
+    "style": "NORMAL_TEXT",
+    "text": "1.669"
+  },
+  {
+    "id": "P0220",
+    "location": "Tab t.0/body/Table8/R4C1",
+    "startIndex": 11650,
+    "endIndex": 11675,
+    "style": "NORMAL_TEXT",
+    "text": "Thứ trong tuần — Thứ Sáu"
+  },
+  {
+    "id": "P0221",
+    "location": "Tab t.0/body/Table8/R4C2",
+    "startIndex": 11676,
+    "endIndex": 11685,
+    "style": "NORMAL_TEXT",
+    "text": "Cao nhất"
+  },
+  {
+    "id": "P0222",
+    "location": "Tab t.0/body/Table8/R4C3",
+    "startIndex": 11686,
+    "endIndex": 11695,
+    "style": "NORMAL_TEXT",
+    "text": "3.674,78"
+  },
+  {
+    "id": "P0223",
+    "location": "Tab t.0/body/Table8/R4C4",
+    "startIndex": 11696,
+    "endIndex": 11702,
+    "style": "NORMAL_TEXT",
+    "text": "5.877"
+  },
+  {
+    "id": "P0224",
+    "location": "Tab t.0/body/Table8/R5C1",
+    "startIndex": 11704,
+    "endIndex": 11730,
+    "style": "NORMAL_TEXT",
+    "text": "Thứ trong tuần — Chủ nhật"
+  },
+  {
+    "id": "P0225",
+    "location": "Tab t.0/body/Table8/R5C2",
+    "startIndex": 11731,
+    "endIndex": 11741,
+    "style": "NORMAL_TEXT",
+    "text": "Thấp nhất"
+  },
+  {
+    "id": "P0226",
+    "location": "Tab t.0/body/Table8/R5C3",
+    "startIndex": 11742,
+    "endIndex": 11751,
+    "style": "NORMAL_TEXT",
+    "text": "2.426,25"
+  },
+  {
+    "id": "P0227",
+    "location": "Tab t.0/body/Table8/R5C4",
+    "startIndex": 11752,
+    "endIndex": 11758,
+    "style": "NORMAL_TEXT",
+    "text": "5.812"
+  },
+  {
+    "id": "P0228",
+    "location": "Tab t.0/body/Table8/R6C1",
+    "startIndex": 11760,
+    "endIndex": 11786,
+    "style": "NORMAL_TEXT",
+    "text": "Tháng trong năm — Tháng 8"
+  },
+  {
+    "id": "P0229",
+    "location": "Tab t.0/body/Table8/R6C2",
+    "startIndex": 11787,
+    "endIndex": 11796,
+    "style": "NORMAL_TEXT",
+    "text": "Cao nhất"
+  },
+  {
+    "id": "P0230",
+    "location": "Tab t.0/body/Table8/R6C3",
+    "startIndex": 11797,
+    "endIndex": 11806,
+    "style": "NORMAL_TEXT",
+    "text": "3.430,32"
+  },
+  {
+    "id": "P0231",
+    "location": "Tab t.0/body/Table8/R6C4",
+    "startIndex": 11807,
+    "endIndex": 11813,
+    "style": "NORMAL_TEXT",
+    "text": "3.705"
+  },
+  {
+    "id": "P0232",
+    "location": "Tab t.0/body/Table8/R7C1",
+    "startIndex": 11815,
+    "endIndex": 11842,
+    "style": "NORMAL_TEXT",
+    "text": "Tháng trong năm — Tháng 12"
+  },
+  {
+    "id": "P0233",
+    "location": "Tab t.0/body/Table8/R7C2",
+    "startIndex": 11843,
+    "endIndex": 11853,
+    "style": "NORMAL_TEXT",
+    "text": "Thấp nhất"
+  },
+  {
+    "id": "P0234",
+    "location": "Tab t.0/body/Table8/R7C3",
+    "startIndex": 11854,
+    "endIndex": 11863,
+    "style": "NORMAL_TEXT",
+    "text": "3.040,19"
+  },
+  {
+    "id": "P0235",
+    "location": "Tab t.0/body/Table8/R7C4",
+    "startIndex": 11864,
+    "endIndex": 11870,
+    "style": "NORMAL_TEXT",
+    "text": "3.337"
+  },
+  {
+    "id": "P0236",
+    "location": "Tab t.0/body",
+    "startIndex": 11871,
+    "endIndex": 11912,
+    "style": "NORMAL_TEXT",
+    "text": "Tương tác giữa các thứ trong tuần và giờ"
+  },
+  {
+    "id": "P0237",
+    "location": "Tab t.0/body",
+    "startIndex": 11912,
+    "endIndex": 12008,
+    "style": "NORMAL_TEXT",
+    "text": "Hình 3.3 đối chiếu các tổ hợp thứ–giờ để làm rõ sự khác biệt giữa ngày trong tuần và cuối tuần."
+  },
+  {
+    "id": "P0238",
+    "location": "Tab t.0/body",
+    "startIndex": 12008,
+    "endIndex": 12010,
+    "style": "NORMAL_TEXT",
+    "text": "[IMAGE kix.e1e0qmvz6viv]"
+  },
+  {
+    "id": "P0239",
+    "location": "Tab t.0/body",
+    "startIndex": 12010,
+    "endIndex": 12074,
+    "style": "NORMAL_TEXT",
+    "text": "Hình 3.3 lưu lượng trung bình theo tổ hợp thứ trong tuần và giờ"
+  },
+  {
+    "id": "P0240",
+    "location": "Tab t.0/body",
+    "startIndex": 12074,
+    "endIndex": 12307,
+    "style": "NORMAL_TEXT",
+    "text": "Từ thứ Hai đến thứ Sáu, lưu lượng cao tập trung vào buổi sáng và chiều; cuối tuần tăng muộn hơn, tập trung quanh giữa ngày. Kết quả gợi ý xem xét đồng thời giờ, thứ và cờ cuối tuần; giá trị dự đoán cần kiểm chứng ở phần thực nghiệm."
+  },
+  {
+    "id": "P0241",
+    "location": "Tab t.0/body",
+    "startIndex": 12307,
+    "endIndex": 12355,
+    "style": "HEADING_4",
+    "text": "3.2.4. Mối liên  hệ giữa thời tiết và lưu lượng"
+  },
+  {
+    "id": "P0242",
+    "location": "Tab t.0/body",
+    "startIndex": 12356,
+    "endIndex": 12401,
+    "style": "NORMAL_TEXT",
+    "text": "a. Tương quan của các biến thời tiết dạng số"
+  },
+  {
+    "id": "P0243",
+    "location": "Tab t.0/body",
+    "startIndex": 12401,
+    "endIndex": 12597,
+    "style": "NORMAL_TEXT",
+    "text": "Bảng 3.7 tính sau khi đánh dấu nhiệt độ 0 K và điểm mưa 9.831,3 mm là thiếu, rồi gộp thời tiết theo giờ bằng median các giá trị phân biệt. n là số cặp quan sát hợp lệ của từng biến với lưu lượng."
+  },
+  {
+    "id": "P0244",
+    "location": "Tab t.0/body",
+    "startIndex": 12597,
+    "endIndex": 12664,
+    "style": "NORMAL_TEXT",
+    "text": "Bảng 3.7. Tương quan giữa các biến thời tiết và lưu lượng theo giờ"
+  },
+  {
+    "id": "P0245",
+    "location": "Tab t.0/body/Table9/R1C1",
+    "startIndex": 12667,
+    "endIndex": 12682,
+    "style": "NORMAL_TEXT",
+    "text": "Biến thời tiết"
+  },
+  {
+    "id": "P0246",
+    "location": "Tab t.0/body/Table9/R1C2",
+    "startIndex": 12683,
+    "endIndex": 12691,
+    "style": "NORMAL_TEXT",
+    "text": "Pearson"
+  },
+  {
+    "id": "P0247",
+    "location": "Tab t.0/body/Table9/R1C3",
+    "startIndex": 12692,
+    "endIndex": 12701,
+    "style": "NORMAL_TEXT",
+    "text": "Spearman"
+  },
+  {
+    "id": "P0248",
+    "location": "Tab t.0/body/Table9/R1C4",
+    "startIndex": 12702,
+    "endIndex": 12710,
+    "style": "NORMAL_TEXT",
+    "text": "n (giờ)"
+  },
+  {
+    "id": "P0249",
+    "location": "Tab t.0/body/Table9/R2C1",
+    "startIndex": 12712,
+    "endIndex": 12721,
+    "style": "NORMAL_TEXT",
+    "text": "Nhiệt độ"
+  },
+  {
+    "id": "P0250",
+    "location": "Tab t.0/body/Table9/R2C2",
+    "startIndex": 12722,
+    "endIndex": 12729,
+    "style": "NORMAL_TEXT",
+    "text": "0,1392"
+  },
+  {
+    "id": "P0251",
+    "location": "Tab t.0/body/Table9/R2C3",
+    "startIndex": 12730,
+    "endIndex": 12737,
+    "style": "NORMAL_TEXT",
+    "text": "0,1401"
+  },
+  {
+    "id": "P0252",
+    "location": "Tab t.0/body/Table9/R2C4",
+    "startIndex": 12738,
+    "endIndex": 12745,
+    "style": "NORMAL_TEXT",
+    "text": "40.565"
+  },
+  {
+    "id": "P0253",
+    "location": "Tab t.0/body/Table9/R3C1",
+    "startIndex": 12747,
+    "endIndex": 12757,
+    "style": "NORMAL_TEXT",
+    "text": "Lượng mưa"
+  },
+  {
+    "id": "P0254",
+    "location": "Tab t.0/body/Table9/R3C2",
+    "startIndex": 12758,
+    "endIndex": 12766,
+    "style": "NORMAL_TEXT",
+    "text": "−0,0134"
+  },
+  {
+    "id": "P0255",
+    "location": "Tab t.0/body/Table9/R3C3",
+    "startIndex": 12767,
+    "endIndex": 12774,
+    "style": "NORMAL_TEXT",
+    "text": "0,0043"
+  },
+  {
+    "id": "P0256",
+    "location": "Tab t.0/body/Table9/R3C4",
+    "startIndex": 12775,
+    "endIndex": 12782,
+    "style": "NORMAL_TEXT",
+    "text": "40.574"
+  },
+  {
+    "id": "P0257",
+    "location": "Tab t.0/body/Table9/R4C1",
+    "startIndex": 12784,
+    "endIndex": 12796,
+    "style": "NORMAL_TEXT",
+    "text": "Lượng tuyết"
+  },
+  {
+    "id": "P0258",
+    "location": "Tab t.0/body/Table9/R4C2",
+    "startIndex": 12797,
+    "endIndex": 12805,
+    "style": "NORMAL_TEXT",
+    "text": "−0,0021"
+  },
+  {
+    "id": "P0259",
+    "location": "Tab t.0/body/Table9/R4C3",
+    "startIndex": 12806,
+    "endIndex": 12814,
+    "style": "NORMAL_TEXT",
+    "text": "−0,0052"
+  },
+  {
+    "id": "P0260",
+    "location": "Tab t.0/body/Table9/R4C4",
+    "startIndex": 12815,
+    "endIndex": 12822,
+    "style": "NORMAL_TEXT",
+    "text": "40.575"
+  },
+  {
+    "id": "P0261",
+    "location": "Tab t.0/body/Table9/R5C1",
+    "startIndex": 12824,
+    "endIndex": 12842,
+    "style": "NORMAL_TEXT",
+    "text": "Tỷ lệ mây che phủ"
+  },
+  {
+    "id": "P0262",
+    "location": "Tab t.0/body/Table9/R5C2",
+    "startIndex": 12843,
+    "endIndex": 12850,
+    "style": "NORMAL_TEXT",
+    "text": "0,0783"
+  },
+  {
+    "id": "P0263",
+    "location": "Tab t.0/body/Table9/R5C3",
+    "startIndex": 12851,
+    "endIndex": 12858,
+    "style": "NORMAL_TEXT",
+    "text": "0,0729"
+  },
+  {
+    "id": "P0264",
+    "location": "Tab t.0/body/Table9/R5C4",
+    "startIndex": 12859,
+    "endIndex": 12866,
+    "style": "NORMAL_TEXT",
+    "text": "40.575"
+  },
+  {
+    "id": "P0265",
+    "location": "Tab t.0/body",
+    "startIndex": 12867,
+    "endIndex": 13034,
+    "style": "NORMAL_TEXT",
+    "text": "Nhiệt độ có tương quan dương yếu; mưa và tuyết có hệ số gần 0. Tương quan riêng lẻ thấp chưa loại trừ quan hệ phi tuyến hoặc giá trị bổ sung khi kết hợp với thời gian"
+  },
+  {
+    "id": "P0266",
+    "location": "Tab t.0/body",
+    "startIndex": 13034,
+    "endIndex": 13067,
+    "style": "HEADING_2",
+    "text": "b. Lưu lượng theo nhãn thời tiết"
+  },
+  {
+    "id": "P0267",
+    "location": "Tab t.0/body",
+    "startIndex": 13067,
+    "endIndex": 13182,
+    "style": "NORMAL_TEXT",
+    "text": "Hình 3.4 so sánh lưu lượng trung bình theo weather_main; Bảng 3.8 bổ sung số giờ của một số nhóm phổ biến và hiếm."
+  },
+  {
+    "id": "P0268",
+    "location": "Tab t.0/body",
+    "startIndex": 13182,
+    "endIndex": 13184,
+    "style": "NORMAL_TEXT",
+    "text": "[IMAGE kix.1lgs426j6i5c]"
+  },
+  {
+    "id": "P0269",
+    "location": "Tab t.0/body",
+    "startIndex": 13184,
+    "endIndex": 13235,
+    "style": "NORMAL_TEXT",
+    "text": "Hình 3.4. Lưu lượng trung bình theo nhãn thời tiết"
+  },
+  {
+    "id": "P0270",
+    "location": "Tab t.0/body",
+    "startIndex": 13235,
+    "endIndex": 13287,
+    "style": "NORMAL_TEXT",
+    "text": "Bảng 3.8. Số giờ quan sát của một số nhóm thời tiết"
+  },
+  {
+    "id": "P0271",
+    "location": "Tab t.0/body/Table10/R1C1",
+    "startIndex": 13290,
+    "endIndex": 13305,
+    "style": "NORMAL_TEXT",
+    "text": "Nhãn thời tiết"
+  },
+  {
+    "id": "P0272",
+    "location": "Tab t.0/body/Table10/R1C2",
+    "startIndex": 13306,
+    "endIndex": 13311,
+    "style": "NORMAL_TEXT",
+    "text": "Giờ"
+  },
+  {
+    "id": "P0273",
+    "location": "Tab t.0/body/Table10/R1C3",
+    "startIndex": 13312,
+    "endIndex": 13327,
+    "style": "NORMAL_TEXT",
+    "text": "Nhãn thời tiết"
+  },
+  {
+    "id": "P0274",
+    "location": "Tab t.0/body/Table10/R1C4",
+    "startIndex": 13328,
+    "endIndex": 13332,
+    "style": "NORMAL_TEXT",
+    "text": "giờ"
+  },
+  {
+    "id": "P0275",
+    "location": "Tab t.0/body/Table10/R2C1",
+    "startIndex": 13334,
+    "endIndex": 13341,
+    "style": "NORMAL_TEXT",
+    "text": "Clouds"
+  },
+  {
+    "id": "P0276",
+    "location": "Tab t.0/body/Table10/R2C2",
+    "startIndex": 13342,
+    "endIndex": 13349,
+    "style": "NORMAL_TEXT",
+    "text": "15.127"
+  },
+  {
+    "id": "P0277",
+    "location": "Tab t.0/body/Table10/R2C3",
+    "startIndex": 13350,
+    "endIndex": 13355,
+    "style": "NORMAL_TEXT",
+    "text": "Snow"
+  },
+  {
+    "id": "P0278",
+    "location": "Tab t.0/body/Table10/R2C4",
+    "startIndex": 13356,
+    "endIndex": 13362,
+    "style": "NORMAL_TEXT",
+    "text": "2.795"
+  },
+  {
+    "id": "P0279",
+    "location": "Tab t.0/body/Table10/R3C1",
+    "startIndex": 13364,
+    "endIndex": 13370,
+    "style": "NORMAL_TEXT",
+    "text": "Clear"
+  },
+  {
+    "id": "P0280",
+    "location": "Tab t.0/body/Table10/R3C2",
+    "startIndex": 13371,
+    "endIndex": 13378,
+    "style": "NORMAL_TEXT",
+    "text": "13.371"
+  },
+  {
+    "id": "P0281",
+    "location": "Tab t.0/body/Table10/R3C3",
+    "startIndex": 13379,
+    "endIndex": 13385,
+    "style": "NORMAL_TEXT",
+    "text": "Smoke"
+  },
+  {
+    "id": "P0282",
+    "location": "Tab t.0/body/Table10/R3C4",
+    "startIndex": 13386,
+    "endIndex": 13389,
+    "style": "NORMAL_TEXT",
+    "text": "20"
+  },
+  {
+    "id": "P0283",
+    "location": "Tab t.0/body/Table10/R4C1",
+    "startIndex": 13391,
+    "endIndex": 13396,
+    "style": "NORMAL_TEXT",
+    "text": "Rain"
+  },
+  {
+    "id": "P0284",
+    "location": "Tab t.0/body/Table10/R4C2",
+    "startIndex": 13397,
+    "endIndex": 13403,
+    "style": "NORMAL_TEXT",
+    "text": "5.563"
+  },
+  {
+    "id": "P0285",
+    "location": "Tab t.0/body/Table10/R4C3",
+    "startIndex": 13404,
+    "endIndex": 13411,
+    "style": "NORMAL_TEXT",
+    "text": "Squall"
+  },
+  {
+    "id": "P0286",
+    "location": "Tab t.0/body/Table10/R4C4",
+    "startIndex": 13412,
+    "endIndex": 13414,
+    "style": "NORMAL_TEXT",
+    "text": "4"
+  },
+  {
+    "id": "P0287",
+    "location": "Tab t.0/body",
+    "startIndex": 13415,
+    "endIndex": 13645,
+    "style": "NORMAL_TEXT",
+    "text": "Một giờ được tính một lần trong mỗi nhóm nhưng có thể mang nhiều nhãn; có 5.349 giờ như vậy. Clouds có trung bình cao nhất, còn Squall thấp nhất nhưng chỉ có 4 giờ. Nhóm Smoke cũng hiếm (20 giờ), nên cần thận trọng khi diễn giải."
+  },
+  {
+    "id": "P0288",
+    "location": "Tab t.0/body",
+    "startIndex": 13645,
+    "endIndex": 13833,
+    "style": "NORMAL_TEXT",
+    "text": "Chênh lệch giữa các nhãn có thể gắn với giờ và mùa, không chứng minh nhân quả. Ích lợi dự đoán của thời tiết cần được kiểm chứng bằng đối chứng cùng mô hình và tập giờ ở phần thực nghiệm."
+  },
+  {
+    "id": "P0289",
+    "location": "Tab t.0/body",
+    "startIndex": 13835,
+    "endIndex": 13859,
+    "style": "HEADING_3",
+    "text": "3.3. Tiền xử lý dữ liệu"
+  },
+  {
+    "id": "P0290",
+    "location": "Tab t.0/body",
+    "startIndex": 13859,
+    "endIndex": 13910,
+    "style": "HEADING_4",
+    "text": "3.3.1. Giá trị thiếu, timestamp trùng và định dạng"
+  },
+  {
+    "id": "P0291",
+    "location": "Tab t.0/body",
+    "startIndex": 13910,
+    "endIndex": 13925,
+    "style": "NORMAL_TEXT",
+    "text": "[Nhóm bổ sung]"
+  },
+  {
+    "id": "P0292",
+    "location": "Tab t.0/body",
+    "startIndex": 13925,
+    "endIndex": 13950,
+    "style": "HEADING_4",
+    "text": "3.3.2. Ngoại lệ và nhiễu"
+  },
+  {
+    "id": "P0293",
+    "location": "Tab t.0/body",
+    "startIndex": 13950,
+    "endIndex": 13965,
+    "style": "NORMAL_TEXT",
+    "text": "[Nhóm bổ sung]"
+  },
+  {
+    "id": "P0294",
+    "location": "Tab t.0/body",
+    "startIndex": 13965,
+    "endIndex": 13992,
+    "style": "HEADING_4",
+    "text": "3.3.3. Encoding và scaling"
+  },
+  {
+    "id": "P0295",
+    "location": "Tab t.0/body",
+    "startIndex": 13992,
+    "endIndex": 14074,
+    "style": "NORMAL_TEXT",
+    "text": "Gợi ý: Cột áp dụng, phương pháp, lý do theo từng mô hình; chỉ fit trên tập train."
+  },
+  {
+    "id": "P0296",
+    "location": "Tab t.0/body",
+    "startIndex": 14074,
+    "endIndex": 14089,
+    "style": "NORMAL_TEXT",
+    "text": "[Nhóm bổ sung]"
+  },
+  {
+    "id": "P0297",
+    "location": "Tab t.0/body",
+    "startIndex": 14089,
+    "endIndex": 14125,
+    "style": "HEADING_3",
+    "text": "3.4. Xây dựng và lựa chọn đặc trưng"
+  },
+  {
+    "id": "P0298",
+    "location": "Tab t.0/body",
+    "startIndex": 14125,
+    "endIndex": 14357,
+    "style": "NORMAL_TEXT",
+    "text": "Gợi ý: Nhóm Time (giờ, thứ, tháng, ngày lễ, mã hóa tuần hoàn), Weather (nhiệt độ, mưa, tuyết, mây, mô tả thời tiết), History (lag, rolling) nếu dùng; đảm bảo mọi đầu vào sẵn có tại thời điểm dự đoán. Nêu cách chọn đặc trưng nếu có."
+  },
+  {
+    "id": "P0299",
+    "location": "Tab t.0/body",
+    "startIndex": 14357,
+    "endIndex": 14372,
+    "style": "NORMAL_TEXT",
+    "text": "[Nhóm bổ sung]"
+  },
+  {
+    "id": "P0300",
+    "location": "Tab t.0/body",
+    "startIndex": 14372,
+    "endIndex": 14394,
+    "style": "HEADING_3",
+    "text": "3.5. Pipeline học máy"
+  },
+  {
+    "id": "P0301",
+    "location": "Tab t.0/body",
+    "startIndex": 14394,
+    "endIndex": 14505,
+    "style": "NORMAL_TEXT",
+    "text": "Gợi ý: Chèn sơ đồ pipeline: dữ liệu → tiền xử lý → đặc trưng → chia tập → huấn luyện/tuning → đánh giá → demo."
+  },
+  {
+    "id": "P0302",
+    "location": "Tab t.0/body",
+    "startIndex": 14505,
+    "endIndex": 14520,
+    "style": "NORMAL_TEXT",
+    "text": "[Nhóm bổ sung]"
+  },
+  {
+    "id": "P0303",
+    "location": "Tab t.0/body",
+    "startIndex": 14520,
+    "endIndex": 14547,
+    "style": "HEADING_3",
+    "text": "3.6. Thiết lập thực nghiệm"
+  },
+  {
+    "id": "P0304",
+    "location": "Tab t.0/body",
+    "startIndex": 14547,
+    "endIndex": 14578,
+    "style": "HEADING_4",
+    "text": "3.6.1. Chiến lược chia dữ liệu"
+  },
+  {
+    "id": "P0305",
+    "location": "Tab t.0/body",
+    "startIndex": 14578,
+    "endIndex": 14679,
+    "style": "NORMAL_TEXT",
+    "text": "Gợi ý: Train/validation/test theo thời gian: tỷ lệ, số mẫu, mốc thời gian thực tế; vai trò từng tập."
+  },
+  {
+    "id": "P0306",
+    "location": "Tab t.0/body",
+    "startIndex": 14679,
+    "endIndex": 14694,
+    "style": "NORMAL_TEXT",
+    "text": "[Nhóm bổ sung]"
+  },
+  {
+    "id": "P0307",
+    "location": "Tab t.0/body",
+    "startIndex": 14694,
+    "endIndex": 14754,
+    "style": "HEADING_4",
+    "text": "3.6.2. Kiểm soát data leakage và tính công bằng khi so sánh"
+  },
+  {
+    "id": "P0308",
+    "location": "Tab t.0/body",
+    "startIndex": 14754,
+    "endIndex": 14895,
+    "style": "NORMAL_TEXT",
+    "text": "Gợi ý: Cách fit preprocessing chỉ trên train; không dùng test để chọn mô hình/tuning; các mô hình dùng cùng tập, cùng mốc chia, cùng metric."
+  },
+  {
+    "id": "P0309",
+    "location": "Tab t.0/body",
+    "startIndex": 14895,
+    "endIndex": 14910,
+    "style": "NORMAL_TEXT",
+    "text": "[Nhóm bổ sung]"
+  },
+  {
+    "id": "P0310",
+    "location": "Tab t.0/body",
+    "startIndex": 14910,
+    "endIndex": 14926,
+    "style": "HEADING_4",
+    "text": "3.6.3. Baseline"
+  },
+  {
+    "id": "P0311",
+    "location": "Tab t.0/body",
+    "startIndex": 14926,
+    "endIndex": 14941,
+    "style": "NORMAL_TEXT",
+    "text": "[Nhóm bổ sung]"
+  },
+  {
+    "id": "P0312",
+    "location": "Tab t.0/body",
+    "startIndex": 14941,
+    "endIndex": 14991,
+    "style": "HEADING_4",
+    "text": "3.6.4. Độ đo và phương án tinh chỉnh siêu tham số"
+  },
+  {
+    "id": "P0313",
+    "location": "Tab t.0/body",
+    "startIndex": 14991,
+    "endIndex": 15109,
+    "style": "NORMAL_TEXT",
+    "text": "Gợi ý: Phương pháp (Grid/Random Search + CV theo thời gian), không gian tham số, chỉ số chọn mô hình trên validation."
+  },
+  {
+    "id": "P0314",
+    "location": "Tab t.0/body",
+    "startIndex": 15109,
+    "endIndex": 15124,
+    "style": "NORMAL_TEXT",
+    "text": "[Nhóm bổ sung]"
+  },
+  {
+    "id": "P0315",
+    "location": "Tab t.0/body",
+    "startIndex": 15124,
+    "endIndex": 15171,
+    "style": "HEADING_4",
+    "text": "3.6.5. Thiết kế thí nghiệm đối chứng đặc trưng"
+  },
+  {
+    "id": "P0316",
+    "location": "Tab t.0/body",
+    "startIndex": 15171,
+    "endIndex": 15296,
+    "style": "NORMAL_TEXT",
+    "text": "Gợi ý: Time, Time + Weather, Time + Weather + History: cùng thuật toán, cùng tập và mốc chia, để trả lời câu hỏi nghiên cứu."
+  },
+  {
+    "id": "P0317",
+    "location": "Tab t.0/body",
+    "startIndex": 15296,
+    "endIndex": 15311,
+    "style": "NORMAL_TEXT",
+    "text": "[Nhóm bổ sung]"
+  },
+  {
+    "id": "P0318",
+    "location": "Tab t.0/body",
+    "startIndex": 15311,
+    "endIndex": 15704,
+    "style": "NORMAL_TEXT",
+    "text": "Dự đoán ngoài fold (Out-of-Fold — OOF) được tạo bằng phương pháp TimeSeriesSplit với ba fold. Ở mỗi fold, mô hình được huấn luyện trên dữ liệu quá khứ và dự đoán trên đoạn dữ liệu tiếp theo; các bước tiền xử lý có học thống kê cũng chỉ được fit trên phần huấn luyện tương ứng. Các dự đoán được ghép theo timestamp để đánh giá trên những quan sát chưa tham gia huấn luyện mô hình tạo ra chúng."
+  },
+  {
+    "id": "P0319",
+    "location": "Tab t.0/body",
+    "startIndex": 15704,
+    "endIndex": 16009,
+    "style": "NORMAL_TEXT",
+    "text": "Trong thí nghiệm ensemble, Random Forest và XGBoost sử dụng cùng cấu hình đặc trưng, bộ chia và các giờ chấm. Trọng số kết hợp được lựa chọn theo MAE trên dự đoán OOF thuộc tập train. Sau khi chọn trọng số, hai mô hình được huấn luyện lại trên toàn bộ tập train và ensemble được đánh giá trên validation."
+  },
+  {
+    "id": "P0320",
+    "location": "Tab t.0/body",
+    "startIndex": 16009,
+    "endIndex": 16147,
+    "style": "NORMAL_TEXT",
+    "text": "Do OOF được sử dụng để lựa chọn trọng số, MAE OOF tại trọng số được chọn là điểm phục vụ lựa chọn, chưa phải đánh giá độc lập cuối cùng."
+  },
+  {
+    "id": "P0321",
+    "location": "Tab t.0/body",
+    "startIndex": 16147,
+    "endIndex": 16149,
+    "style": "HEADING_2",
+    "text": "[PAGE BREAK]"
+  },
+  {
+    "id": "P0322",
+    "location": "Tab t.0/body",
+    "startIndex": 16149,
+    "endIndex": 16193,
+    "style": "HEADING_2",
+    "text": "Chương 4. Thực nghiệm, kết quả và thảo luận"
+  },
+  {
+    "id": "P0323",
+    "location": "Tab t.0/body",
+    "startIndex": 16193,
+    "endIndex": 16233,
+    "style": "HEADING_3",
+    "text": "4.1. Môi trường và cấu hình thực nghiệm"
+  },
+  {
+    "id": "P0324",
+    "location": "Tab t.0/body",
+    "startIndex": 16233,
+    "endIndex": 16313,
+    "style": "NORMAL_TEXT",
+    "text": "Gợi ý: Phiên bản Python/thư viện, seed, phần cứng, liên kết mã và log (run ID)."
+  },
+  {
+    "id": "P0325",
+    "location": "Tab t.0/body",
+    "startIndex": 16313,
+    "endIndex": 16328,
+    "style": "NORMAL_TEXT",
+    "text": "[Nhóm bổ sung]"
+  },
+  {
+    "id": "P0326",
+    "location": "Tab t.0/body",
+    "startIndex": 16328,
+    "endIndex": 16350,
+    "style": "HEADING_3",
+    "text": "4.2. Kết quả baseline"
+  },
+  {
+    "id": "P0327",
+    "location": "Tab t.0/body",
+    "startIndex": 16350,
+    "endIndex": 16365,
+    "style": "NORMAL_TEXT",
+    "text": "[Nhóm bổ sung]"
+  },
+  {
+    "id": "P0328",
+    "location": "Tab t.0/body",
+    "startIndex": 16365,
+    "endIndex": 16418,
+    "style": "HEADING_3",
+    "text": "4.3. Kết quả từng mô hình và tinh chỉnh siêu tham số"
+  },
+  {
+    "id": "P0329",
+    "location": "Tab t.0/body",
+    "startIndex": 16418,
+    "endIndex": 16490,
+    "style": "NORMAL_TEXT",
+    "text": "Gợi ý: Tham số tối ưu, kết quả trên validation, đường cong/bảng tuning."
+  },
+  {
+    "id": "P0330",
+    "location": "Tab t.0/body",
+    "startIndex": 16490,
+    "endIndex": 16505,
+    "style": "NORMAL_TEXT",
+    "text": "[Nhóm bổ sung]"
+  },
+  {
+    "id": "P0331",
+    "location": "Tab t.0/body",
+    "startIndex": 16505,
+    "endIndex": 16544,
+    "style": "HEADING_3",
+    "text": "4.4. So sánh các mô hình trên tập test"
+  },
+  {
+    "id": "P0332",
+    "location": "Tab t.0/body",
+    "startIndex": 16544,
+    "endIndex": 16638,
+    "style": "NORMAL_TEXT",
+    "text": "Gợi ý: Chỉ đánh giá test một lần cho mô hình đã chốt; so sánh công bằng cùng tập và tiêu chí."
+  },
+  {
+    "id": "P0333",
+    "location": "Tab t.0/body/Table11/R1C1",
+    "startIndex": 16641,
+    "endIndex": 16658,
+    "style": "NORMAL_TEXT",
+    "text": "Run ID / mô hình"
+  },
+  {
+    "id": "P0334",
+    "location": "Tab t.0/body/Table11/R1C2",
+    "startIndex": 16659,
+    "endIndex": 16673,
+    "style": "NORMAL_TEXT",
+    "text": "Tập đặc trưng"
+  },
+  {
+    "id": "P0335",
+    "location": "Tab t.0/body/Table11/R1C3",
+    "startIndex": 16674,
+    "endIndex": 16678,
+    "style": "NORMAL_TEXT",
+    "text": "MAE"
+  },
+  {
+    "id": "P0336",
+    "location": "Tab t.0/body/Table11/R1C4",
+    "startIndex": 16679,
+    "endIndex": 16684,
+    "style": "NORMAL_TEXT",
+    "text": "RMSE"
+  },
+  {
+    "id": "P0337",
+    "location": "Tab t.0/body/Table11/R1C5",
+    "startIndex": 16685,
+    "endIndex": 16688,
+    "style": "NORMAL_TEXT",
+    "text": "R²"
+  },
+  {
+    "id": "P0338",
+    "location": "Tab t.0/body/Table11/R2C1",
+    "startIndex": 16690,
+    "endIndex": 16701,
+    "style": "NORMAL_TEXT",
+    "text": "[Baseline]"
+  },
+  {
+    "id": "P0339",
+    "location": "Tab t.0/body/Table11/R2C2",
+    "startIndex": 16702,
+    "endIndex": 16709,
+    "style": "NORMAL_TEXT",
+    "text": "[Điền]"
+  },
+  {
+    "id": "P0340",
+    "location": "Tab t.0/body/Table11/R2C3",
+    "startIndex": 16710,
+    "endIndex": 16714,
+    "style": "NORMAL_TEXT",
+    "text": "[ ]"
+  },
+  {
+    "id": "P0341",
+    "location": "Tab t.0/body/Table11/R2C4",
+    "startIndex": 16715,
+    "endIndex": 16719,
+    "style": "NORMAL_TEXT",
+    "text": "[ ]"
+  },
+  {
+    "id": "P0342",
+    "location": "Tab t.0/body/Table11/R2C5",
+    "startIndex": 16720,
+    "endIndex": 16724,
+    "style": "NORMAL_TEXT",
+    "text": "[ ]"
+  },
+  {
+    "id": "P0343",
+    "location": "Tab t.0/body/Table11/R3C1",
+    "startIndex": 16726,
+    "endIndex": 16738,
+    "style": "NORMAL_TEXT",
+    "text": "[Mô hình 1]"
+  },
+  {
+    "id": "P0344",
+    "location": "Tab t.0/body/Table11/R3C2",
+    "startIndex": 16739,
+    "endIndex": 16746,
+    "style": "NORMAL_TEXT",
+    "text": "[Điền]"
+  },
+  {
+    "id": "P0345",
+    "location": "Tab t.0/body/Table11/R3C3",
+    "startIndex": 16747,
+    "endIndex": 16751,
+    "style": "NORMAL_TEXT",
+    "text": "[ ]"
+  },
+  {
+    "id": "P0346",
+    "location": "Tab t.0/body/Table11/R3C4",
+    "startIndex": 16752,
+    "endIndex": 16756,
+    "style": "NORMAL_TEXT",
+    "text": "[ ]"
+  },
+  {
+    "id": "P0347",
+    "location": "Tab t.0/body/Table11/R3C5",
+    "startIndex": 16757,
+    "endIndex": 16761,
+    "style": "NORMAL_TEXT",
+    "text": "[ ]"
+  },
+  {
+    "id": "P0348",
+    "location": "Tab t.0/body/Table11/R4C1",
+    "startIndex": 16763,
+    "endIndex": 16775,
+    "style": "NORMAL_TEXT",
+    "text": "[Mô hình 2]"
+  },
+  {
+    "id": "P0349",
+    "location": "Tab t.0/body/Table11/R4C2",
+    "startIndex": 16776,
+    "endIndex": 16783,
+    "style": "NORMAL_TEXT",
+    "text": "[Điền]"
+  },
+  {
+    "id": "P0350",
+    "location": "Tab t.0/body/Table11/R4C3",
+    "startIndex": 16784,
+    "endIndex": 16788,
+    "style": "NORMAL_TEXT",
+    "text": "[ ]"
+  },
+  {
+    "id": "P0351",
+    "location": "Tab t.0/body/Table11/R4C4",
+    "startIndex": 16789,
+    "endIndex": 16793,
+    "style": "NORMAL_TEXT",
+    "text": "[ ]"
+  },
+  {
+    "id": "P0352",
+    "location": "Tab t.0/body/Table11/R4C5",
+    "startIndex": 16794,
+    "endIndex": 16798,
+    "style": "NORMAL_TEXT",
+    "text": "[ ]"
+  },
+  {
+    "id": "P0353",
+    "location": "Tab t.0/body",
+    "startIndex": 16799,
+    "endIndex": 16853,
+    "style": "HEADING_3",
+    "text": "4.5. Phân tích overfitting/underfitting và độ ổn định"
+  },
+  {
+    "id": "P0354",
+    "location": "Tab t.0/body",
+    "startIndex": 16853,
+    "endIndex": 16931,
+    "style": "NORMAL_TEXT",
+    "text": "Gợi ý: So sánh train–validation–test; độ ổn định qua các fold theo thời gian."
+  },
+  {
+    "id": "P0355",
+    "location": "Tab t.0/body",
+    "startIndex": 16931,
+    "endIndex": 16946,
+    "style": "NORMAL_TEXT",
+    "text": "[Nhóm bổ sung]"
+  },
+  {
+    "id": "P0356",
+    "location": "Tab t.0/body",
+    "startIndex": 16946,
+    "endIndex": 16968,
+    "style": "HEADING_3",
+    "text": "4.6. Phân tích sai số"
+  },
+  {
+    "id": "P0357",
+    "location": "Tab t.0/body",
+    "startIndex": 16968,
+    "endIndex": 17122,
+    "style": "NORMAL_TEXT",
+    "text": "Gợi ý: Mô hình sai ở đâu: theo giờ cao điểm/thấp điểm, ngày lễ, thời tiết cực đoan; biểu đồ dự đoán vs thực tế, phân phối residual; ghi số mẫu từng nhóm."
+  },
+  {
+    "id": "P0358",
+    "location": "Tab t.0/body",
+    "startIndex": 17122,
+    "endIndex": 17137,
+    "style": "NORMAL_TEXT",
+    "text": "[Nhóm bổ sung]"
+  },
+  {
+    "id": "P0359",
+    "location": "Tab t.0/body",
+    "startIndex": 17137,
+    "endIndex": 17194,
+    "style": "HEADING_3",
+    "text": "4.7. Phân tích đặc trưng quan trọng và diễn giải mô hình"
+  },
+  {
+    "id": "P0360",
+    "location": "Tab t.0/body",
+    "startIndex": 17194,
+    "endIndex": 17304,
+    "style": "NORMAL_TEXT",
+    "text": "Gợi ý: Feature importance/hệ số; giải thích vì sao đặc trưng này quan trọng; không suy diễn quan hệ nhân quả."
+  },
+  {
+    "id": "P0361",
+    "location": "Tab t.0/body",
+    "startIndex": 17304,
+    "endIndex": 17319,
+    "style": "NORMAL_TEXT",
+    "text": "[Nhóm bổ sung]"
+  },
+  {
+    "id": "P0362",
+    "location": "Tab t.0/body",
+    "startIndex": 17319,
+    "endIndex": 17363,
+    "style": "HEADING_3",
+    "text": "4.8. Kết quả thí nghiệm đối chứng đặc trưng"
+  },
+  {
+    "id": "P0363",
+    "location": "Tab t.0/body",
+    "startIndex": 17363,
+    "endIndex": 17378,
+    "style": "NORMAL_TEXT",
+    "text": "[Nhóm bổ sung]"
+  },
+  {
+    "id": "P0364",
+    "location": "Tab t.0/body",
+    "startIndex": 17378,
+    "endIndex": 17410,
+    "style": "HEADING_3",
+    "text": "4.9. Trả lời câu hỏi nghiên cứu"
+  },
+  {
+    "id": "P0365",
+    "location": "Tab t.0/body",
+    "startIndex": 17410,
+    "endIndex": 17490,
+    "style": "NORMAL_TEXT",
+    "text": "Gợi ý: Trả lời lần lượt từng câu hỏi ở mục 1.2 dựa trên bằng chứng thực nghiệm."
+  },
+  {
+    "id": "P0366",
+    "location": "Tab t.0/body",
+    "startIndex": 17490,
+    "endIndex": 17505,
+    "style": "NORMAL_TEXT",
+    "text": "[Nhóm bổ sung]"
+  },
+  {
+    "id": "P0367",
+    "location": "Tab t.0/body",
+    "startIndex": 17505,
+    "endIndex": 17507,
+    "style": "HEADING_2",
+    "text": "[PAGE BREAK]"
+  },
+  {
+    "id": "P0368",
+    "location": "Tab t.0/body",
+    "startIndex": 17507,
+    "endIndex": 17546,
+    "style": "HEADING_2",
+    "text": "Chương 5. Kết luận và hướng phát triển"
+  },
+  {
+    "id": "P0369",
+    "location": "Tab t.0/body",
+    "startIndex": 17546,
+    "endIndex": 17590,
+    "style": "HEADING_3",
+    "text": "5.1. Kết quả chính và mô hình được lựa chọn"
+  },
+  {
+    "id": "P0370",
+    "location": "Tab t.0/body",
+    "startIndex": 17590,
+    "endIndex": 17605,
+    "style": "NORMAL_TEXT",
+    "text": "[Nhóm bổ sung]"
+  },
+  {
+    "id": "P0371",
+    "location": "Tab t.0/body",
+    "startIndex": 17605,
+    "endIndex": 17618,
+    "style": "HEADING_3",
+    "text": "5.2. Hạn chế"
+  },
+  {
+    "id": "P0372",
+    "location": "Tab t.0/body",
+    "startIndex": 17618,
+    "endIndex": 17687,
+    "style": "NORMAL_TEXT",
+    "text": "Gợi ý: Tách hạn chế về dữ liệu, phương pháp và thiết kế thực nghiệm."
+  },
+  {
+    "id": "P0373",
+    "location": "Tab t.0/body",
+    "startIndex": 17687,
+    "endIndex": 17702,
+    "style": "NORMAL_TEXT",
+    "text": "[Nhóm bổ sung]"
+  },
+  {
+    "id": "P0374",
+    "location": "Tab t.0/body",
+    "startIndex": 17702,
+    "endIndex": 17733,
+    "style": "HEADING_3",
+    "text": "5.3. Hướng cải tiến và mở rộng"
+  },
+  {
+    "id": "P0375",
+    "location": "Tab t.0/body",
+    "startIndex": 17733,
+    "endIndex": 17748,
+    "style": "NORMAL_TEXT",
+    "text": "[Nhóm bổ sung]"
+  },
+  {
+    "id": "P0376",
+    "location": "Tab t.0/body",
+    "startIndex": 17748,
+    "endIndex": 17767,
+    "style": "HEADING_2",
+    "text": "Tài liệu tham khảo"
+  },
+  {
+    "id": "P0377",
+    "location": "Tab t.0/body",
+    "startIndex": 17767,
+    "endIndex": 17865,
+    "style": "NORMAL_TEXT",
+    "text": "Gợi ý: Nguồn dữ liệu, tài liệu thuật toán, thư viện, công cụ AI đã dùng; cùng một kiểu trích dẫn."
+  },
+  {
+    "id": "P0378",
+    "location": "Tab t.0/body",
+    "startIndex": 17865,
+    "endIndex": 17928,
+    "style": "NORMAL_TEXT",
+    "text": "[1] Tác giả / tổ chức. Tên tài liệu. Đường dẫn. Ngày truy cập."
+  },
+  {
+    "id": "P0379",
+    "location": "Tab t.0/body",
+    "startIndex": 17928,
+    "endIndex": 17936,
+    "style": "HEADING_2",
+    "text": "Phụ lục"
+  },
+  {
+    "id": "P0380",
+    "location": "Tab t.0/body",
+    "startIndex": 17936,
+    "endIndex": 17991,
+    "style": "HEADING_3",
+    "text": "Phụ lục A. Danh mục mã nguồn, README và hướng dẫn chạy"
+  },
+  {
+    "id": "P0381",
+    "location": "Tab t.0/body",
+    "startIndex": 17991,
+    "endIndex": 18073,
+    "style": "NORMAL_TEXT",
+    "text": "Gợi ý: Đường dẫn notebook/script, cấu hình, hướng dẫn cài đặt và tái lập kết quả."
+  },
+  {
+    "id": "P0382",
+    "location": "Tab t.0/body",
+    "startIndex": 18073,
+    "endIndex": 18088,
+    "style": "NORMAL_TEXT",
+    "text": "[Nhóm bổ sung]"
+  },
+  {
+    "id": "P0383",
+    "location": "Tab t.0/body",
+    "startIndex": 18088,
+    "endIndex": 18131,
+    "style": "HEADING_3",
+    "text": "Phụ lục B. Nhật ký thực nghiệm và hình gốc"
+  },
+  {
+    "id": "P0384",
+    "location": "Tab t.0/body",
+    "startIndex": 18131,
+    "endIndex": 18146,
+    "style": "NORMAL_TEXT",
+    "text": "[Nhóm bổ sung]"
+  },
+  {
+    "id": "P0385",
+    "location": "Tab t.0/body",
+    "startIndex": 18146,
+    "endIndex": 18194,
+    "style": "HEADING_3",
+    "text": "Phụ lục C. Phân công và đóng góp của thành viên"
+  },
+  {
+    "id": "P0386",
+    "location": "Tab t.0/body/Table12/R1C1",
+    "startIndex": 18197,
+    "endIndex": 18208,
+    "style": "NORMAL_TEXT",
+    "text": "Thành viên"
+  },
+  {
+    "id": "P0387",
+    "location": "Tab t.0/body/Table12/R1C2",
+    "startIndex": 18209,
+    "endIndex": 18227,
+    "style": "NORMAL_TEXT",
+    "text": "Công việc thực tế"
+  },
+  {
+    "id": "P0388",
+    "location": "Tab t.0/body/Table12/R1C3",
+    "startIndex": 18228,
+    "endIndex": 18250,
+    "style": "NORMAL_TEXT",
+    "text": "Sản phẩm / bằng chứng"
+  },
+  {
+    "id": "P0389",
+    "location": "Tab t.0/body/Table12/R1C4",
+    "startIndex": 18251,
+    "endIndex": 18259,
+    "style": "NORMAL_TEXT",
+    "text": "Ghi chú"
+  },
+  {
+    "id": "P0390",
+    "location": "Tab t.0/body/Table12/R2C1",
+    "startIndex": 18261,
+    "endIndex": 18274,
+    "style": "NORMAL_TEXT",
+    "text": "Phùng Anh Vũ"
+  },
+  {
+    "id": "P0391",
+    "location": "Tab t.0/body/Table12/R2C2",
+    "startIndex": 18275,
+    "endIndex": 18282,
+    "style": "NORMAL_TEXT",
+    "text": "[Điền]"
+  },
+  {
+    "id": "P0392",
+    "location": "Tab t.0/body/Table12/R2C3",
+    "startIndex": 18283,
+    "endIndex": 18304,
+    "style": "NORMAL_TEXT",
+    "text": "[File / link / cell]"
+  },
+  {
+    "id": "P0393",
+    "location": "Tab t.0/body/Table12/R2C4",
+    "startIndex": 18305,
+    "endIndex": 18312,
+    "style": "NORMAL_TEXT",
+    "text": "[Điền]"
+  },
+  {
+    "id": "P0394",
+    "location": "Tab t.0/body/Table12/R3C1",
+    "startIndex": 18314,
+    "endIndex": 18332,
+    "style": "NORMAL_TEXT",
+    "text": "Nguyễn Hoàng Phúc"
+  },
+  {
+    "id": "P0395",
+    "location": "Tab t.0/body/Table12/R3C2",
+    "startIndex": 18333,
+    "endIndex": 18340,
+    "style": "NORMAL_TEXT",
+    "text": "[Điền]"
+  },
+  {
+    "id": "P0396",
+    "location": "Tab t.0/body/Table12/R3C3",
+    "startIndex": 18341,
+    "endIndex": 18362,
+    "style": "NORMAL_TEXT",
+    "text": "[File / link / cell]"
+  },
+  {
+    "id": "P0397",
+    "location": "Tab t.0/body/Table12/R3C4",
+    "startIndex": 18363,
+    "endIndex": 18370,
+    "style": "NORMAL_TEXT",
+    "text": "[Điền]"
+  },
+  {
+    "id": "P0398",
+    "location": "Tab t.0/body/Table12/R4C1",
+    "startIndex": 18372,
+    "endIndex": 18386,
+    "style": "NORMAL_TEXT",
+    "text": "Trần Nhựt Huy"
+  },
+  {
+    "id": "P0399",
+    "location": "Tab t.0/body/Table12/R4C2",
+    "startIndex": 18387,
+    "endIndex": 18394,
+    "style": "NORMAL_TEXT",
+    "text": "[Điền]"
+  },
+  {
+    "id": "P0400",
+    "location": "Tab t.0/body/Table12/R4C3",
+    "startIndex": 18395,
+    "endIndex": 18416,
+    "style": "NORMAL_TEXT",
+    "text": "[File / link / cell]"
+  },
+  {
+    "id": "P0401",
+    "location": "Tab t.0/body/Table12/R4C4",
+    "startIndex": 18417,
+    "endIndex": 18424,
+    "style": "NORMAL_TEXT",
+    "text": "[Điền]"
+  },
+  {
+    "id": "P0402",
+    "location": "Tab t.0/body/Table12/R5C1",
+    "startIndex": 18426,
+    "endIndex": 18439,
+    "style": "NORMAL_TEXT",
+    "text": "Bùi Nhật Hào"
+  },
+  {
+    "id": "P0403",
+    "location": "Tab t.0/body/Table12/R5C2",
+    "startIndex": 18440,
+    "endIndex": 18447,
+    "style": "NORMAL_TEXT",
+    "text": "[Điền]"
+  },
+  {
+    "id": "P0404",
+    "location": "Tab t.0/body/Table12/R5C3",
+    "startIndex": 18448,
+    "endIndex": 18469,
+    "style": "NORMAL_TEXT",
+    "text": "[File / link / cell]"
+  },
+  {
+    "id": "P0405",
+    "location": "Tab t.0/body/Table12/R5C4",
+    "startIndex": 18470,
+    "endIndex": 18477,
+    "style": "NORMAL_TEXT",
+    "text": "[Điền]"
+  },
+  {
+    "id": "P0406",
+    "location": "Tab t.0/body",
+    "startIndex": 18478,
+    "endIndex": 18512,
+    "style": "HEADING_3",
+    "text": "Phụ lục D. Kiểm tra trước khi nộp"
+  },
+  {
+    "id": "P0407",
+    "location": "Tab t.0/body",
+    "startIndex": 18512,
+    "endIndex": 18623,
+    "style": "NORMAL_TEXT",
+    "text": "Gợi ý: Đối chiếu báo cáo, slide, mã nguồn, README, log, hình và demo; đảm bảo chạy lại được; kiểm tra hạn nộp."
+  },
+  {
+    "id": "P0408",
+    "location": "Tab t.0/body",
+    "startIndex": 18623,
+    "endIndex": 18638,
+    "style": "NORMAL_TEXT",
+    "text": "[Nhóm bổ sung]"
+  }
+]

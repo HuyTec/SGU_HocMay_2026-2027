@@ -1,0 +1,21 @@
+{
+  "source_predictions": "experiments\\22-11-2026_Huy_C30_MAE_Diversity\\outputs\\validation_predictions.csv",
+  "source_predictions_sha256": "630710d076960de8f74bd4d8ffa0aa4142707fd3d4f63cc2ce83eeb8b6e21d83",
+  "source_context": "data\\preprocessed\\hourly_unfilled.csv",
+  "context_sha256": "d2092b0060b8db304a5da8c27b637b38da97b798e43f67da6a239328890a1de6",
+  "n": 6050,
+  "model": "C30_RF25_XGB25_ExtraTrees50",
+  "model_refit": false,
+  "test_evaluated": false,
+  "definitions": {
+    "rush_hour": "weekday and hour in [6,7,8,15,16,17]",
+    "adverse_weather": "at least one of rain/snow/drizzle/thunderstorm/squall/fog/mist; overlapping categories collapsed with OR",
+    "after_gap": "[first observed timestamp after a gap >1h, +24h); only hours remaining in complete-history validation cohort",
+    "holiday": "CSV-derived daily is_holiday; no external calendar"
+  },
+  "limits": [
+    "Descriptive slicing after model selection; no causal claim",
+    "C30 history excludes many hours after gaps",
+    "Weather slices do not isolate weather effects from time or traffic level"
+  ]
+}

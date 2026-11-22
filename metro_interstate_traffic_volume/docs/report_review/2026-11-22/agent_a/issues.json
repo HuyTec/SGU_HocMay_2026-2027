@@ -1,0 +1,592 @@
+[
+  {
+    "issue_id": "A-I001",
+    "paragraphs": [
+      "P0026"
+    ],
+    "quotes": [
+      "Mỗi năm, một tài xế ở Mỹ mất trung 49 giờ vì tắc đường vậy muốn biết giờ nào đường nào sẽ đông thì sao?Cùng một con đường  7 giờ sáng và 10 giờ sáng có thể khác nhau hoàn toàn để biết trước các khung giờ trên có lưu lượng như thế nào đó là mục tiêu của đề tài này."
+    ],
+    "severity": "P2",
+    "kind": "missing citation",
+    "problem": "Con số49giờ không có nguồn/năm/phạm vi; câu viết gộp và lỗi 'mất trung'.",
+    "proposal": "Bỏ số49giờ khi chưa có nguồn; mở đầu bằng nhu cầu ước lượng lưu lượng theo giờ ở trạm đang xét.",
+    "status": "CHƯA XÁC MINH NGUỒN"
+  },
+  {
+    "issue_id": "A-I002",
+    "paragraphs": [
+      "P0027",
+      "P0028",
+      "P0031",
+      "P0032",
+      "P0035"
+    ],
+    "quotes": [
+      "1.2. Mục tiêu và câu hỏi nghiên cứu",
+      "Mục tiêu nghiên cứu xác định các yếu tố ảnh hưởng đến lưu lượng giao thông trên đường I-94 và xây dựng mô hình dự đoán lưu lượng theo thời gian.",
+      "Đánh giá ảnh hưởng của thời tiết đến lưu lượng",
+      "Đánh giá ảnh hưởng của ngày lễ so với ngày thường cùng thứ.",
+      "1.4. Tổng quan các nghiên cứu và hướng tiếp cận liên quan"
+    ],
+    "severity": "P1",
+    "kind": "research design",
+    "problem": "Mục1.2 chỉ liệt kê mục tiêu, chưa định danh câu hỏi nghiên cứu; đánh số nhảy từ1.2 đến1.4. Từ 'ảnh hưởng' dễ bị đọc thành nhân quả.",
+    "proposal": "Thêm RQ rõ phạm vi: quy luật thời gian/lễ, giá trị bổ sung Weather/History trong matchedCV, mô hình/ensemble và sai số; sửa sốmục.",
+    "status": "XÁC MINH TỪ BÁO CÁO"
+  },
+  {
+    "issue_id": "A-I003",
+    "paragraphs": [
+      "P0035",
+      "P0036"
+    ],
+    "quotes": [
+      "1.4. Tổng quan các nghiên cứu và hướng tiếp cận liên quan",
+      "1.5. Bố cục báo cáo"
+    ],
+    "severity": "P2",
+    "kind": "missing sections",
+    "problem": "1.4 và1.5 chỉ có tiêu đề; Chương2 ghi nghiên cứu liên quan nhưng chưa có khảo sát nghiên cứu/citation.",
+    "proposal": "Viết tổng quan dữ liệu và nghiên cứu liên quan có nguồn; mô tả bố cục đã thực hiện, không buộc phải tìm một paper duy nhất.",
+    "status": "XÁC MINH TỪ BÁO CÁO"
+  },
+  {
+    "issue_id": "A-I004",
+    "paragraphs": [
+      "P0060",
+      "P0062"
+    ],
+    "quotes": [
+      "Random Forest (RF): huấn luyện với [EQUATION] cây quyết định, mỗi cây trên một mẫu bootstrap của dữ liệu. Tại mỗi nút, cây chỉ xét một tập con ngẫu nhiên [EQUATION] đặc trưng để chọn điểm chia. Hai nguồn ngẫu nhiên này làm các cây ít tương quan với nhau.",
+      "Với bài toán phân loại, kết quả lấy theo đa số phiếu. Việc lấy trung bình giúp giảm phương sai so với một cây đơn mà gần như không tăng độ chệch. Sai số out-of-bag (OOB) cho ước lượng đánh giá mà không cần tập validation riêng."
+    ],
+    "severity": "P1",
+    "kind": "theory scope",
+    "problem": "OOB được mô tả như không cầnvalidation riêng, dễ hiểu thành đã dùngOOB thay đánh giá theo thời gian. 'Gần như không tăng độchệch' không phải bảo đảm.",
+    "proposal": "Nêu đây là nguyên lý chung RF; dự án dùng CV theo thời gian vàvalidation, không dùngOOB thay thế. Trình bày lợi ích giảm phương sai có điều kiện.",
+    "status": "XÁC MINH TỪ BÁO CÁO"
+  },
+  {
+    "issue_id": "A-I005",
+    "paragraphs": [
+      "P0055",
+      "P0056",
+      "P0058",
+      "P0059",
+      "P0061",
+      "P0064",
+      "P0065",
+      "P0068",
+      "P0069",
+      "P0071",
+      "P0073"
+    ],
+    "quotes": [
+      "Linear Regression giả định đầu ra là tổ hợp tuyến tính của các đặc trưng: [EQUATION]. Tham số được chọn để cực tiểu sai số bình phương trung bình:",
+      "[EQUATION]",
+      "[EQUATION]",
+      "Hệ số [EQUATION] điều chỉnh mức phạt (thường không phạt [EQUATION]). Do phạt phụ thuộc độ lớn của [EQUATION], các đặc trưng cần được chuẩn hóa trước khi huấn luyện.",
+      "[EQUATION]",
+      "[EQUATION]",
+      "[EQUATION]",
+      "[EQUATION]",
+      "Tham số [EQUATION] được cập nhật bằng lan truyền ngược và gradient descent: [EQUATION] (hoặc biến thể như Adam). MLP nhạy với thang đo của đầu vào nên cần chuẩn hóa dữ liệu. Kết quả cũng phụ thuộc nhiều vào khởi tạo, tốc độ học [EQUATION] và điều kiện dừng.",
+      "[IMAGE kix.w9z2mkqqadwv]Trong đó [EQUATION] là số lá và [EQUATION] là trọng số lá. Với [EQUATION] là đạo hàm bậc một và bậc hai của loss, [EQUATION] và [EQUATION], trọng số tối ưu của lá và độ lợi khi chia nút là:",
+      "Tham số [EQUATION] và [EQUATION] kiểm soát độ phức tạp của cây: nút chỉ được chia khi độ lợi lớn hơn [EQUATION]."
+    ],
+    "severity": "P2",
+    "kind": "formula QA",
+    "problem": "28 nodephươngtrình native API chỉ trảequation={} nên chưa nhìn được ký hiệu. Không được kết luận côngthức bị thiếu/sai trongDocs.",
+    "proposal": "Kiểm côngthức bằng bảnPDF/render hoặc xem trực tiếp ởDocs; đây là giới hạn tríchxuất, không là lỗi đã xác minh.",
+    "status": "CHƯA XÁC MINH 28 CÔNG THỨC NATIVE"
+  },
+  {
+    "issue_id": "A-I006",
+    "paragraphs": [
+      "P0076",
+      "P0077",
+      "P0078"
+    ],
+    "quotes": [
+      "[IMAGE kix.3xshvl3zek52]",
+      "[IMAGE kix.ojenq5gde4a2]",
+      "[IMAGE kix.107jhofbxxr9]"
+    ],
+    "severity": "P3",
+    "kind": "formula QA",
+    "problem": "3 ảnh MAE/RMSE/R² được xem; côngthức hiển thị phù hợp định nghĩa e_i; không phát hiện lỗi ở ảnh.",
+    "proposal": "Giữ; thêm định nghĩa n và quy tắcclip dự đoán trong phần thực nghiệm.",
+    "status": "XÁC MINH TỪ BÁO CÁO"
+  },
+  {
+    "issue_id": "A-I007",
+    "paragraphs": [
+      "P0071",
+      "P0072"
+    ],
+    "quotes": [
+      "[IMAGE kix.w9z2mkqqadwv]Trong đó [EQUATION] là số lá và [EQUATION] là trọng số lá. Với [EQUATION] là đạo hàm bậc một và bậc hai của loss, [EQUATION] và [EQUATION], trọng số tối ưu của lá và độ lợi khi chia nút là:",
+      "[IMAGE kix.9ruxm9cqjlyg]"
+    ],
+    "severity": "P3",
+    "kind": "formula QA",
+    "problem": "2 ảnh objectiveOmega vàgain cógamma đã xem, không thấy lỗi côngthức; kýhiệunative xung quanhchưa kiểm.",
+    "proposal": "Giữ ảnh, bổ sungcitation tài liệuXGBoost và tên tham số thực dùng.",
+    "status": "XÁC MINH TỪ BÁO CÁO"
+  },
+  {
+    "issue_id": "A-I008",
+    "paragraphs": [
+      "P0080"
+    ],
+    "quotes": [
+      "MAE và RMSE có thể xếp hạng các mô hình khác nhau, nên báo cáo cả hai và nêu rõ metric dùng để chọn tham số. Các hàm đánh giá hiện tại cắt dự đoán âm về 0 trước khi tính điểm, nên mọi mô hình được so sánh phải dùng cùng quy tắc này."
+    ],
+    "severity": "P1",
+    "kind": "reproducibility",
+    "problem": "Claimclipnegative cần kiểm mọi đườngscore; primarymetric vẫn chỉ là lời nhắc nêu rõ, chưachốtMAE.",
+    "proposal": "GhiMAE làtiêu chíselection;RMSE/R² làbổ sung; gắnscorehelper và xác minhclipđồngnhất.",
+    "status": "XÁC MINH TỪ BÁO CÁO"
+  },
+  {
+    "issue_id": "A-I009",
+    "paragraphs": [
+      "P0083"
+    ],
+    "quotes": [
+      "Theo tài liệu TimeSeriesSplit, các fold đánh giá chỉ phủ cùng một khoảng thời gian khi các mẫu cách đều. Dữ liệu ở đây thiếu giờ, nên các fold có cùng số hàng chưa chắc phủ cùng khoảng lịch. Vì vậy, khi diễn giải độ ổn định, cần ghi mốc thời gian và số mẫu của từng fold, và chỉ mô tả các fold là cửa sổ lịch bằng nhau nếu đã kiểm tra. [PAGE BREAK]"
+    ],
+    "severity": "P2",
+    "kind": "reproducibility",
+    "problem": "Caveatfold khácđộdàilịchđúnghướng nhưng chưa có foldmanifest/start/end/n thực trong3.6.",
+    "proposal": "Thêm bảngcohort/fold1..3, ntrain/nscore,mốclịch,hash/runID.",
+    "status": "XÁC MINH TỪ BÁO CÁO"
+  },
+  {
+    "issue_id": "A-I010",
+    "paragraphs": [
+      "P0087",
+      "P0088"
+    ],
+    "quotes": [
+      "Bộ Metro Interstate Traffic Volume do John Hogue công bố trên UCI năm 2019. Dữ liệu ghi lưu lượng theo giờ tại trạm ATR 301, I-94 hướng Tây, khu vực Minneapolis-St Paul, và phát hành theo CC BY 4.0. CSV của dự án có 48.204 dòng, 9 cột gồm 8 đầu vào và một biến mục tiêu; timestamp trải từ 02/10/2012 09:00 đến 30/09/2018 23:00. Nguồn: UCI.",
+      "Các số kiểm tra riêng từ CSV: 40.575 timestamp duy nhất, 7.629 dòng vượt số timestamp duy nhất và 11.976 giờ không có quan sát trong lưới giờ từ đầu đến cuối. 7.629 là số dòng dư theo khóa thời gian, chưa chắc là số bản ghi trùng hoàn toàn. Số giờ thiếu tính trên timestamp không gắn timezone như trong file; chưa phân tích DST."
+    ],
+    "severity": "P2",
+    "kind": "provenance",
+    "problem": "NguồnUCI mới ghi 'Nguồn: UCI', mục tài liệuthamkhảo chưa cólink/DOI/ngàytruycập; sốCSV khácmô tảnguồn cầntruyvết.",
+    "proposal": "TríchUCI DOI10.24432/C5X60B; nối sốkiểm riêng với notebookEDA_general vàđầu ra hiệncó.",
+    "status": "XÁC MINH TỪ BÁO CÁO"
+  },
+  {
+    "issue_id": "A-I011",
+    "paragraphs": [
+      "P0170",
+      "P0289",
+      "P0290",
+      "P0291",
+      "P0292",
+      "P0293"
+    ],
+    "quotes": [
+      "Không có null không đồng nghĩa dữ liệu hoàn toàn sạch. Giờ vắng bản ghi ở mục 3.1 không được quy thành lưu lượng 0. Với mưa/tuyết, Q1 và Q3 đều bằng 0 nên IQR có thể gắn cờ cả các giá trị dương hợp lý. Các vấn đề trên được xử lý tại mục 3.3.",
+      "3.3. Tiền xử lý dữ liệu",
+      "3.3.1. Giá trị thiếu, timestamp trùng và định dạng",
+      "[Nhóm bổ sung]",
+      "3.3.2. Ngoại lệ và nhiễu",
+      "[Nhóm bổ sung]"
+    ],
+    "severity": "P1",
+    "kind": "missing method",
+    "problem": "Câu 'Cácvấnđềtrênđượcxửlýtạimục3.3' trỏ đến mục vẫn '[Nhóm bổ sung]'.",
+    "proposal": "Điền quytrình làm sạch từsource thật,phânbiệt sửa giátrịbấthợp lý,aggregateuniquehour,missinggrid,khôngbịa quytrình.",
+    "status": "XÁC MINH TỪ BÁO CÁO"
+  },
+  {
+    "issue_id": "A-I012",
+    "paragraphs": [
+      "P0172",
+      "P0202"
+    ],
+    "quotes": [
+      "Sau bước kiểm tra chất lượng dữ liệu, nhóm khảo sát phân bố của biến mục tiêu traffic_volume trên 40.575 giờ quan sát duy nhất. Mỗi timestamp chỉ được tính một lần; các thống kê dưới đây sử dụng toàn bộ dữ liệu theo giờ.",
+      "Nhóm phân tích lưu lượng theo giờ, thứ và tháng trên toàn bộ 40.575 timestamp duy nhất. Các thống kê chỉ tính giờ có bản ghi, không gán lưu lượng 0 cho giờ thiếu."
+    ],
+    "severity": "P1",
+    "kind": "scope",
+    "problem": "EDA toàn40575giờ bao gồm miềnvalidation/test theo thời gian; báo cáo chưa nói nóchỉmôtả hay đượcdùngchọnfeature.",
+    "proposal": "Ghi rõdescriptiveEDA toànCSV; mọiquyếtđịnh/tuning dùngtrain. Nếu EDAwholedata đã ảnhhưởngselection, côngkhai hạnchế.",
+    "status": "XÁC MINH TỪ BÁO CÁO"
+  },
+  {
+    "issue_id": "A-I013",
+    "paragraphs": [
+      "P0198",
+      "P0199",
+      "P0206",
+      "P0239",
+      "P0269"
+    ],
+    "quotes": [
+      "Hình 3.1 kết hợp histogram và boxplot để thể hiện tần suất quan sát, trung vị và khoảng phân bố của lưu lượng.[IMAGE kix.exjdsthkcy2o]",
+      "Hình 3.1. Phân bố lưu lượng giao thông trên các giờ quan sát duy nhất",
+      "Hình 3.2. Lưu lượng trung bình theo giờ, thứ trong tuần và tháng[PAGE BREAK]",
+      "Hình 3.3 lưu lượng trung bình theo tổ hợp thứ trong tuần và giờ",
+      "Hình 3.4. Lưu lượng trung bình theo nhãn thời tiết"
+    ],
+    "severity": "P2",
+    "kind": "figure reproducibility",
+    "problem": "4 hìnhEDAđãxem khớpmôtả; ảnh không ghi tổngn/nguồn,file/hàm sinh hoặcperiod; hình3.4 hiểnnhiềunhãnnhưng chỉbảngcho một sốnhóm.",
+    "proposal": "Thêmchúthíchscope40575uniquehours,nguồnnotebook/hìnhgốc;nnhómđầyđủhoặc chỉ rõnởbảngphụlục.",
+    "status": "XÁC MINH TỪ BÁO CÁO"
+  },
+  {
+    "issue_id": "A-I014",
+    "paragraphs": [
+      "P0211",
+      "P0272",
+      "P0274"
+    ],
+    "quotes": [
+      "giờ",
+      "Giờ",
+      "giờ"
+    ],
+    "severity": "P3",
+    "kind": "table labeling",
+    "problem": "Header 'giờ/Giờ' dùng để chỉsốmẫu cóthểnhầm với biến giờtrongngày.",
+    "proposal": "Đổi thành'n (giờquantrắc)' vàthốngnhất chữhoa/đơnvị.",
+    "status": "XÁC MINH TỪ BÁO CÁO"
+  },
+  {
+    "issue_id": "A-I015",
+    "paragraphs": [
+      "P0243"
+    ],
+    "quotes": [
+      "Bảng 3.7 tính sau khi đánh dấu nhiệt độ 0 K và điểm mưa 9.831,3 mm là thiếu, rồi gộp thời tiết theo giờ bằng median các giá trị phân biệt. n là số cặp quan sát hợp lệ của từng biến với lưu lượng."
+    ],
+    "severity": "P2",
+    "kind": "method precision",
+    "problem": "Median cácgiátrịphânbiệt làquytắckhác mediantrêntấtcảdòng; chưanêuvìsaođểtránhweatherlabels lặplàmtrọngsố.",
+    "proposal": "Nêu rõ dedupgiátrịtrongtừngtimestamp/cộtsố rồimedian; dẫn hàmsource; khôngápsangtarget.",
+    "status": "XÁC MINH TỪ BÁO CÁO"
+  },
+  {
+    "issue_id": "A-I016",
+    "paragraphs": [
+      "P0032",
+      "P0240"
+    ],
+    "quotes": [
+      "Đánh giá ảnh hưởng của ngày lễ so với ngày thường cùng thứ.",
+      "Từ thứ Hai đến thứ Sáu, lưu lượng cao tập trung vào buổi sáng và chiều; cuối tuần tăng muộn hơn, tập trung quanh giữa ngày. Kết quả gợi ý xem xét đồng thời giờ, thứ và cờ cuối tuần; giá trị dự đoán cần kiểm chứng ở phần thực nghiệm."
+    ],
+    "severity": "P1",
+    "kind": "missing analysis",
+    "problem": "Mụctiêungàylễso cùngthứchưacókếtquảngàylễ ở3.2; chưađốichiếu cùnggiờvànnhóm.",
+    "proposal": "Thêm EDAngàylễmatchedweekday-hour,nvàCI; nếu chưađủsource ghi chưahoànthành.",
+    "status": "XÁC MINH TỪ BÁO CÁO"
+  },
+  {
+    "issue_id": "A-I017",
+    "paragraphs": [
+      "P0294",
+      "P0295",
+      "P0296",
+      "P0297",
+      "P0298",
+      "P0299"
+    ],
+    "quotes": [
+      "3.3.3. Encoding và scaling",
+      "Gợi ý: Cột áp dụng, phương pháp, lý do theo từng mô hình; chỉ fit trên tập train.",
+      "[Nhóm bổ sung]",
+      "3.4. Xây dựng và lựa chọn đặc trưng",
+      "Gợi ý: Nhóm Time (giờ, thứ, tháng, ngày lễ, mã hóa tuần hoàn), Weather (nhiệt độ, mưa, tuyết, mây, mô tả thời tiết), History (lag, rolling) nếu dùng; đảm bảo mọi đầu vào sẵn có tại thời điểm dự đoán. Nêu cách chọn đặc trưng nếu có.",
+      "[Nhóm bổ sung]"
+    ],
+    "severity": "P1",
+    "kind": "missing method",
+    "problem": "Encoding/scaling và Time/Weather/History còn toàn gợiý, khôngcóA12/B27/C30/danhsáchcộtcôngthức.",
+    "proposal": "Điền bảngconfig thực,lagsđúngtimestamp vàmean24h loại giờt; trainfitimputation/scaler;Ridgeweekday_hour nếu có.",
+    "status": "XÁC MINH TỪ BÁO CÁO"
+  },
+  {
+    "issue_id": "A-I018",
+    "paragraphs": [
+      "P0301"
+    ],
+    "quotes": [
+      "Gợi ý: Chèn sơ đồ pipeline: dữ liệu → tiền xử lý → đặc trưng → chia tập → huấn luyện/tuning → đánh giá → demo."
+    ],
+    "severity": "P1",
+    "kind": "pipeline ambiguity",
+    "problem": "Sơđồgợiý đặt featuretrướcsplit cóthể bịhiểufitpreprocessing trênfullCSV; chuỗi này chưa phải kiếntrúc đãthựcthi.",
+    "proposal": "Vẽ2lớp:clean/aggregate deterministic và foldtrainfittransform; causalhistory chỉquansáttrướct.",
+    "status": "XÁC MINH TỪ BÁO CÁO"
+  },
+  {
+    "issue_id": "A-I019",
+    "paragraphs": [
+      "P0304",
+      "P0305",
+      "P0306",
+      "P0307",
+      "P0308",
+      "P0309",
+      "P0310",
+      "P0311",
+      "P0312",
+      "P0313",
+      "P0314",
+      "P0315",
+      "P0316",
+      "P0317"
+    ],
+    "quotes": [
+      "3.6.1. Chiến lược chia dữ liệu",
+      "Gợi ý: Train/validation/test theo thời gian: tỷ lệ, số mẫu, mốc thời gian thực tế; vai trò từng tập.",
+      "[Nhóm bổ sung]",
+      "3.6.2. Kiểm soát data leakage và tính công bằng khi so sánh",
+      "Gợi ý: Cách fit preprocessing chỉ trên train; không dùng test để chọn mô hình/tuning; các mô hình dùng cùng tập, cùng mốc chia, cùng metric.",
+      "[Nhóm bổ sung]",
+      "3.6.3. Baseline",
+      "[Nhóm bổ sung]",
+      "3.6.4. Độ đo và phương án tinh chỉnh siêu tham số",
+      "Gợi ý: Phương pháp (Grid/Random Search + CV theo thời gian), không gian tham số, chỉ số chọn mô hình trên validation.",
+      "[Nhóm bổ sung]",
+      "3.6.5. Thiết kế thí nghiệm đối chứng đặc trưng",
+      "Gợi ý: Time, Time + Weather, Time + Weather + History: cùng thuật toán, cùng tập và mốc chia, để trả lời câu hỏi nghiên cứu.",
+      "[Nhóm bổ sung]"
+    ],
+    "severity": "P1",
+    "kind": "missing experiment protocol",
+    "problem": "Toànbộ3.6 thiếu chia70/15/15/cohort/fold/searchbudget/baseline/FEprotocol; bađoạnOOF không bù đượcthiếu này.",
+    "proposal": "Điền từmanifest/code/log, tách5FEconfig và3tuningconfig vàensemble20–22Nov; khônggộp protocolkhácnhau.",
+    "status": "XÁC MINH TỪ BÁO CÁO"
+  },
+  {
+    "issue_id": "A-I020",
+    "paragraphs": [
+      "P0318",
+      "P0319"
+    ],
+    "quotes": [
+      "Dự đoán ngoài fold (Out-of-Fold — OOF) được tạo bằng phương pháp TimeSeriesSplit với ba fold. Ở mỗi fold, mô hình được huấn luyện trên dữ liệu quá khứ và dự đoán trên đoạn dữ liệu tiếp theo; các bước tiền xử lý có học thống kê cũng chỉ được fit trên phần huấn luyện tương ứng. Các dự đoán được ghép theo timestamp để đánh giá trên những quan sát chưa tham gia huấn luyện mô hình tạo ra chúng.",
+      "Trong thí nghiệm ensemble, Random Forest và XGBoost sử dụng cùng cấu hình đặc trưng, bộ chia và các giờ chấm. Trọng số kết hợp được lựa chọn theo MAE trên dự đoán OOF thuộc tập train. Sau khi chọn trọng số, hai mô hình được huấn luyện lại trên toàn bộ tập train và ensemble được đánh giá trên validation."
+    ],
+    "severity": "P1",
+    "kind": "stale architecture",
+    "problem": "OOFensemble chỉ nêuRF+XGB; khôngcóExtraTrees/mốc22Nov hoặc cấu hìnhtrọngsốfinal.",
+    "proposal": "Gắnđoạn2modelvớithửnghiệm20–21Nov; thêmfinal3modelRF25/XGB25/ExtraTrees50 từmanifest,đánhgiávalđãxemnhiềulần.",
+    "status": "XÁC MINH TỪ BÁO CÁO"
+  },
+  {
+    "issue_id": "A-I021",
+    "paragraphs": [
+      "P0319",
+      "P0320"
+    ],
+    "quotes": [
+      "Trong thí nghiệm ensemble, Random Forest và XGBoost sử dụng cùng cấu hình đặc trưng, bộ chia và các giờ chấm. Trọng số kết hợp được lựa chọn theo MAE trên dự đoán OOF thuộc tập train. Sau khi chọn trọng số, hai mô hình được huấn luyện lại trên toàn bộ tập train và ensemble được đánh giá trên validation.",
+      "Do OOF được sử dụng để lựa chọn trọng số, MAE OOF tại trọng số được chọn là điểm phục vụ lựa chọn, chưa phải đánh giá độc lập cuối cùng."
+    ],
+    "severity": "P1",
+    "kind": "selection bias",
+    "problem": "BáocáođãnhắcOOFweightscore khôngđộclập nhưng chưanhắctuning vàcải tiếnnhiềulần trêncùngvalidation.",
+    "proposal": "PhânbiệtOOFselection,exploratoryvalidationvàuntouchedtest;khônggọi190.19làtesthoặcbằngchứngcuốicùng.",
+    "status": "XÁC MINH TỪ BÁO CÁO"
+  },
+  {
+    "issue_id": "A-I022",
+    "paragraphs": [
+      "P0323",
+      "P0324",
+      "P0325"
+    ],
+    "quotes": [
+      "4.1. Môi trường và cấu hình thực nghiệm",
+      "Gợi ý: Phiên bản Python/thư viện, seed, phần cứng, liên kết mã và log (run ID).",
+      "[Nhóm bổ sung]"
+    ],
+    "severity": "P1",
+    "kind": "missing reproducibility",
+    "problem": "Môitrường/seed/runIDvẫntrống.",
+    "proposal": "Điền version từsavedmetadata/environment;đừngnêu phầncứngkhôngcóbằngchứng; chỉđườngdẫnrun/cấu hình.",
+    "status": "XÁC MINH TỪ BÁO CÁO"
+  },
+  {
+    "issue_id": "A-I023",
+    "paragraphs": [
+      "P0326",
+      "P0327",
+      "P0328",
+      "P0329",
+      "P0330"
+    ],
+    "quotes": [
+      "4.2. Kết quả baseline",
+      "[Nhóm bổ sung]",
+      "4.3. Kết quả từng mô hình và tinh chỉnh siêu tham số",
+      "Gợi ý: Tham số tối ưu, kết quả trên validation, đường cong/bảng tuning.",
+      "[Nhóm bổ sung]"
+    ],
+    "severity": "P1",
+    "kind": "missing results",
+    "problem": "Khôngcóbaseline,tuning,bestparams hoặcmetricsmodel trongCh4.",
+    "proposal": "Thêm matchedCVvàvalidationtừnggiaiđoạn từCSV, ghi n/start/end; khôngđồngnhấtCV247.9vàvalidation190.19.",
+    "status": "XÁC MINH TỪ BÁO CÁO"
+  },
+  {
+    "issue_id": "A-I024",
+    "paragraphs": [
+      "P0331",
+      "P0332",
+      "P0338",
+      "P0343",
+      "P0348"
+    ],
+    "quotes": [
+      "4.4. So sánh các mô hình trên tập test",
+      "Gợi ý: Chỉ đánh giá test một lần cho mô hình đã chốt; so sánh công bằng cùng tập và tiêu chí.",
+      "[Baseline]",
+      "[Mô hình 1]",
+      "[Mô hình 2]"
+    ],
+    "severity": "P1",
+    "kind": "unfinished test",
+    "problem": "Mục4.4 vàbảngtestlàtemplate,trống; khônglàkhẳngđịnhđãtest. 'So sánhcácmôhình trên test' căngvới 'chỉtestmôhìnhđãchốt'.",
+    "proposal": "Đổi4.4thành so sánhvalidationthựctế;testriêng chờfinalfreeze/refit. Nếu giữ bảngtest chưachạy ghi chưathựchiện,khôngđiềnvalidationvào.",
+    "status": "XÁC MINH TỪ BÁO CÁO"
+  },
+  {
+    "issue_id": "A-I025",
+    "paragraphs": [
+      "P0353",
+      "P0354",
+      "P0355",
+      "P0356",
+      "P0357",
+      "P0358",
+      "P0359",
+      "P0360",
+      "P0361",
+      "P0362",
+      "P0363",
+      "P0364",
+      "P0365",
+      "P0366"
+    ],
+    "quotes": [
+      "4.5. Phân tích overfitting/underfitting và độ ổn định",
+      "Gợi ý: So sánh train–validation–test; độ ổn định qua các fold theo thời gian.",
+      "[Nhóm bổ sung]",
+      "4.6. Phân tích sai số",
+      "Gợi ý: Mô hình sai ở đâu: theo giờ cao điểm/thấp điểm, ngày lễ, thời tiết cực đoan; biểu đồ dự đoán vs thực tế, phân phối residual; ghi số mẫu từng nhóm.",
+      "[Nhóm bổ sung]",
+      "4.7. Phân tích đặc trưng quan trọng và diễn giải mô hình",
+      "Gợi ý: Feature importance/hệ số; giải thích vì sao đặc trưng này quan trọng; không suy diễn quan hệ nhân quả.",
+      "[Nhóm bổ sung]",
+      "4.8. Kết quả thí nghiệm đối chứng đặc trưng",
+      "[Nhóm bổ sung]",
+      "4.9. Trả lời câu hỏi nghiên cứu",
+      "Gợi ý: Trả lời lần lượt từng câu hỏi ở mục 1.2 dựa trên bằng chứng thực nghiệm.",
+      "[Nhóm bổ sung]"
+    ],
+    "severity": "P1",
+    "kind": "missing analysis",
+    "problem": "Over/underfit,saisố,importance,ablation,trảlờiRQđềutrống.",
+    "proposal": "Chỉthêmphântíchđãcósourcereproducible;phânbiệtlỗitheogiờ/lễ/weather/gapsvàimportancekhôngnhânquả.",
+    "status": "XÁC MINH TỪ BÁO CÁO"
+  },
+  {
+    "issue_id": "A-I026",
+    "paragraphs": [
+      "P0369",
+      "P0370",
+      "P0371",
+      "P0372",
+      "P0373",
+      "P0374",
+      "P0375"
+    ],
+    "quotes": [
+      "5.1. Kết quả chính và mô hình được lựa chọn",
+      "[Nhóm bổ sung]",
+      "5.2. Hạn chế",
+      "Gợi ý: Tách hạn chế về dữ liệu, phương pháp và thiết kế thực nghiệm.",
+      "[Nhóm bổ sung]",
+      "5.3. Hướng cải tiến và mở rộng",
+      "[Nhóm bổ sung]"
+    ],
+    "severity": "P1",
+    "kind": "missing conclusion",
+    "problem": "Ch5chưacókếtluận/hạnchế/môhìnhđãchọn.",
+    "proposal": "Nêumôhìnhspecđãchốt,refitchưaxong/testchưachạy nếumanifestcònđúng;hạnchế3fold/gaps/DST/weatheravailability/validationreuse.",
+    "status": "XÁC MINH TỪ BÁO CÁO"
+  },
+  {
+    "issue_id": "A-I027",
+    "paragraphs": [
+      "P0017",
+      "P0018",
+      "P0377",
+      "P0378",
+      "P0380",
+      "P0381",
+      "P0382",
+      "P0383",
+      "P0384",
+      "P0385",
+      "P0406",
+      "P0407",
+      "P0408"
+    ],
+    "quotes": [
+      "Gợi ý: Cam kết sản phẩm là của nhóm; ghi rõ nguồn mã, notebook, thư viện và công cụ AI đã tham khảo/sử dụng (đề bài yêu cầu trích dẫn khi có dùng AI).",
+      "[Nhóm bổ sung]",
+      "Gợi ý: Nguồn dữ liệu, tài liệu thuật toán, thư viện, công cụ AI đã dùng; cùng một kiểu trích dẫn.",
+      "[1] Tác giả / tổ chức. Tên tài liệu. Đường dẫn. Ngày truy cập.",
+      "Phụ lục A. Danh mục mã nguồn, README và hướng dẫn chạy",
+      "Gợi ý: Đường dẫn notebook/script, cấu hình, hướng dẫn cài đặt và tái lập kết quả.",
+      "[Nhóm bổ sung]",
+      "Phụ lục B. Nhật ký thực nghiệm và hình gốc",
+      "[Nhóm bổ sung]",
+      "Phụ lục C. Phân công và đóng góp của thành viên",
+      "Phụ lục D. Kiểm tra trước khi nộp",
+      "Gợi ý: Đối chiếu báo cáo, slide, mã nguồn, README, log, hình và demo; đảm bảo chạy lại được; kiểm tra hạn nộp.",
+      "[Nhóm bổ sung]"
+    ],
+    "severity": "P2",
+    "kind": "provenance and authorship",
+    "problem": "Camkếthọcthuật,tàiliệuthamkhảo,danhmụcmã/log,phâncôngvàchecklist cònplaceholder.",
+    "proposal": "Điềnnguồndữliệu,algorithm/library vàAI thực dùng;runids/phâncôngcóbằngchứng;khôngtựgánngườithựchiện.",
+    "status": "XÁC MINH TỪ BÁO CÁO"
+  },
+  {
+    "issue_id": "A-I028",
+    "paragraphs": [
+      "P0122",
+      "P0125",
+      "P0131",
+      "P0136",
+      "P0139",
+      "P0160"
+    ],
+    "quotes": [
+      "Bảng3.2. kết quả tra giá trị thiếu và timestamp lặp",
+      "Giá trị Null,Giá trị null; chuỗi rỗng hoặc chỉ có khoảng trắng",
+      "Tổng số dòng thuộc các timestamp lăpk",
+      "Bảng3.3 hai bản ghi cùng timestamo nhưng khác nhãn thời tiết",
+      "weather _description",
+      "Giá trị nghi vấn; không dùng IQR để loại mọi lượng mưa dương.."
+    ],
+    "severity": "P3",
+    "kind": "copyediting",
+    "problem": "Lỗichính tả/spacing: 'kếtquảtra','Null,Giátrịnull','lăpk','timestamo','weather _description','dương..'.",
+    "proposal": "Sửa nhẹgiữ nguyên ý/số; khôngthay cộtcodeweather_description.",
+    "status": "XÁC MINH TỪ BÁO CÁO"
+  }
+]

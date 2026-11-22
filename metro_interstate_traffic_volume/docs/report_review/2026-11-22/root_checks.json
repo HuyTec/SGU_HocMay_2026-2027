@@ -1,0 +1,39 @@
+{
+  "method": "Read-only CSV inspection; no fitting or model evaluation",
+  "zero_target_timestamps": [
+    "2016-07-23 18:00:00",
+    "2016-07-23 23:00:00"
+  ],
+  "example_2012_10_10_07": [
+    {
+      "holiday": "None",
+      "temp": "281.25",
+      "rain_1h": "0.0",
+      "snow_1h": "0.0",
+      "clouds_all": "99",
+      "weather_main": "Rain",
+      "weather_description": "light rain",
+      "date_time": "2012-10-10 07:00:00",
+      "traffic_volume": "6793"
+    },
+    {
+      "holiday": "None",
+      "temp": "281.25",
+      "rain_1h": "0.0",
+      "snow_1h": "0.0",
+      "clouds_all": "99",
+      "weather_main": "Drizzle",
+      "weather_description": "light intensity drizzle",
+      "date_time": "2012-10-10 07:00:00",
+      "traffic_volume": "6793"
+    }
+  ],
+  "holiday_non_none_rows": 61,
+  "holiday_non_none_hours": {
+    "00": 61
+  },
+  "label_spellings": {
+    "sky is clear": 11665,
+    "Sky is Clear": 1726
+  }
+}

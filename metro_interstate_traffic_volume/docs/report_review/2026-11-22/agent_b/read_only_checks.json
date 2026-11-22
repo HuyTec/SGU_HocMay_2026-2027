@@ -1,0 +1,124 @@
+{
+  "kind": "read_only_recount_no_training_or_test_evaluation",
+  "raw_rows": 48204,
+  "raw_columns": [
+    "holiday",
+    "temp",
+    "rain_1h",
+    "snow_1h",
+    "clouds_all",
+    "weather_main",
+    "weather_description",
+    "date_time",
+    "traffic_volume"
+  ],
+  "raw_unique_timestamps": 40575,
+  "raw_excess_timestamp_rows": 7629,
+  "raw_fully_duplicate_rows": 17,
+  "missing_grid_hours": 11976,
+  "time_start": "2012-10-02 09:00:00",
+  "time_end": "2018-09-30 23:00:00",
+  "hourly_rows": 40575,
+  "hourly_missing": {
+    "date_time": 0,
+    "traffic_volume": 0,
+    "temp": 10,
+    "rain_1h": 1,
+    "snow_1h": 0,
+    "clouds_all": 0,
+    "weather_main": 0,
+    "weather_description": 0,
+    "holiday_name": 0,
+    "is_holiday": 0
+  },
+  "raw_sha256": "749c90d720360a4215bb15345526073c079ba4cc95e3fa558796d083f85fce9e",
+  "hourly_sha256": "d2092b0060b8db304a5da8c27b637b38da97b798e43f67da6a239328890a1de6",
+  "split": {
+    "train": {
+      "n": 28402,
+      "start": "2012-10-02 09:00:00",
+      "end": "2017-05-10 04:00:00"
+    },
+    "validation": {
+      "n": 6086,
+      "start": "2017-05-10 05:00:00",
+      "end": "2018-01-19 14:00:00"
+    },
+    "test": {
+      "n": 6087,
+      "start": "2018-01-19 15:00:00",
+      "end": "2018-09-30 23:00:00"
+    }
+  },
+  "frozen_source_hash_checks": {
+    "experiments\\20-11-2026_Huy_C30_Params1\\outputs\\run_config.json": {
+      "exists": true,
+      "matches": true
+    },
+    "experiments\\20-11-2026_Huy_C30_Params1\\outputs\\validation_predictions.csv": {
+      "exists": true,
+      "matches": true
+    },
+    "experiments\\21-11-2026_Huy_C30_OOF\\outputs\\selected_weights.json": {
+      "exists": true,
+      "matches": true
+    },
+    "experiments\\21-11-2026_Huy_C30_OOF\\outputs\\validation_predictions.csv": {
+      "exists": true,
+      "matches": true
+    },
+    "experiments\\22-11-2026_Huy_C30_MAE_Diversity\\outputs\\plan.json": {
+      "exists": true,
+      "matches": true
+    },
+    "experiments\\22-11-2026_Huy_C30_MAE_Diversity\\outputs\\selected_option.json": {
+      "exists": true,
+      "matches": true
+    },
+    "experiments\\22-11-2026_Huy_C30_MAE_Diversity\\outputs\\validation_predictions.csv": {
+      "exists": true,
+      "matches": true
+    },
+    "experiments\\22-11-2026_Huy_C30_MAE_Diversity\\outputs\\oof_fold_comparison.csv": {
+      "exists": true,
+      "matches": true
+    }
+  },
+  "frozen_preprocessing_hash_checks": {
+    "src\\model.py": {
+      "exists": true,
+      "matches": true
+    },
+    "src\\features.py": {
+      "exists": true,
+      "matches": true
+    },
+    "src\\feature_experiments.py": {
+      "exists": true,
+      "matches": true
+    },
+    "src\\preprocessing.py": {
+      "exists": true,
+      "matches": true
+    }
+  },
+  "checkpoint_files": [],
+  "absent_link_targets": [
+    "src/validation_main.py",
+    "notebooks/validation/validation_final_C30.ipynb",
+    "notebooks/validation/validation_E05_Hao_AB.ipynb",
+    "notebooks/validation/validation_RQ_main_compare.ipynb"
+  ],
+  "app_executable_noncomment_lines": [],
+  "tuning_protocol_hashes": {
+    "A12": "6042efc8e56db7968fddaa33ee9d8b43d53c817fb778b15a7431d016a0576686",
+    "B27": "6042efc8e56db7968fddaa33ee9d8b43d53c817fb778b15a7431d016a0576686",
+    "C30": "6042efc8e56db7968fddaa33ee9d8b43d53c817fb778b15a7431d016a0576686"
+  },
+  "tuning_protocol_json_equal": true,
+  "tuning_results_protocol_hashes": {
+    "A12": "6042efc8e56db7968fddaa33ee9d8b43d53c817fb778b15a7431d016a0576686",
+    "B27": "6042efc8e56db7968fddaa33ee9d8b43d53c817fb778b15a7431d016a0576686",
+    "C30": "6042efc8e56db7968fddaa33ee9d8b43d53c817fb778b15a7431d016a0576686"
+  }
+}

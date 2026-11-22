@@ -1,0 +1,16 @@
+{
+  "code_cells": 7,
+  "all_code_cells_executed": true,
+  "no_error_outputs": true,
+  "embedded_png_outputs": 2,
+  "n_permutation_runs": 120,
+  "checks_performed": 6,
+  "repeats_per_check": 20,
+  "n_validation": 6050,
+  "baseline_MAE": 190.18996838954962,
+  "max_prediction_difference": 1.8189894035458565e-12,
+  "test_evaluated": false,
+  "retuned": false,
+  "temporary_py_files_created": false,
+  "figures_visually_inspected": true
+}

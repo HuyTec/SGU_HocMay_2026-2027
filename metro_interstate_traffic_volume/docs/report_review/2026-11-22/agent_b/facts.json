@@ -1,0 +1,932 @@
+{
+  "audit_date": "2026-11-22",
+  "repo_root": "E:\\Project\\SGU_HocMay_2026-2027\\metro_interstate_traffic_volume",
+  "scope": "read-only source/log/JSON notebook audit; no training or test evaluation",
+  "facts": [
+    {
+      "fact_id": "B-001",
+      "title": "Phạm vi kiểm tra",
+      "statement": "Rà soát chỉ đọc source, notebook và log; không huấn luyện hoặc chấm test.",
+      "evidence": [
+        "docs/report_review/2026-11-22/agent_b/read_only_checks.json:2"
+      ],
+      "confidence": "Cao",
+      "limitation": ""
+    },
+    {
+      "fact_id": "B-002",
+      "title": "Quy mô dữ liệu",
+      "statement": "Dữ liệu gốc có 48.204 dòng, 9 cột, 40.575 timestamp; 7.629 dòng dư theo thời gian, 17 dòng trùng hoàn toàn và 11.976 giờ thiếu.",
+      "evidence": [
+        "notebooks/preprocessing/outputs/preprocessing_manifest.json:6",
+        "notebooks/eda/EDA_general.ipynb:749",
+        "docs/report_review/2026-11-22/agent_b/read_only_checks.json:3"
+      ],
+      "confidence": "Cao",
+      "limitation": "Không gọi toàn bộ 7.629 dòng là duplicate hoàn toàn; chưa phân tích DST."
+    },
+    {
+      "fact_id": "B-003",
+      "title": "Timestamp lặp",
+      "statement": "Có 5.445 timestamp lặp với 13.074 dòng; target trong mỗi timestamp nhất quán.",
+      "evidence": [
+        "notebooks/eda/EDA_general.ipynb:749",
+        "notebooks/eda/EDA_general.ipynb:750",
+        "notebooks/eda/EDA_general.ipynb:1078",
+        "notebooks/eda/EDA_general.ipynb:1079"
+      ],
+      "confidence": "Cao",
+      "limitation": ""
+    },
+    {
+      "fact_id": "B-004",
+      "title": "Đọc CSV",
+      "statement": "Đọc CSV với keep_default_na=False để giữ nhãn holiday=\"None\".",
+      "evidence": [
+        "src/data.py:28",
+        "src/data.py:30"
+      ],
+      "confidence": "Cao",
+      "limitation": ""
+    },
+    {
+      "fact_id": "B-005",
+      "title": "Gộp theo giờ",
+      "statement": "Gộp target nhất quán theo giờ; thời tiết lấy median các giá trị phân biệt, nhãn lấy tập hợp đã chuẩn hóa.",
+      "evidence": [
+        "src/preprocessing.py:8",
+        "src/preprocessing.py:23",
+        "src/preprocessing.py:56",
+        "src/preprocessing.py:65",
+        "src/preprocessing.py:71"
+      ],
+      "confidence": "Cao",
+      "limitation": ""
+    },
+    {
+      "fact_id": "B-006",
+      "title": "Ngoại lệ",
+      "statement": "Đánh dấu temp=0 K và đúng điểm mưa 9.831,3 mm là thiếu; giữ các giờ target=0.",
+      "evidence": [
+        "src/preprocessing.py:42",
+        "src/preprocessing.py:49",
+        "notebooks/eda/EDA_general.ipynb:3187",
+        "notebooks/eda/EDA_general.ipynb:3261",
+        "notebooks/eda/EDA_general.ipynb:3262"
+      ],
+      "confidence": "Cao",
+      "limitation": "Mask không có nghĩa đã xác minh nguyên nhân cảm biến; rain outlier là quy tắc cụ thể của repo."
+    },
+    {
+      "fact_id": "B-007",
+      "title": "Một CSV bàn giao",
+      "statement": "Một CSV sạch được xuất tại data/preprocessed/hourly_unfilled.csv: 40.575 dòng, 10 cột; còn 10 temp và 1 rain_1h thiếu. Chưa fit imputation; không điền target.",
+      "evidence": [
+        "notebooks/preprocessing/outputs/preprocessing_manifest.json:4",
+        "notebooks/preprocessing/outputs/preprocessing_manifest.json:21",
+        "notebooks/preprocessing/outputs/preprocessing_manifest.json:30",
+        "docs/report_review/2026-11-22/agent_b/read_only_checks.json:22"
+      ],
+      "confidence": "Cao",
+      "limitation": ""
+    },
+    {
+      "fact_id": "B-008",
+      "title": "Ngày lễ",
+      "statement": "Cờ ngày lễ áp dụng cho cả ngày có nhãn trong CSV; chưa bổ sung lịch ngoài.",
+      "evidence": [
+        "src/data.py:101",
+        "src/data.py:109",
+        "src/data.py:115",
+        "src/data.py:117",
+        "notebooks/preprocessing/outputs/preprocessing_manifest.json:30"
+      ],
+      "confidence": "Cao",
+      "limitation": "Nhãn lễ có thể không đầy đủ; không diễn giải is_holiday=0 như chắc chắn không phải ngày lễ."
+    },
+    {
+      "fact_id": "B-009",
+      "title": "Split lịch",
+      "statement": "Chia theo thứ tự giờ quan sát 70/15/15: train 28.402, validation 6.086, test 6.087. Ranh giới train/validation là 10/05/2017 04:00/05:00; validation/test là 19/01/2018 14:00/15:00.",
+      "evidence": [
+        "src/preprocessing.py:137",
+        "src/preprocessing.py:140",
+        "src/preprocessing.py:147",
+        "docs/report_review/2026-11-22/agent_b/read_only_checks.json:41"
+      ],
+      "confidence": "Cao",
+      "limitation": "Tỷ lệ theo số giờ có dữ liệu, không phải các khoảng lịch liên tục bằng tỷ lệ."
+    },
+    {
+      "fact_id": "B-010",
+      "title": "Điền thiếu",
+      "statement": "Điền temp bằng quan sát gốc trước tối đa 6 giờ, rồi median tháng–giờ hoặc median toàn fit. Điền rain bằng median của fit.",
+      "evidence": [
+        "src/preprocessing.py:151",
+        "src/preprocessing.py:157",
+        "src/preprocessing.py:198",
+        "src/preprocessing.py:216",
+        "src/preprocessing.py:235",
+        "src/preprocessing.py:251"
+      ],
+      "confidence": "Cao",
+      "limitation": ""
+    },
+    {
+      "fact_id": "B-011",
+      "title": "An toàn fold",
+      "statement": "prepare_fold chỉ học median trên fold-train; giữ các quan sát thời tiết gốc ngoài cohort làm ngữ cảnh. Không điền median cho lag.",
+      "evidence": [
+        "src/feature_experiments.py:133",
+        "src/feature_experiments.py:141",
+        "src/feature_experiments.py:148",
+        "src/feature_experiments.py:153"
+      ],
+      "confidence": "Cao",
+      "limitation": ""
+    },
+    {
+      "fact_id": "B-012",
+      "title": "A12",
+      "statement": "A12 gồm 11 đặc trưng lịch và cờ is_holiday; 6 trong số đó là sin/cos của giờ, thứ, tháng.",
+      "evidence": [
+        "src/features.py:212",
+        "src/features.py:217",
+        "src/features.py:223",
+        "src/features.py:239"
+      ],
+      "confidence": "Cao",
+      "limitation": ""
+    },
+    {
+      "fact_id": "B-013",
+      "title": "B27",
+      "statement": "B27 thêm bốn biến thời tiết số và 11 cờ multi-label weather_main; temp đổi từ K sang °C.",
+      "evidence": [
+        "src/features.py:203",
+        "src/features.py:218",
+        "src/features.py:224",
+        "src/features.py:259",
+        "src/features.py:262"
+      ],
+      "confidence": "Cao",
+      "limitation": ""
+    },
+    {
+      "fact_id": "B-014",
+      "title": "C30",
+      "statement": "C30 thêm lag_24h, lag_168h và mean_24h. Lag tra đúng timestamp; mean lấy [t−24h,t) với ít nhất 18 quan sát.",
+      "evidence": [
+        "src/features.py:209",
+        "src/features.py:221",
+        "src/features.py:225",
+        "src/features.py:279",
+        "src/features.py:283"
+      ],
+      "confidence": "Cao",
+      "limitation": "mean_24h không đòi đủ 24/24 giờ; cần ghi đúng tối thiểu 18 quan sát."
+    },
+    {
+      "fact_id": "B-015",
+      "title": "Phạm vi dự báo",
+      "statement": "Đây là dự đoán tuần tự từng giờ với target quá khứ đã quan sát. Thời tiết cùng giờ được giả định sẵn có; chưa phải dự báo cả đoạn tương lai từ một mốc.",
+      "evidence": [
+        "src/features.py:273",
+        "src/feature_experiments.py:256",
+        "notebooks/features/README.md:17"
+      ],
+      "confidence": "Cao",
+      "limitation": "Tính khả dụng thời tiết cùng giờ và độ trễ dữ liệu khi triển khai chưa được xác minh; không suy ra khả năng day-ahead."
+    },
+    {
+      "fact_id": "B-016",
+      "title": "EDA và FE",
+      "statement": "Ba notebook EDA_A/B/C chỉ mô tả train và không chọn cấu hình bằng CV. EDA_general mô tả toàn CSV. FE riêng so năm nhóm bằng cùng RF, fold và cohort, không brute force từng cột.",
+      "evidence": [
+        "notebooks/eda/README.md:5",
+        "notebooks/eda/EDA_general.ipynb:16",
+        "notebooks/features/README.md:15"
+      ],
+      "confidence": "Cao",
+      "limitation": "Phân biệt EDA_general toàn CSV với ba EDA trên train; không gọi bảng EDA toàn CSV là kết quả test."
+    },
+    {
+      "fact_id": "B-017",
+      "title": "Cohort và folds",
+      "statement": "Cả năm phương án FE dùng cohort train đủ history gồm 22.503 giờ. Ba fold có 5.625 mẫu chấm mỗi fold, tổng 16.875 OOF; số mẫu fit là 5.628, 11.253 và 16.878.",
+      "evidence": [
+        "src/feature_experiments.py:85",
+        "src/feature_experiments.py:87",
+        "notebooks/features/outputs/e4bc1e064317af8c/protocol.json:183",
+        "notebooks/features/outputs/e4bc1e064317af8c/fold_manifest.csv:2"
+      ],
+      "confidence": "Cao",
+      "limitation": "Loại cả những giờ A/B vốn có thể dự đoán; không suy rộng hiệu quả cho mọi giờ."
+    },
+    {
+      "fact_id": "B-018",
+      "title": "Khoảng lịch CV",
+      "statement": "Ba fold-score phủ 16.931, 10.163 và 5.867 giờ lịch; số mẫu bằng nhau không có nghĩa khoảng lịch bằng nhau.",
+      "evidence": [
+        "notebooks/features/outputs/e4bc1e064317af8c/fold_manifest.csv:2",
+        "notebooks/features/outputs/e4bc1e064317af8c/fold_manifest.csv:3",
+        "notebooks/features/outputs/e4bc1e064317af8c/fold_manifest.csv:4"
+      ],
+      "confidence": "Cao",
+      "limitation": "Ba cửa sổ lịch không bằng nhau; chỉ có ba fold và một seed."
+    },
+    {
+      "fact_id": "B-019",
+      "title": "RF cố định FE",
+      "statement": "FE dùng RF cố định: 400 cây, depth=12, leaf=5, max_features=1.0, seed=42, n_jobs=4; ma trận float32.",
+      "evidence": [
+        "src/feature_experiments.py:41",
+        "src/feature_experiments.py:42",
+        "src/feature_experiments.py:153"
+      ],
+      "confidence": "Cao",
+      "limitation": ""
+    },
+    {
+      "fact_id": "B-020",
+      "title": "Kết quả FE",
+      "statement": "FE cùng RF cho MAE: C30=247,9260; A12=288,3182; labels23=290,0372; B27=290,7253; numeric16=291,5528. Không có bằng chứng mọi cột đều cần thiết.",
+      "evidence": [
+        "notebooks/features/outputs/e4bc1e064317af8c/feature_comparison.csv:2",
+        "notebooks/features/outputs/e4bc1e064317af8c/feature_comparison.csv:3",
+        "notebooks/features/outputs/e4bc1e064317af8c/feature_comparison.csv:4",
+        "notebooks/features/outputs/e4bc1e064317af8c/feature_comparison.csv:5",
+        "notebooks/features/outputs/e4bc1e064317af8c/feature_comparison.csv:6"
+      ],
+      "confidence": "Cao",
+      "limitation": "C30 thắng trong RF/tham số/cohort này; không chứng minh từng cột đều cần hoặc thời tiết vô ích."
+    },
+    {
+      "fact_id": "B-021",
+      "title": "Tuning hiện tại",
+      "statement": "Tuning so Ridge, RF, Gradient Boosting, MLP và XGBoost trên A12/B27/C30. Mỗi cặp có 6 ứng viên × 3 fold; tổng 270 fit, seed=42. Không chấm validation hoặc test trong bước này.",
+      "evidence": [
+        "src/model.py:18",
+        "src/tuning_cv.py:22",
+        "src/tuning_cv.py:56",
+        "src/tuning_cv.py:86",
+        "notebooks/tuning/outputs/rf_sampling_correction.json:408"
+      ],
+      "confidence": "Cao",
+      "limitation": ""
+    },
+    {
+      "fact_id": "B-022",
+      "title": "Đặc thù Ridge/MLP",
+      "statement": "Ridge dùng one-hot weekday_hour/month và chuẩn hóa phần số; MLP chuẩn hóa X và y, max_iter=500. Không mô tả cả năm mô hình đều dùng cùng biểu diễn cột.",
+      "evidence": [
+        "src/model.py:84",
+        "src/model.py:118",
+        "src/model.py:128",
+        "src/model.py:129",
+        "src/model.py:135"
+      ],
+      "confidence": "Cao",
+      "limitation": "Ridge có biểu diễn lịch khác. Số tham số neural network chính xác và convergence của từng fit: CHƯA XÁC MINH."
+    },
+    {
+      "fact_id": "B-023",
+      "title": "Kiểm tra giao thức",
+      "statement": "tuning_compare kiểm tra protocol digest, candidates, timestamp/target/fold OOF, features, fold hash và điểm OOF. Ba protocol JSON hiện tại giống nhau; protocol_hash của ba results cùng khớp 6042efc8e56db7968fddaa33ee9d8b43d53c817fb778b15a7431d016a0576686.",
+      "evidence": [
+        "src/tuning_cv.py:197",
+        "src/tuning_cv.py:203",
+        "src/tuning_cv.py:215",
+        "src/tuning_cv.py:228",
+        "src/tuning_cv.py:235",
+        "src/tuning_cv.py:240",
+        "docs/report_review/2026-11-22/agent_b/read_only_checks.json:118"
+      ],
+      "confidence": "Cao",
+      "limitation": ""
+    },
+    {
+      "fact_id": "B-024",
+      "title": "Sửa lỗi RF",
+      "statement": "Lỗi sampler RF cũ đã được sửa và có log. Kết quả C30 RF hiện tại là MAE CV=231,03948, RMSE=381,35972; 247,926 là FE hoặc kết quả tuning lỗi cũ.",
+      "evidence": [
+        "notebooks/tuning/outputs/rf_sampling_correction.json:3",
+        "notebooks/tuning/outputs/rf_sampling_correction.json:4",
+        "notebooks/tuning/outputs/rf_sampling_correction.json:415"
+      ],
+      "confidence": "Cao",
+      "limitation": "247,926 là RF cố định FE hoặc lượt tuning lỗi cũ; 229,9 trong chat không phải điểm tuning hiện lưu."
+    },
+    {
+      "fact_id": "B-025",
+      "title": "Tuning C30",
+      "statement": "MAE CV C30 hiện tại: RF=231,0395; XGBoost=235,9835; GB=255,9309; Ridge=261,9641; MLP=277,1134. Không so trực tiếp các điểm CV này với validation để kết luận mức cải thiện.",
+      "evidence": [
+        "notebooks/tuning/outputs/comparison_summary.csv:12",
+        "notebooks/tuning/outputs/comparison_summary.csv:13",
+        "notebooks/tuning/outputs/comparison_summary.csv:14",
+        "notebooks/tuning/outputs/comparison_summary.csv:15",
+        "notebooks/tuning/outputs/comparison_summary.csv:16"
+      ],
+      "confidence": "Cao",
+      "limitation": ""
+    },
+    {
+      "fact_id": "B-026",
+      "title": "Baseline/metric",
+      "statement": "Có hai baseline: trung bình thứ–giờ của train và seasonal naive lag_168h. Tất cả điểm qua regression_metrics đều cắt dự đoán âm về 0, rồi tính MAE, RMSE và R².",
+      "evidence": [
+        "src/evaluation.py:8",
+        "src/evaluation.py:13",
+        "src/evaluation.py:23",
+        "src/evaluation.py:32"
+      ],
+      "confidence": "Cao",
+      "limitation": ""
+    },
+    {
+      "fact_id": "B-027",
+      "title": "Params1/Params2 ngược tên nhãn",
+      "statement": "Params1 chứa nhãn 02_claude_params và ensemble MAE validation=193,8102; Params2 chứa nhãn 01_current_params và MAE=197,2289. Tên thư mục không trùng thứ tự nhãn thí nghiệm.",
+      "evidence": [
+        "experiments/20-11-2026_Huy_C30_Params1/outputs/run_config.json:59",
+        "experiments/20-11-2026_Huy_C30_Params1/outputs/validation_metrics.csv:2",
+        "experiments/20-11-2026_Huy_C30_Params2/outputs/run_config.json:57",
+        "experiments/20-11-2026_Huy_C30_Params2/outputs/validation_metrics.csv:2"
+      ],
+      "confidence": "Cao",
+      "limitation": "Không suy thứ tự 01/02 hoặc current/Claude từ tên thư mục. Artifact Claude gốc chưa được xác minh; gọi là bộ tham số tái dựng."
+    },
+    {
+      "fact_id": "B-028",
+      "title": "Thử trọng số21/11",
+      "statement": "Lượt 21/11 chọn RF60/XGB40 bằng OOF; validation MAE=193,93255, chưa cải thiện RF50/XGB50=193,81022.",
+      "evidence": [
+        "experiments/21-11-2026_Huy_C30_OOF/outputs/selected_weights.json:52",
+        "notebooks/validation/outputs/final_C30/validation_comparison.csv:4",
+        "notebooks/validation/outputs/final_C30/validation_comparison.csv:5"
+      ],
+      "confidence": "Cao",
+      "limitation": ""
+    },
+    {
+      "fact_id": "B-029",
+      "title": "Thử đa dạng22/11",
+      "statement": "Lượt 22/11 thử năm cấu hình mô hình mới, 15 fit CV và 16 phương án OOF. OOF chọn 50% ExtraTrees_leaf2 + 50% ensemble cũ; MAE OOF=225,27258 so đối chứng 227,24100.",
+      "evidence": [
+        "experiments/22-11-2026_Huy_C30_MAE_Diversity/outputs/verification.json:2",
+        "experiments/22-11-2026_Huy_C30_MAE_Diversity/outputs/selected_option.json:2",
+        "experiments/22-11-2026_Huy_C30_MAE_Diversity/outputs/selected_option.json:5",
+        "experiments/22-11-2026_Huy_C30_MAE_Diversity/outputs/selected_option.json:7"
+      ],
+      "confidence": "Cao",
+      "limitation": "OOF dùng để chọn nên không còn là ước lượng độc lập sau selection; ngân sách tìm kiếm nhỏ."
+    },
+    {
+      "fact_id": "B-030",
+      "title": "Mô hình đã khóa",
+      "statement": "Đặc tả được chốt: C30, RF25% + XGBoost25% + ExtraTrees50%, kết hợp bằng trung bình có trọng số.",
+      "evidence": [
+        "notebooks/validation/outputs/final_C30/selected_model.json:2",
+        "notebooks/validation/outputs/final_C30/selected_model.json:3",
+        "notebooks/validation/outputs/final_C30/selected_components.csv:2",
+        "notebooks/validation/outputs/final_C30/selected_components.csv:3",
+        "notebooks/validation/outputs/final_C30/selected_components.csv:4"
+      ],
+      "confidence": "Cao",
+      "limitation": ""
+    },
+    {
+      "fact_id": "B-031",
+      "title": "RF cuối",
+      "statement": "RF cuối: 100 cây, depth=None, leaf=2, max_features=0.33, bootstrap=True, squared_error, seed=42, n_jobs=4.",
+      "evidence": [
+        "notebooks/validation/outputs/final_C30/selected_model.json:50",
+        "notebooks/validation/outputs/final_C30/selected_model.json:52",
+        "notebooks/validation/outputs/final_C30/selected_model.json:54",
+        "notebooks/validation/outputs/final_C30/selected_model.json:58",
+        "notebooks/validation/outputs/final_C30/selected_model.json:62",
+        "notebooks/validation/outputs/final_C30/selected_model.json:65"
+      ],
+      "confidence": "Cao",
+      "limitation": ""
+    },
+    {
+      "fact_id": "B-032",
+      "title": "XGB cuối",
+      "statement": "XGBoost cuối: 400 cây, depth=6, learning_rate=0.03, subsample=0.7, colsample_bytree=0.8, min_child_weight=1, reg:squarederror, tree_method=hist, seed=42, n_jobs=4.",
+      "evidence": [
+        "notebooks/validation/outputs/final_C30/selected_model.json:73",
+        "notebooks/validation/outputs/final_C30/selected_model.json:79",
+        "notebooks/validation/outputs/final_C30/selected_model.json:90",
+        "notebooks/validation/outputs/final_C30/selected_model.json:95",
+        "notebooks/validation/outputs/final_C30/selected_model.json:97",
+        "notebooks/validation/outputs/final_C30/selected_model.json:100",
+        "notebooks/validation/outputs/final_C30/selected_model.json:108",
+        "notebooks/validation/outputs/final_C30/selected_model.json:138"
+      ],
+      "confidence": "Cao",
+      "limitation": ""
+    },
+    {
+      "fact_id": "B-033",
+      "title": "ExtraTrees cuối",
+      "statement": "ExtraTrees cuối: 200 cây, depth=None, leaf=2, max_features=0.8, bootstrap=False, squared_error, seed=42, n_jobs=4. Mô hình được chốt không dùng loss MAE.",
+      "evidence": [
+        "notebooks/validation/outputs/final_C30/selected_model.json:117",
+        "notebooks/validation/outputs/final_C30/selected_model.json:119",
+        "notebooks/validation/outputs/final_C30/selected_model.json:121",
+        "notebooks/validation/outputs/final_C30/selected_model.json:125",
+        "notebooks/validation/outputs/final_C30/selected_model.json:129",
+        "notebooks/validation/outputs/final_C30/selected_model.json:132"
+      ],
+      "confidence": "Cao",
+      "limitation": "Mô hình cuối không dùng loss MAE dù có thử loss MAE trong các phương án khác."
+    },
+    {
+      "fact_id": "B-034",
+      "title": "Validation hiện tại",
+      "statement": "Trên 6.050 giờ validation đủ history, sau fit trên 22.503 giờ train, ensemble cuối đạt MAE=190,1899684; RMSE=313,5265898; R²=0,9745267. Đây là kết quả validation tốt nhất trong bảng cùng cohort đã lưu.",
+      "evidence": [
+        "notebooks/validation/outputs/final_C30/validation_scope.csv:2",
+        "notebooks/validation/outputs/final_C30/validation_comparison.csv:2"
+      ],
+      "confidence": "Cao",
+      "limitation": "Đây là kết quả validation tốt nhất đã quan sát trong bảng cùng cohort; R²=0,9745 không có nghĩa 97,45% số giờ dự đoán đúng."
+    },
+    {
+      "fact_id": "B-035",
+      "title": "Độ bất định validation",
+      "statement": "So RF50/XGB50, MAE giảm 3,62025 xe/giờ, CI bootstrap 95%=[1,63028;5,79750]. So ExtraTrees đơn, CI của mức giảm chứa 0. Validation đã được xem nhiều lần nên đây là phân tích thăm dò.",
+      "evidence": [
+        "notebooks/validation/outputs/final_C30/paired_bootstrap.csv:2",
+        "notebooks/validation/outputs/final_C30/paired_bootstrap.csv:3"
+      ],
+      "confidence": "Cao",
+      "limitation": "Validation đã xem nhiều lần; CI chỉ có ý nghĩa thăm dò và có điều kiện, không phải kiểm định độc lập."
+    },
+    {
+      "fact_id": "B-036",
+      "title": "Trạng thái cuối",
+      "statement": "Đặc tả cuối đã khóa, nhưng refit_completed=false và test_evaluated=false. Quét repo không thấy checkpoint dạng .pkl/.joblib/.ubj.",
+      "evidence": [
+        "notebooks/validation/outputs/final_C30/selected_model.json:3",
+        "notebooks/validation/outputs/final_C30/selected_model.json:193",
+        "notebooks/validation/outputs/final_C30/selected_model.json:194",
+        "notebooks/validation/outputs/final_C30/selected_model.json:195",
+        "docs/report_review/2026-11-22/agent_b/read_only_checks.json:105"
+      ],
+      "confidence": "Cao",
+      "limitation": "Cờ false chỉ áp dụng cho nhánh mô hình cuối này; không chứng minh toàn bộ lịch sử chưa có ai đọc test."
+    },
+    {
+      "fact_id": "B-037",
+      "title": "Integrity cấu hình",
+      "statement": "Tám artifact nguồn và bốn file source được hash trong frozen manifest đều tồn tại và khớp SHA256 hiện tại. Hash CSV gốc và CSV hourly khớp manifest tiền xử lý.",
+      "evidence": [
+        "notebooks/validation/outputs/final_C30/selected_model.json:147",
+        "notebooks/validation/outputs/final_C30/selected_model.json:183",
+        "docs/report_review/2026-11-22/agent_b/read_only_checks.json:53",
+        "docs/report_review/2026-11-22/agent_b/read_only_checks.json:87"
+      ],
+      "confidence": "Cao",
+      "limitation": "Hash đồng nhất không chứng minh kernel cũ đã nạp đúng code hoặc huấn luyện đã được tái lập."
+    },
+    {
+      "fact_id": "B-038",
+      "title": "Runtime lưu",
+      "statement": "Manifest cuối ghi numpy 2.5.3, pandas 3.0.6, scikit-learn 1.9.1 và xgboost 3.4.1, không ghi Python. run_config Params1 và manifest tiền xử lý ghi Python 3.14.7; requirements pin numpy 2.5.4 và comment Python 3.13.9.",
+      "evidence": [
+        "notebooks/validation/outputs/final_C30/selected_model.json:176",
+        "experiments/20-11-2026_Huy_C30_Params1/outputs/run_config.json:1596",
+        "notebooks/preprocessing/outputs/preprocessing_manifest.json:42",
+        "requirements.txt:1",
+        "requirements.txt:4"
+      ],
+      "confidence": "Cao",
+      "limitation": "Ghi phiên bản theo hiện vật của từng lượt; requirements không chứng minh runtime thực tế."
+    },
+    {
+      "fact_id": "B-039",
+      "title": "Demo chưa chạy",
+      "statement": "app/demo_time_weather.py toàn bộ là chú thích. File mô tả demo Time + Weather bằng XGBoost B lịch sử; chưa có entrypoint inference hoạt động nối với C30 hiện tại.",
+      "evidence": [
+        "app/demo_time_weather.py:1",
+        "app/demo_time_weather.py:6",
+        "docs/report_review/2026-11-22/agent_b/read_only_checks.json:112"
+      ],
+      "confidence": "Cao",
+      "limitation": "Demo Time + Weather có thể vẫn là phạm vi đề cương. C30 cần history đầu vào nên không tự thay thế giao diện hiện tại."
+    },
+    {
+      "fact_id": "B-040",
+      "title": "Liên kết thiếu",
+      "statement": "README validation liên kết validation_final_C30.ipynb, các notebook validation lịch sử và src/validation_main.py, nhưng các đường dẫn đại diện hiện không tồn tại. Thư mục kết quả final_C30 vẫn có.",
+      "evidence": [
+        "notebooks/validation/README.md:14",
+        "notebooks/validation/README.md:33",
+        "notebooks/validation/README.md:41",
+        "docs/report_review/2026-11-22/agent_b/read_only_checks.json:106"
+      ],
+      "confidence": "Cao",
+      "limitation": "Không báo các notebook này đã được tái tạo trong repo hiện tại; không tạo lại chúng trong đợt audit."
+    },
+    {
+      "fact_id": "B-041",
+      "title": "Thống kê mục tiêu trong báo cáo",
+      "statement": "Thống kê full hourly trong báo cáo khớp output đã lưu: mean=3.290,650474; std=1.984,772909; Q1=1.248,5; median=3.427; Q3=4.952; IQR=3.703,5; min=0; max=7.280, n=40.575.",
+      "evidence": [
+        "notebooks/eda/EDA_general.ipynb:8344",
+        "notebooks/eda/EDA_general.ipynb:8345",
+        "notebooks/eda/EDA_general.ipynb:8346",
+        "notebooks/eda/EDA_general.ipynb:8348",
+        "notebooks/eda/EDA_general.ipynb:8351"
+      ],
+      "confidence": "Cao",
+      "limitation": "Đây không phải thống kê raw 48.204 dòng (mean=3.259,818355) hoặc train 28.402 giờ."
+    },
+    {
+      "fact_id": "B-042",
+      "title": "Tương quan thời tiết trong báo cáo",
+      "statement": "Bảng tương quan sau gộp và mask khớp output: temp Pearson/Spearman=0,1392/0,1401 (n=40.565); rain=−0,0134/0,0043 (40.574); snow=−0,0021/−0,0052 và clouds=0,0783/0,0729 (40.575).",
+      "evidence": [
+        "notebooks/eda/EDA_general.ipynb:10391",
+        "notebooks/eda/EDA_general.ipynb:10392",
+        "notebooks/eda/EDA_general.ipynb:10393",
+        "notebooks/eda/EDA_general.ipynb:10394"
+      ],
+      "confidence": "Cao",
+      "limitation": "Tương quan riêng lẻ yếu không chứng minh không có giá trị bổ sung; không suy ra nhân quả."
+    },
+    {
+      "fact_id": "B-043",
+      "title": "Nhóm thời gian trong báo cáo",
+      "statement": "Bảng 3.6 khớp output toàn hourly: giờ 16 có mean=5.708,614528/n=1.707; giờ 3 là 373,210306/1.669; thứ Sáu là 3.674,777608/5.877; Chủ nhật là 2.426,249484/5.812; tháng 8 là 3.430,323887/3.705; tháng 12 là 3.040,194486/3.337.",
+      "evidence": [
+        "notebooks/eda/EDA_general.ipynb:8650",
+        "notebooks/eda/EDA_general.ipynb:8663",
+        "notebooks/eda/EDA_general.ipynb:8769",
+        "notebooks/eda/EDA_general.ipynb:8771",
+        "notebooks/eda/EDA_general.ipynb:8903",
+        "notebooks/eda/EDA_general.ipynb:8907"
+      ],
+      "confidence": "Cao",
+      "limitation": ""
+    },
+    {
+      "fact_id": "B-044",
+      "title": "Nhóm nhãn thời tiết trong báo cáo",
+      "statement": "Bảng 3.8 khớp số giờ theo từng nhãn: Clouds=15.127, Clear=13.371, Rain=5.563, Snow=2.795, Smoke=20, Squall=4. Có 5.349 giờ mang nhiều nhãn; một giờ có thể nằm trong nhiều nhóm.",
+      "evidence": [
+        "notebooks/eda/EDA_general.ipynb:1259",
+        "notebooks/eda/EDA_general.ipynb:9589",
+        "notebooks/eda/EDA_general.ipynb:9590",
+        "notebooks/eda/EDA_general.ipynb:9592",
+        "notebooks/eda/EDA_general.ipynb:9593",
+        "notebooks/eda/EDA_general.ipynb:9598",
+        "notebooks/eda/EDA_general.ipynb:9599"
+      ],
+      "confidence": "Cao",
+      "limitation": "Nhóm hiếm chỉ mô tả, không suy luận nhân quả; tổng số nhóm không phải số giờ duy nhất."
+    },
+    {
+      "fact_id": "B-045",
+      "title": "Thiếu thô và thiếu sau mask",
+      "statement": "Output kiểm tra toàn CSV ghi 0 null và 0 chuỗi rỗng; temp=0 có 10 dòng. Điều này không mâu thuẫn CSV sạch còn 10 temp và 1 rain thiếu sau mask.",
+      "evidence": [
+        "notebooks/eda/EDA_general.ipynb:568",
+        "notebooks/eda/EDA_general.ipynb:575",
+        "notebooks/eda/EDA_general.ipynb:2961",
+        "docs/report_review/2026-11-22/agent_b/read_only_checks.json:22"
+      ],
+      "confidence": "Cao",
+      "limitation": ""
+    },
+    {
+      "fact_id": "B-046",
+      "title": "Lịch sử không cùng giao thức",
+      "statement": "Năm nhóm lịch sử E05/E13/E15/E17/E18 được tổng hợp riêng, không xếp hạng toàn cục: E05 chỉ còn metrics làm tròn trong XLSX và khác snapshot; E13/E15 lặp A/B; E18 đọc RF/baseline của E17.",
+      "evidence": [
+        "notebooks/validation/outputs/main_rq/comparison/summary.md:1",
+        "notebooks/validation/outputs/main_rq/comparison/summary.md:13",
+        "notebooks/validation/outputs/main_rq/comparison/summary.md:25"
+      ],
+      "confidence": "Cao",
+      "limitation": "Không coi các bảng lặp là các xác nhận độc lập; không so trực tiếp 6.086 giờ lịch sử với C30 trên 6.050 giờ."
+    }
+  ],
+  "rankings": {
+    "FE_same_fixed_RF": [
+      {
+        "rank": "1",
+        "config": "V5_C30",
+        "n_features": "30",
+        "status": "đã chạy",
+        "MAE_mean": "247.9260159862954",
+        "MAE_std": "12.404353440722453",
+        "RMSE_mean": "412.9069134234578",
+        "RMSE_std": "44.34608265827793",
+        "n": "16875"
+      },
+      {
+        "rank": "2",
+        "config": "V1_A12",
+        "n_features": "12",
+        "status": "đã chạy",
+        "MAE_mean": "288.3181652957086",
+        "MAE_std": "35.451860897979216",
+        "RMSE_mean": "469.68586940885433",
+        "RMSE_std": "56.27750539974338",
+        "n": "16875"
+      },
+      {
+        "rank": "3",
+        "config": "V3_labels23",
+        "n_features": "23",
+        "status": "đã chạy",
+        "MAE_mean": "290.0371617512205",
+        "MAE_std": "34.11822499951752",
+        "RMSE_mean": "470.7517483509792",
+        "RMSE_std": "59.28733826252273",
+        "n": "16875"
+      },
+      {
+        "rank": "4",
+        "config": "V4_B27",
+        "n_features": "27",
+        "status": "đã chạy",
+        "MAE_mean": "290.725341954248",
+        "MAE_std": "29.3237104219177",
+        "RMSE_mean": "473.64634667525615",
+        "RMSE_std": "59.53878159992953",
+        "n": "16875"
+      },
+      {
+        "rank": "5",
+        "config": "V2_numeric16",
+        "n_features": "16",
+        "status": "đã chạy",
+        "MAE_mean": "291.5528305779663",
+        "MAE_std": "29.05942977650529",
+        "RMSE_mean": "476.41873980502857",
+        "RMSE_std": "56.67714676139409",
+        "n": "16875"
+      }
+    ],
+    "tuning_same_cohort_folds": [
+      {
+        "config": "A12",
+        "model": "Ridge",
+        "n": "16875",
+        "MAE_mean": "317.0336207897204",
+        "MAE_std": "33.28890858594247",
+        "RMSE_mean": "487.92944438524074",
+        "RMSE_std": "58.752915668997176",
+        "R2_mean": "0.9376390676674723",
+        "R2_std": "0.01532874155060343"
+      },
+      {
+        "config": "A12",
+        "model": "Random Forest",
+        "n": "16875",
+        "MAE_mean": "288.1822623548319",
+        "MAE_std": "20.674354561329434",
+        "RMSE_mean": "463.37949302023316",
+        "RMSE_std": "39.65425260800997",
+        "R2_mean": "0.9440229556487433",
+        "R2_std": "0.009874247271632206"
+      },
+      {
+        "config": "A12",
+        "model": "Gradient Boosting",
+        "n": "16875",
+        "MAE_mean": "300.4986585551958",
+        "MAE_std": "34.274466995645234",
+        "RMSE_mean": "470.42897654562194",
+        "RMSE_std": "54.82998709543192",
+        "R2_mean": "0.9420340656859202",
+        "R2_std": "0.014175302897712573"
+      },
+      {
+        "config": "A12",
+        "model": "MLP",
+        "n": "16875",
+        "MAE_mean": "303.5790387225116",
+        "MAE_std": "39.27338929469259",
+        "RMSE_mean": "475.7039331102423",
+        "RMSE_std": "65.2079704092202",
+        "R2_mean": "0.9405251774726993",
+        "R2_std": "0.016968856433309937"
+      },
+      {
+        "config": "A12",
+        "model": "XGBoost",
+        "n": "16875",
+        "MAE_mean": "290.4497128607856",
+        "MAE_std": "34.48721684990381",
+        "RMSE_mean": "464.275801085508",
+        "RMSE_std": "47.52884206780083",
+        "R2_mean": "0.9436624178482944",
+        "R2_std": "0.012118967853786472"
+      },
+      {
+        "config": "B27",
+        "model": "Ridge",
+        "n": "16875",
+        "MAE_mean": "314.80095651045576",
+        "MAE_std": "33.377944647602995",
+        "RMSE_mean": "484.1522160647932",
+        "RMSE_std": "61.6106150870764",
+        "R2_mean": "0.9385351488714133",
+        "R2_std": "0.01590172716404251"
+      },
+      {
+        "config": "B27",
+        "model": "Random Forest",
+        "n": "16875",
+        "MAE_mean": "286.82274140945196",
+        "MAE_std": "29.236682862486116",
+        "RMSE_mean": "459.86237182462577",
+        "RMSE_std": "57.96249819161983",
+        "R2_mean": "0.9445299519196017",
+        "R2_std": "0.014568863483430674"
+      },
+      {
+        "config": "B27",
+        "model": "Gradient Boosting",
+        "n": "16875",
+        "MAE_mean": "312.71184114956253",
+        "MAE_std": "22.765097797351252",
+        "RMSE_mean": "482.7084569638057",
+        "RMSE_std": "55.64996728688065",
+        "R2_mean": "0.9390203649516858",
+        "R2_std": "0.014299411360121082"
+      },
+      {
+        "config": "B27",
+        "model": "MLP",
+        "n": "16875",
+        "MAE_mean": "356.42718727575226",
+        "MAE_std": "21.099708435660006",
+        "RMSE_mean": "539.066794906185",
+        "RMSE_std": "52.61934771504422",
+        "R2_mean": "0.9241519948609271",
+        "R2_std": "0.01493809077218343"
+      },
+      {
+        "config": "B27",
+        "model": "XGBoost",
+        "n": "16875",
+        "MAE_mean": "296.10217927200887",
+        "MAE_std": "30.681303929465507",
+        "RMSE_mean": "474.5418550485556",
+        "RMSE_std": "64.96546114175979",
+        "R2_mean": "0.9408504436898942",
+        "R2_std": "0.0164486399582308"
+      },
+      {
+        "config": "C30",
+        "model": "Ridge",
+        "n": "16875",
+        "MAE_mean": "261.96412560176833",
+        "MAE_std": "12.244862053643214",
+        "RMSE_mean": "417.423382480385",
+        "RMSE_std": "45.50965633406922",
+        "R2_mean": "0.9544932858036645",
+        "R2_std": "0.009382068862617216"
+      },
+      {
+        "config": "C30",
+        "model": "Random Forest",
+        "n": "16875",
+        "MAE_mean": "231.0394830159987",
+        "MAE_std": "11.82461319211637",
+        "RMSE_mean": "381.3597171743707",
+        "RMSE_std": "40.660591732713996",
+        "R2_mean": "0.9619999650809857",
+        "R2_std": "0.008074507083227118"
+      },
+      {
+        "config": "C30",
+        "model": "Gradient Boosting",
+        "n": "16875",
+        "MAE_mean": "255.93085831319937",
+        "MAE_std": "10.16801613030139",
+        "RMSE_mean": "410.30633261859265",
+        "RMSE_std": "40.62748566556103",
+        "R2_mean": "0.9560381903879472",
+        "R2_std": "0.00894518972906769"
+      },
+      {
+        "config": "C30",
+        "model": "MLP",
+        "n": "16875",
+        "MAE_mean": "277.1133579065393",
+        "MAE_std": "19.05719630000599",
+        "RMSE_mean": "418.1760481501185",
+        "RMSE_std": "38.93093635864463",
+        "R2_mean": "0.9544226916324661",
+        "R2_std": "0.007995406690218062"
+      },
+      {
+        "config": "C30",
+        "model": "XGBoost",
+        "n": "16875",
+        "MAE_mean": "235.98353033402054",
+        "MAE_std": "11.368028899815553",
+        "RMSE_mean": "386.06003955933306",
+        "RMSE_std": "36.6810906529664",
+        "R2_mean": "0.9611062832703364",
+        "R2_std": "0.007525854657685653"
+      },
+      {
+        "config": "common",
+        "model": "Mean weekday-hour",
+        "n": "16875",
+        "MAE_mean": "305.6283208916747",
+        "MAE_std": "9.21880047199128",
+        "RMSE_mean": "512.521229871814",
+        "RMSE_std": "51.70604537343512",
+        "R2_mean": "0.9315263361778547",
+        "R2_std": "0.012548317928827763"
+      },
+      {
+        "config": "common",
+        "model": "Seasonal naive 168h",
+        "n": "16875",
+        "MAE_mean": "336.78885925925925",
+        "MAE_std": "25.65643931383235",
+        "RMSE_mean": "619.3205943009899",
+        "RMSE_std": "79.98438674587779",
+        "R2_mean": "0.8996287923492309",
+        "R2_std": "0.023644417063102694"
+      }
+    ],
+    "validation_same_C30_6050": [
+      {
+        "model": "RF 25% + XGBoost 25% + ExtraTrees 50%",
+        "n": "6050",
+        "MAE": "190.18996838954962",
+        "RMSE": "313.52658976848875",
+        "R2": "0.9745267139459514",
+        "selected_final": "True"
+      },
+      {
+        "model": "ExtraTrees",
+        "n": "6050",
+        "MAE": "191.21600020744637",
+        "RMSE": "319.85415908726503",
+        "R2": "0.9734881386549105",
+        "selected_final": "False"
+      },
+      {
+        "model": "RF/XGBoost 50/50",
+        "n": "6050",
+        "MAE": "193.81022114994735",
+        "RMSE": "316.0847573630796",
+        "R2": "0.97410932806404",
+        "selected_final": "False"
+      },
+      {
+        "model": "RF/XGBoost chọn trọng số OOF",
+        "n": "6050",
+        "MAE": "193.93255483221031",
+        "RMSE": "317.5802829617806",
+        "R2": "0.9738637498628402",
+        "selected_final": "False"
+      },
+      {
+        "model": "Random Forest",
+        "n": "6050",
+        "MAE": "196.7748072210252",
+        "RMSE": "326.77251249323405",
+        "R2": "0.9723288473663435",
+        "selected_final": "False"
+      },
+      {
+        "model": "XGBoost",
+        "n": "6050",
+        "MAE": "197.03135857448106",
+        "RMSE": "313.6396767836872",
+        "R2": "0.9745083345324934",
+        "selected_final": "False"
+      },
+      {
+        "model": "Baseline thứ–giờ",
+        "n": "6050",
+        "MAE": "291.73882501772056",
+        "RMSE": "503.2185115899362",
+        "R2": "0.9343780044633746",
+        "selected_final": "False"
+      },
+      {
+        "model": "Baseline seasonal naive",
+        "n": "6050",
+        "MAE": "330.177520661157",
+        "RMSE": "635.0734734613113",
+        "R2": "0.8954836676583094",
+        "selected_final": "False"
+      }
+    ]
+  }
+}

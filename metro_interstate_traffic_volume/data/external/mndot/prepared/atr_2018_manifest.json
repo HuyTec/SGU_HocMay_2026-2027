@@ -1,0 +1,60 @@
+{
+  "checked_local_date": "2026-11-22",
+  "input_original_path": "C:\\Users\\NHUT HUY\\Downloads\\atr_2018.xlsx",
+  "input_actual_format": "CSV text with .xlsx extension",
+  "input_bytes": 4860346,
+  "input_sha256": "39d65326d32b465f2e558a9fe9f8f5cf8ef1376826a8adad47e7890508fe8bae",
+  "source_rows_daily_direction_records": 45496,
+  "source_stations": 65,
+  "selection": {
+    "station_id": 301,
+    "dir_of_travel": 7,
+    "direction": "West",
+    "lane_of_travel": 0,
+    "lane_meaning": "combined lanes by direction; consistent with FHWA code and exact UCI overlap"
+  },
+  "coding_source": "https://www.fhwa.dot.gov/policyinformation/tmguide/tmg_2022/traffic-data-formats.cfm",
+  "timestamp_mapping": "date + (integer hourly column label - 1) hours; consistent with every overlapping UCI timestamp",
+  "timezone": "naive wall-clock times matching UCI on overlap; full timezone/DST policy not independently verified",
+  "n_daily_records_selected": 340,
+  "n_hourly": 8160,
+  "start": "2018-01-01 00:00:00",
+  "end": "2018-12-11 23:00:00",
+  "missing_dates_within_observed_span": [
+    "2018-12-01",
+    "2018-12-02",
+    "2018-12-03",
+    "2018-12-05",
+    "2018-12-06"
+  ],
+  "overlap_uci": {
+    "n": 6533,
+    "exact_matches": 6533,
+    "mean_absolute_count_difference": 0.0,
+    "note": "Data source reconciliation; NOT model prediction MAE or independent test evaluation"
+  },
+  "post_uci": {
+    "n": 1608,
+    "start": "2018-10-01 00:00:00",
+    "end": "2018-12-11 23:00:00",
+    "dates": 67,
+    "n_complete_history_preview": 1488,
+    "history_preview_context": "UCI original unique target timestamps + only new post-UCI timestamps; missing original UCI hours not backfilled from MnDOT overlap"
+  },
+  "files": {
+    "all_301_westbound_hourly": "prepared/atr301_westbound_2018_hourly.csv",
+    "post_uci_target_only": "prepared/atr301_westbound_post_uci_2018.csv",
+    "overlap_comparison": "prepared/atr301_2018_overlap_uci.csv"
+  },
+  "weather_columns_present": false,
+  "model_prediction_performed": false,
+  "metrics": null,
+  "quality_flags_in_source": false,
+  "remaining_checks": [
+    "source-specific quality/estimated-count policy",
+    "timezone and DST semantics outside UCI overlap",
+    "hourly weather matching C30 numeric and label definitions",
+    "holiday policy outside UCI dates",
+    "frozen fitted model and preprocessing checkpoint"
+  ]
+}

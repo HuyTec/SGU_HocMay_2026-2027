@@ -1,0 +1,35 @@
+{
+  "n": 8304,
+  "start_utc": "2018-01-01T00:00:00+00:00",
+  "end_utc": "2018-12-12T23:00:00+00:00",
+  "missing_by_column": {
+    "date_time_utc": 0,
+    "temperature_2m_c": 0,
+    "rain_mm": 0,
+    "snowfall_cm": 0,
+    "cloud_cover_pct": 0,
+    "weather_code_wmo": 0
+  },
+  "weather_codes": {
+    "0": 2452,
+    "2": 766,
+    "3": 3074,
+    "1": 851,
+    "71": 245,
+    "73": 157,
+    "51": 385,
+    "75": 35,
+    "53": 147,
+    "61": 73,
+    "55": 51,
+    "63": 62,
+    "65": 6
+  },
+  "hourly_spacing_seconds": 3600,
+  "coordinates_exact_atr301": false,
+  "ready_for_C30": false,
+  "model_evaluated": false,
+  "CST_fixed_UTC_minus6_period_new_traffic": "2018-10-01T06:00:00+00:00 through 2018-12-12T05:00:00+00:00",
+  "time_coverage_sufficient_for_fixed_CST": true,
+  "note": "UTC raw data retained. Traffic timezone policy and DST alignment not yet frozen. No weather flag or snow water-equivalent conversion silently applied."
+}

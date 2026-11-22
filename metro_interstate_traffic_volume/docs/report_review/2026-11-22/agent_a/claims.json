@@ -1,0 +1,2225 @@
+[
+  {
+    "claim_id": "A-001",
+    "location": {
+      "chapter": "Chương 1. Giới thiệu",
+      "section": "1.1. Bối cảnh và ý nghĩa đề tài",
+      "paragraphs": [
+        "P0026"
+      ],
+      "source_locations": [
+        "Tab t.0/body"
+      ],
+      "docs_startIndex": 802,
+      "docs_endIndex": 1069,
+      "page": null
+    },
+    "quote": "Mỗi năm, một tài xế ở Mỹ mất trung 49 giờ vì tắc đường vậy muốn biết giờ nào đường nào sẽ đông thì sao?Cùng một con đường  7 giờ sáng và 10 giờ sáng có thể khác nhau hoàn toàn để biết trước các khung giờ trên có lưu lượng như thế nào đó là mục tiêu của đề tài này.",
+    "type": "tools",
+    "verifiable_form": "Nguồn gốc con số49giờ: báo cáo giao thông, quốc gia, năm, định nghĩa và trích dẫn.",
+    "note": "CHƯA XÁC MINH; không có nguồn trong báo cáo.",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-002",
+    "location": {
+      "chapter": "Chương 1. Giới thiệu",
+      "section": "1.2. Mục tiêu và câu hỏi nghiên cứu",
+      "paragraphs": [
+        "P0028"
+      ],
+      "source_locations": [
+        "Tab t.0/body"
+      ],
+      "docs_startIndex": 1105,
+      "docs_endIndex": 1251,
+      "page": null
+    },
+    "quote": "Mục tiêu nghiên cứu xác định các yếu tố ảnh hưởng đến lưu lượng giao thông trên đường I-94 và xây dựng mô hình dự đoán lưu lượng theo thời gian.",
+    "type": "process",
+    "verifiable_form": "Định nghĩa mục tiêu dự đoán/horizon, phạm vi trạm I-94, RQ định danh; tránh diễn đạt nhân quả.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-003",
+    "location": {
+      "chapter": "Chương 1. Giới thiệu",
+      "section": "1.2. Mục tiêu và câu hỏi nghiên cứu",
+      "paragraphs": [
+        "P0030"
+      ],
+      "source_locations": [
+        "Tab t.0/body"
+      ],
+      "docs_startIndex": 1268,
+      "docs_endIndex": 1361,
+      "page": null
+    },
+    "quote": "Làm sạch dữ liệu và mô tả quy luật lưu lượng theo giờ , thứ , ngày , tháng, mua và theo năm.",
+    "type": "process",
+    "verifiable_form": "Notebook EDA và bảng theo giờ/thứ/ngày/tháng/mùa/năm có thực hiện đủ không.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-004",
+    "location": {
+      "chapter": "Chương 1. Giới thiệu",
+      "section": "1.2. Mục tiêu và câu hỏi nghiên cứu",
+      "paragraphs": [
+        "P0031"
+      ],
+      "source_locations": [
+        "Tab t.0/body"
+      ],
+      "docs_startIndex": 1361,
+      "docs_endIndex": 1408,
+      "page": null
+    },
+    "quote": "Đánh giá ảnh hưởng của thời tiết đến lưu lượng",
+    "type": "process",
+    "verifiable_form": "Đối chứng thời tiết cùngcohort,cùngmodel,cùngfold; chỉ kết luận ích lợi dự đoán.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-005",
+    "location": {
+      "chapter": "Chương 1. Giới thiệu",
+      "section": "1.2. Mục tiêu và câu hỏi nghiên cứu",
+      "paragraphs": [
+        "P0032"
+      ],
+      "source_locations": [
+        "Tab t.0/body"
+      ],
+      "docs_startIndex": 1408,
+      "docs_endIndex": 1468,
+      "page": null
+    },
+    "quote": "Đánh giá ảnh hưởng của ngày lễ so với ngày thường cùng thứ.",
+    "type": "process",
+    "verifiable_form": "So ngày lễ ghép cùng thứ VÀ cùng giờ, n mỗi nhóm.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-006",
+    "location": {
+      "chapter": "Chương 1. Giới thiệu",
+      "section": "1.2. Mục tiêu và câu hỏi nghiên cứu",
+      "paragraphs": [
+        "P0033"
+      ],
+      "source_locations": [
+        "Tab t.0/body"
+      ],
+      "docs_startIndex": 1468,
+      "docs_endIndex": 1517,
+      "page": null
+    },
+    "quote": "Xây dựng và so sánh các mô hình dự báo lưu lượng",
+    "type": "model comparison",
+    "verifiable_form": "Notebook và kết quả baseline/models có cùngprotocol.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-007",
+    "location": {
+      "chapter": "Chương 1. Giới thiệu",
+      "section": "1.2. Mục tiêu và câu hỏi nghiên cứu",
+      "paragraphs": [
+        "P0034"
+      ],
+      "source_locations": [
+        "Tab t.0/body"
+      ],
+      "docs_startIndex": 1517,
+      "docs_endIndex": 1554,
+      "page": null
+    },
+    "quote": "Rút ra gợi ý cho quản lý giao thông.",
+    "type": "process",
+    "verifiable_form": "Gợi ý quản lý giao thông có giới hạn phạm vi và bằng chứng.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-008",
+    "location": {
+      "chapter": "Chương 2. Cơ sở lý thuyết và nghiên cứu liên quan",
+      "section": "2.1. Bài toán hồi quy và mô hình baseline",
+      "paragraphs": [
+        "P0040"
+      ],
+      "source_locations": [
+        "Tab t.0/body"
+      ],
+      "docs_startIndex": 1726,
+      "docs_endIndex": 1938,
+      "page": null
+    },
+    "quote": "Baseline thứ–giờ dự đoán bằng trung bình traffic_volume của cùng thứ và giờ trong train, dùng trung bình toàn train nếu thiếu nhóm. Seasonal naive dự đoán bằng quan sát tại t−168h; chỉ so trên cohort đủ lịch sử.",
+    "type": "training",
+    "verifiable_form": "BaselineWeekdayHour.fit/predict, fallbackmeantrain; seasonalnaive đúngtimestamp t−168h, cohort chung.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-009",
+    "location": {
+      "chapter": "Chương 2. Cơ sở lý thuyết và nghiên cứu liên quan",
+      "section": "2.2. Các thuật toán sử dụng",
+      "paragraphs": [
+        "P0055"
+      ],
+      "source_locations": [
+        "Tab t.0/body"
+      ],
+      "docs_startIndex": 2350,
+      "docs_endIndex": 2502,
+      "page": null
+    },
+    "quote": "Linear Regression giả định đầu ra là tổ hợp tuyến tính của các đặc trưng: [EQUATION]. Tham số được chọn để cực tiểu sai số bình phương trung bình:",
+    "type": "terminology",
+    "verifiable_form": "Công thức tuyến tính/loss bình phương và estimator thực dùng; equation nodes không trả ký hiệu.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-010",
+    "location": {
+      "chapter": "Chương 2. Cơ sở lý thuyết và nghiên cứu liên quan",
+      "section": "2.2. Các thuật toán sử dụng",
+      "paragraphs": [
+        "P0057"
+      ],
+      "source_locations": [
+        "Tab t.0/body"
+      ],
+      "docs_startIndex": 2580,
+      "docs_endIndex": 2694,
+      "page": null
+    },
+    "quote": "Ridge thêm số hạng phạt L2 để thu nhỏ trọng số, giúp giảm phương sai khi các đặc trưng tương quan mạnh với nhau:",
+    "type": "terminology",
+    "verifiable_form": "Công thức Ridge L2, scaler trên foldtrain, estimator thực dùng.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-011",
+    "location": {
+      "chapter": "Chương 2. Cơ sở lý thuyết và nghiên cứu liên quan",
+      "section": "2.2. Các thuật toán sử dụng",
+      "paragraphs": [
+        "P0059"
+      ],
+      "source_locations": [
+        "Tab t.0/body"
+      ],
+      "docs_startIndex": 2756,
+      "docs_endIndex": 2903,
+      "page": null
+    },
+    "quote": "Hệ số [EQUATION] điều chỉnh mức phạt (thường không phạt [EQUATION]). Do phạt phụ thuộc độ lớn của [EQUATION], các đặc trưng cần được chuẩn hóa trước khi huấn luyện.",
+    "type": "training",
+    "verifiable_form": "Alpha/intercept/scaling qua pipeline thực; ký hiệu phương trình cần kiểm hình.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-012",
+    "location": {
+      "chapter": "Chương 2. Cơ sở lý thuyết và nghiên cứu liên quan",
+      "section": "2.2. Các thuật toán sử dụng",
+      "paragraphs": [
+        "P0060"
+      ],
+      "source_locations": [
+        "Tab t.0/body"
+      ],
+      "docs_startIndex": 2903,
+      "docs_endIndex": 3145,
+      "page": null
+    },
+    "quote": "Random Forest (RF): huấn luyện với [EQUATION] cây quyết định, mỗi cây trên một mẫu bootstrap của dữ liệu. Tại mỗi nút, cây chỉ xét một tập con ngẫu nhiên [EQUATION] đặc trưng để chọn điểm chia. Hai nguồn ngẫu nhiên này làm các cây ít tương quan với nhau.",
+    "type": "architecture",
+    "verifiable_form": "RandomForestRegressor bootstrap,max_features và random_state của lần chạy thực.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-013",
+    "location": {
+      "chapter": "Chương 2. Cơ sở lý thuyết và nghiên cứu liên quan",
+      "section": "2.2. Các thuật toán sử dụng",
+      "paragraphs": [
+        "P0062"
+      ],
+      "source_locations": [
+        "Tab t.0/body"
+      ],
+      "docs_startIndex": 3176,
+      "docs_endIndex": 3405,
+      "page": null
+    },
+    "quote": "Với bài toán phân loại, kết quả lấy theo đa số phiếu. Việc lấy trung bình giúp giảm phương sai so với một cây đơn mà gần như không tăng độ chệch. Sai số out-of-bag (OOB) cho ước lượng đánh giá mà không cần tập validation riêng.",
+    "type": "training",
+    "verifiable_form": "Tách lý thuyết OOB khỏi giao thức chuỗi thời gian; kiểm có thực dùngOOB không; OOB không thay thế temporalvalidation.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-014",
+    "location": {
+      "chapter": "Chương 2. Cơ sở lý thuyết và nghiên cứu liên quan",
+      "section": "2.2. Các thuật toán sử dụng",
+      "paragraphs": [
+        "P0063"
+      ],
+      "source_locations": [
+        "Tab t.0/body"
+      ],
+      "docs_startIndex": 3405,
+      "docs_endIndex": 3575,
+      "page": null
+    },
+    "quote": "Gradient Boosting (GB): xây mô hình cộng tính, mỗi cây mới sửa lỗi của mô hình hiện tại. Tại bước [EQUATION], cây [EQUATION] được khớp vào phần dư giả (âm gradient của hàm loss):",
+    "type": "terminology",
+    "verifiable_form": "GradientBoostingRegressor loss, mô hình cộng tính, pseudo-residual.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-015",
+    "location": {
+      "chapter": "Chương 2. Cơ sở lý thuyết và nghiên cứu liên quan",
+      "section": "2.2. Các thuật toán sử dụng",
+      "paragraphs": [
+        "P0066"
+      ],
+      "source_locations": [
+        "Tab t.0/body"
+      ],
+      "docs_startIndex": 3666,
+      "docs_endIndex": 3839,
+      "page": null
+    },
+    "quote": "Với loss bình phương, [EQUATION], tức đúng là phần dư. Tốc độ học [EQUATION] làm mỗi cây đóng góp nhỏ, đổi lại cần nhiều cây hơn nhưng khái quát tốt hơn.",
+    "type": "hyperparameter",
+    "verifiable_form": "loss bình phương vàlearning_rate thực; tránh khẳng định khái quát luôn tốt hơn.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-016",
+    "location": {
+      "chapter": "Chương 2. Cơ sở lý thuyết và nghiên cứu liên quan",
+      "section": "2.2. Các thuật toán sử dụng",
+      "paragraphs": [
+        "P0067"
+      ],
+      "source_locations": [
+        "Tab t.0/body"
+      ],
+      "docs_startIndex": 3839,
+      "docs_endIndex": 3958,
+      "page": null
+    },
+    "quote": "MLP: gồm nhiều tầng, mỗi tầng là phép biến đổi tuyến tính theo sau bởi hàm kích hoạt phi tuyến [EQUATION] (ReLU, GELU, ...):",
+    "type": "architecture",
+    "verifiable_form": "MLPRegressor activation thực; ReLU/GELU chỉ ví dụ lý thuyết.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-017",
+    "location": {
+      "chapter": "Chương 2. Cơ sở lý thuyết và nghiên cứu liên quan",
+      "section": "2.2. Các thuật toán sử dụng",
+      "paragraphs": [
+        "P0069"
+      ],
+      "source_locations": [
+        "Tab t.0/body"
+      ],
+      "docs_startIndex": 4035,
+      "docs_endIndex": 4283,
+      "page": null
+    },
+    "quote": "Tham số [EQUATION] được cập nhật bằng lan truyền ngược và gradient descent: [EQUATION] (hoặc biến thể như Adam). MLP nhạy với thang đo của đầu vào nên cần chuẩn hóa dữ liệu. Kết quả cũng phụ thuộc nhiều vào khởi tạo, tốc độ học [EQUATION] và điều kiện dừng.",
+    "type": "training",
+    "verifiable_form": "MLP solver,seed,scaler,learning_rate,stopping thực.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-018",
+    "location": {
+      "chapter": "Chương 2. Cơ sở lý thuyết và nghiên cứu liên quan",
+      "section": "2.2. Các thuật toán sử dụng",
+      "paragraphs": [
+        "P0070"
+      ],
+      "source_locations": [
+        "Tab t.0/body"
+      ],
+      "docs_startIndex": 4283,
+      "docs_endIndex": 4416,
+      "page": null
+    },
+    "quote": "XGBoost (XGB): là Gradient Boosting có thêm regularization trực tiếp trong hàm mục tiêu, và dùng khai triển Taylor bậc hai của loss:",
+    "type": "terminology",
+    "verifiable_form": "XGBoost objective/regularization/Taylor và tài liệu gốc.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-019",
+    "location": {
+      "chapter": "Chương 2. Cơ sở lý thuyết và nghiên cứu liên quan",
+      "section": "2.2. Các thuật toán sử dụng",
+      "paragraphs": [
+        "P0071"
+      ],
+      "source_locations": [
+        "Tab t.0/body"
+      ],
+      "docs_startIndex": 4416,
+      "docs_endIndex": 4619,
+      "page": null
+    },
+    "quote": "[IMAGE kix.w9z2mkqqadwv]Trong đó [EQUATION] là số lá và [EQUATION] là trọng số lá. Với [EQUATION] là đạo hàm bậc một và bậc hai của loss, [EQUATION] và [EQUATION], trọng số tối ưu của lá và độ lợi khi chia nút là:",
+    "type": "figures",
+    "verifiable_form": "XGBoost hìnhobjective và ký hiệuT,w,g,h; nodeequation không chứa glyph.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-020",
+    "location": {
+      "chapter": "Chương 2. Cơ sở lý thuyết và nghiên cứu liên quan",
+      "section": "2.2. Các thuật toán sử dụng",
+      "paragraphs": [
+        "P0072"
+      ],
+      "source_locations": [
+        "Tab t.0/body"
+      ],
+      "docs_startIndex": 4619,
+      "docs_endIndex": 4621,
+      "page": null
+    },
+    "quote": "[IMAGE kix.9ruxm9cqjlyg]",
+    "type": "figures",
+    "verifiable_form": "Công thức trọng sốlá vàgain trong ảnh; so tài liệugốc.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-021",
+    "location": {
+      "chapter": "Chương 2. Cơ sở lý thuyết và nghiên cứu liên quan",
+      "section": "2.2. Các thuật toán sử dụng",
+      "paragraphs": [
+        "P0073"
+      ],
+      "source_locations": [
+        "Tab t.0/body"
+      ],
+      "docs_startIndex": 4621,
+      "docs_endIndex": 4714,
+      "page": null
+    },
+    "quote": "Tham số [EQUATION] và [EQUATION] kiểm soát độ phức tạp của cây: nút chỉ được chia khi độ lợi lớn hơn [EQUATION].",
+    "type": "hyperparameter",
+    "verifiable_form": "Gamma/lambda regularization và điều kiện chia đúnglossconvention.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-022",
+    "location": {
+      "chapter": "Chương 2. Cơ sở lý thuyết và nghiên cứu liên quan",
+      "section": "2.3. Độ đo đánh giá hồi quy",
+      "paragraphs": [
+        "P0075"
+      ],
+      "source_locations": [
+        "Tab t.0/body"
+      ],
+      "docs_startIndex": 4742,
+      "docs_endIndex": 4837,
+      "page": null
+    },
+    "quote": "Đánh giá hồi quy bằng 3 thông số sau, với eᵢ = yᵢ − ŷᵢ và ȳ là trung bình y trên tập đang xét:",
+    "type": "metrics",
+    "verifiable_form": "Định nghĩa error e_i vàmean evaluation cohort.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-023",
+    "location": {
+      "chapter": "Chương 2. Cơ sở lý thuyết và nghiên cứu liên quan",
+      "section": "2.3. Độ đo đánh giá hồi quy",
+      "paragraphs": [
+        "P0076"
+      ],
+      "source_locations": [
+        "Tab t.0/body"
+      ],
+      "docs_startIndex": 4837,
+      "docs_endIndex": 4839,
+      "page": null
+    },
+    "quote": "[IMAGE kix.3xshvl3zek52]",
+    "type": "figures",
+    "verifiable_form": "Công thức MAE trong ảnh cần quan sát hình.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-024",
+    "location": {
+      "chapter": "Chương 2. Cơ sở lý thuyết và nghiên cứu liên quan",
+      "section": "2.3. Độ đo đánh giá hồi quy",
+      "paragraphs": [
+        "P0077"
+      ],
+      "source_locations": [
+        "Tab t.0/body"
+      ],
+      "docs_startIndex": 4839,
+      "docs_endIndex": 4841,
+      "page": null
+    },
+    "quote": "[IMAGE kix.ojenq5gde4a2]",
+    "type": "figures",
+    "verifiable_form": "Công thức RMSE trong ảnh cần quan sát hình.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-025",
+    "location": {
+      "chapter": "Chương 2. Cơ sở lý thuyết và nghiên cứu liên quan",
+      "section": "2.3. Độ đo đánh giá hồi quy",
+      "paragraphs": [
+        "P0078"
+      ],
+      "source_locations": [
+        "Tab t.0/body"
+      ],
+      "docs_startIndex": 4841,
+      "docs_endIndex": 4843,
+      "page": null
+    },
+    "quote": "[IMAGE kix.107jhofbxxr9]",
+    "type": "figures",
+    "verifiable_form": "Công thức R² trong ảnh cần quan sát hình.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-026",
+    "location": {
+      "chapter": "Chương 2. Cơ sở lý thuyết và nghiên cứu liên quan",
+      "section": "2.3. Độ đo đánh giá hồi quy",
+      "paragraphs": [
+        "P0079"
+      ],
+      "source_locations": [
+        "Tab t.0/body"
+      ],
+      "docs_startIndex": 4843,
+      "docs_endIndex": 5103,
+      "page": null
+    },
+    "quote": "MAE và RMSE có đơn vị xe/giờ. MAE là sai số tuyệt đối trung bình, còn RMSE phạt nặng hơn các sai số lớn. R² không có đơn vị: nó so sai số của mô hình với sai số của cách luôn dự đoán ȳ, bằng 1 khi dự đoán hoàn hảo, bằng 0 khi ngang cách đó và âm khi kém hơn.",
+    "type": "metrics",
+    "verifiable_form": "Hàm MAE/RMSE/R²,đơn vị xe/giờ,ý nghĩa so baseline constantmean.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-027",
+    "location": {
+      "chapter": "Chương 2. Cơ sở lý thuyết và nghiên cứu liên quan",
+      "section": "2.3. Độ đo đánh giá hồi quy",
+      "paragraphs": [
+        "P0080"
+      ],
+      "source_locations": [
+        "Tab t.0/body"
+      ],
+      "docs_startIndex": 5103,
+      "docs_endIndex": 5337,
+      "page": null
+    },
+    "quote": "MAE và RMSE có thể xếp hạng các mô hình khác nhau, nên báo cáo cả hai và nêu rõ metric dùng để chọn tham số. Các hàm đánh giá hiện tại cắt dự đoán âm về 0 trước khi tính điểm, nên mọi mô hình được so sánh phải dùng cùng quy tắc này.",
+    "type": "metrics",
+    "verifiable_form": "Tấtcả scorehelper/OOF/validation có cắtprediction<0 về0 đồngnhất; primarymetricthựcdùng.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-028",
+    "location": {
+      "chapter": "Chương 2. Cơ sở lý thuyết và nghiên cứu liên quan",
+      "section": "2.4. Dữ liệu chuỗi thời gian, chia dữ liệu theo thời gian và data leakage",
+      "paragraphs": [
+        "P0082"
+      ],
+      "source_locations": [
+        "Tab t.0/body"
+      ],
+      "docs_startIndex": 5411,
+      "docs_endIndex": 5629,
+      "page": null
+    },
+    "quote": "Dữ liệu được sắp theo timestamp, nên phần huấn luyện luôn đứng trước phần đánh giá. Tuning dùng Time Series Split trên tập train. Imputation, encoder và scaler có học thống kê phải được fit trên fold-train tương ứng.",
+    "type": "training",
+    "verifiable_form": "Splitthờigian,TimeSeriesSplit trêntrain,fitimputer/encoder/scaler từngfold.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-029",
+    "location": {
+      "chapter": "Chương 2. Cơ sở lý thuyết và nghiên cứu liên quan",
+      "section": "2.4. Dữ liệu chuỗi thời gian, chia dữ liệu theo thời gian và data leakage",
+      "paragraphs": [
+        "P0083"
+      ],
+      "source_locations": [
+        "Tab t.0/body"
+      ],
+      "docs_startIndex": 5629,
+      "docs_endIndex": 5967,
+      "page": null
+    },
+    "quote": "Theo tài liệu TimeSeriesSplit, các fold đánh giá chỉ phủ cùng một khoảng thời gian khi các mẫu cách đều. Dữ liệu ở đây thiếu giờ, nên các fold có cùng số hàng chưa chắc phủ cùng khoảng lịch. Vì vậy, khi diễn giải độ ổn định, cần ghi mốc thời gian và số mẫu của từng fold, và chỉ mô tả các fold là cửa sổ lịch bằng nhau nếu đã kiểm tra. [PAGE BREAK]",
+    "type": "training",
+    "verifiable_form": "Foldmanifestn vàstart/end; tài liệuTimeSeriesSplit về equalspacing.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-030",
+    "location": {
+      "chapter": "Chương 3. Dữ liệu và phương pháp",
+      "section": "3.1.1. Nguồn dữ liệu và phạm vi và quy mô",
+      "paragraphs": [
+        "P0087"
+      ],
+      "source_locations": [
+        "Tab t.0/body"
+      ],
+      "docs_startIndex": 6061,
+      "docs_endIndex": 6402,
+      "page": null
+    },
+    "quote": "Bộ Metro Interstate Traffic Volume do John Hogue công bố trên UCI năm 2019. Dữ liệu ghi lưu lượng theo giờ tại trạm ATR 301, I-94 hướng Tây, khu vực Minneapolis-St Paul, và phát hành theo CC BY 4.0. CSV của dự án có 48.204 dòng, 9 cột gồm 8 đầu vào và một biến mục tiêu; timestamp trải từ 02/10/2012 09:00 đến 30/09/2018 23:00. Nguồn: UCI.",
+    "type": "data & preprocessing",
+    "verifiable_form": "UCIHogue2019/ATR301I94westbound/CCBY4 + CSVshape/datebounds.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-031",
+    "location": {
+      "chapter": "Chương 3. Dữ liệu và phương pháp",
+      "section": "3.1.1. Nguồn dữ liệu và phạm vi và quy mô",
+      "paragraphs": [
+        "P0088"
+      ],
+      "source_locations": [
+        "Tab t.0/body"
+      ],
+      "docs_startIndex": 6402,
+      "docs_endIndex": 6732,
+      "page": null
+    },
+    "quote": "Các số kiểm tra riêng từ CSV: 40.575 timestamp duy nhất, 7.629 dòng vượt số timestamp duy nhất và 11.976 giờ không có quan sát trong lưới giờ từ đầu đến cuối. 7.629 là số dòng dư theo khóa thời gian, chưa chắc là số bản ghi trùng hoàn toàn. Số giờ thiếu tính trên timestamp không gắn timezone như trong file; chưa phân tích DST.",
+    "type": "data & preprocessing",
+    "verifiable_form": "CSVunique40575,excess7629,missinghour11976,naive timestamp/DST chưa xử lý.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-032",
+    "location": {
+      "chapter": "Chương 3. Dữ liệu và phương pháp",
+      "section": "3.2.1 Tổng quan và chất lượng dữ liệu",
+      "paragraphs": [
+        "P0135"
+      ],
+      "source_locations": [
+        "Tab t.0/body"
+      ],
+      "docs_startIndex": 8154,
+      "docs_endIndex": 8377,
+      "page": null
+    },
+    "quote": "Timestamp lặp không đồng nghĩa với dòng trùng hoàn toàn. Các dòng cùng giờ có lưu lượng nhất quán nhưng có thể khác nhãn thời tiết, như minh họa ở Bảng 3.3. Vì vậy, không được cộng lặp traffic_volume khi tổng hợp theo giờ.",
+    "type": "data & preprocessing",
+    "verifiable_form": "groupbytimestamp y.nunique()==1,không sumtarget; rawrows ví dụ.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-033",
+    "location": {
+      "chapter": "Chương 3. Dữ liệu và phương pháp",
+      "section": "3.2.1 Tổng quan và chất lượng dữ liệu",
+      "paragraphs": [
+        "P0170"
+      ],
+      "source_locations": [
+        "Tab t.0/body"
+      ],
+      "docs_startIndex": 9392,
+      "docs_endIndex": 9634,
+      "page": null
+    },
+    "quote": "Không có null không đồng nghĩa dữ liệu hoàn toàn sạch. Giờ vắng bản ghi ở mục 3.1 không được quy thành lưu lượng 0. Với mưa/tuyết, Q1 và Q3 đều bằng 0 nên IQR có thể gắn cờ cả các giá trị dương hợp lý. Các vấn đề trên được xử lý tại mục 3.3.",
+    "type": "data & preprocessing",
+    "verifiable_form": "Targetgap không điền0; quantilesrain/snow Q1Q3=0; tiề nxửlýmục3.3 hiệnchưaviết.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-034",
+    "location": {
+      "chapter": "Chương 3. Dữ liệu và phương pháp",
+      "section": "3.2.2. Phân bố lưu lượng giao thông",
+      "paragraphs": [
+        "P0172"
+      ],
+      "source_locations": [
+        "Tab t.0/body"
+      ],
+      "docs_startIndex": 9670,
+      "docs_endIndex": 9891,
+      "page": null
+    },
+    "quote": "Sau bước kiểm tra chất lượng dữ liệu, nhóm khảo sát phân bố của biến mục tiêu traffic_volume trên 40.575 giờ quan sát duy nhất. Mỗi timestamp chỉ được tính một lần; các thống kê dưới đây sử dụng toàn bộ dữ liệu theo giờ.",
+    "type": "data & preprocessing",
+    "verifiable_form": "EDA_general dùng toàn40575uniquehour; phân biệt nguồn phân tích khámphá với trainingfeatures.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-035",
+    "location": {
+      "chapter": "Chương 3. Dữ liệu và phương pháp",
+      "section": "3.2.2. Phân bố lưu lượng giao thông",
+      "paragraphs": [
+        "P0196"
+      ],
+      "source_locations": [
+        "Tab t.0/body"
+      ],
+      "docs_startIndex": 10277,
+      "docs_endIndex": 10495,
+      "page": null
+    },
+    "quote": "Trung bình thấp hơn trung vị khoảng 136,35 xe/giờ. Một nửa số giờ quan sát có lưu lượng từ 1.248,50 đến 4.952 xe/giờ; độ lệch chuẩn khoảng 1.984,77 xe/giờ cho thấy lưu lượng phân tán đáng kể quanh giá trị trung bình.[PAGE BREAK]",
+    "type": "data & preprocessing",
+    "verifiable_form": "Tính3290.65−3427=-136.35,Q1/Q3/std đúngfullhourly.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-036",
+    "location": {
+      "chapter": "Chương 3. Dữ liệu và phương pháp",
+      "section": "3.2.2. Phân bố lưu lượng giao thông",
+      "paragraphs": [
+        "P0198"
+      ],
+      "source_locations": [
+        "Tab t.0/body"
+      ],
+      "docs_startIndex": 10518,
+      "docs_endIndex": 10630,
+      "page": null
+    },
+    "quote": "Hình 3.1 kết hợp histogram và boxplot để thể hiện tần suất quan sát, trung vị và khoảng phân bố của lưu lượng.[IMAGE kix.exjdsthkcy2o]",
+    "type": "figures",
+    "verifiable_form": "ẢnhHình3.1 có cảhistogramboxplot và nguồnfullhourly.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-037",
+    "location": {
+      "chapter": "Chương 3. Dữ liệu và phương pháp",
+      "section": "3.2.2. Phân bố lưu lượng giao thông",
+      "paragraphs": [
+        "P0199"
+      ],
+      "source_locations": [
+        "Tab t.0/body"
+      ],
+      "docs_startIndex": 10630,
+      "docs_endIndex": 10700,
+      "page": null
+    },
+    "quote": "Hình 3.1. Phân bố lưu lượng giao thông trên các giờ quan sát duy nhất",
+    "type": "figures",
+    "verifiable_form": "ChúthíchHình3.1 khớp dữliệu/ảnh,đơnvị,n.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-038",
+    "location": {
+      "chapter": "Chương 3. Dữ liệu và phương pháp",
+      "section": "3.2.2. Phân bố lưu lượng giao thông",
+      "paragraphs": [
+        "P0200"
+      ],
+      "source_locations": [
+        "Tab t.0/body"
+      ],
+      "docs_startIndex": 10700,
+      "docs_endIndex": 11029,
+      "page": null
+    },
+    "quote": "Histogram có nhiều vùng tập trung, không thể hiện một đỉnh duy nhất rõ rệt. Boxplot cho thấy khoảng giữa Q1 và Q3 khá rộng, phù hợp với mức phân tán trong Bảng 3.5. Phân bố tổng thể chưa cho biết các vùng lưu lượng này xuất hiện vào thời điểm nào; mục tiếp theo phân tích theo giờ, thứ và loại ngày để làm rõ mẫu hình thời gian.",
+    "type": "figures",
+    "verifiable_form": "Ảnhhistogram đa vùngtậptrung/boxplotIQR so với data.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-039",
+    "location": {
+      "chapter": "Chương 3. Dữ liệu và phương pháp",
+      "section": "3.2.3. Lưu lượng theo thời gian",
+      "paragraphs": [
+        "P0202"
+      ],
+      "source_locations": [
+        "Tab t.0/body"
+      ],
+      "docs_startIndex": 11061,
+      "docs_endIndex": 11224,
+      "page": null
+    },
+    "quote": "Nhóm phân tích lưu lượng theo giờ, thứ và tháng trên toàn bộ 40.575 timestamp duy nhất. Các thống kê chỉ tính giờ có bản ghi, không gán lưu lượng 0 cho giờ thiếu.",
+    "type": "data & preprocessing",
+    "verifiable_form": "Bảnggiờ/thứ/tháng trên40575uniquehours,khôngzero-fillgaps.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-040",
+    "location": {
+      "chapter": "Chương 3. Dữ liệu và phương pháp",
+      "section": "3.2.3. Lưu lượng theo thời gian",
+      "paragraphs": [
+        "P0206"
+      ],
+      "source_locations": [
+        "Tab t.0/body"
+      ],
+      "docs_startIndex": 11353,
+      "docs_endIndex": 11419,
+      "page": null
+    },
+    "quote": "Hình 3.2. Lưu lượng trung bình theo giờ, thứ trong tuần và tháng[PAGE BREAK]",
+    "type": "figures",
+    "verifiable_form": "Hình3.2đúng3biểuđồmean hour/weekday/month;đơnvị,n.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-041",
+    "location": {
+      "chapter": "Chương 3. Dữ liệu và phương pháp",
+      "section": "3.2.3. Lưu lượng theo thời gian",
+      "paragraphs": [
+        "P0239"
+      ],
+      "source_locations": [
+        "Tab t.0/body"
+      ],
+      "docs_startIndex": 12010,
+      "docs_endIndex": 12074,
+      "page": null
+    },
+    "quote": "Hình 3.3 lưu lượng trung bình theo tổ hợp thứ trong tuần và giờ",
+    "type": "figures",
+    "verifiable_form": "Hình3.3đúngthứ–giờ,khácweekday/weekend;labelđủ.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-042",
+    "location": {
+      "chapter": "Chương 3. Dữ liệu và phương pháp",
+      "section": "3.2.3. Lưu lượng theo thời gian",
+      "paragraphs": [
+        "P0240"
+      ],
+      "source_locations": [
+        "Tab t.0/body"
+      ],
+      "docs_startIndex": 12074,
+      "docs_endIndex": 12307,
+      "page": null
+    },
+    "quote": "Từ thứ Hai đến thứ Sáu, lưu lượng cao tập trung vào buổi sáng và chiều; cuối tuần tăng muộn hơn, tập trung quanh giữa ngày. Kết quả gợi ý xem xét đồng thời giờ, thứ và cờ cuối tuần; giá trị dự đoán cần kiểm chứng ở phần thực nghiệm.",
+    "type": "model comparison",
+    "verifiable_form": "Groupmeans/heatmapthứ–giờ; chỉ gợi ý tươngtác,không xem làđãchọnfeature.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-043",
+    "location": {
+      "chapter": "Chương 3. Dữ liệu và phương pháp",
+      "section": "3.2.4. Mối liên  hệ giữa thời tiết và lưu lượng",
+      "paragraphs": [
+        "P0243"
+      ],
+      "source_locations": [
+        "Tab t.0/body"
+      ],
+      "docs_startIndex": 12401,
+      "docs_endIndex": 12597,
+      "page": null
+    },
+    "quote": "Bảng 3.7 tính sau khi đánh dấu nhiệt độ 0 K và điểm mưa 9.831,3 mm là thiếu, rồi gộp thời tiết theo giờ bằng median các giá trị phân biệt. n là số cặp quan sát hợp lệ của từng biến với lưu lượng.",
+    "type": "data & preprocessing",
+    "verifiable_form": "temp0/rain9831.3->NaN; medianunique perhour trước corr; nvalidpairs.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-044",
+    "location": {
+      "chapter": "Chương 3. Dữ liệu và phương pháp",
+      "section": "3.2.4. Mối liên  hệ giữa thời tiết và lưu lượng",
+      "paragraphs": [
+        "P0265"
+      ],
+      "source_locations": [
+        "Tab t.0/body"
+      ],
+      "docs_startIndex": 12867,
+      "docs_endIndex": 13034,
+      "page": null
+    },
+    "quote": "Nhiệt độ có tương quan dương yếu; mưa và tuyết có hệ số gần 0. Tương quan riêng lẻ thấp chưa loại trừ quan hệ phi tuyến hoặc giá trị bổ sung khi kết hợp với thời gian",
+    "type": "terminology",
+    "verifiable_form": "Pearson/Spearman mô tả yếu khôngloạiphi tuyến; FE ablation kiểm íchlợithêm.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-045",
+    "location": {
+      "chapter": "Chương 3. Dữ liệu và phương pháp",
+      "section": "3.2.4. Mối liên  hệ giữa thời tiết và lưu lượng",
+      "paragraphs": [
+        "P0269"
+      ],
+      "source_locations": [
+        "Tab t.0/body"
+      ],
+      "docs_startIndex": 13184,
+      "docs_endIndex": 13235,
+      "page": null
+    },
+    "quote": "Hình 3.4. Lưu lượng trung bình theo nhãn thời tiết",
+    "type": "figures",
+    "verifiable_form": "Hình3.4đúngweather_main vsmeantraffic và samplecounts.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-046",
+    "location": {
+      "chapter": "Chương 3. Dữ liệu và phương pháp",
+      "section": "3.2.4. Mối liên  hệ giữa thời tiết và lưu lượng",
+      "paragraphs": [
+        "P0287"
+      ],
+      "source_locations": [
+        "Tab t.0/body"
+      ],
+      "docs_startIndex": 13415,
+      "docs_endIndex": 13645,
+      "page": null
+    },
+    "quote": "Một giờ được tính một lần trong mỗi nhóm nhưng có thể mang nhiều nhãn; có 5.349 giờ như vậy. Clouds có trung bình cao nhất, còn Squall thấp nhất nhưng chỉ có 4 giờ. Nhóm Smoke cũng hiếm (20 giờ), nên cần thận trọng khi diễn giải.",
+    "type": "data & preprocessing",
+    "verifiable_form": "Nhómweather multi-label5349hours;Cloudsmeanmax/Squallminn4/Smoken20.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-047",
+    "location": {
+      "chapter": "Chương 3. Dữ liệu và phương pháp",
+      "section": "3.2.4. Mối liên  hệ giữa thời tiết và lưu lượng",
+      "paragraphs": [
+        "P0288"
+      ],
+      "source_locations": [
+        "Tab t.0/body"
+      ],
+      "docs_startIndex": 13645,
+      "docs_endIndex": 13833,
+      "page": null
+    },
+    "quote": "Chênh lệch giữa các nhãn có thể gắn với giờ và mùa, không chứng minh nhân quả. Ích lợi dự đoán của thời tiết cần được kiểm chứng bằng đối chứng cùng mô hình và tập giờ ở phần thực nghiệm.",
+    "type": "model comparison",
+    "verifiable_form": "Weatherconfounding theo giờ/mùa; giátrịdựđoán qua matchedablation.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-048",
+    "location": {
+      "chapter": "Chương 3. Dữ liệu và phương pháp",
+      "section": "3.5. Pipeline học máy",
+      "paragraphs": [
+        "P0301"
+      ],
+      "source_locations": [
+        "Tab t.0/body"
+      ],
+      "docs_startIndex": 14394,
+      "docs_endIndex": 14505,
+      "page": null
+    },
+    "quote": "Gợi ý: Chèn sơ đồ pipeline: dữ liệu → tiền xử lý → đặc trưng → chia tập → huấn luyện/tuning → đánh giá → demo.",
+    "type": "process",
+    "verifiable_form": "Sơđồpipeline phân biệttransformdeterministic trướcsplit vàfitstatistics saufoldsplit; đây chỉ làgợiý,chưa phải kết quả.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-049",
+    "location": {
+      "chapter": "Chương 3. Dữ liệu và phương pháp",
+      "section": "3.6.2. Kiểm soát data leakage và tính công bằng khi so sánh",
+      "paragraphs": [
+        "P0308"
+      ],
+      "source_locations": [
+        "Tab t.0/body"
+      ],
+      "docs_startIndex": 14754,
+      "docs_endIndex": 14895,
+      "page": null
+    },
+    "quote": "Gợi ý: Cách fit preprocessing chỉ trên train; không dùng test để chọn mô hình/tuning; các mô hình dùng cùng tập, cùng mốc chia, cùng metric.",
+    "type": "process",
+    "verifiable_form": "Giao thứcchốngleakage/equalcohort vàtestuntouched; đây làyêucầutemplate.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-050",
+    "location": {
+      "chapter": "Chương 3. Dữ liệu và phương pháp",
+      "section": "3.6.4. Độ đo và phương án tinh chỉnh siêu tham số",
+      "paragraphs": [
+        "P0313"
+      ],
+      "source_locations": [
+        "Tab t.0/body"
+      ],
+      "docs_startIndex": 14991,
+      "docs_endIndex": 15109,
+      "page": null
+    },
+    "quote": "Gợi ý: Phương pháp (Grid/Random Search + CV theo thời gian), không gian tham số, chỉ số chọn mô hình trên validation.",
+    "type": "hyperparameter",
+    "verifiable_form": "CVsearchspace/ngânsách/seed/selectionmetric và rolevalidation; templatechưacókếtquả.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-051",
+    "location": {
+      "chapter": "Chương 3. Dữ liệu và phương pháp",
+      "section": "3.6.5. Thiết kế thí nghiệm đối chứng đặc trưng",
+      "paragraphs": [
+        "P0316"
+      ],
+      "source_locations": [
+        "Tab t.0/body"
+      ],
+      "docs_startIndex": 15171,
+      "docs_endIndex": 15296,
+      "page": null
+    },
+    "quote": "Gợi ý: Time, Time + Weather, Time + Weather + History: cùng thuật toán, cùng tập và mốc chia, để trả lời câu hỏi nghiên cứu.",
+    "type": "model comparison",
+    "verifiable_form": "A12/B27/C30 hoặc5FEconfigs cùngmodel/params/cohort/folds; templatechưacókếtquả.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-052",
+    "location": {
+      "chapter": "Chương 3. Dữ liệu và phương pháp",
+      "section": "3.6.5. Thiết kế thí nghiệm đối chứng đặc trưng",
+      "paragraphs": [
+        "P0318"
+      ],
+      "source_locations": [
+        "Tab t.0/body"
+      ],
+      "docs_startIndex": 15311,
+      "docs_endIndex": 15704,
+      "page": null
+    },
+    "quote": "Dự đoán ngoài fold (Out-of-Fold — OOF) được tạo bằng phương pháp TimeSeriesSplit với ba fold. Ở mỗi fold, mô hình được huấn luyện trên dữ liệu quá khứ và dự đoán trên đoạn dữ liệu tiếp theo; các bước tiền xử lý có học thống kê cũng chỉ được fit trên phần huấn luyện tương ứng. Các dự đoán được ghép theo timestamp để đánh giá trên những quan sát chưa tham gia huấn luyện mô hình tạo ra chúng.",
+    "type": "training",
+    "verifiable_form": "OOF3TimeSeriesSplit; fitpasttransform foldtrain,predictnext,align timestamp.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-053",
+    "location": {
+      "chapter": "Chương 3. Dữ liệu và phương pháp",
+      "section": "3.6.5. Thiết kế thí nghiệm đối chứng đặc trưng",
+      "paragraphs": [
+        "P0319"
+      ],
+      "source_locations": [
+        "Tab t.0/body"
+      ],
+      "docs_startIndex": 15704,
+      "docs_endIndex": 16009,
+      "page": null
+    },
+    "quote": "Trong thí nghiệm ensemble, Random Forest và XGBoost sử dụng cùng cấu hình đặc trưng, bộ chia và các giờ chấm. Trọng số kết hợp được lựa chọn theo MAE trên dự đoán OOF thuộc tập train. Sau khi chọn trọng số, hai mô hình được huấn luyện lại trên toàn bộ tập train và ensemble được đánh giá trên validation.",
+    "type": "training",
+    "verifiable_form": "RF+XGB cohort/folds/OOFweightselection/refitfulltrain/validation; cần phânbiệt20–21Nov vàfinal22NovthêmExtraTrees.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-054",
+    "location": {
+      "chapter": "Chương 3. Dữ liệu và phương pháp",
+      "section": "3.6.5. Thiết kế thí nghiệm đối chứng đặc trưng",
+      "paragraphs": [
+        "P0320"
+      ],
+      "source_locations": [
+        "Tab t.0/body"
+      ],
+      "docs_startIndex": 16009,
+      "docs_endIndex": 16147,
+      "page": null
+    },
+    "quote": "Do OOF được sử dụng để lựa chọn trọng số, MAE OOF tại trọng số được chọn là điểm phục vụ lựa chọn, chưa phải đánh giá độc lập cuối cùng.",
+    "type": "metrics",
+    "verifiable_form": "OOF dùng chọnweight làselectionscore,khôngđộc lập; tuningmodels trêncùngfold cũngtạooptimism.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-055",
+    "location": {
+      "chapter": "Chương 4. Thực nghiệm, kết quả và thảo luận",
+      "section": "4.4. So sánh các mô hình trên tập test",
+      "paragraphs": [
+        "P0332"
+      ],
+      "source_locations": [
+        "Tab t.0/body"
+      ],
+      "docs_startIndex": 16544,
+      "docs_endIndex": 16638,
+      "page": null
+    },
+    "quote": "Gợi ý: Chỉ đánh giá test một lần cho mô hình đã chốt; so sánh công bằng cùng tập và tiêu chí.",
+    "type": "process",
+    "verifiable_form": "Test-once làgợiýtươnglai; đối chiếutestevaluatedflag,khôngghi làđãtest.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-056",
+    "location": {
+      "chapter": "Chương 2. Cơ sở lý thuyết và nghiên cứu liên quan",
+      "section": "2.2. Các thuật toán sử dụng",
+      "paragraphs": [
+        "P0044",
+        "P0045"
+      ],
+      "source_locations": [
+        "Tab t.0/body/Table2/R2C1",
+        "Tab t.0/body/Table2/R2C2"
+      ],
+      "docs_startIndex": 1992,
+      "docs_endIndex": 2078,
+      "page": null
+    },
+    "quote": "Linear Regression (LR)/ Ridge | Quan hệ tuyến tính, ngoài ra Ridge còn có phạt thêm L2",
+    "type": "architecture",
+    "verifiable_form": "Kiểm từng ô của Table2 dòng2 từ CSV/notebook saved output hoặc modelregistry tương ứng; giữ nguyên scope và đơn vị.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-057",
+    "location": {
+      "chapter": "Chương 2. Cơ sở lý thuyết và nghiên cứu liên quan",
+      "section": "2.2. Các thuật toán sử dụng",
+      "paragraphs": [
+        "P0046",
+        "P0047"
+      ],
+      "source_locations": [
+        "Tab t.0/body/Table2/R3C1",
+        "Tab t.0/body/Table2/R3C2"
+      ],
+      "docs_startIndex": 2080,
+      "docs_endIndex": 2134,
+      "page": null
+    },
+    "quote": "Random Forest ̣(RF) | Trung bình dự đoán của nhiều cây",
+    "type": "architecture",
+    "verifiable_form": "Kiểm từng ô của Table2 dòng3 từ CSV/notebook saved output hoặc modelregistry tương ứng; giữ nguyên scope và đơn vị.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-058",
+    "location": {
+      "chapter": "Chương 2. Cơ sở lý thuyết và nghiên cứu liên quan",
+      "section": "2.2. Các thuật toán sử dụng",
+      "paragraphs": [
+        "P0048",
+        "P0049"
+      ],
+      "source_locations": [
+        "Tab t.0/body/Table2/R4C1",
+        "Tab t.0/body/Table2/R4C2"
+      ],
+      "docs_startIndex": 2136,
+      "docs_endIndex": 2197,
+      "page": null
+    },
+    "quote": "Gradient Boosting | Bổ sung cây tuần tự để cải thiện hàm loss",
+    "type": "architecture",
+    "verifiable_form": "Kiểm từng ô của Table2 dòng4 từ CSV/notebook saved output hoặc modelregistry tương ứng; giữ nguyên scope và đơn vị.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-059",
+    "location": {
+      "chapter": "Chương 2. Cơ sở lý thuyết và nghiên cứu liên quan",
+      "section": "2.2. Các thuật toán sử dụng",
+      "paragraphs": [
+        "P0050",
+        "P0051"
+      ],
+      "source_locations": [
+        "Tab t.0/body/Table2/R5C1",
+        "Tab t.0/body/Table2/R5C2"
+      ],
+      "docs_startIndex": 2199,
+      "docs_endIndex": 2258,
+      "page": null
+    },
+    "quote": "MLP | Nhiều tầng phi tuyến, nhạy với thang đo và tối ưu hóa",
+    "type": "architecture",
+    "verifiable_form": "Kiểm từng ô của Table2 dòng5 từ CSV/notebook saved output hoặc modelregistry tương ứng; giữ nguyên scope và đơn vị.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-060",
+    "location": {
+      "chapter": "Chương 2. Cơ sở lý thuyết và nghiên cứu liên quan",
+      "section": "2.2. Các thuật toán sử dụng",
+      "paragraphs": [
+        "P0052",
+        "P0053"
+      ],
+      "source_locations": [
+        "Tab t.0/body/Table2/R6C1",
+        "Tab t.0/body/Table2/R6C2"
+      ],
+      "docs_startIndex": 2260,
+      "docs_endIndex": 2315,
+      "page": null
+    },
+    "quote": "XGBoost | Boosting  các cây theo cơ chế regularization",
+    "type": "architecture",
+    "verifiable_form": "Kiểm từng ô của Table2 dòng6 từ CSV/notebook saved output hoặc modelregistry tương ứng; giữ nguyên scope và đơn vị.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-061",
+    "location": {
+      "chapter": "Chương 3. Dữ liệu và phương pháp",
+      "section": "3.1.2. Danh sách thuộc tính và biến mục tiêu",
+      "paragraphs": [
+        "P0093",
+        "P0094",
+        "P0095"
+      ],
+      "source_locations": [
+        "Tab t.0/body/Table3/R2C1",
+        "Tab t.0/body/Table3/R2C2",
+        "Tab t.0/body/Table3/R2C3"
+      ],
+      "docs_startIndex": 6826,
+      "docs_endIndex": 6961,
+      "page": null
+    },
+    "quote": "holiday | Nhãn | Ngày lễ quốc gia Mỹ và ngày lễ khu vực (Minnesota State Fair). Chuỗi None là một nhãn hợp lệ, không phải giá trị thiếu.",
+    "type": "data & preprocessing",
+    "verifiable_form": "Kiểm từng ô của Table3 dòng2 từ CSV/notebook saved output hoặc modelregistry tương ứng; giữ nguyên scope và đơn vị.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-062",
+    "location": {
+      "chapter": "Chương 3. Dữ liệu và phương pháp",
+      "section": "3.1.2. Danh sách thuộc tính và biến mục tiêu",
+      "paragraphs": [
+        "P0096",
+        "P0097",
+        "P0098"
+      ],
+      "source_locations": [
+        "Tab t.0/body/Table3/R3C1",
+        "Tab t.0/body/Table3/R3C2",
+        "Tab t.0/body/Table3/R3C3"
+      ],
+      "docs_startIndex": 6963,
+      "docs_endIndex": 7042,
+      "page": null
+    },
+    "quote": "temp | Số thực, K | Nhiệt độ trung bình theo giờ; đổi sang °C khi tạo đặc trưng.",
+    "type": "data & preprocessing",
+    "verifiable_form": "Kiểm từng ô của Table3 dòng3 từ CSV/notebook saved output hoặc modelregistry tương ứng; giữ nguyên scope và đơn vị.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-063",
+    "location": {
+      "chapter": "Chương 3. Dữ liệu và phương pháp",
+      "section": "3.1.2. Danh sách thuộc tính và biến mục tiêu",
+      "paragraphs": [
+        "P0099",
+        "P0100",
+        "P0101"
+      ],
+      "source_locations": [
+        "Tab t.0/body/Table3/R4C1",
+        "Tab t.0/body/Table3/R4C2",
+        "Tab t.0/body/Table3/R4C3"
+      ],
+      "docs_startIndex": 7044,
+      "docs_endIndex": 7111,
+      "page": null
+    },
+    "quote": "rain_1h, snow_1h | Số thực, mm | Lượng mưa và lượng tuyết trong giờ.",
+    "type": "data & preprocessing",
+    "verifiable_form": "Kiểm từng ô của Table3 dòng4 từ CSV/notebook saved output hoặc modelregistry tương ứng; giữ nguyên scope và đơn vị.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-064",
+    "location": {
+      "chapter": "Chương 3. Dữ liệu và phương pháp",
+      "section": "3.1.2. Danh sách thuộc tính và biến mục tiêu",
+      "paragraphs": [
+        "P0102",
+        "P0103",
+        "P0104"
+      ],
+      "source_locations": [
+        "Tab t.0/body/Table3/R5C1",
+        "Tab t.0/body/Table3/R5C2",
+        "Tab t.0/body/Table3/R5C3"
+      ],
+      "docs_startIndex": 7113,
+      "docs_endIndex": 7155,
+      "page": null
+    },
+    "quote": "clouds_all | Số nguyên, % | Độ che phủ mây.",
+    "type": "data & preprocessing",
+    "verifiable_form": "Kiểm từng ô của Table3 dòng5 từ CSV/notebook saved output hoặc modelregistry tương ứng; giữ nguyên scope và đơn vị.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-065",
+    "location": {
+      "chapter": "Chương 3. Dữ liệu và phương pháp",
+      "section": "3.1.2. Danh sách thuộc tính và biến mục tiêu",
+      "paragraphs": [
+        "P0105",
+        "P0106",
+        "P0107"
+      ],
+      "source_locations": [
+        "Tab t.0/body/Table3/R6C1",
+        "Tab t.0/body/Table3/R6C2",
+        "Tab t.0/body/Table3/R6C3"
+      ],
+      "docs_startIndex": 7157,
+      "docs_endIndex": 7218,
+      "page": null
+    },
+    "quote": "weather_main | Nhãn văn bản | Mô tả thời tiết ngắn (nhóm lớn).",
+    "type": "data & preprocessing",
+    "verifiable_form": "Kiểm từng ô của Table3 dòng6 từ CSV/notebook saved output hoặc modelregistry tương ứng; giữ nguyên scope và đơn vị.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-066",
+    "location": {
+      "chapter": "Chương 3. Dữ liệu và phương pháp",
+      "section": "3.1.2. Danh sách thuộc tính và biến mục tiêu",
+      "paragraphs": [
+        "P0108",
+        "P0109",
+        "P0110"
+      ],
+      "source_locations": [
+        "Tab t.0/body/Table3/R7C1",
+        "Tab t.0/body/Table3/R7C2",
+        "Tab t.0/body/Table3/R7C3"
+      ],
+      "docs_startIndex": 7220,
+      "docs_endIndex": 7298,
+      "page": null
+    },
+    "quote": "weather_description | Nhãn văn bản | Mô tả thời tiết chi tiết hơn weather_main.",
+    "type": "data & preprocessing",
+    "verifiable_form": "Kiểm từng ô của Table3 dòng7 từ CSV/notebook saved output hoặc modelregistry tương ứng; giữ nguyên scope và đơn vị.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-067",
+    "location": {
+      "chapter": "Chương 3. Dữ liệu và phương pháp",
+      "section": "3.1.2. Danh sách thuộc tính và biến mục tiêu",
+      "paragraphs": [
+        "P0111",
+        "P0112",
+        "P0113"
+      ],
+      "source_locations": [
+        "Tab t.0/body/Table3/R8C1",
+        "Tab t.0/body/Table3/R8C2",
+        "Tab t.0/body/Table3/R8C3"
+      ],
+      "docs_startIndex": 7300,
+      "docs_endIndex": 7364,
+      "page": null
+    },
+    "quote": "date_time | Timestamp | Khóa thời gian; nguồn tạo đặc trưng lịch.",
+    "type": "data & preprocessing",
+    "verifiable_form": "Kiểm từng ô của Table3 dòng8 từ CSV/notebook saved output hoặc modelregistry tương ứng; giữ nguyên scope và đơn vị.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-068",
+    "location": {
+      "chapter": "Chương 3. Dữ liệu và phương pháp",
+      "section": "3.1.2. Danh sách thuộc tính và biến mục tiêu",
+      "paragraphs": [
+        "P0114",
+        "P0115",
+        "P0116"
+      ],
+      "source_locations": [
+        "Tab t.0/body/Table3/R9C1",
+        "Tab t.0/body/Table3/R9C2",
+        "Tab t.0/body/Table3/R9C3"
+      ],
+      "docs_startIndex": 7366,
+      "docs_endIndex": 7416,
+      "page": null
+    },
+    "quote": "traffic_volume | Số nguyên, xe/giờ | Biến mục tiêu.",
+    "type": "data & preprocessing",
+    "verifiable_form": "Kiểm từng ô của Table3 dòng9 từ CSV/notebook saved output hoặc modelregistry tương ứng; giữ nguyên scope và đơn vị.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-069",
+    "location": {
+      "chapter": "Chương 3. Dữ liệu và phương pháp",
+      "section": "3.2.1 Tổng quan và chất lượng dữ liệu",
+      "paragraphs": [
+        "P0125",
+        "P0126"
+      ],
+      "source_locations": [
+        "Tab t.0/body/Table4/R2C1",
+        "Tab t.0/body/Table4/R2C2"
+      ],
+      "docs_startIndex": 7865,
+      "docs_endIndex": 7931,
+      "page": null
+    },
+    "quote": "Giá trị Null,Giá trị null; chuỗi rỗng hoặc chỉ có khoảng trắng | 0",
+    "type": "data & preprocessing",
+    "verifiable_form": "Kiểm từng ô của Table4 dòng2 từ CSV/notebook saved output hoặc modelregistry tương ứng; giữ nguyên scope và đơn vị.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-070",
+    "location": {
+      "chapter": "Chương 3. Dữ liệu và phương pháp",
+      "section": "3.2.1 Tổng quan và chất lượng dữ liệu",
+      "paragraphs": [
+        "P0127",
+        "P0128"
+      ],
+      "source_locations": [
+        "Tab t.0/body/Table4/R3C1",
+        "Tab t.0/body/Table4/R3C2"
+      ],
+      "docs_startIndex": 7933,
+      "docs_endIndex": 7994,
+      "page": null
+    },
+    "quote": "Dòng trùng hoàn toàn, không tính lần xuất hiện đầu. | 17 dòng",
+    "type": "data & preprocessing",
+    "verifiable_form": "Kiểm từng ô của Table4 dòng3 từ CSV/notebook saved output hoặc modelregistry tương ứng; giữ nguyên scope và đơn vị.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-071",
+    "location": {
+      "chapter": "Chương 3. Dữ liệu và phương pháp",
+      "section": "3.2.1 Tổng quan và chất lượng dữ liệu",
+      "paragraphs": [
+        "P0129",
+        "P0130"
+      ],
+      "source_locations": [
+        "Tab t.0/body/Table4/R4C1",
+        "Tab t.0/body/Table4/R4C2"
+      ],
+      "docs_startIndex": 7996,
+      "docs_endIndex": 8043,
+      "page": null
+    },
+    "quote": "Timestamp xuất hiện nhiều lần | 5.445 timestamp",
+    "type": "data & preprocessing",
+    "verifiable_form": "Kiểm từng ô của Table4 dòng4 từ CSV/notebook saved output hoặc modelregistry tương ứng; giữ nguyên scope và đơn vị.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-072",
+    "location": {
+      "chapter": "Chương 3. Dữ liệu và phương pháp",
+      "section": "3.2.1 Tổng quan và chất lượng dữ liệu",
+      "paragraphs": [
+        "P0131",
+        "P0132"
+      ],
+      "source_locations": [
+        "Tab t.0/body/Table4/R5C1",
+        "Tab t.0/body/Table4/R5C2"
+      ],
+      "docs_startIndex": 8045,
+      "docs_endIndex": 8096,
+      "page": null
+    },
+    "quote": "Tổng số dòng thuộc các timestamp lăpk | 13.074 dòng",
+    "type": "data & preprocessing",
+    "verifiable_form": "Kiểm từng ô của Table4 dòng5 từ CSV/notebook saved output hoặc modelregistry tương ứng; giữ nguyên scope và đơn vị.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-073",
+    "location": {
+      "chapter": "Chương 3. Dữ liệu và phương pháp",
+      "section": "3.2.1 Tổng quan và chất lượng dữ liệu",
+      "paragraphs": [
+        "P0133",
+        "P0134"
+      ],
+      "source_locations": [
+        "Tab t.0/body/Table4/R6C1",
+        "Tab t.0/body/Table4/R6C2"
+      ],
+      "docs_startIndex": 8098,
+      "docs_endIndex": 8153,
+      "page": null
+    },
+    "quote": "Timestamp có nhiều giá trị Traffic_volume khác nhau | 0",
+    "type": "data & preprocessing",
+    "verifiable_form": "Kiểm từng ô của Table4 dòng6 từ CSV/notebook saved output hoặc modelregistry tương ứng; giữ nguyên scope và đơn vị.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-074",
+    "location": {
+      "chapter": "Chương 3. Dữ liệu và phương pháp",
+      "section": "3.2.1 Tổng quan và chất lượng dữ liệu",
+      "paragraphs": [
+        "P0141",
+        "P0142",
+        "P0143",
+        "P0144"
+      ],
+      "source_locations": [
+        "Tab t.0/body/Table5/R2C1",
+        "Tab t.0/body/Table5/R2C2",
+        "Tab t.0/body/Table5/R2C3",
+        "Tab t.0/body/Table5/R2C4"
+      ],
+      "docs_startIndex": 8500,
+      "docs_endIndex": 8542,
+      "page": null
+    },
+    "quote": "10/10/2012 07:00 | Rain | light rain | 6.793",
+    "type": "data & preprocessing",
+    "verifiable_form": "Kiểm từng ô của Table5 dòng2 từ CSV/notebook saved output hoặc modelregistry tương ứng; giữ nguyên scope và đơn vị.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-075",
+    "location": {
+      "chapter": "Chương 3. Dữ liệu và phương pháp",
+      "section": "3.2.1 Tổng quan và chất lượng dữ liệu",
+      "paragraphs": [
+        "P0145",
+        "P0146",
+        "P0147",
+        "P0148"
+      ],
+      "source_locations": [
+        "Tab t.0/body/Table5/R3C1",
+        "Tab t.0/body/Table5/R3C2",
+        "Tab t.0/body/Table5/R3C3",
+        "Tab t.0/body/Table5/R3C4"
+      ],
+      "docs_startIndex": 8544,
+      "docs_endIndex": 8602,
+      "page": null
+    },
+    "quote": "10/10/2012 07:00 | Drizzle | light intensity drizzle | 6.793",
+    "type": "data & preprocessing",
+    "verifiable_form": "Kiểm từng ô của Table5 dòng3 từ CSV/notebook saved output hoặc modelregistry tương ứng; giữ nguyên scope và đơn vị.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-076",
+    "location": {
+      "chapter": "Chương 3. Dữ liệu và phương pháp",
+      "section": "3.2.1 Tổng quan và chất lượng dữ liệu",
+      "paragraphs": [
+        "P0155",
+        "P0156",
+        "P0157"
+      ],
+      "source_locations": [
+        "Tab t.0/body/Table6/R2C1",
+        "Tab t.0/body/Table6/R2C2",
+        "Tab t.0/body/Table6/R2C3"
+      ],
+      "docs_startIndex": 8818,
+      "docs_endIndex": 8934,
+      "page": null
+    },
+    "quote": "Nhiệt độ bằng 0 K | 10 dòng tại 10 giờ quan sát. | Không phù hợp với điều kiện quan trắc ngoài trời; cần xử lý riêng.",
+    "type": "data & preprocessing",
+    "verifiable_form": "Kiểm từng ô của Table6 dòng2 từ CSV/notebook saved output hoặc modelregistry tương ứng; giữ nguyên scope và đơn vị.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-077",
+    "location": {
+      "chapter": "Chương 3. Dữ liệu và phương pháp",
+      "section": "3.2.1 Tổng quan và chất lượng dữ liệu",
+      "paragraphs": [
+        "P0158",
+        "P0159",
+        "P0160"
+      ],
+      "source_locations": [
+        "Tab t.0/body/Table6/R3C1",
+        "Tab t.0/body/Table6/R3C2",
+        "Tab t.0/body/Table6/R3C3"
+      ],
+      "docs_startIndex": 8936,
+      "docs_endIndex": 9052,
+      "page": null
+    },
+    "quote": "Lượng mưa cực lớn | 9.831,3 mm tại 11/07/2016 17:00. | Giá trị nghi vấn; không dùng IQR để loại mọi lượng mưa dương..",
+    "type": "data & preprocessing",
+    "verifiable_form": "Kiểm từng ô của Table6 dòng3 từ CSV/notebook saved output hoặc modelregistry tương ứng; giữ nguyên scope và đơn vị.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-078",
+    "location": {
+      "chapter": "Chương 3. Dữ liệu và phương pháp",
+      "section": "3.2.1 Tổng quan và chất lượng dữ liệu",
+      "paragraphs": [
+        "P0161",
+        "P0162",
+        "P0163"
+      ],
+      "source_locations": [
+        "Tab t.0/body/Table6/R4C1",
+        "Tab t.0/body/Table6/R4C2",
+        "Tab t.0/body/Table6/R4C3"
+      ],
+      "docs_startIndex": 9054,
+      "docs_endIndex": 9159,
+      "page": null
+    },
+    "quote": "Lưu lượng bằng 0 | 23/07/2016 lúc 18:00 và 23:00. | Chưa xác minh nguyên nhân; chưa đủ căn cứ tự động xoá.",
+    "type": "data & preprocessing",
+    "verifiable_form": "Kiểm từng ô của Table6 dòng4 từ CSV/notebook saved output hoặc modelregistry tương ứng; giữ nguyên scope và đơn vị.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-079",
+    "location": {
+      "chapter": "Chương 3. Dữ liệu và phương pháp",
+      "section": "3.2.1 Tổng quan và chất lượng dữ liệu",
+      "paragraphs": [
+        "P0164",
+        "P0165",
+        "P0166"
+      ],
+      "source_locations": [
+        "Tab t.0/body/Table6/R5C1",
+        "Tab t.0/body/Table6/R5C2",
+        "Tab t.0/body/Table6/R5C3"
+      ],
+      "docs_startIndex": 9161,
+      "docs_endIndex": 9254,
+      "page": null
+    },
+    "quote": "Khác cách viết nhãn | sky is clear và Sky is Clear. | Cùng nội dung nhưng khác chữ hoa/thường.",
+    "type": "data & preprocessing",
+    "verifiable_form": "Kiểm từng ô của Table6 dòng5 từ CSV/notebook saved output hoặc modelregistry tương ứng; giữ nguyên scope và đơn vị.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-080",
+    "location": {
+      "chapter": "Chương 3. Dữ liệu và phương pháp",
+      "section": "3.2.1 Tổng quan và chất lượng dữ liệu",
+      "paragraphs": [
+        "P0167",
+        "P0168",
+        "P0169"
+      ],
+      "source_locations": [
+        "Tab t.0/body/Table6/R6C1",
+        "Tab t.0/body/Table6/R6C2",
+        "Tab t.0/body/Table6/R6C3"
+      ],
+      "docs_startIndex": 9256,
+      "docs_endIndex": 9391,
+      "page": null
+    },
+    "quote": "Nhãn ngày lễ | Nhãn sự kiện thường ghi lúc 00:00. | Cần kiểm tra nhãn theo ngày; không suy mọi giờ có holiday = None đều là ngày thường.",
+    "type": "data & preprocessing",
+    "verifiable_form": "Kiểm từng ô của Table6 dòng6 từ CSV/notebook saved output hoặc modelregistry tương ứng; giữ nguyên scope và đơn vị.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-081",
+    "location": {
+      "chapter": "Chương 3. Dữ liệu và phương pháp",
+      "section": "3.2.2. Phân bố lưu lượng giao thông",
+      "paragraphs": [
+        "P0180",
+        "P0181",
+        "P0182",
+        "P0183"
+      ],
+      "source_locations": [
+        "Tab t.0/body/Table7/R2C1",
+        "Tab t.0/body/Table7/R2C2",
+        "Tab t.0/body/Table7/R2C3",
+        "Tab t.0/body/Table7/R2C4"
+      ],
+      "docs_startIndex": 10077,
+      "docs_endIndex": 10123,
+      "page": null
+    },
+    "quote": "Trung bình | 3.290,65 | Trung vị (Q2) | 3.427,00",
+    "type": "data & preprocessing",
+    "verifiable_form": "Kiểm từng ô của Table7 dòng2 từ CSV/notebook saved output hoặc modelregistry tương ứng; giữ nguyên scope và đơn vị.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-082",
+    "location": {
+      "chapter": "Chương 3. Dữ liệu và phương pháp",
+      "section": "3.2.2. Phân bố lưu lượng giao thông",
+      "paragraphs": [
+        "P0184",
+        "P0185",
+        "P0186",
+        "P0187"
+      ],
+      "source_locations": [
+        "Tab t.0/body/Table7/R3C1",
+        "Tab t.0/body/Table7/R3C2",
+        "Tab t.0/body/Table7/R3C3",
+        "Tab t.0/body/Table7/R3C4"
+      ],
+      "docs_startIndex": 10125,
+      "docs_endIndex": 10188,
+      "page": null
+    },
+    "quote": "Độ lệch chuẩn mẫu | 1.984,77 | Khoảng tứ phân vị (IQR) | 3.703,50",
+    "type": "data & preprocessing",
+    "verifiable_form": "Kiểm từng ô của Table7 dòng3 từ CSV/notebook saved output hoặc modelregistry tương ứng; giữ nguyên scope và đơn vị.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-083",
+    "location": {
+      "chapter": "Chương 3. Dữ liệu và phương pháp",
+      "section": "3.2.2. Phân bố lưu lượng giao thông",
+      "paragraphs": [
+        "P0188",
+        "P0189",
+        "P0190",
+        "P0191"
+      ],
+      "source_locations": [
+        "Tab t.0/body/Table7/R4C1",
+        "Tab t.0/body/Table7/R4C2",
+        "Tab t.0/body/Table7/R4C3",
+        "Tab t.0/body/Table7/R4C4"
+      ],
+      "docs_startIndex": 10190,
+      "docs_endIndex": 10245,
+      "page": null
+    },
+    "quote": "Phân vị 25% (Q1) | 1.248,50 | Phân vị 75% (Q3) | 4.952,00",
+    "type": "data & preprocessing",
+    "verifiable_form": "Kiểm từng ô của Table7 dòng4 từ CSV/notebook saved output hoặc modelregistry tương ứng; giữ nguyên scope và đơn vị.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-084",
+    "location": {
+      "chapter": "Chương 3. Dữ liệu và phương pháp",
+      "section": "3.2.2. Phân bố lưu lượng giao thông",
+      "paragraphs": [
+        "P0192",
+        "P0193",
+        "P0194",
+        "P0195"
+      ],
+      "source_locations": [
+        "Tab t.0/body/Table7/R5C1",
+        "Tab t.0/body/Table7/R5C2",
+        "Tab t.0/body/Table7/R5C3",
+        "Tab t.0/body/Table7/R5C4"
+      ],
+      "docs_startIndex": 10247,
+      "docs_endIndex": 10276,
+      "page": null
+    },
+    "quote": "Nhỏ nhất | 0 | Lớn nhất | 7.280",
+    "type": "data & preprocessing",
+    "verifiable_form": "Kiểm từng ô của Table7 dòng5 từ CSV/notebook saved output hoặc modelregistry tương ứng; giữ nguyên scope và đơn vị.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-085",
+    "location": {
+      "chapter": "Chương 3. Dữ liệu và phương pháp",
+      "section": "3.2.3. Lưu lượng theo thời gian",
+      "paragraphs": [
+        "P0212",
+        "P0213",
+        "P0214",
+        "P0215"
+      ],
+      "source_locations": [
+        "Tab t.0/body/Table8/R2C1",
+        "Tab t.0/body/Table8/R2C2",
+        "Tab t.0/body/Table8/R2C3",
+        "Tab t.0/body/Table8/R2C4"
+      ],
+      "docs_startIndex": 11546,
+      "docs_endIndex": 11596,
+      "page": null
+    },
+    "quote": "Giờ trong ngày — 16:00 | Cao nhất | 5.708,61 | 1.707",
+    "type": "data & preprocessing",
+    "verifiable_form": "Kiểm từng ô của Table8 dòng2 từ CSV/notebook saved output hoặc modelregistry tương ứng; giữ nguyên scope và đơn vị.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-086",
+    "location": {
+      "chapter": "Chương 3. Dữ liệu và phương pháp",
+      "section": "3.2.3. Lưu lượng theo thời gian",
+      "paragraphs": [
+        "P0216",
+        "P0217",
+        "P0218",
+        "P0219"
+      ],
+      "source_locations": [
+        "Tab t.0/body/Table8/R3C1",
+        "Tab t.0/body/Table8/R3C2",
+        "Tab t.0/body/Table8/R3C3",
+        "Tab t.0/body/Table8/R3C4"
+      ],
+      "docs_startIndex": 11598,
+      "docs_endIndex": 11648,
+      "page": null
+    },
+    "quote": "Giờ trong ngày — 03:00 | Thấp nhất | 373,21 | 1.669",
+    "type": "data & preprocessing",
+    "verifiable_form": "Kiểm từng ô của Table8 dòng3 từ CSV/notebook saved output hoặc modelregistry tương ứng; giữ nguyên scope và đơn vị.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-087",
+    "location": {
+      "chapter": "Chương 3. Dữ liệu và phương pháp",
+      "section": "3.2.3. Lưu lượng theo thời gian",
+      "paragraphs": [
+        "P0220",
+        "P0221",
+        "P0222",
+        "P0223"
+      ],
+      "source_locations": [
+        "Tab t.0/body/Table8/R4C1",
+        "Tab t.0/body/Table8/R4C2",
+        "Tab t.0/body/Table8/R4C3",
+        "Tab t.0/body/Table8/R4C4"
+      ],
+      "docs_startIndex": 11650,
+      "docs_endIndex": 11702,
+      "page": null
+    },
+    "quote": "Thứ trong tuần — Thứ Sáu | Cao nhất | 3.674,78 | 5.877",
+    "type": "data & preprocessing",
+    "verifiable_form": "Kiểm từng ô của Table8 dòng4 từ CSV/notebook saved output hoặc modelregistry tương ứng; giữ nguyên scope và đơn vị.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-088",
+    "location": {
+      "chapter": "Chương 3. Dữ liệu và phương pháp",
+      "section": "3.2.3. Lưu lượng theo thời gian",
+      "paragraphs": [
+        "P0224",
+        "P0225",
+        "P0226",
+        "P0227"
+      ],
+      "source_locations": [
+        "Tab t.0/body/Table8/R5C1",
+        "Tab t.0/body/Table8/R5C2",
+        "Tab t.0/body/Table8/R5C3",
+        "Tab t.0/body/Table8/R5C4"
+      ],
+      "docs_startIndex": 11704,
+      "docs_endIndex": 11758,
+      "page": null
+    },
+    "quote": "Thứ trong tuần — Chủ nhật | Thấp nhất | 2.426,25 | 5.812",
+    "type": "data & preprocessing",
+    "verifiable_form": "Kiểm từng ô của Table8 dòng5 từ CSV/notebook saved output hoặc modelregistry tương ứng; giữ nguyên scope và đơn vị.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-089",
+    "location": {
+      "chapter": "Chương 3. Dữ liệu và phương pháp",
+      "section": "3.2.3. Lưu lượng theo thời gian",
+      "paragraphs": [
+        "P0228",
+        "P0229",
+        "P0230",
+        "P0231"
+      ],
+      "source_locations": [
+        "Tab t.0/body/Table8/R6C1",
+        "Tab t.0/body/Table8/R6C2",
+        "Tab t.0/body/Table8/R6C3",
+        "Tab t.0/body/Table8/R6C4"
+      ],
+      "docs_startIndex": 11760,
+      "docs_endIndex": 11813,
+      "page": null
+    },
+    "quote": "Tháng trong năm — Tháng 8 | Cao nhất | 3.430,32 | 3.705",
+    "type": "data & preprocessing",
+    "verifiable_form": "Kiểm từng ô của Table8 dòng6 từ CSV/notebook saved output hoặc modelregistry tương ứng; giữ nguyên scope và đơn vị.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-090",
+    "location": {
+      "chapter": "Chương 3. Dữ liệu và phương pháp",
+      "section": "3.2.3. Lưu lượng theo thời gian",
+      "paragraphs": [
+        "P0232",
+        "P0233",
+        "P0234",
+        "P0235"
+      ],
+      "source_locations": [
+        "Tab t.0/body/Table8/R7C1",
+        "Tab t.0/body/Table8/R7C2",
+        "Tab t.0/body/Table8/R7C3",
+        "Tab t.0/body/Table8/R7C4"
+      ],
+      "docs_startIndex": 11815,
+      "docs_endIndex": 11870,
+      "page": null
+    },
+    "quote": "Tháng trong năm — Tháng 12 | Thấp nhất | 3.040,19 | 3.337",
+    "type": "data & preprocessing",
+    "verifiable_form": "Kiểm từng ô của Table8 dòng7 từ CSV/notebook saved output hoặc modelregistry tương ứng; giữ nguyên scope và đơn vị.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-091",
+    "location": {
+      "chapter": "Chương 3. Dữ liệu và phương pháp",
+      "section": "3.2.4. Mối liên  hệ giữa thời tiết và lưu lượng",
+      "paragraphs": [
+        "P0249",
+        "P0250",
+        "P0251",
+        "P0252"
+      ],
+      "source_locations": [
+        "Tab t.0/body/Table9/R2C1",
+        "Tab t.0/body/Table9/R2C2",
+        "Tab t.0/body/Table9/R2C3",
+        "Tab t.0/body/Table9/R2C4"
+      ],
+      "docs_startIndex": 12712,
+      "docs_endIndex": 12745,
+      "page": null
+    },
+    "quote": "Nhiệt độ | 0,1392 | 0,1401 | 40.565",
+    "type": "data & preprocessing",
+    "verifiable_form": "Kiểm từng ô của Table9 dòng2 từ CSV/notebook saved output hoặc modelregistry tương ứng; giữ nguyên scope và đơn vị.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-092",
+    "location": {
+      "chapter": "Chương 3. Dữ liệu và phương pháp",
+      "section": "3.2.4. Mối liên  hệ giữa thời tiết và lưu lượng",
+      "paragraphs": [
+        "P0253",
+        "P0254",
+        "P0255",
+        "P0256"
+      ],
+      "source_locations": [
+        "Tab t.0/body/Table9/R3C1",
+        "Tab t.0/body/Table9/R3C2",
+        "Tab t.0/body/Table9/R3C3",
+        "Tab t.0/body/Table9/R3C4"
+      ],
+      "docs_startIndex": 12747,
+      "docs_endIndex": 12782,
+      "page": null
+    },
+    "quote": "Lượng mưa | −0,0134 | 0,0043 | 40.574",
+    "type": "data & preprocessing",
+    "verifiable_form": "Kiểm từng ô của Table9 dòng3 từ CSV/notebook saved output hoặc modelregistry tương ứng; giữ nguyên scope và đơn vị.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-093",
+    "location": {
+      "chapter": "Chương 3. Dữ liệu và phương pháp",
+      "section": "3.2.4. Mối liên  hệ giữa thời tiết và lưu lượng",
+      "paragraphs": [
+        "P0257",
+        "P0258",
+        "P0259",
+        "P0260"
+      ],
+      "source_locations": [
+        "Tab t.0/body/Table9/R4C1",
+        "Tab t.0/body/Table9/R4C2",
+        "Tab t.0/body/Table9/R4C3",
+        "Tab t.0/body/Table9/R4C4"
+      ],
+      "docs_startIndex": 12784,
+      "docs_endIndex": 12822,
+      "page": null
+    },
+    "quote": "Lượng tuyết | −0,0021 | −0,0052 | 40.575",
+    "type": "data & preprocessing",
+    "verifiable_form": "Kiểm từng ô của Table9 dòng4 từ CSV/notebook saved output hoặc modelregistry tương ứng; giữ nguyên scope và đơn vị.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-094",
+    "location": {
+      "chapter": "Chương 3. Dữ liệu và phương pháp",
+      "section": "3.2.4. Mối liên  hệ giữa thời tiết và lưu lượng",
+      "paragraphs": [
+        "P0261",
+        "P0262",
+        "P0263",
+        "P0264"
+      ],
+      "source_locations": [
+        "Tab t.0/body/Table9/R5C1",
+        "Tab t.0/body/Table9/R5C2",
+        "Tab t.0/body/Table9/R5C3",
+        "Tab t.0/body/Table9/R5C4"
+      ],
+      "docs_startIndex": 12824,
+      "docs_endIndex": 12866,
+      "page": null
+    },
+    "quote": "Tỷ lệ mây che phủ | 0,0783 | 0,0729 | 40.575",
+    "type": "data & preprocessing",
+    "verifiable_form": "Kiểm từng ô của Table9 dòng5 từ CSV/notebook saved output hoặc modelregistry tương ứng; giữ nguyên scope và đơn vị.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-095",
+    "location": {
+      "chapter": "Chương 3. Dữ liệu và phương pháp",
+      "section": "3.2.4. Mối liên  hệ giữa thời tiết và lưu lượng",
+      "paragraphs": [
+        "P0275",
+        "P0276",
+        "P0277",
+        "P0278"
+      ],
+      "source_locations": [
+        "Tab t.0/body/Table10/R2C1",
+        "Tab t.0/body/Table10/R2C2",
+        "Tab t.0/body/Table10/R2C3",
+        "Tab t.0/body/Table10/R2C4"
+      ],
+      "docs_startIndex": 13334,
+      "docs_endIndex": 13362,
+      "page": null
+    },
+    "quote": "Clouds | 15.127 | Snow | 2.795",
+    "type": "data & preprocessing",
+    "verifiable_form": "Kiểm từng ô của Table10 dòng2 từ CSV/notebook saved output hoặc modelregistry tương ứng; giữ nguyên scope và đơn vị.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-096",
+    "location": {
+      "chapter": "Chương 3. Dữ liệu và phương pháp",
+      "section": "3.2.4. Mối liên  hệ giữa thời tiết và lưu lượng",
+      "paragraphs": [
+        "P0279",
+        "P0280",
+        "P0281",
+        "P0282"
+      ],
+      "source_locations": [
+        "Tab t.0/body/Table10/R3C1",
+        "Tab t.0/body/Table10/R3C2",
+        "Tab t.0/body/Table10/R3C3",
+        "Tab t.0/body/Table10/R3C4"
+      ],
+      "docs_startIndex": 13364,
+      "docs_endIndex": 13389,
+      "page": null
+    },
+    "quote": "Clear | 13.371 | Smoke | 20",
+    "type": "data & preprocessing",
+    "verifiable_form": "Kiểm từng ô của Table10 dòng3 từ CSV/notebook saved output hoặc modelregistry tương ứng; giữ nguyên scope và đơn vị.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  },
+  {
+    "claim_id": "A-097",
+    "location": {
+      "chapter": "Chương 3. Dữ liệu và phương pháp",
+      "section": "3.2.4. Mối liên  hệ giữa thời tiết và lưu lượng",
+      "paragraphs": [
+        "P0283",
+        "P0284",
+        "P0285",
+        "P0286"
+      ],
+      "source_locations": [
+        "Tab t.0/body/Table10/R4C1",
+        "Tab t.0/body/Table10/R4C2",
+        "Tab t.0/body/Table10/R4C3",
+        "Tab t.0/body/Table10/R4C4"
+      ],
+      "docs_startIndex": 13391,
+      "docs_endIndex": 13414,
+      "page": null
+    },
+    "quote": "Rain | 5.563 | Squall | 4",
+    "type": "data & preprocessing",
+    "verifiable_form": "Kiểm từng ô của Table10 dòng4 từ CSV/notebook saved output hoặc modelregistry tương ứng; giữ nguyên scope và đơn vị.",
+    "note": "",
+    "status": "CHỜ ĐỐI CHIẾU"
+  }
+]

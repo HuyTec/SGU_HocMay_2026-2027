@@ -1,0 +1,271 @@
+{
+  "source_url": "https://docs.google.com/document/d/1dHSWGm43qGQtsnvnaf_s-wlyw58mSSu5mB2gfmnBuVA/edit",
+  "document_id": "1dHSWGm43qGQtsnvnaf_s-wlyw58mSSu5mB2gfmnBuVA",
+  "title": "BÁO CÁO CUỐI KỲ MÔN MÁY HỌC",
+  "retrieved_utc": "2026-11-22T04:53:33Z (connection discovery; retrieval followed)",
+  "tabs": [
+    {
+      "index": 0,
+      "tabId": "t.0",
+      "title": "Tab 1"
+    }
+  ],
+  "paragraph_count": 408,
+  "table_count": 12,
+  "equation_elements": 28,
+  "inline_image_elements": 9,
+  "revision_id": null,
+  "revision_note": "API response did not expose revisionId/modifiedTime",
+  "suggestions_view_mode": "PREVIEW_WITHOUT_SUGGESTIONS",
+  "comments_view_mode": "COMMENTS_VIEW_MODE_OMITTED",
+  "scope": "All tabs, body, tables, headers/footers/footnotes where returned. Empty paragraphs omitted; no rendered page numbers inferred.",
+  "limitations": [
+    "28 native equation nodes contain empty equation objects in Docs API; native mathematical glyphs not inspected.",
+    "No rendered full-page document: pagination, page numbering, layout, floating content not confirmed. No page IDs inferred.",
+    "9 inline images inspected in contact sheet, not full-page placement. Image source metadata has no title/description; visible captions exist for four EDA figures.",
+    "Suggestions/comments omitted: source PREVIEW_WITHOUT_SUGGESTIONS and COMMENTS_VIEW_MODE_OMITTED.",
+    "Source API does not expose revision ID; snapshot identified by document ID and content hashes."
+  ],
+  "remote_payload_sha256": "74343ea458b49c2866466a4b26c275a66e5468a6ca725737e946e9ef3a08c75c",
+  "remote_payload_bytes": 1491859,
+  "inline_images": [
+    {
+      "number": 1,
+      "object_id": "kix.w9z2mkqqadwv",
+      "docs_startIndex": 4416
+    },
+    {
+      "number": 2,
+      "object_id": "kix.9ruxm9cqjlyg",
+      "docs_startIndex": 4619
+    },
+    {
+      "number": 3,
+      "object_id": "kix.3xshvl3zek52",
+      "docs_startIndex": 4837
+    },
+    {
+      "number": 4,
+      "object_id": "kix.ojenq5gde4a2",
+      "docs_startIndex": 4839
+    },
+    {
+      "number": 5,
+      "object_id": "kix.107jhofbxxr9",
+      "docs_startIndex": 4841
+    },
+    {
+      "number": 6,
+      "object_id": "kix.exjdsthkcy2o",
+      "docs_startIndex": 10628
+    },
+    {
+      "number": 7,
+      "object_id": "kix.6gh76c1699pk",
+      "docs_startIndex": 11351
+    },
+    {
+      "number": 8,
+      "object_id": "kix.e1e0qmvz6viv",
+      "docs_startIndex": 12008
+    },
+    {
+      "number": 9,
+      "object_id": "kix.1lgs426j6i5c",
+      "docs_startIndex": 13182
+    }
+  ],
+  "native_equations": [
+    {
+      "docs_startIndex": 2424,
+      "location": "Tab t.0/body"
+    },
+    {
+      "docs_startIndex": 2502,
+      "location": "Tab t.0/body"
+    },
+    {
+      "docs_startIndex": 2694,
+      "location": "Tab t.0/body"
+    },
+    {
+      "docs_startIndex": 2762,
+      "location": "Tab t.0/body"
+    },
+    {
+      "docs_startIndex": 2807,
+      "location": "Tab t.0/body"
+    },
+    {
+      "docs_startIndex": 2842,
+      "location": "Tab t.0/body"
+    },
+    {
+      "docs_startIndex": 2938,
+      "location": "Tab t.0/body"
+    },
+    {
+      "docs_startIndex": 3050,
+      "location": "Tab t.0/body"
+    },
+    {
+      "docs_startIndex": 3146,
+      "location": "Tab t.0/body"
+    },
+    {
+      "docs_startIndex": 3503,
+      "location": "Tab t.0/body"
+    },
+    {
+      "docs_startIndex": 3512,
+      "location": "Tab t.0/body"
+    },
+    {
+      "docs_startIndex": 3575,
+      "location": "Tab t.0/body"
+    },
+    {
+      "docs_startIndex": 3632,
+      "location": "Tab t.0/body"
+    },
+    {
+      "docs_startIndex": 3688,
+      "location": "Tab t.0/body"
+    },
+    {
+      "docs_startIndex": 3751,
+      "location": "Tab t.0/body"
+    },
+    {
+      "docs_startIndex": 3934,
+      "location": "Tab t.0/body"
+    },
+    {
+      "docs_startIndex": 3958,
+      "location": "Tab t.0/body"
+    },
+    {
+      "docs_startIndex": 4043,
+      "location": "Tab t.0/body"
+    },
+    {
+      "docs_startIndex": 4104,
+      "location": "Tab t.0/body"
+    },
+    {
+      "docs_startIndex": 4259,
+      "location": "Tab t.0/body"
+    },
+    {
+      "docs_startIndex": 4426,
+      "location": "Tab t.0/body"
+    },
+    {
+      "docs_startIndex": 4442,
+      "location": "Tab t.0/body"
+    },
+    {
+      "docs_startIndex": 4470,
+      "location": "Tab t.0/body"
+    },
+    {
+      "docs_startIndex": 4524,
+      "location": "Tab t.0/body"
+    },
+    {
+      "docs_startIndex": 4547,
+      "location": "Tab t.0/body"
+    },
+    {
+      "docs_startIndex": 4629,
+      "location": "Tab t.0/body"
+    },
+    {
+      "docs_startIndex": 4636,
+      "location": "Tab t.0/body"
+    },
+    {
+      "docs_startIndex": 4708,
+      "location": "Tab t.0/body"
+    }
+  ],
+  "tables": [
+    {
+      "id": 1,
+      "location": "Tab t.0/body",
+      "startIndex": 172,
+      "rows": 4
+    },
+    {
+      "id": 2,
+      "location": "Tab t.0/body",
+      "startIndex": 1966,
+      "rows": 6
+    },
+    {
+      "id": 3,
+      "location": "Tab t.0/body",
+      "startIndex": 6777,
+      "rows": 9
+    },
+    {
+      "id": 4,
+      "location": "Tab t.0/body",
+      "startIndex": 7833,
+      "rows": 6
+    },
+    {
+      "id": 5,
+      "location": "Tab t.0/body",
+      "startIndex": 8438,
+      "rows": 3
+    },
+    {
+      "id": 6,
+      "location": "Tab t.0/body",
+      "startIndex": 8771,
+      "rows": 6
+    },
+    {
+      "id": 7,
+      "location": "Tab t.0/body",
+      "startIndex": 10035,
+      "rows": 5
+    },
+    {
+      "id": 8,
+      "location": "Tab t.0/body",
+      "startIndex": 11495,
+      "rows": 7
+    },
+    {
+      "id": 9,
+      "location": "Tab t.0/body",
+      "startIndex": 12664,
+      "rows": 5
+    },
+    {
+      "id": 10,
+      "location": "Tab t.0/body",
+      "startIndex": 13287,
+      "rows": 4
+    },
+    {
+      "id": 11,
+      "location": "Tab t.0/body",
+      "startIndex": 16638,
+      "rows": 4
+    },
+    {
+      "id": 12,
+      "location": "Tab t.0/body",
+      "startIndex": 18194,
+      "rows": 5
+    }
+  ],
+  "image_inspection": "All 9 original inline images fetched read-only and visually inspected as report_images_contact.jpg. Metrics/XGBoost image formulas appear consistent; four EDA chart types/captions match. Exact numeric values/plot lineage require source-data trace.",
+  "snapshot_file_bytes_sha256": "02ccbdb7dd2134a99ab2fef7c31b27257e22a0ed36746c2dc1043c5146a5474a",
+  "snapshot_file_normalized_lf_utf8_sha256": "02ccbdb7dd2134a99ab2fef7c31b27257e22a0ed36746c2dc1043c5146a5474a",
+  "snapshot_extracted_payload_lf_utf8_sha256": "b9d98f691f4088accb5b9306bdbe73c99dd058729a3a8aed5077dc361c8c7898",
+  "snapshot_hash_explanation": "Verified locally against report_paragraphs.json. Extracted payload uses LF and ends with one LF; apply_patch saved report_snapshot.txt with one additional final LF. Actual file contains LF only, so file bytes and normalized-LF UTF-8 hashes match. Removing exactly one final LF from the file reproduces the extracted payload hash. No source content difference or CRLF normalization was observed."
+}

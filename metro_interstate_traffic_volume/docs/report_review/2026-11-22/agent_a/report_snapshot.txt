@@ -1,0 +1,1224 @@
+P0001 | Tab t.0/body | Docs index 1:29 | HEADING_1
+BÁO CÁO CUỐI KỲ MÔN MÁY HỌC
+
+P0002 | Tab t.0/body | Docs index 29:119 | NORMAL_TEXT
+DỰ ĐOÁN LƯU LƯỢNG GIAO THÔNG THEO GIỜ DỰA TRÊN ĐẶC TRƯNG THỜI GIAN VÀ ĐIỀU KIỆN THỜI TIẾT
+
+P0003 | Tab t.0/body | Docs index 119:156 | NORMAL_TEXT
+Nhóm 07 | Nhóm trưởng: Trần Nhựt Huy
+
+P0004 | Tab t.0/body | Docs index 156:172 | HEADING_2
+Thông tin chung
+
+P0005 | Tab t.0/body/Table1/R1C1 | Docs index 175:184 | NORMAL_TEXT
+Hạng mục
+
+P0006 | Tab t.0/body/Table1/R1C2 | Docs index 185:194 | NORMAL_TEXT
+Nội dung
+
+P0007 | Tab t.0/body/Table1/R2C1 | Docs index 196:217 | NORMAL_TEXT
+Giảng viên hướng dẫn
+
+P0008 | Tab t.0/body/Table1/R2C2 | Docs index 218:221 | NORMAL_TEXT
+[Đ
+
+P0009 | Tab t.0/body/Table1/R3C1 | Docs index 223:236 | NORMAL_TEXT
+Lớp học phần
+
+P0010 | Tab t.0/body/Table1/R3C2 | Docs index 237:244 | NORMAL_TEXT
+[Điền]
+
+P0011 | Tab t.0/body/Table1/R4C1 | Docs index 246:257 | NORMAL_TEXT
+Thành viên
+
+P0012 | Tab t.0/body/Table1/R4C2 | Docs index 258:286 | NORMAL_TEXT
+Phùng Anh Vũ (3124411351);
+
+P0013 | Tab t.0/body/Table1/R4C2 | Docs index 286:319 | NORMAL_TEXT
+Nguyễn Hoàng Phúc (3124411236);
+
+P0014 | Tab t.0/body/Table1/R4C2 | Docs index 319:348 | NORMAL_TEXT
+Trần Nhựt Huy (3124411112);
+
+P0015 | Tab t.0/body/Table1/R4C2 | Docs index 348:374 | NORMAL_TEXT
+Bùi Nhật Hào (3124411077)
+
+P0016 | Tab t.0/body | Docs index 375:420 | HEADING_2
+Cam kết trung thực học thuật và nguồn hỗ trợ
+
+P0017 | Tab t.0/body | Docs index 420:571 | NORMAL_TEXT
+Gợi ý: Cam kết sản phẩm là của nhóm; ghi rõ nguồn mã, notebook, thư viện và công cụ AI đã tham khảo/sử dụng (đề bài yêu cầu trích dẫn khi có dùng AI).
+
+P0018 | Tab t.0/body | Docs index 571:586 | NORMAL_TEXT
+[Nhóm bổ sung]
+
+P0019 | Tab t.0/body | Docs index 586:588 | HEADING_2
+[PAGE BREAK]
+
+P0020 | Tab t.0/body | Docs index 588:596 | HEADING_2
+Mục lục
+
+P0021 | Tab t.0/body | Docs index 596:728 | NORMAL_TEXT
+Gợi ý: Word/Docs: chèn mục lục tự động sau khi hoàn thiện nội dung. Có thể thêm Danh mục hình, Danh mục bảng, Danh mục từ viết tắt.
+
+P0022 | Tab t.0/body | Docs index 728:747 | NORMAL_TEXT
+[Cập nhật mục lục]
+
+P0023 | Tab t.0/body | Docs index 747:749 | HEADING_2
+[PAGE BREAK]
+
+P0024 | Tab t.0/body | Docs index 749:770 | HEADING_2
+Chương 1. Giới thiệu
+
+P0025 | Tab t.0/body | Docs index 770:802 | HEADING_3
+1.1. Bối cảnh và ý nghĩa đề tài
+
+P0026 | Tab t.0/body | Docs index 802:1069 | NORMAL_TEXT
+Mỗi năm, một tài xế ở Mỹ mất trung 49 giờ vì tắc đường vậy muốn biết giờ nào đường nào sẽ đông thì sao?Cùng một con đường  7 giờ sáng và 10 giờ sáng có thể khác nhau hoàn toàn để biết trước các khung giờ trên có lưu lượng như thế nào đó là mục tiêu của đề tài này.
+
+P0027 | Tab t.0/body | Docs index 1069:1105 | HEADING_3
+1.2. Mục tiêu và câu hỏi nghiên cứu
+
+P0028 | Tab t.0/body | Docs index 1105:1251 | NORMAL_TEXT
+Mục tiêu nghiên cứu xác định các yếu tố ảnh hưởng đến lưu lượng giao thông trên đường I-94 và xây dựng mô hình dự đoán lưu lượng theo thời gian.
+
+P0029 | Tab t.0/body | Docs index 1251:1268 | NORMAL_TEXT
+Mục tiêu cụ thể:
+
+P0030 | Tab t.0/body | Docs index 1268:1361 | NORMAL_TEXT
+Làm sạch dữ liệu và mô tả quy luật lưu lượng theo giờ , thứ , ngày , tháng, mua và theo năm.
+
+P0031 | Tab t.0/body | Docs index 1361:1408 | NORMAL_TEXT
+Đánh giá ảnh hưởng của thời tiết đến lưu lượng
+
+P0032 | Tab t.0/body | Docs index 1408:1468 | NORMAL_TEXT
+Đánh giá ảnh hưởng của ngày lễ so với ngày thường cùng thứ.
+
+P0033 | Tab t.0/body | Docs index 1468:1517 | NORMAL_TEXT
+Xây dựng và so sánh các mô hình dự báo lưu lượng
+
+P0034 | Tab t.0/body | Docs index 1517:1554 | NORMAL_TEXT
+Rút ra gợi ý cho quản lý giao thông.
+
+P0035 | Tab t.0/body | Docs index 1554:1612 | HEADING_3
+1.4. Tổng quan các nghiên cứu và hướng tiếp cận liên quan
+
+P0036 | Tab t.0/body | Docs index 1612:1632 | HEADING_3
+1.5. Bố cục báo cáo
+
+P0037 | Tab t.0/body | Docs index 1632:1634 | HEADING_2
+[PAGE BREAK]
+
+P0038 | Tab t.0/body | Docs index 1634:1684 | HEADING_2
+Chương 2. Cơ sở lý thuyết và nghiên cứu liên quan
+
+P0039 | Tab t.0/body | Docs index 1684:1726 | HEADING_3
+2.1. Bài toán hồi quy và mô hình baseline
+
+P0040 | Tab t.0/body | Docs index 1726:1938 | NORMAL_TEXT
+Baseline thứ–giờ dự đoán bằng trung bình traffic_volume của cùng thứ và giờ trong train, dùng trung bình toàn train nếu thiếu nhóm. Seasonal naive dự đoán bằng quan sát tại t−168h; chỉ so trên cohort đủ lịch sử.
+
+P0041 | Tab t.0/body | Docs index 1938:1966 | HEADING_3
+2.2. Các thuật toán sử dụng
+
+P0042 | Tab t.0/body/Table2/R1C1 | Docs index 1969:1980 | NORMAL_TEXT
+Thuật toán
+
+P0043 | Tab t.0/body/Table2/R1C2 | Docs index 1981:1990 | NORMAL_TEXT
+Ý nghĩa
+
+P0044 | Tab t.0/body/Table2/R2C1 | Docs index 1992:2022 | NORMAL_TEXT
+Linear Regression (LR)/ Ridge
+
+P0045 | Tab t.0/body/Table2/R2C2 | Docs index 2023:2078 | NORMAL_TEXT
+Quan hệ tuyến tính, ngoài ra Ridge còn có phạt thêm L2
+
+P0046 | Tab t.0/body/Table2/R3C1 | Docs index 2080:2100 | NORMAL_TEXT
+Random Forest ̣(RF)
+
+P0047 | Tab t.0/body/Table2/R3C2 | Docs index 2101:2134 | NORMAL_TEXT
+Trung bình dự đoán của nhiều cây
+
+P0048 | Tab t.0/body/Table2/R4C1 | Docs index 2136:2154 | NORMAL_TEXT
+Gradient Boosting
+
+P0049 | Tab t.0/body/Table2/R4C2 | Docs index 2155:2197 | NORMAL_TEXT
+Bổ sung cây tuần tự để cải thiện hàm loss
+
+P0050 | Tab t.0/body/Table2/R5C1 | Docs index 2199:2203 | NORMAL_TEXT
+MLP
+
+P0051 | Tab t.0/body/Table2/R5C2 | Docs index 2204:2258 | NORMAL_TEXT
+Nhiều tầng phi tuyến, nhạy với thang đo và tối ưu hóa
+
+P0052 | Tab t.0/body/Table2/R6C1 | Docs index 2260:2269 | NORMAL_TEXT
+XGBoost
+
+P0053 | Tab t.0/body/Table2/R6C2 | Docs index 2270:2315 | NORMAL_TEXT
+Boosting  các cây theo cơ chế regularization
+
+P0054 | Tab t.0/body | Docs index 2317:2350 | NORMAL_TEXT
+Linear Regression (LR) và Ridge:
+
+P0055 | Tab t.0/body | Docs index 2350:2502 | NORMAL_TEXT
+Linear Regression giả định đầu ra là tổ hợp tuyến tính của các đặc trưng: [EQUATION]. Tham số được chọn để cực tiểu sai số bình phương trung bình:
+
+P0056 | Tab t.0/body | Docs index 2502:2580 | NORMAL_TEXT
+[EQUATION]
+
+P0057 | Tab t.0/body | Docs index 2580:2694 | NORMAL_TEXT
+Ridge thêm số hạng phạt L2 để thu nhỏ trọng số, giúp giảm phương sai khi các đặc trưng tương quan mạnh với nhau:
+
+P0058 | Tab t.0/body | Docs index 2694:2756 | NORMAL_TEXT
+[EQUATION]
+
+P0059 | Tab t.0/body | Docs index 2756:2903 | NORMAL_TEXT
+Hệ số [EQUATION] điều chỉnh mức phạt (thường không phạt [EQUATION]). Do phạt phụ thuộc độ lớn của [EQUATION], các đặc trưng cần được chuẩn hóa trước khi huấn luyện.
+
+P0060 | Tab t.0/body | Docs index 2903:3145 | NORMAL_TEXT
+Random Forest (RF): huấn luyện với [EQUATION] cây quyết định, mỗi cây trên một mẫu bootstrap của dữ liệu. Tại mỗi nút, cây chỉ xét một tập con ngẫu nhiên [EQUATION] đặc trưng để chọn điểm chia. Hai nguồn ngẫu nhiên này làm các cây ít tương quan với nhau.
+
+P0061 | Tab t.0/body | Docs index 3146:3176 | NORMAL_TEXT
+[EQUATION]
+
+P0062 | Tab t.0/body | Docs index 3176:3405 | NORMAL_TEXT
+Với bài toán phân loại, kết quả lấy theo đa số phiếu. Việc lấy trung bình giúp giảm phương sai so với một cây đơn mà gần như không tăng độ chệch. Sai số out-of-bag (OOB) cho ước lượng đánh giá mà không cần tập validation riêng.
+
+P0063 | Tab t.0/body | Docs index 3405:3575 | NORMAL_TEXT
+Gradient Boosting (GB): xây mô hình cộng tính, mỗi cây mới sửa lỗi của mô hình hiện tại. Tại bước [EQUATION], cây [EQUATION] được khớp vào phần dư giả (âm gradient của hàm loss):
+
+P0064 | Tab t.0/body | Docs index 3575:3632 | NORMAL_TEXT
+[EQUATION]
+
+P0065 | Tab t.0/body | Docs index 3632:3666 | NORMAL_TEXT
+[EQUATION]
+
+P0066 | Tab t.0/body | Docs index 3666:3839 | NORMAL_TEXT
+Với loss bình phương, [EQUATION], tức đúng là phần dư. Tốc độ học [EQUATION] làm mỗi cây đóng góp nhỏ, đổi lại cần nhiều cây hơn nhưng khái quát tốt hơn.
+
+P0067 | Tab t.0/body | Docs index 3839:3958 | NORMAL_TEXT
+MLP: gồm nhiều tầng, mỗi tầng là phép biến đổi tuyến tính theo sau bởi hàm kích hoạt phi tuyến [EQUATION] (ReLU, GELU, ...):
+
+P0068 | Tab t.0/body | Docs index 3958:4035 | NORMAL_TEXT
+[EQUATION]
+
+P0069 | Tab t.0/body | Docs index 4035:4283 | NORMAL_TEXT
+Tham số [EQUATION] được cập nhật bằng lan truyền ngược và gradient descent: [EQUATION] (hoặc biến thể như Adam). MLP nhạy với thang đo của đầu vào nên cần chuẩn hóa dữ liệu. Kết quả cũng phụ thuộc nhiều vào khởi tạo, tốc độ học [EQUATION] và điều kiện dừng.
+
+P0070 | Tab t.0/body | Docs index 4283:4416 | NORMAL_TEXT
+XGBoost (XGB): là Gradient Boosting có thêm regularization trực tiếp trong hàm mục tiêu, và dùng khai triển Taylor bậc hai của loss:
+
+P0071 | Tab t.0/body | Docs index 4416:4619 | NORMAL_TEXT
+[IMAGE kix.w9z2mkqqadwv]Trong đó [EQUATION] là số lá và [EQUATION] là trọng số lá. Với [EQUATION] là đạo hàm bậc một và bậc hai của loss, [EQUATION] và [EQUATION], trọng số tối ưu của lá và độ lợi khi chia nút là:
+
+P0072 | Tab t.0/body | Docs index 4619:4621 | NORMAL_TEXT
+[IMAGE kix.9ruxm9cqjlyg]
+
+P0073 | Tab t.0/body | Docs index 4621:4714 | NORMAL_TEXT
+Tham số [EQUATION] và [EQUATION] kiểm soát độ phức tạp của cây: nút chỉ được chia khi độ lợi lớn hơn [EQUATION].
+
+P0074 | Tab t.0/body | Docs index 4714:4742 | HEADING_3
+2.3. Độ đo đánh giá hồi quy
+
+P0075 | Tab t.0/body | Docs index 4742:4837 | NORMAL_TEXT
+Đánh giá hồi quy bằng 3 thông số sau, với eᵢ = yᵢ − ŷᵢ và ȳ là trung bình y trên tập đang xét:
+
+P0076 | Tab t.0/body | Docs index 4837:4839 | NORMAL_TEXT
+[IMAGE kix.3xshvl3zek52]
+
+P0077 | Tab t.0/body | Docs index 4839:4841 | NORMAL_TEXT
+[IMAGE kix.ojenq5gde4a2]
+
+P0078 | Tab t.0/body | Docs index 4841:4843 | NORMAL_TEXT
+[IMAGE kix.107jhofbxxr9]
+
+P0079 | Tab t.0/body | Docs index 4843:5103 | NORMAL_TEXT
+MAE và RMSE có đơn vị xe/giờ. MAE là sai số tuyệt đối trung bình, còn RMSE phạt nặng hơn các sai số lớn. R² không có đơn vị: nó so sai số của mô hình với sai số của cách luôn dự đoán ȳ, bằng 1 khi dự đoán hoàn hảo, bằng 0 khi ngang cách đó và âm khi kém hơn.
+
+P0080 | Tab t.0/body | Docs index 5103:5337 | NORMAL_TEXT
+MAE và RMSE có thể xếp hạng các mô hình khác nhau, nên báo cáo cả hai và nêu rõ metric dùng để chọn tham số. Các hàm đánh giá hiện tại cắt dự đoán âm về 0 trước khi tính điểm, nên mọi mô hình được so sánh phải dùng cùng quy tắc này.
+
+P0081 | Tab t.0/body | Docs index 5337:5411 | HEADING_3
+2.4. Dữ liệu chuỗi thời gian, chia dữ liệu theo thời gian và data leakage
+
+P0082 | Tab t.0/body | Docs index 5411:5629 | NORMAL_TEXT
+Dữ liệu được sắp theo timestamp, nên phần huấn luyện luôn đứng trước phần đánh giá. Tuning dùng Time Series Split trên tập train. Imputation, encoder và scaler có học thống kê phải được fit trên fold-train tương ứng.
+
+P0083 | Tab t.0/body | Docs index 5629:5967 | HEADING_2
+Theo tài liệu TimeSeriesSplit, các fold đánh giá chỉ phủ cùng một khoảng thời gian khi các mẫu cách đều. Dữ liệu ở đây thiếu giờ, nên các fold có cùng số hàng chưa chắc phủ cùng khoảng lịch. Vì vậy, khi diễn giải độ ổn định, cần ghi mốc thời gian và số mẫu của từng fold, và chỉ mô tả các fold là cửa sổ lịch bằng nhau nếu đã kiểm tra. [PAGE BREAK]
+
+P0084 | Tab t.0/body | Docs index 5967:6000 | HEADING_2
+Chương 3. Dữ liệu và phương pháp
+
+P0085 | Tab t.0/body | Docs index 6000:6019 | HEADING_3
+3.1. Mô tả dữ liệu
+
+P0086 | Tab t.0/body | Docs index 6019:6061 | HEADING_4
+3.1.1. Nguồn dữ liệu và phạm vi và quy mô
+
+P0087 | Tab t.0/body | Docs index 6061:6402 | NORMAL_TEXT
+Bộ Metro Interstate Traffic Volume do John Hogue công bố trên UCI năm 2019. Dữ liệu ghi lưu lượng theo giờ tại trạm ATR 301, I-94 hướng Tây, khu vực Minneapolis-St Paul, và phát hành theo CC BY 4.0. CSV của dự án có 48.204 dòng, 9 cột gồm 8 đầu vào và một biến mục tiêu; timestamp trải từ 02/10/2012 09:00 đến 30/09/2018 23:00. Nguồn: UCI.
+
+P0088 | Tab t.0/body | Docs index 6402:6732 | NORMAL_TEXT
+Các số kiểm tra riêng từ CSV: 40.575 timestamp duy nhất, 7.629 dòng vượt số timestamp duy nhất và 11.976 giờ không có quan sát trong lưới giờ từ đầu đến cuối. 7.629 là số dòng dư theo khóa thời gian, chưa chắc là số bản ghi trùng hoàn toàn. Số giờ thiếu tính trên timestamp không gắn timezone như trong file; chưa phân tích DST.
+
+P0089 | Tab t.0/body | Docs index 6732:6777 | HEADING_4
+3.1.2. Danh sách thuộc tính và biến mục tiêu
+
+P0090 | Tab t.0/body/Table3/R1C1 | Docs index 6780:6791 | NORMAL_TEXT
+Thuộc tính
+
+P0091 | Tab t.0/body/Table3/R1C2 | Docs index 6792:6806 | NORMAL_TEXT
+Kiểu / đơn vị
+
+P0092 | Tab t.0/body/Table3/R1C3 | Docs index 6807:6824 | NORMAL_TEXT
+Vai trò và mô tả
+
+P0093 | Tab t.0/body/Table3/R2C1 | Docs index 6826:6834 | NORMAL_TEXT
+holiday
+
+P0094 | Tab t.0/body/Table3/R2C2 | Docs index 6835:6840 | NORMAL_TEXT
+Nhãn
+
+P0095 | Tab t.0/body/Table3/R2C3 | Docs index 6841:6961 | NORMAL_TEXT
+Ngày lễ quốc gia Mỹ và ngày lễ khu vực (Minnesota State Fair). Chuỗi None là một nhãn hợp lệ, không phải giá trị thiếu.
+
+P0096 | Tab t.0/body/Table3/R3C1 | Docs index 6963:6968 | NORMAL_TEXT
+temp
+
+P0097 | Tab t.0/body/Table3/R3C2 | Docs index 6969:6980 | NORMAL_TEXT
+Số thực, K
+
+P0098 | Tab t.0/body/Table3/R3C3 | Docs index 6981:7042 | NORMAL_TEXT
+Nhiệt độ trung bình theo giờ; đổi sang °C khi tạo đặc trưng.
+
+P0099 | Tab t.0/body/Table3/R4C1 | Docs index 7044:7061 | NORMAL_TEXT
+rain_1h, snow_1h
+
+P0100 | Tab t.0/body/Table3/R4C2 | Docs index 7062:7074 | NORMAL_TEXT
+Số thực, mm
+
+P0101 | Tab t.0/body/Table3/R4C3 | Docs index 7075:7111 | NORMAL_TEXT
+Lượng mưa và lượng tuyết trong giờ.
+
+P0102 | Tab t.0/body/Table3/R5C1 | Docs index 7113:7124 | NORMAL_TEXT
+clouds_all
+
+P0103 | Tab t.0/body/Table3/R5C2 | Docs index 7125:7138 | NORMAL_TEXT
+Số nguyên, %
+
+P0104 | Tab t.0/body/Table3/R5C3 | Docs index 7139:7155 | NORMAL_TEXT
+Độ che phủ mây.
+
+P0105 | Tab t.0/body/Table3/R6C1 | Docs index 7157:7170 | NORMAL_TEXT
+weather_main
+
+P0106 | Tab t.0/body/Table3/R6C2 | Docs index 7171:7184 | NORMAL_TEXT
+Nhãn văn bản
+
+P0107 | Tab t.0/body/Table3/R6C3 | Docs index 7185:7218 | NORMAL_TEXT
+Mô tả thời tiết ngắn (nhóm lớn).
+
+P0108 | Tab t.0/body/Table3/R7C1 | Docs index 7220:7240 | NORMAL_TEXT
+weather_description
+
+P0109 | Tab t.0/body/Table3/R7C2 | Docs index 7241:7254 | NORMAL_TEXT
+Nhãn văn bản
+
+P0110 | Tab t.0/body/Table3/R7C3 | Docs index 7255:7298 | NORMAL_TEXT
+Mô tả thời tiết chi tiết hơn weather_main.
+
+P0111 | Tab t.0/body/Table3/R8C1 | Docs index 7300:7310 | NORMAL_TEXT
+date_time
+
+P0112 | Tab t.0/body/Table3/R8C2 | Docs index 7311:7321 | NORMAL_TEXT
+Timestamp
+
+P0113 | Tab t.0/body/Table3/R8C3 | Docs index 7322:7364 | NORMAL_TEXT
+Khóa thời gian; nguồn tạo đặc trưng lịch.
+
+P0114 | Tab t.0/body/Table3/R9C1 | Docs index 7366:7381 | NORMAL_TEXT
+traffic_volume
+
+P0115 | Tab t.0/body/Table3/R9C2 | Docs index 7382:7400 | NORMAL_TEXT
+Số nguyên, xe/giờ
+
+P0116 | Tab t.0/body/Table3/R9C3 | Docs index 7401:7416 | NORMAL_TEXT
+Biến mục tiêu.
+
+P0117 | Tab t.0/body | Docs index 7418:7446 | HEADING_3
+3.2. Khám phá dữ liệu (EDA)
+
+P0118 | Tab t.0/body | Docs index 7446:7484 | HEADING_4
+3.2.1 Tổng quan và chất lượng dữ liệu
+
+P0119 | Tab t.0/body | Docs index 7484:7659 | NORMAL_TEXT
+Trên cơ sở mô tả ở mục 3.1, nhóm kiểm tra toàn bộ CSV gốc nhằm xác định giá trị thiếu, mức độ lặp theo thời gian và các quan sát nghi vấn. Mục này trình bày kết quả kiểm tra.
+
+P0120 | Tab t.0/body | Docs index 7659:7699 | NORMAL_TEXT
+Giá trị thiếu và bản ghi theo thời gian
+
+P0121 | Tab t.0/body | Docs index 7699:7781 | NORMAL_TEXT
+Kết quả kiểm tra thiếu và  mức độ lặp theo thời gian được tổng hợp trong Bảng 3.2
+
+P0122 | Tab t.0/body | Docs index 7781:7833 | NORMAL_TEXT
+Bảng3.2. kết quả tra giá trị thiếu và timestamp lặp
+
+P0123 | Tab t.0/body/Table4/R1C1 | Docs index 7836:7854 | NORMAL_TEXT
+Nội dung kiểm tra
+
+P0124 | Tab t.0/body/Table4/R1C2 | Docs index 7855:7863 | NORMAL_TEXT
+Kết quả
+
+P0125 | Tab t.0/body/Table4/R2C1 | Docs index 7865:7928 | NORMAL_TEXT
+Giá trị Null,Giá trị null; chuỗi rỗng hoặc chỉ có khoảng trắng
+
+P0126 | Tab t.0/body/Table4/R2C2 | Docs index 7929:7931 | NORMAL_TEXT
+0
+
+P0127 | Tab t.0/body/Table4/R3C1 | Docs index 7933:7985 | NORMAL_TEXT
+Dòng trùng hoàn toàn, không tính lần xuất hiện đầu.
+
+P0128 | Tab t.0/body/Table4/R3C2 | Docs index 7986:7994 | NORMAL_TEXT
+17 dòng
+
+P0129 | Tab t.0/body/Table4/R4C1 | Docs index 7996:8026 | NORMAL_TEXT
+Timestamp xuất hiện nhiều lần
+
+P0130 | Tab t.0/body/Table4/R4C2 | Docs index 8027:8043 | NORMAL_TEXT
+5.445 timestamp
+
+P0131 | Tab t.0/body/Table4/R5C1 | Docs index 8045:8083 | NORMAL_TEXT
+Tổng số dòng thuộc các timestamp lăpk
+
+P0132 | Tab t.0/body/Table4/R5C2 | Docs index 8084:8096 | NORMAL_TEXT
+13.074 dòng
+
+P0133 | Tab t.0/body/Table4/R6C1 | Docs index 8098:8150 | NORMAL_TEXT
+Timestamp có nhiều giá trị Traffic_volume khác nhau
+
+P0134 | Tab t.0/body/Table4/R6C2 | Docs index 8151:8153 | NORMAL_TEXT
+0
+
+P0135 | Tab t.0/body | Docs index 8154:8377 | NORMAL_TEXT
+Timestamp lặp không đồng nghĩa với dòng trùng hoàn toàn. Các dòng cùng giờ có lưu lượng nhất quán nhưng có thể khác nhãn thời tiết, như minh họa ở Bảng 3.3. Vì vậy, không được cộng lặp traffic_volume khi tổng hợp theo giờ.
+
+P0136 | Tab t.0/body | Docs index 8377:8438 | NORMAL_TEXT
+Bảng3.3 hai bản ghi cùng timestamo nhưng khác nhãn thời tiết
+
+P0137 | Tab t.0/body/Table5/R1C1 | Docs index 8441:8451 | NORMAL_TEXT
+Timestamp
+
+P0138 | Tab t.0/body/Table5/R1C2 | Docs index 8452:8465 | NORMAL_TEXT
+weather_main
+
+P0139 | Tab t.0/body/Table5/R1C3 | Docs index 8466:8487 | NORMAL_TEXT
+weather _description
+
+P0140 | Tab t.0/body/Table5/R1C4 | Docs index 8488:8498 | NORMAL_TEXT
+Lưu lượng
+
+P0141 | Tab t.0/body/Table5/R2C1 | Docs index 8500:8517 | NORMAL_TEXT
+10/10/2012 07:00
+
+P0142 | Tab t.0/body/Table5/R2C2 | Docs index 8518:8523 | NORMAL_TEXT
+Rain
+
+P0143 | Tab t.0/body/Table5/R2C3 | Docs index 8524:8535 | NORMAL_TEXT
+light rain
+
+P0144 | Tab t.0/body/Table5/R2C4 | Docs index 8536:8542 | NORMAL_TEXT
+6.793
+
+P0145 | Tab t.0/body/Table5/R3C1 | Docs index 8544:8561 | NORMAL_TEXT
+10/10/2012 07:00
+
+P0146 | Tab t.0/body/Table5/R3C2 | Docs index 8562:8570 | NORMAL_TEXT
+Drizzle
+
+P0147 | Tab t.0/body/Table5/R3C3 | Docs index 8571:8595 | NORMAL_TEXT
+light intensity drizzle
+
+P0148 | Tab t.0/body/Table5/R3C4 | Docs index 8596:8602 | NORMAL_TEXT
+6.793
+
+P0149 | Tab t.0/body | Docs index 8603:8648 | NORMAL_TEXT
+Giá trị nghi vấn và tính nhất quán của nhãn
+
+P0150 | Tab t.0/body | Docs index 8648:8721 | NORMAL_TEXT
+Các giá trị nghi vấn và nhãn chưa nhất quán cần xem xét trước khi xử lý.
+
+P0151 | Tab t.0/body | Docs index 8721:8771 | NORMAL_TEXT
+Bảng3.4. Các điểm cần lưu ý về chất lượng dữ liệu
+
+P0152 | Tab t.0/body/Table6/R1C1 | Docs index 8774:8782 | NORMAL_TEXT
+Vấn đề
+
+P0153 | Tab t.0/body/Table6/R1C2 | Docs index 8783:8805 | NORMAL_TEXT
+Bằng chứng từ dữ liệu
+
+P0154 | Tab t.0/body/Table6/R1C3 | Docs index 8806:8816 | NORMAL_TEXT
+Nhận định
+
+P0155 | Tab t.0/body/Table6/R2C1 | Docs index 8818:8836 | NORMAL_TEXT
+Nhiệt độ bằng 0 K
+
+P0156 | Tab t.0/body/Table6/R2C2 | Docs index 8837:8866 | NORMAL_TEXT
+10 dòng tại 10 giờ quan sát.
+
+P0157 | Tab t.0/body/Table6/R2C3 | Docs index 8867:8934 | NORMAL_TEXT
+Không phù hợp với điều kiện quan trắc ngoài trời; cần xử lý riêng.
+
+P0158 | Tab t.0/body/Table6/R3C1 | Docs index 8936:8954 | NORMAL_TEXT
+Lượng mưa cực lớn
+
+P0159 | Tab t.0/body/Table6/R3C2 | Docs index 8955:8988 | NORMAL_TEXT
+9.831,3 mm tại 11/07/2016 17:00.
+
+P0160 | Tab t.0/body/Table6/R3C3 | Docs index 8989:9052 | NORMAL_TEXT
+Giá trị nghi vấn; không dùng IQR để loại mọi lượng mưa dương..
+
+P0161 | Tab t.0/body/Table6/R4C1 | Docs index 9054:9071 | NORMAL_TEXT
+Lưu lượng bằng 0
+
+P0162 | Tab t.0/body/Table6/R4C2 | Docs index 9072:9103 | NORMAL_TEXT
+23/07/2016 lúc 18:00 và 23:00.
+
+P0163 | Tab t.0/body/Table6/R4C3 | Docs index 9104:9159 | NORMAL_TEXT
+Chưa xác minh nguyên nhân; chưa đủ căn cứ tự động xoá.
+
+P0164 | Tab t.0/body/Table6/R5C1 | Docs index 9161:9181 | NORMAL_TEXT
+Khác cách viết nhãn
+
+P0165 | Tab t.0/body/Table6/R5C2 | Docs index 9182:9212 | NORMAL_TEXT
+sky is clear và Sky is Clear.
+
+P0166 | Tab t.0/body/Table6/R5C3 | Docs index 9213:9254 | NORMAL_TEXT
+Cùng nội dung nhưng khác chữ hoa/thường.
+
+P0167 | Tab t.0/body/Table6/R6C1 | Docs index 9256:9269 | NORMAL_TEXT
+Nhãn ngày lễ
+
+P0168 | Tab t.0/body/Table6/R6C2 | Docs index 9270:9305 | NORMAL_TEXT
+Nhãn sự kiện thường ghi lúc 00:00.
+
+P0169 | Tab t.0/body/Table6/R6C3 | Docs index 9306:9391 | NORMAL_TEXT
+Cần kiểm tra nhãn theo ngày; không suy mọi giờ có holiday = None đều là ngày thường.
+
+P0170 | Tab t.0/body | Docs index 9392:9634 | NORMAL_TEXT
+Không có null không đồng nghĩa dữ liệu hoàn toàn sạch. Giờ vắng bản ghi ở mục 3.1 không được quy thành lưu lượng 0. Với mưa/tuyết, Q1 và Q3 đều bằng 0 nên IQR có thể gắn cờ cả các giá trị dương hợp lý. Các vấn đề trên được xử lý tại mục 3.3.
+
+P0171 | Tab t.0/body | Docs index 9634:9670 | HEADING_4
+3.2.2. Phân bố lưu lượng giao thông
+
+P0172 | Tab t.0/body | Docs index 9670:9891 | NORMAL_TEXT
+Sau bước kiểm tra chất lượng dữ liệu, nhóm khảo sát phân bố của biến mục tiêu traffic_volume trên 40.575 giờ quan sát duy nhất. Mỗi timestamp chỉ được tính một lần; các thống kê dưới đây sử dụng toàn bộ dữ liệu theo giờ.
+
+P0173 | Tab t.0/body | Docs index 9891:9909 | NORMAL_TEXT
+a. Thống kê mô tả
+
+P0174 | Tab t.0/body | Docs index 9909:9980 | NORMAL_TEXT
+Mức lưu lượng điển hình, độ phân tán và các phân vị của biến mục tiêu.
+
+P0175 | Tab t.0/body | Docs index 9980:10035 | NORMAL_TEXT
+Bảng 3.5. Thống kê mô tả lưu lượng giao thông theo giờ
+
+P0176 | Tab t.0/body/Table7/R1C1 | Docs index 10038:10047 | NORMAL_TEXT
+Chỉ tiêu
+
+P0177 | Tab t.0/body/Table7/R1C2 | Docs index 10048:10056 | NORMAL_TEXT
+Giá trị
+
+P0178 | Tab t.0/body/Table7/R1C3 | Docs index 10057:10066 | NORMAL_TEXT
+Chỉ tiêu
+
+P0179 | Tab t.0/body/Table7/R1C4 | Docs index 10067:10075 | NORMAL_TEXT
+Giá trị
+
+P0180 | Tab t.0/body/Table7/R2C1 | Docs index 10077:10088 | NORMAL_TEXT
+Trung bình
+
+P0181 | Tab t.0/body/Table7/R2C2 | Docs index 10089:10098 | NORMAL_TEXT
+3.290,65
+
+P0182 | Tab t.0/body/Table7/R2C3 | Docs index 10099:10113 | NORMAL_TEXT
+Trung vị (Q2)
+
+P0183 | Tab t.0/body/Table7/R2C4 | Docs index 10114:10123 | NORMAL_TEXT
+3.427,00
+
+P0184 | Tab t.0/body/Table7/R3C1 | Docs index 10125:10143 | NORMAL_TEXT
+Độ lệch chuẩn mẫu
+
+P0185 | Tab t.0/body/Table7/R3C2 | Docs index 10144:10153 | NORMAL_TEXT
+1.984,77
+
+P0186 | Tab t.0/body/Table7/R3C3 | Docs index 10154:10178 | NORMAL_TEXT
+Khoảng tứ phân vị (IQR)
+
+P0187 | Tab t.0/body/Table7/R3C4 | Docs index 10179:10188 | NORMAL_TEXT
+3.703,50
+
+P0188 | Tab t.0/body/Table7/R4C1 | Docs index 10190:10207 | NORMAL_TEXT
+Phân vị 25% (Q1)
+
+P0189 | Tab t.0/body/Table7/R4C2 | Docs index 10208:10217 | NORMAL_TEXT
+1.248,50
+
+P0190 | Tab t.0/body/Table7/R4C3 | Docs index 10218:10235 | NORMAL_TEXT
+Phân vị 75% (Q3)
+
+P0191 | Tab t.0/body/Table7/R4C4 | Docs index 10236:10245 | NORMAL_TEXT
+4.952,00
+
+P0192 | Tab t.0/body/Table7/R5C1 | Docs index 10247:10256 | NORMAL_TEXT
+Nhỏ nhất
+
+P0193 | Tab t.0/body/Table7/R5C2 | Docs index 10257:10259 | NORMAL_TEXT
+0
+
+P0194 | Tab t.0/body/Table7/R5C3 | Docs index 10260:10269 | NORMAL_TEXT
+Lớn nhất
+
+P0195 | Tab t.0/body/Table7/R5C4 | Docs index 10270:10276 | NORMAL_TEXT
+7.280
+
+P0196 | Tab t.0/body | Docs index 10277:10495 | NORMAL_TEXT
+Trung bình thấp hơn trung vị khoảng 136,35 xe/giờ. Một nửa số giờ quan sát có lưu lượng từ 1.248,50 đến 4.952 xe/giờ; độ lệch chuẩn khoảng 1.984,77 xe/giờ cho thấy lưu lượng phân tán đáng kể quanh giá trị trung bình.[PAGE BREAK]
+
+P0197 | Tab t.0/body | Docs index 10496:10518 | NORMAL_TEXT
+b. Hình dạng phân bố.
+
+P0198 | Tab t.0/body | Docs index 10518:10630 | NORMAL_TEXT
+Hình 3.1 kết hợp histogram và boxplot để thể hiện tần suất quan sát, trung vị và khoảng phân bố của lưu lượng.[IMAGE kix.exjdsthkcy2o]
+
+P0199 | Tab t.0/body | Docs index 10630:10700 | NORMAL_TEXT
+Hình 3.1. Phân bố lưu lượng giao thông trên các giờ quan sát duy nhất
+
+P0200 | Tab t.0/body | Docs index 10700:11029 | NORMAL_TEXT
+Histogram có nhiều vùng tập trung, không thể hiện một đỉnh duy nhất rõ rệt. Boxplot cho thấy khoảng giữa Q1 và Q3 khá rộng, phù hợp với mức phân tán trong Bảng 3.5. Phân bố tổng thể chưa cho biết các vùng lưu lượng này xuất hiện vào thời điểm nào; mục tiếp theo phân tích theo giờ, thứ và loại ngày để làm rõ mẫu hình thời gian.
+
+P0201 | Tab t.0/body | Docs index 11029:11061 | HEADING_4
+3.2.3. Lưu lượng theo thời gian
+
+P0202 | Tab t.0/body | Docs index 11061:11224 | NORMAL_TEXT
+Nhóm phân tích lưu lượng theo giờ, thứ và tháng trên toàn bộ 40.575 timestamp duy nhất. Các thống kê chỉ tính giờ có bản ghi, không gán lưu lượng 0 cho giờ thiếu.
+
+P0203 | Tab t.0/body | Docs index 11224:11269 | NORMAL_TEXT
+Lưu lượng theo giờ , thứ trong tuần và tháng
+
+P0204 | Tab t.0/body | Docs index 11269:11351 | NORMAL_TEXT
+Hình 3.2 và Bảng 3.6 thể hiện mẫu hình thời gian cùng các mức trung bình nổi bật.
+
+P0205 | Tab t.0/body | Docs index 11351:11353 | NORMAL_TEXT
+[IMAGE kix.6gh76c1699pk]
+
+P0206 | Tab t.0/body | Docs index 11353:11419 | NORMAL_TEXT
+Hình 3.2. Lưu lượng trung bình theo giờ, thứ trong tuần và tháng[PAGE BREAK]
+
+P0207 | Tab t.0/body | Docs index 11420:11495 | NORMAL_TEXT
+Bảng 3.6. Các nhóm thời gian có lưu lượng trung bình cao nhất và thấp nhất
+
+P0208 | Tab t.0/body/Table8/R1C1 | Docs index 11498:11513 | NORMAL_TEXT
+Nhóm thời gian
+
+P0209 | Tab t.0/body/Table8/R1C2 | Docs index 11514:11518 | NORMAL_TEXT
+Mức
+
+P0210 | Tab t.0/body/Table8/R1C3 | Docs index 11519:11539 | NORMAL_TEXT
+Trung bình (xe/giờ)
+
+P0211 | Tab t.0/body/Table8/R1C4 | Docs index 11540:11544 | NORMAL_TEXT
+giờ
+
+P0212 | Tab t.0/body/Table8/R2C1 | Docs index 11546:11569 | NORMAL_TEXT
+Giờ trong ngày — 16:00
+
+P0213 | Tab t.0/body/Table8/R2C2 | Docs index 11570:11579 | NORMAL_TEXT
+Cao nhất
+
+P0214 | Tab t.0/body/Table8/R2C3 | Docs index 11580:11589 | NORMAL_TEXT
+5.708,61
+
+P0215 | Tab t.0/body/Table8/R2C4 | Docs index 11590:11596 | NORMAL_TEXT
+1.707
+
+P0216 | Tab t.0/body/Table8/R3C1 | Docs index 11598:11621 | NORMAL_TEXT
+Giờ trong ngày — 03:00
+
+P0217 | Tab t.0/body/Table8/R3C2 | Docs index 11622:11633 | NORMAL_TEXT
+Thấp nhất
+
+P0218 | Tab t.0/body/Table8/R3C3 | Docs index 11634:11641 | NORMAL_TEXT
+373,21
+
+P0219 | Tab t.0/body/Table8/R3C4 | Docs index 11642:11648 | NORMAL_TEXT
+1.669
+
+P0220 | Tab t.0/body/Table8/R4C1 | Docs index 11650:11675 | NORMAL_TEXT
+Thứ trong tuần — Thứ Sáu
+
+P0221 | Tab t.0/body/Table8/R4C2 | Docs index 11676:11685 | NORMAL_TEXT
+Cao nhất
+
+P0222 | Tab t.0/body/Table8/R4C3 | Docs index 11686:11695 | NORMAL_TEXT
+3.674,78
+
+P0223 | Tab t.0/body/Table8/R4C4 | Docs index 11696:11702 | NORMAL_TEXT
+5.877
+
+P0224 | Tab t.0/body/Table8/R5C1 | Docs index 11704:11730 | NORMAL_TEXT
+Thứ trong tuần — Chủ nhật
+
+P0225 | Tab t.0/body/Table8/R5C2 | Docs index 11731:11741 | NORMAL_TEXT
+Thấp nhất
+
+P0226 | Tab t.0/body/Table8/R5C3 | Docs index 11742:11751 | NORMAL_TEXT
+2.426,25
+
+P0227 | Tab t.0/body/Table8/R5C4 | Docs index 11752:11758 | NORMAL_TEXT
+5.812
+
+P0228 | Tab t.0/body/Table8/R6C1 | Docs index 11760:11786 | NORMAL_TEXT
+Tháng trong năm — Tháng 8
+
+P0229 | Tab t.0/body/Table8/R6C2 | Docs index 11787:11796 | NORMAL_TEXT
+Cao nhất
+
+P0230 | Tab t.0/body/Table8/R6C3 | Docs index 11797:11806 | NORMAL_TEXT
+3.430,32
+
+P0231 | Tab t.0/body/Table8/R6C4 | Docs index 11807:11813 | NORMAL_TEXT
+3.705
+
+P0232 | Tab t.0/body/Table8/R7C1 | Docs index 11815:11842 | NORMAL_TEXT
+Tháng trong năm — Tháng 12
+
+P0233 | Tab t.0/body/Table8/R7C2 | Docs index 11843:11853 | NORMAL_TEXT
+Thấp nhất
+
+P0234 | Tab t.0/body/Table8/R7C3 | Docs index 11854:11863 | NORMAL_TEXT
+3.040,19
+
+P0235 | Tab t.0/body/Table8/R7C4 | Docs index 11864:11870 | NORMAL_TEXT
+3.337
+
+P0236 | Tab t.0/body | Docs index 11871:11912 | NORMAL_TEXT
+Tương tác giữa các thứ trong tuần và giờ
+
+P0237 | Tab t.0/body | Docs index 11912:12008 | NORMAL_TEXT
+Hình 3.3 đối chiếu các tổ hợp thứ–giờ để làm rõ sự khác biệt giữa ngày trong tuần và cuối tuần.
+
+P0238 | Tab t.0/body | Docs index 12008:12010 | NORMAL_TEXT
+[IMAGE kix.e1e0qmvz6viv]
+
+P0239 | Tab t.0/body | Docs index 12010:12074 | NORMAL_TEXT
+Hình 3.3 lưu lượng trung bình theo tổ hợp thứ trong tuần và giờ
+
+P0240 | Tab t.0/body | Docs index 12074:12307 | NORMAL_TEXT
+Từ thứ Hai đến thứ Sáu, lưu lượng cao tập trung vào buổi sáng và chiều; cuối tuần tăng muộn hơn, tập trung quanh giữa ngày. Kết quả gợi ý xem xét đồng thời giờ, thứ và cờ cuối tuần; giá trị dự đoán cần kiểm chứng ở phần thực nghiệm.
+
+P0241 | Tab t.0/body | Docs index 12307:12355 | HEADING_4
+3.2.4. Mối liên  hệ giữa thời tiết và lưu lượng
+
+P0242 | Tab t.0/body | Docs index 12356:12401 | NORMAL_TEXT
+a. Tương quan của các biến thời tiết dạng số
+
+P0243 | Tab t.0/body | Docs index 12401:12597 | NORMAL_TEXT
+Bảng 3.7 tính sau khi đánh dấu nhiệt độ 0 K và điểm mưa 9.831,3 mm là thiếu, rồi gộp thời tiết theo giờ bằng median các giá trị phân biệt. n là số cặp quan sát hợp lệ của từng biến với lưu lượng.
+
+P0244 | Tab t.0/body | Docs index 12597:12664 | NORMAL_TEXT
+Bảng 3.7. Tương quan giữa các biến thời tiết và lưu lượng theo giờ
+
+P0245 | Tab t.0/body/Table9/R1C1 | Docs index 12667:12682 | NORMAL_TEXT
+Biến thời tiết
+
+P0246 | Tab t.0/body/Table9/R1C2 | Docs index 12683:12691 | NORMAL_TEXT
+Pearson
+
+P0247 | Tab t.0/body/Table9/R1C3 | Docs index 12692:12701 | NORMAL_TEXT
+Spearman
+
+P0248 | Tab t.0/body/Table9/R1C4 | Docs index 12702:12710 | NORMAL_TEXT
+n (giờ)
+
+P0249 | Tab t.0/body/Table9/R2C1 | Docs index 12712:12721 | NORMAL_TEXT
+Nhiệt độ
+
+P0250 | Tab t.0/body/Table9/R2C2 | Docs index 12722:12729 | NORMAL_TEXT
+0,1392
+
+P0251 | Tab t.0/body/Table9/R2C3 | Docs index 12730:12737 | NORMAL_TEXT
+0,1401
+
+P0252 | Tab t.0/body/Table9/R2C4 | Docs index 12738:12745 | NORMAL_TEXT
+40.565
+
+P0253 | Tab t.0/body/Table9/R3C1 | Docs index 12747:12757 | NORMAL_TEXT
+Lượng mưa
+
+P0254 | Tab t.0/body/Table9/R3C2 | Docs index 12758:12766 | NORMAL_TEXT
+−0,0134
+
+P0255 | Tab t.0/body/Table9/R3C3 | Docs index 12767:12774 | NORMAL_TEXT
+0,0043
+
+P0256 | Tab t.0/body/Table9/R3C4 | Docs index 12775:12782 | NORMAL_TEXT
+40.574
+
+P0257 | Tab t.0/body/Table9/R4C1 | Docs index 12784:12796 | NORMAL_TEXT
+Lượng tuyết
+
+P0258 | Tab t.0/body/Table9/R4C2 | Docs index 12797:12805 | NORMAL_TEXT
+−0,0021
+
+P0259 | Tab t.0/body/Table9/R4C3 | Docs index 12806:12814 | NORMAL_TEXT
+−0,0052
+
+P0260 | Tab t.0/body/Table9/R4C4 | Docs index 12815:12822 | NORMAL_TEXT
+40.575
+
+P0261 | Tab t.0/body/Table9/R5C1 | Docs index 12824:12842 | NORMAL_TEXT
+Tỷ lệ mây che phủ
+
+P0262 | Tab t.0/body/Table9/R5C2 | Docs index 12843:12850 | NORMAL_TEXT
+0,0783
+
+P0263 | Tab t.0/body/Table9/R5C3 | Docs index 12851:12858 | NORMAL_TEXT
+0,0729
+
+P0264 | Tab t.0/body/Table9/R5C4 | Docs index 12859:12866 | NORMAL_TEXT
+40.575
+
+P0265 | Tab t.0/body | Docs index 12867:13034 | NORMAL_TEXT
+Nhiệt độ có tương quan dương yếu; mưa và tuyết có hệ số gần 0. Tương quan riêng lẻ thấp chưa loại trừ quan hệ phi tuyến hoặc giá trị bổ sung khi kết hợp với thời gian
+
+P0266 | Tab t.0/body | Docs index 13034:13067 | HEADING_2
+b. Lưu lượng theo nhãn thời tiết
+
+P0267 | Tab t.0/body | Docs index 13067:13182 | NORMAL_TEXT
+Hình 3.4 so sánh lưu lượng trung bình theo weather_main; Bảng 3.8 bổ sung số giờ của một số nhóm phổ biến và hiếm.
+
+P0268 | Tab t.0/body | Docs index 13182:13184 | NORMAL_TEXT
+[IMAGE kix.1lgs426j6i5c]
+
+P0269 | Tab t.0/body | Docs index 13184:13235 | NORMAL_TEXT
+Hình 3.4. Lưu lượng trung bình theo nhãn thời tiết
+
+P0270 | Tab t.0/body | Docs index 13235:13287 | NORMAL_TEXT
+Bảng 3.8. Số giờ quan sát của một số nhóm thời tiết
+
+P0271 | Tab t.0/body/Table10/R1C1 | Docs index 13290:13305 | NORMAL_TEXT
+Nhãn thời tiết
+
+P0272 | Tab t.0/body/Table10/R1C2 | Docs index 13306:13311 | NORMAL_TEXT
+Giờ
+
+P0273 | Tab t.0/body/Table10/R1C3 | Docs index 13312:13327 | NORMAL_TEXT
+Nhãn thời tiết
+
+P0274 | Tab t.0/body/Table10/R1C4 | Docs index 13328:13332 | NORMAL_TEXT
+giờ
+
+P0275 | Tab t.0/body/Table10/R2C1 | Docs index 13334:13341 | NORMAL_TEXT
+Clouds
+
+P0276 | Tab t.0/body/Table10/R2C2 | Docs index 13342:13349 | NORMAL_TEXT
+15.127
+
+P0277 | Tab t.0/body/Table10/R2C3 | Docs index 13350:13355 | NORMAL_TEXT
+Snow
+
+P0278 | Tab t.0/body/Table10/R2C4 | Docs index 13356:13362 | NORMAL_TEXT
+2.795
+
+P0279 | Tab t.0/body/Table10/R3C1 | Docs index 13364:13370 | NORMAL_TEXT
+Clear
+
+P0280 | Tab t.0/body/Table10/R3C2 | Docs index 13371:13378 | NORMAL_TEXT
+13.371
+
+P0281 | Tab t.0/body/Table10/R3C3 | Docs index 13379:13385 | NORMAL_TEXT
+Smoke
+
+P0282 | Tab t.0/body/Table10/R3C4 | Docs index 13386:13389 | NORMAL_TEXT
+20
+
+P0283 | Tab t.0/body/Table10/R4C1 | Docs index 13391:13396 | NORMAL_TEXT
+Rain
+
+P0284 | Tab t.0/body/Table10/R4C2 | Docs index 13397:13403 | NORMAL_TEXT
+5.563
+
+P0285 | Tab t.0/body/Table10/R4C3 | Docs index 13404:13411 | NORMAL_TEXT
+Squall
+
+P0286 | Tab t.0/body/Table10/R4C4 | Docs index 13412:13414 | NORMAL_TEXT
+4
+
+P0287 | Tab t.0/body | Docs index 13415:13645 | NORMAL_TEXT
+Một giờ được tính một lần trong mỗi nhóm nhưng có thể mang nhiều nhãn; có 5.349 giờ như vậy. Clouds có trung bình cao nhất, còn Squall thấp nhất nhưng chỉ có 4 giờ. Nhóm Smoke cũng hiếm (20 giờ), nên cần thận trọng khi diễn giải.
+
+P0288 | Tab t.0/body | Docs index 13645:13833 | NORMAL_TEXT
+Chênh lệch giữa các nhãn có thể gắn với giờ và mùa, không chứng minh nhân quả. Ích lợi dự đoán của thời tiết cần được kiểm chứng bằng đối chứng cùng mô hình và tập giờ ở phần thực nghiệm.
+
+P0289 | Tab t.0/body | Docs index 13835:13859 | HEADING_3
+3.3. Tiền xử lý dữ liệu
+
+P0290 | Tab t.0/body | Docs index 13859:13910 | HEADING_4
+3.3.1. Giá trị thiếu, timestamp trùng và định dạng
+
+P0291 | Tab t.0/body | Docs index 13910:13925 | NORMAL_TEXT
+[Nhóm bổ sung]
+
+P0292 | Tab t.0/body | Docs index 13925:13950 | HEADING_4
+3.3.2. Ngoại lệ và nhiễu
+
+P0293 | Tab t.0/body | Docs index 13950:13965 | NORMAL_TEXT
+[Nhóm bổ sung]
+
+P0294 | Tab t.0/body | Docs index 13965:13992 | HEADING_4
+3.3.3. Encoding và scaling
+
+P0295 | Tab t.0/body | Docs index 13992:14074 | NORMAL_TEXT
+Gợi ý: Cột áp dụng, phương pháp, lý do theo từng mô hình; chỉ fit trên tập train.
+
+P0296 | Tab t.0/body | Docs index 14074:14089 | NORMAL_TEXT
+[Nhóm bổ sung]
+
+P0297 | Tab t.0/body | Docs index 14089:14125 | HEADING_3
+3.4. Xây dựng và lựa chọn đặc trưng
+
+P0298 | Tab t.0/body | Docs index 14125:14357 | NORMAL_TEXT
+Gợi ý: Nhóm Time (giờ, thứ, tháng, ngày lễ, mã hóa tuần hoàn), Weather (nhiệt độ, mưa, tuyết, mây, mô tả thời tiết), History (lag, rolling) nếu dùng; đảm bảo mọi đầu vào sẵn có tại thời điểm dự đoán. Nêu cách chọn đặc trưng nếu có.
+
+P0299 | Tab t.0/body | Docs index 14357:14372 | NORMAL_TEXT
+[Nhóm bổ sung]
+
+P0300 | Tab t.0/body | Docs index 14372:14394 | HEADING_3
+3.5. Pipeline học máy
+
+P0301 | Tab t.0/body | Docs index 14394:14505 | NORMAL_TEXT
+Gợi ý: Chèn sơ đồ pipeline: dữ liệu → tiền xử lý → đặc trưng → chia tập → huấn luyện/tuning → đánh giá → demo.
+
+P0302 | Tab t.0/body | Docs index 14505:14520 | NORMAL_TEXT
+[Nhóm bổ sung]
+
+P0303 | Tab t.0/body | Docs index 14520:14547 | HEADING_3
+3.6. Thiết lập thực nghiệm
+
+P0304 | Tab t.0/body | Docs index 14547:14578 | HEADING_4
+3.6.1. Chiến lược chia dữ liệu
+
+P0305 | Tab t.0/body | Docs index 14578:14679 | NORMAL_TEXT
+Gợi ý: Train/validation/test theo thời gian: tỷ lệ, số mẫu, mốc thời gian thực tế; vai trò từng tập.
+
+P0306 | Tab t.0/body | Docs index 14679:14694 | NORMAL_TEXT
+[Nhóm bổ sung]
+
+P0307 | Tab t.0/body | Docs index 14694:14754 | HEADING_4
+3.6.2. Kiểm soát data leakage và tính công bằng khi so sánh
+
+P0308 | Tab t.0/body | Docs index 14754:14895 | NORMAL_TEXT
+Gợi ý: Cách fit preprocessing chỉ trên train; không dùng test để chọn mô hình/tuning; các mô hình dùng cùng tập, cùng mốc chia, cùng metric.
+
+P0309 | Tab t.0/body | Docs index 14895:14910 | NORMAL_TEXT
+[Nhóm bổ sung]
+
+P0310 | Tab t.0/body | Docs index 14910:14926 | HEADING_4
+3.6.3. Baseline
+
+P0311 | Tab t.0/body | Docs index 14926:14941 | NORMAL_TEXT
+[Nhóm bổ sung]
+
+P0312 | Tab t.0/body | Docs index 14941:14991 | HEADING_4
+3.6.4. Độ đo và phương án tinh chỉnh siêu tham số
+
+P0313 | Tab t.0/body | Docs index 14991:15109 | NORMAL_TEXT
+Gợi ý: Phương pháp (Grid/Random Search + CV theo thời gian), không gian tham số, chỉ số chọn mô hình trên validation.
+
+P0314 | Tab t.0/body | Docs index 15109:15124 | NORMAL_TEXT
+[Nhóm bổ sung]
+
+P0315 | Tab t.0/body | Docs index 15124:15171 | HEADING_4
+3.6.5. Thiết kế thí nghiệm đối chứng đặc trưng
+
+P0316 | Tab t.0/body | Docs index 15171:15296 | NORMAL_TEXT
+Gợi ý: Time, Time + Weather, Time + Weather + History: cùng thuật toán, cùng tập và mốc chia, để trả lời câu hỏi nghiên cứu.
+
+P0317 | Tab t.0/body | Docs index 15296:15311 | NORMAL_TEXT
+[Nhóm bổ sung]
+
+P0318 | Tab t.0/body | Docs index 15311:15704 | NORMAL_TEXT
+Dự đoán ngoài fold (Out-of-Fold — OOF) được tạo bằng phương pháp TimeSeriesSplit với ba fold. Ở mỗi fold, mô hình được huấn luyện trên dữ liệu quá khứ và dự đoán trên đoạn dữ liệu tiếp theo; các bước tiền xử lý có học thống kê cũng chỉ được fit trên phần huấn luyện tương ứng. Các dự đoán được ghép theo timestamp để đánh giá trên những quan sát chưa tham gia huấn luyện mô hình tạo ra chúng.
+
+P0319 | Tab t.0/body | Docs index 15704:16009 | NORMAL_TEXT
+Trong thí nghiệm ensemble, Random Forest và XGBoost sử dụng cùng cấu hình đặc trưng, bộ chia và các giờ chấm. Trọng số kết hợp được lựa chọn theo MAE trên dự đoán OOF thuộc tập train. Sau khi chọn trọng số, hai mô hình được huấn luyện lại trên toàn bộ tập train và ensemble được đánh giá trên validation.
+
+P0320 | Tab t.0/body | Docs index 16009:16147 | NORMAL_TEXT
+Do OOF được sử dụng để lựa chọn trọng số, MAE OOF tại trọng số được chọn là điểm phục vụ lựa chọn, chưa phải đánh giá độc lập cuối cùng.
+
+P0321 | Tab t.0/body | Docs index 16147:16149 | HEADING_2
+[PAGE BREAK]
+
+P0322 | Tab t.0/body | Docs index 16149:16193 | HEADING_2
+Chương 4. Thực nghiệm, kết quả và thảo luận
+
+P0323 | Tab t.0/body | Docs index 16193:16233 | HEADING_3
+4.1. Môi trường và cấu hình thực nghiệm
+
+P0324 | Tab t.0/body | Docs index 16233:16313 | NORMAL_TEXT
+Gợi ý: Phiên bản Python/thư viện, seed, phần cứng, liên kết mã và log (run ID).
+
+P0325 | Tab t.0/body | Docs index 16313:16328 | NORMAL_TEXT
+[Nhóm bổ sung]
+
+P0326 | Tab t.0/body | Docs index 16328:16350 | HEADING_3
+4.2. Kết quả baseline
+
+P0327 | Tab t.0/body | Docs index 16350:16365 | NORMAL_TEXT
+[Nhóm bổ sung]
+
+P0328 | Tab t.0/body | Docs index 16365:16418 | HEADING_3
+4.3. Kết quả từng mô hình và tinh chỉnh siêu tham số
+
+P0329 | Tab t.0/body | Docs index 16418:16490 | NORMAL_TEXT
+Gợi ý: Tham số tối ưu, kết quả trên validation, đường cong/bảng tuning.
+
+P0330 | Tab t.0/body | Docs index 16490:16505 | NORMAL_TEXT
+[Nhóm bổ sung]
+
+P0331 | Tab t.0/body | Docs index 16505:16544 | HEADING_3
+4.4. So sánh các mô hình trên tập test
+
+P0332 | Tab t.0/body | Docs index 16544:16638 | NORMAL_TEXT
+Gợi ý: Chỉ đánh giá test một lần cho mô hình đã chốt; so sánh công bằng cùng tập và tiêu chí.
+
+P0333 | Tab t.0/body/Table11/R1C1 | Docs index 16641:16658 | NORMAL_TEXT
+Run ID / mô hình
+
+P0334 | Tab t.0/body/Table11/R1C2 | Docs index 16659:16673 | NORMAL_TEXT
+Tập đặc trưng
+
+P0335 | Tab t.0/body/Table11/R1C3 | Docs index 16674:16678 | NORMAL_TEXT
+MAE
+
+P0336 | Tab t.0/body/Table11/R1C4 | Docs index 16679:16684 | NORMAL_TEXT
+RMSE
+
+P0337 | Tab t.0/body/Table11/R1C5 | Docs index 16685:16688 | NORMAL_TEXT
+R²
+
+P0338 | Tab t.0/body/Table11/R2C1 | Docs index 16690:16701 | NORMAL_TEXT
+[Baseline]
+
+P0339 | Tab t.0/body/Table11/R2C2 | Docs index 16702:16709 | NORMAL_TEXT
+[Điền]
+
+P0340 | Tab t.0/body/Table11/R2C3 | Docs index 16710:16714 | NORMAL_TEXT
+[ ]
+
+P0341 | Tab t.0/body/Table11/R2C4 | Docs index 16715:16719 | NORMAL_TEXT
+[ ]
+
+P0342 | Tab t.0/body/Table11/R2C5 | Docs index 16720:16724 | NORMAL_TEXT
+[ ]
+
+P0343 | Tab t.0/body/Table11/R3C1 | Docs index 16726:16738 | NORMAL_TEXT
+[Mô hình 1]
+
+P0344 | Tab t.0/body/Table11/R3C2 | Docs index 16739:16746 | NORMAL_TEXT
+[Điền]
+
+P0345 | Tab t.0/body/Table11/R3C3 | Docs index 16747:16751 | NORMAL_TEXT
+[ ]
+
+P0346 | Tab t.0/body/Table11/R3C4 | Docs index 16752:16756 | NORMAL_TEXT
+[ ]
+
+P0347 | Tab t.0/body/Table11/R3C5 | Docs index 16757:16761 | NORMAL_TEXT
+[ ]
+
+P0348 | Tab t.0/body/Table11/R4C1 | Docs index 16763:16775 | NORMAL_TEXT
+[Mô hình 2]
+
+P0349 | Tab t.0/body/Table11/R4C2 | Docs index 16776:16783 | NORMAL_TEXT
+[Điền]
+
+P0350 | Tab t.0/body/Table11/R4C3 | Docs index 16784:16788 | NORMAL_TEXT
+[ ]
+
+P0351 | Tab t.0/body/Table11/R4C4 | Docs index 16789:16793 | NORMAL_TEXT
+[ ]
+
+P0352 | Tab t.0/body/Table11/R4C5 | Docs index 16794:16798 | NORMAL_TEXT
+[ ]
+
+P0353 | Tab t.0/body | Docs index 16799:16853 | HEADING_3
+4.5. Phân tích overfitting/underfitting và độ ổn định
+
+P0354 | Tab t.0/body | Docs index 16853:16931 | NORMAL_TEXT
+Gợi ý: So sánh train–validation–test; độ ổn định qua các fold theo thời gian.
+
+P0355 | Tab t.0/body | Docs index 16931:16946 | NORMAL_TEXT
+[Nhóm bổ sung]
+
+P0356 | Tab t.0/body | Docs index 16946:16968 | HEADING_3
+4.6. Phân tích sai số
+
+P0357 | Tab t.0/body | Docs index 16968:17122 | NORMAL_TEXT
+Gợi ý: Mô hình sai ở đâu: theo giờ cao điểm/thấp điểm, ngày lễ, thời tiết cực đoan; biểu đồ dự đoán vs thực tế, phân phối residual; ghi số mẫu từng nhóm.
+
+P0358 | Tab t.0/body | Docs index 17122:17137 | NORMAL_TEXT
+[Nhóm bổ sung]
+
+P0359 | Tab t.0/body | Docs index 17137:17194 | HEADING_3
+4.7. Phân tích đặc trưng quan trọng và diễn giải mô hình
+
+P0360 | Tab t.0/body | Docs index 17194:17304 | NORMAL_TEXT
+Gợi ý: Feature importance/hệ số; giải thích vì sao đặc trưng này quan trọng; không suy diễn quan hệ nhân quả.
+
+P0361 | Tab t.0/body | Docs index 17304:17319 | NORMAL_TEXT
+[Nhóm bổ sung]
+
+P0362 | Tab t.0/body | Docs index 17319:17363 | HEADING_3
+4.8. Kết quả thí nghiệm đối chứng đặc trưng
+
+P0363 | Tab t.0/body | Docs index 17363:17378 | NORMAL_TEXT
+[Nhóm bổ sung]
+
+P0364 | Tab t.0/body | Docs index 17378:17410 | HEADING_3
+4.9. Trả lời câu hỏi nghiên cứu
+
+P0365 | Tab t.0/body | Docs index 17410:17490 | NORMAL_TEXT
+Gợi ý: Trả lời lần lượt từng câu hỏi ở mục 1.2 dựa trên bằng chứng thực nghiệm.
+
+P0366 | Tab t.0/body | Docs index 17490:17505 | NORMAL_TEXT
+[Nhóm bổ sung]
+
+P0367 | Tab t.0/body | Docs index 17505:17507 | HEADING_2
+[PAGE BREAK]
+
+P0368 | Tab t.0/body | Docs index 17507:17546 | HEADING_2
+Chương 5. Kết luận và hướng phát triển
+
+P0369 | Tab t.0/body | Docs index 17546:17590 | HEADING_3
+5.1. Kết quả chính và mô hình được lựa chọn
+
+P0370 | Tab t.0/body | Docs index 17590:17605 | NORMAL_TEXT
+[Nhóm bổ sung]
+
+P0371 | Tab t.0/body | Docs index 17605:17618 | HEADING_3
+5.2. Hạn chế
+
+P0372 | Tab t.0/body | Docs index 17618:17687 | NORMAL_TEXT
+Gợi ý: Tách hạn chế về dữ liệu, phương pháp và thiết kế thực nghiệm.
+
+P0373 | Tab t.0/body | Docs index 17687:17702 | NORMAL_TEXT
+[Nhóm bổ sung]
+
+P0374 | Tab t.0/body | Docs index 17702:17733 | HEADING_3
+5.3. Hướng cải tiến và mở rộng
+
+P0375 | Tab t.0/body | Docs index 17733:17748 | NORMAL_TEXT
+[Nhóm bổ sung]
+
+P0376 | Tab t.0/body | Docs index 17748:17767 | HEADING_2
+Tài liệu tham khảo
+
+P0377 | Tab t.0/body | Docs index 17767:17865 | NORMAL_TEXT
+Gợi ý: Nguồn dữ liệu, tài liệu thuật toán, thư viện, công cụ AI đã dùng; cùng một kiểu trích dẫn.
+
+P0378 | Tab t.0/body | Docs index 17865:17928 | NORMAL_TEXT
+[1] Tác giả / tổ chức. Tên tài liệu. Đường dẫn. Ngày truy cập.
+
+P0379 | Tab t.0/body | Docs index 17928:17936 | HEADING_2
+Phụ lục
+
+P0380 | Tab t.0/body | Docs index 17936:17991 | HEADING_3
+Phụ lục A. Danh mục mã nguồn, README và hướng dẫn chạy
+
+P0381 | Tab t.0/body | Docs index 17991:18073 | NORMAL_TEXT
+Gợi ý: Đường dẫn notebook/script, cấu hình, hướng dẫn cài đặt và tái lập kết quả.
+
+P0382 | Tab t.0/body | Docs index 18073:18088 | NORMAL_TEXT
+[Nhóm bổ sung]
+
+P0383 | Tab t.0/body | Docs index 18088:18131 | HEADING_3
+Phụ lục B. Nhật ký thực nghiệm và hình gốc
+
+P0384 | Tab t.0/body | Docs index 18131:18146 | NORMAL_TEXT
+[Nhóm bổ sung]
+
+P0385 | Tab t.0/body | Docs index 18146:18194 | HEADING_3
+Phụ lục C. Phân công và đóng góp của thành viên
+
+P0386 | Tab t.0/body/Table12/R1C1 | Docs index 18197:18208 | NORMAL_TEXT
+Thành viên
+
+P0387 | Tab t.0/body/Table12/R1C2 | Docs index 18209:18227 | NORMAL_TEXT
+Công việc thực tế
+
+P0388 | Tab t.0/body/Table12/R1C3 | Docs index 18228:18250 | NORMAL_TEXT
+Sản phẩm / bằng chứng
+
+P0389 | Tab t.0/body/Table12/R1C4 | Docs index 18251:18259 | NORMAL_TEXT
+Ghi chú
+
+P0390 | Tab t.0/body/Table12/R2C1 | Docs index 18261:18274 | NORMAL_TEXT
+Phùng Anh Vũ
+
+P0391 | Tab t.0/body/Table12/R2C2 | Docs index 18275:18282 | NORMAL_TEXT
+[Điền]
+
+P0392 | Tab t.0/body/Table12/R2C3 | Docs index 18283:18304 | NORMAL_TEXT
+[File / link / cell]
+
+P0393 | Tab t.0/body/Table12/R2C4 | Docs index 18305:18312 | NORMAL_TEXT
+[Điền]
+
+P0394 | Tab t.0/body/Table12/R3C1 | Docs index 18314:18332 | NORMAL_TEXT
+Nguyễn Hoàng Phúc
+
+P0395 | Tab t.0/body/Table12/R3C2 | Docs index 18333:18340 | NORMAL_TEXT
+[Điền]
+
+P0396 | Tab t.0/body/Table12/R3C3 | Docs index 18341:18362 | NORMAL_TEXT
+[File / link / cell]
+
+P0397 | Tab t.0/body/Table12/R3C4 | Docs index 18363:18370 | NORMAL_TEXT
+[Điền]
+
+P0398 | Tab t.0/body/Table12/R4C1 | Docs index 18372:18386 | NORMAL_TEXT
+Trần Nhựt Huy
+
+P0399 | Tab t.0/body/Table12/R4C2 | Docs index 18387:18394 | NORMAL_TEXT
+[Điền]
+
+P0400 | Tab t.0/body/Table12/R4C3 | Docs index 18395:18416 | NORMAL_TEXT
+[File / link / cell]
+
+P0401 | Tab t.0/body/Table12/R4C4 | Docs index 18417:18424 | NORMAL_TEXT
+[Điền]
+
+P0402 | Tab t.0/body/Table12/R5C1 | Docs index 18426:18439 | NORMAL_TEXT
+Bùi Nhật Hào
+
+P0403 | Tab t.0/body/Table12/R5C2 | Docs index 18440:18447 | NORMAL_TEXT
+[Điền]
+
+P0404 | Tab t.0/body/Table12/R5C3 | Docs index 18448:18469 | NORMAL_TEXT
+[File / link / cell]
+
+P0405 | Tab t.0/body/Table12/R5C4 | Docs index 18470:18477 | NORMAL_TEXT
+[Điền]
+
+P0406 | Tab t.0/body | Docs index 18478:18512 | HEADING_3
+Phụ lục D. Kiểm tra trước khi nộp
+
+P0407 | Tab t.0/body | Docs index 18512:18623 | NORMAL_TEXT
+Gợi ý: Đối chiếu báo cáo, slide, mã nguồn, README, log, hình và demo; đảm bảo chạy lại được; kiểm tra hạn nộp.
+
+P0408 | Tab t.0/body | Docs index 18623:18638 | NORMAL_TEXT
+[Nhóm bổ sung]
+

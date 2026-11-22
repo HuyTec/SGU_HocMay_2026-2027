@@ -1,0 +1,27 @@
+{
+  "checked_local_date": "2026-11-22",
+  "timezone": "Asia/Saigon",
+  "source_page": "https://www.dot.state.mn.us/traffic/data/reports-hrvol-atr.html",
+  "download_url": "https://edocs-public.dot.state.mn.us/edocs_public/DMResultSet/download?docId=38594357",
+  "link_label": "2024 Yearly Volume Data (excel)",
+  "requested_station": "ATR 301, I-94 westbound; compatibility not yet verified",
+  "downloaded": false,
+  "status": "download_server_timeout",
+  "source_page_2025_notice": "Temporarily unavailable during transportation database system transition",
+  "schema_verified": false,
+  "direction_lane_unit_compatibility_verified": false,
+  "weather_source_verified": false,
+  "rows_downloaded": null,
+  "sha256": null,
+  "model_evaluated": false,
+  "metrics": null,
+  "user_supplied_2018": {
+    "downloaded_by_agent": false,
+    "received_from_user": true,
+    "actual_format": "CSV",
+    "manifest": "prepared/atr_2018_manifest.json",
+    "compatibility": "all 6533 overlapping UCI target values match exactly",
+    "post_uci_hours": 1608,
+    "model_evaluated": false
+  }
+}
