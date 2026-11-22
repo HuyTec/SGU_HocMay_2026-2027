@@ -1,0 +1,1 @@
+Mô hình fit trên 28,553 giờ train + validation. Chấm 6,052/6,087 giờ test, loại 35 giờ thiếu history. MAE = 178.208, RMSE = 295.528 xe/giờ; R² = 0.977587. Không dùng điểm test để chọn lại mô hình; đây là kết quả theo kịch bản tuần tự đã công bố.

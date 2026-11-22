@@ -1,0 +1,9 @@
+{
+  "artifact": "E:\\Project\\SGU_HocMay_2026-2027\\metro_interstate_traffic_volume\\notebooks\\validation\\outputs\\interpretation_C30\\train_C30_interpretation.joblib",
+  "scope": "train-only fit for validation interpretation",
+  "n": 6050,
+  "MAE": 190.18996838954962,
+  "fit_performed": false,
+  "test_evaluated": false,
+  "max_difference_from_saved_predictions": 1.8189894035458565e-12
+}

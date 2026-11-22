@@ -1,0 +1,26 @@
+{
+  "plan_hash": "282343321ab10121adcec3840d9cb00b87d37e1b3f3b51cefb447a1325ec8c6e",
+  "status": "complete",
+  "test_evaluated": true,
+  "retuned": false,
+  "metrics": {
+    "model": "C30_RF25_XGB25_ExtraTrees50",
+    "config": "C30",
+    "n_fit": 28553,
+    "n_test_total": 6087,
+    "n": 6052,
+    "n_excluded": 35,
+    "start": "2018-01-19 15:00:00",
+    "end": "2018-09-30 23:00:00",
+    "MAE": 178.2075577330074,
+    "RMSE": 295.52821130690944,
+    "R2": 0.9775868412691358
+  },
+  "scenario": "sequential hourly; observed past traffic; same-hour weather assumed available",
+  "validation_previously_seen": true,
+  "output_sha256": {
+    "test_predictions.csv": "ba493be1cca765b24c2cb6c686a02c53fe00d3212326bff952de5390dab31b84",
+    "test_metrics.csv": "5f834cd0089cf5cf204aaa1821d1d53875233e7138507087dcbf9d763e2e1835",
+    "final_model.joblib": "315c46c42cef222b16eac4bf7b94cbfdd5e36ad796b36149ebcbb2cea5e581cc"
+  }
+}

@@ -45,9 +45,9 @@ Tải trực tiếp từ máy và tải qua trình duyệt đều timeout ở m�
 4. Xác định timezone/DST của nguồn mới và quy ước CST/local time của UCI. Không tự bỏ giờ lặp, cộng dồn hai giờ hoặc dùng số hàng để tạo lag.
 5. Xác minh nguồn thời tiết theo giờ và cách ánh xạ sang `temp`, `rain_1h`, `snow_1h`, `clouds_all`, 11 nhóm `weather_main`. Không tự gán thời tiết quang đãng hoặc toàn bộ giá trị 0 để đủ C30. Nhãn lễ ngoài giai đoạn CSV cũng cần chính sách được công bố.
 6. Tạo history từ các quan sát quá khứ của chính chuỗi mới: lag tại đúng t−24h/t−168h; mean trên [t−24h,t), tối thiểu 18 quan sát. Ghi số mẫu bị loại vì thiếu history.
-7. Dùng mô hình và thống kê tiền xử lý đã khóa; không tuning hoặc học median từ tập ngoài. Đặc tả `notebooks/validation/outputs/final_C30/selected_model.json` hiện ghi chưa refit cuối; tại lúc kiểm tra chưa tìm thấy checkpoint để nạp inference trong repo.
+7. Dùng mô hình và thống kê tiền xử lý đã khóa; không tuning hoặc học median từ tập ngoài. Cập nhật sau bước fit cuối: artifact đã có tại `notebooks/validation/outputs/final_C30/final_model.joblib`, gồm RF 25%, XGBoost 25%, ExtraTrees 50%, cùng thống kê điền thiếu. App nạp đường dẫn này tường minh và kiểm tra hash; xem [bảng audit](../../../app/docs/demo_audit.md).
 8. Ghi kết quả vào một thí nghiệm đánh giá ngoài riêng, với mốc lịch, số mẫu, nguồn thời tiết và kiểm tra tương thích. Không trộn điểm này với validation/test UCI. Nếu dùng dữ liệu mới để sửa mô hình, phải mô tả nó là dữ liệu phát triển thay vì đánh giá ngoài độc lập.
 
 ## Bước đang cần
 
-Lấy workbook thật từ liên kết chính thức hoặc xuất hourly volume của trạm qua Traffic Viewer/TCDS. Việc kiểm tra schema, ghép weather và đánh giá mô hình phụ thuộc vào dữ liệu thật, chưa thể thực hiện từ trang giới thiệu.
+Traffic 2018 đã có và đã đối chiếu với UCI như phần đầu. Phần còn thiếu là hợp đồng weather, timezone/DST và lịch sự kiện ngoài UCI; xem [hợp đồng demo](../../../app/docs/demo_data_contract.md). Demo sáu tab tại [app/app.py](../../../app/app.py) hỗ trợ audit và xem trước, khóa dự đoán/đánh giá MnDOT. Trạng thái chưa tải được 2024 ở trên là lịch sử riêng của nguồn 2024.

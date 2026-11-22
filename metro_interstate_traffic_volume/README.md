@@ -14,7 +14,7 @@ So sánh mô hình, đo mức cải thiện khi thêm thời tiết và phân t�
 | B — Time + Weather | A + thời tiết | So sánh với A để đo đóng góp của thời tiết |
 | C — Time + Weather + History | B + lưu lượng quá khứ | Thí nghiệm mở rộng về lịch sử |
 
-Mô hình chính trong proposal: Ridge, Random Forest, XGBoost/LightGBM. Baseline gồm trung bình theo thứ–giờ, Ridge và seasonal naive cho thí nghiệm có lịch sử. Demo cuối dùng cấu hình B; History đánh giá riêng trong notebook.
+Mô hình chính trong proposal: Ridge, Random Forest, XGBoost/LightGBM. Baseline gồm trung bình theo thứ–giờ, Ridge và seasonal naive cho thí nghiệm có lịch sử. Demo B là phiên bản cũ. Demo hiện tại dùng artifact C30 cuối (RF 25%, XGBoost 25%, ExtraTrees 50%); xem [app/README.md](app/README.md). MnDOT đang ở bước kiểm tra dữ liệu, chưa mở dự đoán khi weather/time/holiday chưa tương thích.
 
 ## Quy trình và đánh giá
 

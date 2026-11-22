@@ -16,11 +16,15 @@ Cùng C30, cohort 22.503 giờ train và 6.050 giờ validation, với quy tắc
 | 21/11 — thử trọng số và phân tích lỗi | [validation_C30_OOF.ipynb](validation_C30_OOF.ipynb), [thí nghiệm OOF](../../experiments/21-11-2026_Huy_C30_OOF/fit_C30_OOF.ipynb) | OOF chọn RF/XGBoost 60/40 nhưng validation không cải thiện 50/50. Sai số hai mô hình thường cùng chiều, tạo giả thuyết cần mô hình bổ sung. |
 | 22/11 — thử loss MAE và mô hình bổ sung | [fit_C30_MAE_Diversity.ipynb](../../experiments/22-11-2026_Huy_C30_MAE_Diversity/fit_C30_MAE_Diversity.ipynb) | Khóa 5 cấu hình mô hình mới và các tỷ trọng trước khi chấm. OOF chọn 50% ExtraTrees + 50% ensemble RF/XGBoost cũ; phương án này cải thiện validation. |
 | 22/11 — tổng hợp và chốt | [validation_final_C30.ipynb](validation_final_C30.ipynb) | So các phương án trên cùng giờ, ghi quyết định RF 25% + XGBoost 25% + ExtraTrees 50% và xuất đặc tả. |
-| Bước tiếp theo | [selected_model.json](outputs/final_C30/selected_model.json) | Refit tiền xử lý và ba mô hình trên train + validation theo thời gian, giữ tham số/trọng số, rồi đánh giá test một lần. Chưa thực hiện bước này. |
+| 22/11 — fit cuối và test | [predict_C30.ipynb](predict_C30.ipynb) | Giữ nguyên cấu hình; refit trên train + validation đủ history và đánh giá test. Xem [bảng test](outputs/final_C30/test_metrics.csv) và [biên bản](outputs/final_C30/test_evaluation.json). Chạy lại chỉ đọc kết quả đã lưu. |
 
 [validation_C30.ipynb](validation_C30.ipynb) là notebook fit/validation hai mô hình ban đầu; bảng đối chiếu tham số và kết luận tổng hợp hiện nằm ở hai notebook compare/final bên trên. Không cần trình bày nó thành một thí nghiệm độc lập mới trong báo cáo.
 
-Đặc tả đã khóa là nguồn cấu hình cho bước fit cuối, chưa phải artifact mô hình đã refit. Không lấy lại tham số từ các bảng lịch sử khác.
+Đặc tả đã khóa là nguồn cấu hình cho bước fit cuối. Artifact đã refit được lưu tại `outputs/final_C30/final_model.joblib`; không lấy lại tham số từ các bảng lịch sử khác.
+
+## Dự đoán từ mô hình đã lưu
+
+[predict_C30.ipynb](predict_C30.ipynb) dùng [predict.py](../../predict.py) ở thư mục gốc để tạo đầu vào và dự đoán. Mục 1–4 kiểm tra artifact fit train của mục 4.7 trên validation. Mục 5–7 refit cấu hình đã khóa trên train + validation rồi chấm test một lần, lưu kế hoạch, dự đoán và MAE/RMSE/R². Test theo kịch bản tuần tự, dùng lưu lượng đã quan sát trước mỗi giờ dự đoán và giả định có thời tiết cùng giờ. Khi chạy lại, notebook nạp mô hình và kết quả test đã lưu. Demo cần truyền `--model` trỏ tới artifact cuối và dùng CSV MnDOT + weather đã chuẩn hóa. Chưa tự ánh xạ weather ERA5 thành C30.
 
 ## Gắn với câu hỏi nghiên cứu
 

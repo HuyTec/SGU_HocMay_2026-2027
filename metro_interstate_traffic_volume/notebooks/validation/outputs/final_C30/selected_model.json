@@ -1,6 +1,6 @@
 {
   "model_id": "C30_RF25_XGB25_ExtraTrees50",
-  "status": "model_spec_locked_by_user",
+  "status": "final_refit_and_test_completed",
   "decision_date": "2026-11-22",
   "selected_by": "user confirmation after OOF and validation review",
   "config": "C30",
@@ -191,7 +191,24 @@
     "experiments\\22-11-2026_Huy_C30_MAE_Diversity\\outputs\\oof_fold_comparison.csv": "ccf8dd2c7848123dc9a6053892817887512a1625be164d33a606775d1f770e05"
   },
   "validation_previously_seen": true,
-  "refit_completed": false,
-  "test_evaluated": false,
-  "next_step": "Refit preprocessing and all three models on chronological train+validation complete-history cohort with frozen parameters, then evaluate test once using declared sequential scenario."
+  "refit_completed": true,
+  "test_evaluated": true,
+  "next_step": "Use saved final artifact for demo; do not retune using test.",
+  "final_fit_n": 28553,
+  "final_fit_end": "2018-01-19 14:00:00",
+  "final_artifact": "notebooks\\validation\\outputs\\final_C30\\final_model.joblib",
+  "test_report": "notebooks\\validation\\outputs\\final_C30\\test_evaluation.json",
+  "test_metrics": {
+    "model": "C30_RF25_XGB25_ExtraTrees50",
+    "config": "C30",
+    "n_fit": 28553,
+    "n_test_total": 6087,
+    "n": 6052,
+    "n_excluded": 35,
+    "start": "2018-01-19 15:00:00",
+    "end": "2018-09-30 23:00:00",
+    "MAE": 178.2075577330074,
+    "RMSE": 295.52821130690944,
+    "R2": 0.9775868412691358
+  }
 }

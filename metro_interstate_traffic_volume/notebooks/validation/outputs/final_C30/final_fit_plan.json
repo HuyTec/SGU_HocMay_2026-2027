@@ -1,0 +1,1621 @@
+{
+  "model": {
+    "model_id": "C30_RF25_XGB25_ExtraTrees50",
+    "config": "C30",
+    "features": [
+      "hour",
+      "day_of_week",
+      "month",
+      "is_weekend",
+      "is_rush_hour",
+      "hour_sin",
+      "hour_cos",
+      "day_of_week_sin",
+      "day_of_week_cos",
+      "month_sin",
+      "month_cos",
+      "is_holiday",
+      "temp_c",
+      "rain_1h",
+      "snow_1h",
+      "clouds_all",
+      "weather_clear",
+      "weather_clouds",
+      "weather_drizzle",
+      "weather_fog",
+      "weather_haze",
+      "weather_mist",
+      "weather_rain",
+      "weather_smoke",
+      "weather_snow",
+      "weather_squall",
+      "weather_thunderstorm",
+      "lag_24h",
+      "lag_168h",
+      "mean_24h"
+    ],
+    "weights": {
+      "Random Forest": 0.25,
+      "XGBoost": 0.25,
+      "ExtraTrees": 0.5
+    },
+    "components": {
+      "Random Forest": {
+        "class": "sklearn.ensemble.RandomForestRegressor",
+        "params": {
+          "bootstrap": true,
+          "ccp_alpha": 0.0,
+          "criterion": "squared_error",
+          "max_depth": null,
+          "max_features": 0.33,
+          "max_leaf_nodes": null,
+          "max_samples": null,
+          "min_impurity_decrease": 0.0,
+          "min_samples_leaf": 2,
+          "min_samples_split": 2,
+          "min_weight_fraction_leaf": 0.0,
+          "monotonic_cst": null,
+          "n_estimators": 100,
+          "n_jobs": 4,
+          "oob_score": false,
+          "random_state": 42,
+          "verbose": 0,
+          "warm_start": false
+        }
+      },
+      "XGBoost": {
+        "class": "xgboost.XGBRegressor",
+        "params": {
+          "objective": "reg:squarederror",
+          "base_score": null,
+          "booster": null,
+          "callbacks": null,
+          "colsample_bylevel": null,
+          "colsample_bynode": null,
+          "colsample_bytree": 0.8,
+          "device": null,
+          "early_stopping_rounds": null,
+          "enable_categorical": true,
+          "eval_metric": null,
+          "feature_types": null,
+          "feature_weights": null,
+          "gamma": null,
+          "grow_policy": null,
+          "importance_type": null,
+          "interaction_constraints": null,
+          "learning_rate": 0.03,
+          "max_bin": null,
+          "max_cat_threshold": null,
+          "max_cat_to_onehot": null,
+          "max_delta_step": null,
+          "max_depth": 6,
+          "max_leaves": null,
+          "min_child_weight": 1,
+          "monotone_constraints": null,
+          "multi_strategy": null,
+          "n_estimators": 400,
+          "n_jobs": 4,
+          "num_parallel_tree": null,
+          "random_state": 42,
+          "reg_alpha": null,
+          "reg_lambda": null,
+          "sampling_method": null,
+          "scale_pos_weight": null,
+          "subsample": 0.7,
+          "tree_method": "hist",
+          "validate_parameters": null,
+          "verbosity": null
+        }
+      },
+      "ExtraTrees": {
+        "class": "sklearn.ensemble.ExtraTreesRegressor",
+        "params": {
+          "bootstrap": false,
+          "ccp_alpha": 0.0,
+          "criterion": "squared_error",
+          "max_depth": null,
+          "max_features": 0.8,
+          "max_leaf_nodes": null,
+          "max_samples": null,
+          "min_impurity_decrease": 0.0,
+          "min_samples_leaf": 2,
+          "min_samples_split": 2,
+          "min_weight_fraction_leaf": 0.0,
+          "monotonic_cst": null,
+          "n_estimators": 200,
+          "n_jobs": 4,
+          "oob_score": false,
+          "random_state": 42,
+          "verbose": 0,
+          "warm_start": false
+        }
+      }
+    },
+    "preprocessing": {
+      "source": "src.feature_experiments.prepare_fold and src.preprocessing",
+      "fit_statistics_on_training_partition_only": true,
+      "history_policy": "exact t-24h and t-168h; mean [t-24h,t), minimum 18 observed hours",
+      "cohort_policy": "all three history columns available; never fill target or missing lag with zero/median",
+      "source_hashes": {
+        "src\\model.py": "922c2a2304a87717e0dbba9d5aa6d72df2a86c59d1487a1d4c65b7b5df9128c5",
+        "src\\features.py": "1f796ab10ff81e09e3ba7be8c0a48c518700256e635b1fd2698196772256e6ed",
+        "src\\feature_experiments.py": "0cde7d4432da770eb0ef896469c0efb69ab32c7ecd6284627fa1801d1d69a859",
+        "src\\preprocessing.py": "6e22a82410d02eb678bdef0e7bf41e6fabc94baaa92d831fd55046d5ba0ec705"
+      }
+    }
+  },
+  "data_sha256": "d2092b0060b8db304a5da8c27b637b38da97b798e43f67da6a239328890a1de6",
+  "full_frame_hash": "dda92e84bda5cebea9d45219a4b53dd4abc6472c378c2ea1e6aa8e20b9bbbc9e",
+  "fit_hash": "265d0c479b0147616e5f84c725e5f5d008b777696a26c1dfadbe23c5d5a2e4b8",
+  "test_times_hash": "0056d9668a7cdd09a24c64132c95f827154ae41863476a9379b102e7f162322d",
+  "n_fit": 28553,
+  "n_test_total": 6087,
+  "n_test_history": 6052,
+  "preprocessing": {
+    "n": 28553,
+    "fit_start": "2012-10-09 09:00:00",
+    "fit_end": "2018-01-19 14:00:00",
+    "temp_fallback": 282.94,
+    "rain_median": 0.0,
+    "temp_by_month_hour": [
+      {
+        "month": 1,
+        "hour": 0,
+        "median": 262.21
+      },
+      {
+        "month": 1,
+        "hour": 1,
+        "median": 264.455
+      },
+      {
+        "month": 1,
+        "hour": 2,
+        "median": 261.585
+      },
+      {
+        "month": 1,
+        "hour": 3,
+        "median": 263.83500000000004
+      },
+      {
+        "month": 1,
+        "hour": 4,
+        "median": 263.24
+      },
+      {
+        "month": 1,
+        "hour": 5,
+        "median": 263.2
+      },
+      {
+        "month": 1,
+        "hour": 6,
+        "median": 263.02
+      },
+      {
+        "month": 1,
+        "hour": 7,
+        "median": 262.46
+      },
+      {
+        "month": 1,
+        "hour": 8,
+        "median": 260.865
+      },
+      {
+        "month": 1,
+        "hour": 9,
+        "median": 262.15999999999997
+      },
+      {
+        "month": 1,
+        "hour": 10,
+        "median": 263.72
+      },
+      {
+        "month": 1,
+        "hour": 11,
+        "median": 263.185
+      },
+      {
+        "month": 1,
+        "hour": 12,
+        "median": 265.93
+      },
+      {
+        "month": 1,
+        "hour": 13,
+        "median": 264.405
+      },
+      {
+        "month": 1,
+        "hour": 14,
+        "median": 265.06
+      },
+      {
+        "month": 1,
+        "hour": 15,
+        "median": 265.135
+      },
+      {
+        "month": 1,
+        "hour": 16,
+        "median": 263.085
+      },
+      {
+        "month": 1,
+        "hour": 17,
+        "median": 263.795
+      },
+      {
+        "month": 1,
+        "hour": 18,
+        "median": 264.7
+      },
+      {
+        "month": 1,
+        "hour": 19,
+        "median": 263.44
+      },
+      {
+        "month": 1,
+        "hour": 20,
+        "median": 263.985
+      },
+      {
+        "month": 1,
+        "hour": 21,
+        "median": 264.34000000000003
+      },
+      {
+        "month": 1,
+        "hour": 22,
+        "median": 263.945
+      },
+      {
+        "month": 1,
+        "hour": 23,
+        "median": 264.4
+      },
+      {
+        "month": 2,
+        "hour": 0,
+        "median": 264.34
+      },
+      {
+        "month": 2,
+        "hour": 1,
+        "median": 264.22
+      },
+      {
+        "month": 2,
+        "hour": 2,
+        "median": 265.35
+      },
+      {
+        "month": 2,
+        "hour": 3,
+        "median": 263.015
+      },
+      {
+        "month": 2,
+        "hour": 4,
+        "median": 264.69
+      },
+      {
+        "month": 2,
+        "hour": 5,
+        "median": 262.42
+      },
+      {
+        "month": 2,
+        "hour": 6,
+        "median": 263.65
+      },
+      {
+        "month": 2,
+        "hour": 7,
+        "median": 263.79200000000003
+      },
+      {
+        "month": 2,
+        "hour": 8,
+        "median": 264.01
+      },
+      {
+        "month": 2,
+        "hour": 9,
+        "median": 262.57
+      },
+      {
+        "month": 2,
+        "hour": 10,
+        "median": 266.09
+      },
+      {
+        "month": 2,
+        "hour": 11,
+        "median": 268.445
+      },
+      {
+        "month": 2,
+        "hour": 12,
+        "median": 266.68
+      },
+      {
+        "month": 2,
+        "hour": 13,
+        "median": 269.27
+      },
+      {
+        "month": 2,
+        "hour": 14,
+        "median": 268.57
+      },
+      {
+        "month": 2,
+        "hour": 15,
+        "median": 268.78
+      },
+      {
+        "month": 2,
+        "hour": 16,
+        "median": 268.49
+      },
+      {
+        "month": 2,
+        "hour": 17,
+        "median": 267.51
+      },
+      {
+        "month": 2,
+        "hour": 18,
+        "median": 267.65
+      },
+      {
+        "month": 2,
+        "hour": 19,
+        "median": 266.665
+      },
+      {
+        "month": 2,
+        "hour": 20,
+        "median": 265.68
+      },
+      {
+        "month": 2,
+        "hour": 21,
+        "median": 265.82
+      },
+      {
+        "month": 2,
+        "hour": 22,
+        "median": 265.635
+      },
+      {
+        "month": 2,
+        "hour": 23,
+        "median": 265.35
+      },
+      {
+        "month": 3,
+        "hour": 0,
+        "median": 270.92
+      },
+      {
+        "month": 3,
+        "hour": 1,
+        "median": 270.6
+      },
+      {
+        "month": 3,
+        "hour": 2,
+        "median": 270.42
+      },
+      {
+        "month": 3,
+        "hour": 3,
+        "median": 270.075
+      },
+      {
+        "month": 3,
+        "hour": 4,
+        "median": 269.72
+      },
+      {
+        "month": 3,
+        "hour": 5,
+        "median": 269.59
+      },
+      {
+        "month": 3,
+        "hour": 6,
+        "median": 269.3
+      },
+      {
+        "month": 3,
+        "hour": 7,
+        "median": 268.895
+      },
+      {
+        "month": 3,
+        "hour": 8,
+        "median": 269.29
+      },
+      {
+        "month": 3,
+        "hour": 9,
+        "median": 270.68
+      },
+      {
+        "month": 3,
+        "hour": 10,
+        "median": 271.52
+      },
+      {
+        "month": 3,
+        "hour": 11,
+        "median": 272.8
+      },
+      {
+        "month": 3,
+        "hour": 12,
+        "median": 273.79999999999995
+      },
+      {
+        "month": 3,
+        "hour": 13,
+        "median": 274.42
+      },
+      {
+        "month": 3,
+        "hour": 14,
+        "median": 275.14
+      },
+      {
+        "month": 3,
+        "hour": 15,
+        "median": 274.96000000000004
+      },
+      {
+        "month": 3,
+        "hour": 16,
+        "median": 275.64
+      },
+      {
+        "month": 3,
+        "hour": 17,
+        "median": 276.01
+      },
+      {
+        "month": 3,
+        "hour": 18,
+        "median": 275.27
+      },
+      {
+        "month": 3,
+        "hour": 19,
+        "median": 274.27
+      },
+      {
+        "month": 3,
+        "hour": 20,
+        "median": 273.64
+      },
+      {
+        "month": 3,
+        "hour": 21,
+        "median": 272.53499999999997
+      },
+      {
+        "month": 3,
+        "hour": 22,
+        "median": 271.88
+      },
+      {
+        "month": 3,
+        "hour": 23,
+        "median": 271.83
+      },
+      {
+        "month": 4,
+        "hour": 0,
+        "median": 278.78499999999997
+      },
+      {
+        "month": 4,
+        "hour": 1,
+        "median": 278.21000000000004
+      },
+      {
+        "month": 4,
+        "hour": 2,
+        "median": 277.51
+      },
+      {
+        "month": 4,
+        "hour": 3,
+        "median": 276.83
+      },
+      {
+        "month": 4,
+        "hour": 4,
+        "median": 276.47
+      },
+      {
+        "month": 4,
+        "hour": 5,
+        "median": 276.305
+      },
+      {
+        "month": 4,
+        "hour": 6,
+        "median": 275.905
+      },
+      {
+        "month": 4,
+        "hour": 7,
+        "median": 276.485
+      },
+      {
+        "month": 4,
+        "hour": 8,
+        "median": 277.18
+      },
+      {
+        "month": 4,
+        "hour": 9,
+        "median": 278.952
+      },
+      {
+        "month": 4,
+        "hour": 10,
+        "median": 279.85
+      },
+      {
+        "month": 4,
+        "hour": 11,
+        "median": 280.765
+      },
+      {
+        "month": 4,
+        "hour": 12,
+        "median": 281.75
+      },
+      {
+        "month": 4,
+        "hour": 13,
+        "median": 281.155
+      },
+      {
+        "month": 4,
+        "hour": 14,
+        "median": 283.33000000000004
+      },
+      {
+        "month": 4,
+        "hour": 15,
+        "median": 282.81
+      },
+      {
+        "month": 4,
+        "hour": 16,
+        "median": 283.02
+      },
+      {
+        "month": 4,
+        "hour": 17,
+        "median": 283.03
+      },
+      {
+        "month": 4,
+        "hour": 18,
+        "median": 281.765
+      },
+      {
+        "month": 4,
+        "hour": 19,
+        "median": 282.59000000000003
+      },
+      {
+        "month": 4,
+        "hour": 20,
+        "median": 281.75
+      },
+      {
+        "month": 4,
+        "hour": 21,
+        "median": 280.6
+      },
+      {
+        "month": 4,
+        "hour": 22,
+        "median": 280.47
+      },
+      {
+        "month": 4,
+        "hour": 23,
+        "median": 279.893
+      },
+      {
+        "month": 5,
+        "hour": 0,
+        "median": 286.02
+      },
+      {
+        "month": 5,
+        "hour": 1,
+        "median": 285.28
+      },
+      {
+        "month": 5,
+        "hour": 2,
+        "median": 284.71
+      },
+      {
+        "month": 5,
+        "hour": 3,
+        "median": 283.92
+      },
+      {
+        "month": 5,
+        "hour": 4,
+        "median": 283.44
+      },
+      {
+        "month": 5,
+        "hour": 5,
+        "median": 283.22
+      },
+      {
+        "month": 5,
+        "hour": 6,
+        "median": 282.72
+      },
+      {
+        "month": 5,
+        "hour": 7,
+        "median": 282.99
+      },
+      {
+        "month": 5,
+        "hour": 8,
+        "median": 285.08
+      },
+      {
+        "month": 5,
+        "hour": 9,
+        "median": 286.15
+      },
+      {
+        "month": 5,
+        "hour": 10,
+        "median": 287.4
+      },
+      {
+        "month": 5,
+        "hour": 11,
+        "median": 288.6
+      },
+      {
+        "month": 5,
+        "hour": 12,
+        "median": 289.95
+      },
+      {
+        "month": 5,
+        "hour": 13,
+        "median": 290.355
+      },
+      {
+        "month": 5,
+        "hour": 14,
+        "median": 291.485
+      },
+      {
+        "month": 5,
+        "hour": 15,
+        "median": 291.935
+      },
+      {
+        "month": 5,
+        "hour": 16,
+        "median": 292.22
+      },
+      {
+        "month": 5,
+        "hour": 17,
+        "median": 292.05
+      },
+      {
+        "month": 5,
+        "hour": 18,
+        "median": 291.935
+      },
+      {
+        "month": 5,
+        "hour": 19,
+        "median": 291.635
+      },
+      {
+        "month": 5,
+        "hour": 20,
+        "median": 290.79
+      },
+      {
+        "month": 5,
+        "hour": 21,
+        "median": 288.975
+      },
+      {
+        "month": 5,
+        "hour": 22,
+        "median": 287.42
+      },
+      {
+        "month": 5,
+        "hour": 23,
+        "median": 286.55
+      },
+      {
+        "month": 6,
+        "hour": 0,
+        "median": 290.86
+      },
+      {
+        "month": 6,
+        "hour": 1,
+        "median": 290.06
+      },
+      {
+        "month": 6,
+        "hour": 2,
+        "median": 289.695
+      },
+      {
+        "month": 6,
+        "hour": 3,
+        "median": 289.26
+      },
+      {
+        "month": 6,
+        "hour": 4,
+        "median": 288.78
+      },
+      {
+        "month": 6,
+        "hour": 5,
+        "median": 288.55
+      },
+      {
+        "month": 6,
+        "hour": 6,
+        "median": 288.15
+      },
+      {
+        "month": 6,
+        "hour": 7,
+        "median": 289.04499999999996
+      },
+      {
+        "month": 6,
+        "hour": 8,
+        "median": 290.495
+      },
+      {
+        "month": 6,
+        "hour": 9,
+        "median": 292.28
+      },
+      {
+        "month": 6,
+        "hour": 10,
+        "median": 293.045
+      },
+      {
+        "month": 6,
+        "hour": 11,
+        "median": 294.07
+      },
+      {
+        "month": 6,
+        "hour": 12,
+        "median": 295.28
+      },
+      {
+        "month": 6,
+        "hour": 13,
+        "median": 296.677
+      },
+      {
+        "month": 6,
+        "hour": 14,
+        "median": 296.89
+      },
+      {
+        "month": 6,
+        "hour": 15,
+        "median": 297.46
+      },
+      {
+        "month": 6,
+        "hour": 16,
+        "median": 297.535
+      },
+      {
+        "month": 6,
+        "hour": 17,
+        "median": 297.14
+      },
+      {
+        "month": 6,
+        "hour": 18,
+        "median": 296.78499999999997
+      },
+      {
+        "month": 6,
+        "hour": 19,
+        "median": 295.82
+      },
+      {
+        "month": 6,
+        "hour": 20,
+        "median": 295.54
+      },
+      {
+        "month": 6,
+        "hour": 21,
+        "median": 294.22
+      },
+      {
+        "month": 6,
+        "hour": 22,
+        "median": 292.35
+      },
+      {
+        "month": 6,
+        "hour": 23,
+        "median": 291.735
+      },
+      {
+        "month": 7,
+        "hour": 0,
+        "median": 293.435
+      },
+      {
+        "month": 7,
+        "hour": 1,
+        "median": 292.99
+      },
+      {
+        "month": 7,
+        "hour": 2,
+        "median": 292.34
+      },
+      {
+        "month": 7,
+        "hour": 3,
+        "median": 292.02
+      },
+      {
+        "month": 7,
+        "hour": 4,
+        "median": 291.59000000000003
+      },
+      {
+        "month": 7,
+        "hour": 5,
+        "median": 291.28
+      },
+      {
+        "month": 7,
+        "hour": 6,
+        "median": 291.2
+      },
+      {
+        "month": 7,
+        "hour": 7,
+        "median": 291.735
+      },
+      {
+        "month": 7,
+        "hour": 8,
+        "median": 292.83000000000004
+      },
+      {
+        "month": 7,
+        "hour": 9,
+        "median": 294.2
+      },
+      {
+        "month": 7,
+        "hour": 10,
+        "median": 295.95
+      },
+      {
+        "month": 7,
+        "hour": 11,
+        "median": 297.21000000000004
+      },
+      {
+        "month": 7,
+        "hour": 12,
+        "median": 298.15
+      },
+      {
+        "month": 7,
+        "hour": 13,
+        "median": 299.13
+      },
+      {
+        "month": 7,
+        "hour": 14,
+        "median": 299.84
+      },
+      {
+        "month": 7,
+        "hour": 15,
+        "median": 300.06
+      },
+      {
+        "month": 7,
+        "hour": 16,
+        "median": 300.165
+      },
+      {
+        "month": 7,
+        "hour": 17,
+        "median": 300.47
+      },
+      {
+        "month": 7,
+        "hour": 18,
+        "median": 300.1
+      },
+      {
+        "month": 7,
+        "hour": 19,
+        "median": 299.23
+      },
+      {
+        "month": 7,
+        "hour": 20,
+        "median": 297.97
+      },
+      {
+        "month": 7,
+        "hour": 21,
+        "median": 296.64
+      },
+      {
+        "month": 7,
+        "hour": 22,
+        "median": 295.16
+      },
+      {
+        "month": 7,
+        "hour": 23,
+        "median": 294.29
+      },
+      {
+        "month": 8,
+        "hour": 0,
+        "median": 291.17
+      },
+      {
+        "month": 8,
+        "hour": 1,
+        "median": 290.405
+      },
+      {
+        "month": 8,
+        "hour": 2,
+        "median": 290.2
+      },
+      {
+        "month": 8,
+        "hour": 3,
+        "median": 289.805
+      },
+      {
+        "month": 8,
+        "hour": 4,
+        "median": 289.48
+      },
+      {
+        "month": 8,
+        "hour": 5,
+        "median": 289.22
+      },
+      {
+        "month": 8,
+        "hour": 6,
+        "median": 289.22
+      },
+      {
+        "month": 8,
+        "hour": 7,
+        "median": 289.23
+      },
+      {
+        "month": 8,
+        "hour": 8,
+        "median": 290.33
+      },
+      {
+        "month": 8,
+        "hour": 9,
+        "median": 291.93
+      },
+      {
+        "month": 8,
+        "hour": 10,
+        "median": 294.01
+      },
+      {
+        "month": 8,
+        "hour": 11,
+        "median": 295.35
+      },
+      {
+        "month": 8,
+        "hour": 12,
+        "median": 296.34
+      },
+      {
+        "month": 8,
+        "hour": 13,
+        "median": 297.28
+      },
+      {
+        "month": 8,
+        "hour": 14,
+        "median": 297.82
+      },
+      {
+        "month": 8,
+        "hour": 15,
+        "median": 298.265
+      },
+      {
+        "month": 8,
+        "hour": 16,
+        "median": 298.48
+      },
+      {
+        "month": 8,
+        "hour": 17,
+        "median": 298.3
+      },
+      {
+        "month": 8,
+        "hour": 18,
+        "median": 297.68
+      },
+      {
+        "month": 8,
+        "hour": 19,
+        "median": 296.59
+      },
+      {
+        "month": 8,
+        "hour": 20,
+        "median": 295.21
+      },
+      {
+        "month": 8,
+        "hour": 21,
+        "median": 293.341
+      },
+      {
+        "month": 8,
+        "hour": 22,
+        "median": 292.37
+      },
+      {
+        "month": 8,
+        "hour": 23,
+        "median": 291.65
+      },
+      {
+        "month": 9,
+        "hour": 0,
+        "median": 289.915
+      },
+      {
+        "month": 9,
+        "hour": 1,
+        "median": 289.44
+      },
+      {
+        "month": 9,
+        "hour": 2,
+        "median": 288.88
+      },
+      {
+        "month": 9,
+        "hour": 3,
+        "median": 288.43
+      },
+      {
+        "month": 9,
+        "hour": 4,
+        "median": 288.15
+      },
+      {
+        "month": 9,
+        "hour": 5,
+        "median": 287.83
+      },
+      {
+        "month": 9,
+        "hour": 6,
+        "median": 287.67
+      },
+      {
+        "month": 9,
+        "hour": 7,
+        "median": 287.61
+      },
+      {
+        "month": 9,
+        "hour": 8,
+        "median": 288.11
+      },
+      {
+        "month": 9,
+        "hour": 9,
+        "median": 289.64
+      },
+      {
+        "month": 9,
+        "hour": 10,
+        "median": 290.515
+      },
+      {
+        "month": 9,
+        "hour": 11,
+        "median": 292.43
+      },
+      {
+        "month": 9,
+        "hour": 12,
+        "median": 293.996
+      },
+      {
+        "month": 9,
+        "hour": 13,
+        "median": 294.4
+      },
+      {
+        "month": 9,
+        "hour": 14,
+        "median": 295.57
+      },
+      {
+        "month": 9,
+        "hour": 15,
+        "median": 295.945
+      },
+      {
+        "month": 9,
+        "hour": 16,
+        "median": 295.85
+      },
+      {
+        "month": 9,
+        "hour": 17,
+        "median": 295.64
+      },
+      {
+        "month": 9,
+        "hour": 18,
+        "median": 294.93
+      },
+      {
+        "month": 9,
+        "hour": 19,
+        "median": 293.39
+      },
+      {
+        "month": 9,
+        "hour": 20,
+        "median": 292.07
+      },
+      {
+        "month": 9,
+        "hour": 21,
+        "median": 290.92
+      },
+      {
+        "month": 9,
+        "hour": 22,
+        "median": 290.36
+      },
+      {
+        "month": 9,
+        "hour": 23,
+        "median": 290.24
+      },
+      {
+        "month": 10,
+        "hour": 0,
+        "median": 281.65999999999997
+      },
+      {
+        "month": 10,
+        "hour": 1,
+        "median": 281.0
+      },
+      {
+        "month": 10,
+        "hour": 2,
+        "median": 281.372
+      },
+      {
+        "month": 10,
+        "hour": 3,
+        "median": 281.47
+      },
+      {
+        "month": 10,
+        "hour": 4,
+        "median": 280.75
+      },
+      {
+        "month": 10,
+        "hour": 5,
+        "median": 280.5
+      },
+      {
+        "month": 10,
+        "hour": 6,
+        "median": 280.091
+      },
+      {
+        "month": 10,
+        "hour": 7,
+        "median": 279.79200000000003
+      },
+      {
+        "month": 10,
+        "hour": 8,
+        "median": 280.125
+      },
+      {
+        "month": 10,
+        "hour": 9,
+        "median": 280.85
+      },
+      {
+        "month": 10,
+        "hour": 10,
+        "median": 282.17499999999995
+      },
+      {
+        "month": 10,
+        "hour": 11,
+        "median": 283.85
+      },
+      {
+        "month": 10,
+        "hour": 12,
+        "median": 285.84
+      },
+      {
+        "month": 10,
+        "hour": 13,
+        "median": 285.676
+      },
+      {
+        "month": 10,
+        "hour": 14,
+        "median": 286.86
+      },
+      {
+        "month": 10,
+        "hour": 15,
+        "median": 287.23
+      },
+      {
+        "month": 10,
+        "hour": 16,
+        "median": 287.40999999999997
+      },
+      {
+        "month": 10,
+        "hour": 17,
+        "median": 287.1385
+      },
+      {
+        "month": 10,
+        "hour": 18,
+        "median": 286.119
+      },
+      {
+        "month": 10,
+        "hour": 19,
+        "median": 285.02
+      },
+      {
+        "month": 10,
+        "hour": 20,
+        "median": 283.99
+      },
+      {
+        "month": 10,
+        "hour": 21,
+        "median": 283.4
+      },
+      {
+        "month": 10,
+        "hour": 22,
+        "median": 282.814
+      },
+      {
+        "month": 10,
+        "hour": 23,
+        "median": 282.265
+      },
+      {
+        "month": 11,
+        "hour": 0,
+        "median": 275.15
+      },
+      {
+        "month": 11,
+        "hour": 1,
+        "median": 274.41
+      },
+      {
+        "month": 11,
+        "hour": 2,
+        "median": 274.615
+      },
+      {
+        "month": 11,
+        "hour": 3,
+        "median": 274.12
+      },
+      {
+        "month": 11,
+        "hour": 4,
+        "median": 273.67999999999995
+      },
+      {
+        "month": 11,
+        "hour": 5,
+        "median": 274.09
+      },
+      {
+        "month": 11,
+        "hour": 6,
+        "median": 274.15
+      },
+      {
+        "month": 11,
+        "hour": 7,
+        "median": 273.71500000000003
+      },
+      {
+        "month": 11,
+        "hour": 8,
+        "median": 273.78999999999996
+      },
+      {
+        "month": 11,
+        "hour": 9,
+        "median": 274.205
+      },
+      {
+        "month": 11,
+        "hour": 10,
+        "median": 274.67
+      },
+      {
+        "month": 11,
+        "hour": 11,
+        "median": 275.89
+      },
+      {
+        "month": 11,
+        "hour": 12,
+        "median": 276.8
+      },
+      {
+        "month": 11,
+        "hour": 13,
+        "median": 277.5
+      },
+      {
+        "month": 11,
+        "hour": 14,
+        "median": 278.71
+      },
+      {
+        "month": 11,
+        "hour": 15,
+        "median": 277.995
+      },
+      {
+        "month": 11,
+        "hour": 16,
+        "median": 278.44
+      },
+      {
+        "month": 11,
+        "hour": 17,
+        "median": 277.01
+      },
+      {
+        "month": 11,
+        "hour": 18,
+        "median": 276.22
+      },
+      {
+        "month": 11,
+        "hour": 19,
+        "median": 275.79499999999996
+      },
+      {
+        "month": 11,
+        "hour": 20,
+        "median": 275.93
+      },
+      {
+        "month": 11,
+        "hour": 21,
+        "median": 275.76
+      },
+      {
+        "month": 11,
+        "hour": 22,
+        "median": 275.51
+      },
+      {
+        "month": 11,
+        "hour": 23,
+        "median": 275.25
+      },
+      {
+        "month": 12,
+        "hour": 0,
+        "median": 265.74
+      },
+      {
+        "month": 12,
+        "hour": 1,
+        "median": 265.56
+      },
+      {
+        "month": 12,
+        "hour": 2,
+        "median": 265.655
+      },
+      {
+        "month": 12,
+        "hour": 3,
+        "median": 265.79
+      },
+      {
+        "month": 12,
+        "hour": 4,
+        "median": 265.26
+      },
+      {
+        "month": 12,
+        "hour": 5,
+        "median": 265.51
+      },
+      {
+        "month": 12,
+        "hour": 6,
+        "median": 265.32
+      },
+      {
+        "month": 12,
+        "hour": 7,
+        "median": 265.25
+      },
+      {
+        "month": 12,
+        "hour": 8,
+        "median": 265.36
+      },
+      {
+        "month": 12,
+        "hour": 9,
+        "median": 265.625
+      },
+      {
+        "month": 12,
+        "hour": 10,
+        "median": 266.355
+      },
+      {
+        "month": 12,
+        "hour": 11,
+        "median": 266.80499999999995
+      },
+      {
+        "month": 12,
+        "hour": 12,
+        "median": 267.56
+      },
+      {
+        "month": 12,
+        "hour": 13,
+        "median": 267.68
+      },
+      {
+        "month": 12,
+        "hour": 14,
+        "median": 268.02
+      },
+      {
+        "month": 12,
+        "hour": 15,
+        "median": 268.43
+      },
+      {
+        "month": 12,
+        "hour": 16,
+        "median": 267.87
+      },
+      {
+        "month": 12,
+        "hour": 17,
+        "median": 267.12
+      },
+      {
+        "month": 12,
+        "hour": 18,
+        "median": 267.53999999999996
+      },
+      {
+        "month": 12,
+        "hour": 19,
+        "median": 266.5
+      },
+      {
+        "month": 12,
+        "hour": 20,
+        "median": 266.505
+      },
+      {
+        "month": 12,
+        "hour": 21,
+        "median": 266.42
+      },
+      {
+        "month": 12,
+        "hour": 22,
+        "median": 265.82
+      },
+      {
+        "month": 12,
+        "hour": 23,
+        "median": 265.69
+      }
+    ],
+    "fit_matrix_hash": "8a23bb04c86efcc3fa9001658c4530a40cbad7cc530f56c2fbb11aca4417fa61",
+    "score_matrix_hash": "4ce219c061d80b3697cae45178e4905e615750525190cb98ea6e1f5e0267cb0a"
+  },
+  "seed": 42,
+  "scenario": "sequential hourly; observed past traffic; same-hour weather assumed available",
+  "thread_policy": "RF/XGB fit under threadpool_limits(1), ExtraTrees unchanged",
+  "versions": {
+    "python": "3.14.7",
+    "numpy": "2.5.3",
+    "pandas": "3.0.6",
+    "sklearn": "1.9.1",
+    "xgboost": "3.4.1"
+  },
+  "code_sha256": {
+    "predict.py": "0f7e43ed7d460a58d30154c51b90ffe5bbefbc1aa5a45b8ce983475cf6597773",
+    "src/features.py": "1f796ab10ff81e09e3ba7be8c0a48c518700256e635b1fd2698196772256e6ed",
+    "src/preprocessing.py": "6e22a82410d02eb678bdef0e7bf41e6fabc94baaa92d831fd55046d5ba0ec705",
+    "src/feature_experiments.py": "0cde7d4432da770eb0ef896469c0efb69ab32c7ecd6284627fa1801d1d69a859"
+  }
+}
