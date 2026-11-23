@@ -1,0 +1,32 @@
+{
+  "endpoint": "https://api.openweathermap.org/data/4.0/onecall/timeline/1h",
+  "parameters_without_key": {
+    "lat": 44.951424,
+    "lon": -93.147145,
+    "units": "standard"
+  },
+  "start_inclusive_utc": "2018-01-01T00:00:00+00:00",
+  "end_inclusive_utc": "2018-12-12T23:00:00+00:00",
+  "hours": 8304,
+  "missing_hours": 0,
+  "duplicate_hours": 0,
+  "requests_this_invocation": 416,
+  "cached_pages": 416,
+  "field_present_counts": {
+    "temp": 8304,
+    "clouds": 8304,
+    "weather": 8304
+  },
+  "rain_1h_present": 760,
+  "snow_1h_present": 316,
+  "weather_label_counts": {
+    "Clear": 4111,
+    "Clouds": 3117,
+    "Snow": 316,
+    "Rain": 760
+  },
+  "missing_policy": "No zero filling, resampling, weather inference or traffic join",
+  "coordinate_status": "User-selected regional point, not verified UCI weather origin",
+  "retrieved_utc": "2026-11-23T12:35:08.549430+00:00",
+  "csv_sha256": "f15f814addcdb88515742d1768b93e2189dea865fcc9bb966cfd6be6aadcc2bb"
+}

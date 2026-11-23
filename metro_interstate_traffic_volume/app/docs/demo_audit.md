@@ -13,18 +13,17 @@ Tạo từ file thật; không huấn luyện, dự đoán hoặc chấm lại U
 | prepare_features | Đã có · đã xác minh | predict.py: (hourly, times, bundle) | DataFrame C30 float32 | Giữ toàn bộ context trước khi chọn giờ |
 | predict_hours | Đã có · đã xác minh | predict.py: (hourly, times, bundle) | date_time, prediction, status | Giữ toàn bộ context trước khi chọn giờ |
 | MnDOT trạm / hướng / tổng làn / giờ 1–24 | Đã có · đã xác minh | data\external\mndot\prepared\atr_2018_manifest.json | {"station_id": 301, "dir_of_travel": 7, "direction": "West", "lane_of_travel": 0, "lane_meaning": "combined lanes by direction; consistent with FHWA code and exact UCI overlap"}; giờ h → h−1; kiểm lại raw: 8160 giờ; giao UCI: 6533/6533 khớp | Kiểm DST và cờ chất lượng ngoài phần giao |
+| Weather OpenWeather / schema / provenance | Đã có · đã xác minh | data\external\mndot\weather\openweather_2018\openweather_2018_weather_prepared.csv | 8304 giờ UTC; K, mm/h, %; nhãn C30; cờ zero theo quy ước nguồn | Đã tích hợp xem trước và đối chiếu UCI; chưa chứng nhận cùng nguồn/thời gian |
 | time | Đã có · chưa xác minh tương thích | data/external/mndot/weather/README.md; atr_2018_manifest.json | Chưa xác minh CST cố định hay America/Chicago, DST và mốc khoảng đo weather. | Khóa dự đoán MnDOT; xem phương án trong demo_data_contract.md |
-| snow | Đã có · chưa xác minh tương thích | data/external/mndot/weather/README.md; atr_2018_manifest.json | ERA5 snowfall (cm tuyết) chưa tương đương snow_1h (mm nước); không tự nhân 10. | Khóa dự đoán MnDOT; xem phương án trong demo_data_contract.md |
-| labels | Đã có · chưa xác minh tương thích | data/external/mndot/weather/README.md; atr_2018_manifest.json | WMO chưa ánh xạ được đầy đủ 11 nhóm; không tự coi nhóm không suy ra được là 0. | Khóa dự đoán MnDOT; xem phương án trong demo_data_contract.md |
 | holiday | Chưa có dữ liệu | data/external/mndot/weather/README.md; atr_2018_manifest.json | Chưa có lịch lễ/sự kiện ngoài CSV UCI và chính sách khác biệt được duyệt. | Khóa dự đoán MnDOT; xem phương án trong demo_data_contract.md |
-| location | Đã có · chưa xác minh tương thích | data/external/mndot/weather/README.md; atr_2018_manifest.json | Weather là ô lưới khu vực; tọa độ weather gốc chưa được xác minh. | Khóa dự đoán MnDOT; xem phương án trong demo_data_contract.md |
+| location | Đã có · chưa xác minh tương thích | data/external/mndot/weather/README.md; atr_2018_manifest.json | OpenWeather ở điểm khu vực 44.951424/−93.147145; chưa xác minh điểm weather gốc UCI. | Khóa dự đoán MnDOT; xem phương án trong demo_data_contract.md |
 | Bảng giờ chuẩn hóa MnDOT | Chưa có dữ liệu | data/external/mndot/processed/hourly_demo.csv | Không xuất CSV giả đủ C30 khi weather/time/holiday chưa chốt | Không yêu cầu CSV C30 có sẵn |
 | Kết quả test UCI đã lưu | Đã có · đã xác minh | notebooks/validation/outputs/final_C30/test_metrics.csv | Chỉ đọc; không gọi lại quy trình test | Giữ riêng với điểm MnDOT |
 | README trạng thái cũ | Đã có · đã xác minh | README.md; data/external/mndot/README.md; app/demo_time_weather.py | Demo B cũ là lịch sử; checkpoint C30 cuối đã tồn tại | Xem app/README.md và báo cáo audit hiện tại |
 
 ## MnDOT sau UCI
 
-Mốc cuối UCI: 2018-09-30 23:00:00. Weather UTC chưa ghép: 8304 giờ.
+Mốc cuối UCI: 2018-09-30 23:00:00. OpenWeather: 8304 giờ UTC; app ghép xem trước theo giả định được hiển thị.
 
 | Chỉ tiêu | Số giờ |
 | --- | ---: |

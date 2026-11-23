@@ -1,0 +1,29 @@
+{
+  "hours": 8304,
+  "missing_values": {
+    "date_time_utc": 0,
+    "temp": 0,
+    "rain_1h": 0,
+    "snow_1h": 0,
+    "clouds_all": 0,
+    "weather_main": 0,
+    "weather_main_json": 0,
+    "rain_1h_status": 0,
+    "snow_1h_status": 0
+  },
+  "rain_status_counts": {
+    "zero_by_provider_omission_rule": 7544,
+    "api_1h": 760
+  },
+  "snow_status_counts": {
+    "zero_by_provider_omission_rule": 7988,
+    "api_1h": 316
+  },
+  "unknown_weather_labels": [],
+  "positive_rain_hours": 760,
+  "positive_snow_hours": 316,
+  "rule_source": "https://openweathermap.org/faq#api",
+  "time_policy": "UTC retained; no fixed-CST/DST choice or traffic join",
+  "unit_policy": "temp Kelvin, clouds %, rain/snow mm/h as returned by API",
+  "model_status": "weather prepared only; no inference/training or UCI replacement"
+}

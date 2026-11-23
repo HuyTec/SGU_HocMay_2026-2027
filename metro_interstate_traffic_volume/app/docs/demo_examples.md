@@ -1,5 +1,33 @@
 # Ví dụ và phạm vi xác minh
 
+**Bản UCI-first hiện tại:** dùng [kịch bản10–15phút](uci_first_demo.md) và
+[nghiệm thu mới](uci_first_verification.md). Những hướng dẫn nguồn ở sidebar,
+MnDOT tab2 và fixture làm luồng chính bên dưới là lịch sử UI trước refactor.
+Hiện UCI mặc định; tab2walkthrough, tab3history, tab4stored/live, tab5saved-test,
+tab6nguồnngoài và fixture nângcao.
+
+## Xem toàn bộ UCI gốc
+
+1. Sidebar chọn **UCI gốc · toàn bộ dữ liệu**.
+2. Tab 2 xem/tải CSV 48.204 dòng; bảng theo giờ 40.575 timestamp dùng cho history.
+   Xem số giờ và mốc train/validation/test; không mặc định toàn bộ là test.
+3. Tab 3 chọn một giờ để xem history và những dòng CSV gốc cùng timestamp.
+4. Chọn **19/01/2018 15:00**, sang tab 4 xem dự đoán test đã lưu tại giờ đó.
+   Chọn giờ thuộc train/validation thì không có dự đoán test để hiển thị.
+5. Tab 5 xem/lọc/tải kết quả test đã lưu; không chạy lại inference hoặc chấm điểm.
+
+## Weather mới trong demo
+
+1. Chọn MnDOT ở sidebar, giữ giả định CST cố định để xem trước.
+2. Tab 2 mở **Weather OpenWeather · UTC và quy tắc chuẩn hóa**: xem đủ 8.304 giờ,
+   nguồn/tọa độ, cờ mưa/tuyết và tải CSV.
+3. Bấm **So sánh weather OpenWeather với UCI**: bảng sai khác trên 6.533 giờ,
+   biểu đồ chồng và chênh lệch 7 ngày cuối phần giao. Đây không phải sai số mô hình.
+4. Tab 3 chọn một giờ MnDOT: xem UTC tương ứng, weather, provenance và history traffic.
+5. Đổi sidebar sang America/Chicago: giờ 04/11/2018 01:00 được giữ thiếu vì DST mơ hồ;
+   kết quả đối chiếu cũ bị xóa, cần bấm lập lại theo giả định mới.
+6. Dự đoán/đánh giá MnDOT vẫn khóa cho đến khi chốt thời gian, lịch sự kiện và khác biệt nguồn.
+
 ## Thử ứng dụng mà không chấm lại UCI
 
 1. Chạy `python -m streamlit run app/app.py`, chọn nguồn **Tổng hợp · kiểm tra kỹ thuật**.

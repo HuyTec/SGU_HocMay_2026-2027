@@ -1,5 +1,22 @@
 # Nguồn chính thức và cơ sở tin cậy
 
+## OpenWeather · weather mới đã tích hợp
+
+[One Call API 4.0](https://openweathermap.org/api/one-call-4) cung cấp dữ liệu lịch sử
+theo giờ, timestamp UTC, nhiệt độ Kelvin mặc định, mây %, mưa/tuyết mm/h.
+API đã trả thành công 8.304 giờ từ 01/01 đến hết 12/12/2018 UTC tại điểm người dùng
+chọn 44.951424/−93.147145. Dự án giữ phản hồi đã bỏ link chứa key, SHA256 từng trang,
+CSV gốc và bản chuẩn hóa có provenance. Đây là bằng chứng truy nguyên và kiểm tra file.
+
+[Công nghệ OpenWeather](https://openweather.co.uk/technology) kết hợp các nguồn quan trắc
+và mô hình; không giới thiệu toàn bộ giá trị là đo trực tiếp tại ATR 301.
+[FAQ chính thức](https://openweathermap.org/faq) giải thích trường hiện tượng vắng mặt;
+quy tắc 0 có cờ riêng và kiểm tra mâu thuẫn nhãn trước khi áp dụng.
+Nguồn mới không được xác nhận là cùng tọa độ hoặc phiên bản đã tạo UCI.
+
+Trong tab 2 có đối chiếu weather UCI–OpenWeather trên phần giao theo giả định giờ
+đang chọn. Không dùng độ khớp này làm bằng chứng chất lượng tuyệt đối hoặc tự xác nhận DST.
+
 Đối chiếu nguồn ngày 22/11/2026. Uy tín cơ quan công bố không thay thế kiểm tra chất lượng từng file.
 
 ## MnDOT · nguồn traffic hành chính

@@ -16,15 +16,17 @@ import pandas as pd
 from predict import load_model, prepare_features, predict_hours, read_hourly
 from src.features import CONFIG_C, HISTORY_FEATURES, add_history_features
 from src.preprocessing import fill_weather
+from . import weather as openweather
 
 ROOT = Path(__file__).resolve().parents[2]
 PROJECT = ROOT.parent
 FINAL = PROJECT / 'notebooks/validation/outputs/final_C30'
 ARTIFACT = FINAL / 'final_model.joblib'
 UCI = PROJECT / 'data/preprocessed/hourly_unfilled.csv'
+UCI_RAW = PROJECT / 'data/Metro_Interstate_Traffic_Volume.csv'
 MNDOT = PROJECT / 'data/external/mndot'
 TRAFFIC = MNDOT / 'prepared/atr301_westbound_post_uci_2018.csv'
-WEATHER = MNDOT / 'weather/open_meteo_era5_2018_region_hourly.csv'
+WEATHER = openweather.PREPARED
 MANIFEST = MNDOT / 'prepared/atr_2018_manifest.json'
 FIELDS = ['date_time', 'temp', 'rain_1h', 'snow_1h', 'clouds_all',
           'weather_main', 'is_holiday', 'traffic_volume']
@@ -33,10 +35,8 @@ UNVERIFIED = 'Đã có · chưa xác minh tương thích'
 ABSENT = 'Chưa có dữ liệu'
 BLOCKERS = {
     'time': 'Chưa xác minh CST cố định hay America/Chicago, DST và mốc khoảng đo weather.',
-    'snow': 'ERA5 snowfall (cm tuyết) chưa tương đương snow_1h (mm nước); không tự nhân 10.',
-    'labels': 'WMO chưa ánh xạ được đầy đủ 11 nhóm; không tự coi nhóm không suy ra được là 0.',
     'holiday': 'Chưa có lịch lễ/sự kiện ngoài CSV UCI và chính sách khác biệt được duyệt.',
-    'location': 'Weather là ô lưới khu vực; tọa độ weather gốc chưa được xác minh.',
+    'location': 'OpenWeather ở điểm khu vực 44.951424/−93.147145; chưa xác minh điểm weather gốc UCI.',
 }
 
 
@@ -86,6 +86,22 @@ def audited_bundle():
     return bundle
 
 
+def load_uci_sources():
+    """Expose the untouched raw CSV and the canonical unique-hour context.
+
+    Keep literal holiday ``None``. Duplicate raw timestamps are displayed, never
+    passed directly into history/inference. Split tags follow the locked 70/15/15.
+    """
+    raw = pd.read_csv(UCI_RAW, keep_default_na=False)
+    hourly = read_hourly(UCI)
+    hourly['source'] = 'UCI gốc · bảng theo giờ'
+    hourly['weather_source'] = 'UCI gốc'
+    positions = np.arange(len(hourly))
+    hourly['data_split'] = np.where(positions < len(hourly) * 70 // 100, 'Train',
+                                  np.where(positions < len(hourly) * 85 // 100, 'Validation', 'Test'))
+    return raw, hourly
+
+
 def load_sources():
     """Keep traffic wall time and weather UTC separate; do not guess a join."""
     uci = read_hourly(UCI)
@@ -95,7 +111,7 @@ def load_sources():
     context = pd.concat([uci[FIELDS], traffic], ignore_index=True).sort_values('date_time')
     context['source'] = np.where(context.date_time.le(uci.date_time.max()), 'UCI context', 'MnDOT')
     # Unknown external values intentionally remain NaN, not defaults or medians.
-    weather = pd.read_csv(WEATHER) if WEATHER.is_file() else pd.DataFrame()
+    weather = openweather.load()
     return context, traffic, weather, uci.date_time.max()
 
 
@@ -140,6 +156,41 @@ def quality_grid(hourly, start, end, bundle=None, compatible=False):
     return grid, counts
 
 
+def quality_view(grid, mode='synthetic'):
+    """Explain readiness in plain language without changing eligibility rules."""
+    rows = []
+    for at, row in grid.iterrows():
+        reasons = []
+        if not row.has_record:
+            state, reasons = 'Không có dữ liệu giờ này', ['Nguồn không ghi nhận giờ này; không tự điền số xe bằng 0.']
+        else:
+            if pd.isna(row.lag_24h):
+                reasons.append('Thiếu số xe đúng 24 giờ trước')
+            if pd.isna(row.lag_168h):
+                reasons.append('Thiếu số xe đúng 7 ngày trước')
+            if pd.isna(row.mean_24h):
+                reasons.append('Chưa đủ quan sát để tính trung bình 24 giờ trước (cần ít nhất 18 giờ)')
+            if mode == 'uci':
+                state = 'Xem dữ liệu UCI'
+                reasons.append('Giữ nguyên dữ liệu; dự đoán test được đọc từ kết quả đã lưu')
+            elif not row.has_history:
+                state = 'Thiếu lịch sử'
+            elif not row.compatible_weather:
+                state = 'Chờ xác minh nguồn'
+                reasons.append('Weather đã ghép xem trước; cần chốt thời gian và ngày lễ trước khi dự đoán')
+            elif row.input_ready:
+                state = 'Có thể dự đoán'
+                reasons.append('Đủ đầu vào sau xử lý')
+            else:
+                state = 'Còn thiếu đầu vào'
+                reasons.append('Chưa đủ biến hợp lệ để đưa vào mô hình')
+            if not row.has_target:
+                reasons.append('Chưa có số xe thực tế để tính sai số')
+        rows.append({'Giờ': at, 'Số xe trong giờ': row.traffic_volume,
+                     'Trạng thái': state, 'Giải thích': '; '.join(reasons)})
+    return pd.DataFrame(rows)
+
+
 def history_window(hourly, at):
     """Expose exactly the [t-24h,t) observations used for the rolling mean."""
     at = pd.Timestamp(at)
@@ -154,10 +205,20 @@ def weather_values(hourly, at, bundle, compatible):
     before = hourly.loc[hourly.date_time.le(at)].copy()
     original = before.set_index('date_time').loc[at, columns]
     filled = fill_weather(before, bundle['fill_statistics']).set_index('date_time').loc[at, columns] if compatible else original
-    return pd.DataFrame([{'Biến': col, 'Giá trị gốc': str(original[col]), 'Sau xử lý': str(filled[col]),
+    table = pd.DataFrame([{'Biến': col, 'Giá trị gốc': str(original[col]), 'Sau xử lý': str(filled[col]),
                           'Trạng thái': ('Chưa xác minh / còn thiếu' if not compatible or pd.isna(filled[col])
                                          else 'Điền theo quy tắc đã khóa' if pd.isna(original[col]) else 'Quan sát trực tiếp')}
                          for col in columns])
+    selected = before.set_index('date_time').loc[at]
+    if str(selected.get('weather_source', '')).startswith('OpenWeather'):
+        for col in openweather.VALUES:
+            status = selected.get(col + '_status', 'api_1h')
+            description = ('0 theo quy ước vắng hiện tượng · OpenWeather' if status == 'zero_by_provider_omission_rule'
+                           else 'Giá trị OpenWeather · ghép giờ theo giả định')
+            table.loc[table['Biến'].eq(col), 'Trạng thái'] = description if pd.notna(original[col]) else 'Chưa ghép được giờ weather'
+            if status == 'zero_by_provider_omission_rule':
+                table.loc[table['Biến'].eq(col), 'Giá trị gốc'] = 'API không trả trường hiện tượng'
+    return table
 
 
 def infer(hourly, times, bundle, compatible=False):
@@ -259,8 +320,12 @@ def audit(bundle=None, error=None):
     row('MnDOT trạm / hướng / tổng làn / giờ 1–24', VERIFIED if traffic_ok else UNVERIFIED, str(MANIFEST.relative_to(PROJECT)),
         json.dumps(manifest['selection']) + f'; giờ h → h−1; kiểm lại raw: {len(reconciled)} giờ; giao UCI: {int(exact.sum())}/{len(overlap)} khớp',
         'Kiểm DST và cờ chất lượng ngoài phần giao')
+    ow = openweather.load()
+    row('Weather OpenWeather / schema / provenance', VERIFIED,
+        str(WEATHER.relative_to(PROJECT)), f'{len(ow)} giờ UTC; K, mm/h, %; nhãn C30; cờ zero theo quy ước nguồn',
+        'Đã tích hợp xem trước và đối chiếu UCI; chưa chứng nhận cùng nguồn/thời gian')
     for key, message in BLOCKERS.items():
-        exists = WEATHER.exists() if key in ('snow', 'labels', 'location') else TRAFFIC.exists() if key == 'time' else False
+        exists = WEATHER.exists() if key == 'location' else TRAFFIC.exists() if key == 'time' else False
         row(key, UNVERIFIED if exists else ABSENT, 'data/external/mndot/weather/README.md; atr_2018_manifest.json', message,
             'Khóa dự đoán MnDOT; xem phương án trong demo_data_contract.md')
     row('Bảng giờ chuẩn hóa MnDOT', ABSENT, 'data/external/mndot/processed/hourly_demo.csv',

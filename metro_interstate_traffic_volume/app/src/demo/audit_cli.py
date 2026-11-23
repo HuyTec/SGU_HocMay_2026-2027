@@ -18,7 +18,7 @@ def main():
              '| ' + ' | '.join(columns) + ' |', '| ' + ' | '.join(['---'] * len(columns)) + ' |']
     for values in table.itertuples(index=False, name=None):
         lines.append('| ' + ' | '.join(str(v).replace('|', '\\|').replace('\n', ' ') for v in values) + ' |')
-    lines += ['', '## MnDOT sau UCI', '', f'Mốc cuối UCI: {uci_end}. Weather UTC chưa ghép: {len(weather)} giờ.', '',
+    lines += ['', '## MnDOT sau UCI', '', f'Mốc cuối UCI: {uci_end}. OpenWeather: {len(weather)} giờ UTC; app ghép xem trước theo giả định được hiển thị.', '',
               '| Chỉ tiêu | Số giờ |', '| --- | ---: |']
     lines += [f'| {key} | {value} |' for key, value in counts.items()]
     lines += ['', 'Nhóm thiếu có thể chồng lấn. Đủ history chưa đồng nghĩa đủ đầu vào C30.', '',

@@ -7,6 +7,42 @@ import streamlit as st
 from matplotlib.figure import Figure
 
 
+def weather_charts(comparison):
+    """Plot weather-source disagreement; never label it model prediction error."""
+    frame = comparison['rows']
+    st.subheader('Sai khác weather mới − cũ')
+    st.caption(f"Giả định: {comparison['policy']} · {comparison['n']:,} giờ có cả hai · "
+               f"nhãn trùng {comparison['label_equal']:,}/{comparison['n']:,}. "
+               'Khác biệt nguồn weather, không phải sai số dự đoán traffic hoặc bằng chứng nguồn nào đúng hơn.')
+    st.dataframe(comparison['summary'], hide_index=True, width='stretch')
+    if comparison['unresolved_dst_uci']:
+        st.caption(f"Bỏ khỏi đối chiếu {comparison['unresolved_dst_uci']} giờ UCI có UTC mơ hồ/không tồn tại.")
+    if frame.empty:
+        return
+    end = frame.date_time.max()
+    sample = frame.loc[frame.date_time.ge(end - pd.Timedelta(days=7))].set_index('date_time').sort_index()
+    sample = sample.reindex(pd.date_range(sample.index.min(), sample.index.max(), freq='h'))
+    figure = Figure(figsize=(12, 9), layout='constrained')
+    axes = figure.subplots(4, 2)
+    for i, (name, label) in enumerate([('temp', 'Nhiệt độ (K)'), ('rain_1h', 'Mưa (mm/h)'),
+                                      ('snow_1h', 'Tuyết (mm/h)'), ('clouds_all', 'Mây (%)')]):
+        ax, difference_ax = axes[i]
+        ax.plot(sample.index, sample[name + '_uci'], label='UCI', linewidth=1.1)
+        ax.plot(sample.index, sample[name + '_ow'], label='OpenWeather', linewidth=1.1, alpha=.8)
+        ax.set_ylabel(label)
+        ax.legend(loc='upper right', fontsize=8)
+        difference_ax.plot(sample.index, sample[name + '_difference'], color='#b45309', linewidth=1)
+        difference_ax.axhline(0, color='#64748b', linewidth=.6)
+        difference_ax.set_ylabel('OW − UCI')
+        for axis in [ax, difference_ax]:
+            axis.grid(alpha=.15)
+            axis.tick_params(axis='x', rotation=20, labelsize=8)
+    figure.suptitle('7 ngày cuối phần giao · giữ khoảng thiếu, không nối qua giờ vắng')
+    st.pyplot(figure)
+    st.download_button('Tải đối chiếu weather trên phần giao', frame.to_csv(index=False).encode('utf-8'),
+                       'openweather_uci_comparison.csv', 'text/csv')
+
+
 def lines_with_gaps(frame, y_title='Xe/giờ', height=300):
     """Use explicit segments to avoid connecting any missing hourly records."""
     rows = []

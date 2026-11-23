@@ -1,0 +1,1 @@
+Trên cùng 6,052 giờ test, baseline đạt MAE 261.907 xe/giờ, ensemble đạt 178.208 xe/giờ. Chênh MAE (baseline − ensemble) là 83.699 xe/giờ; mức giảm tương đối là 31.96% (số dương nghĩa là ensemble tốt hơn). Đây là đối chiếu mô tả bổ sung sau khi xem test; giữ nguyên mô hình đã khóa.

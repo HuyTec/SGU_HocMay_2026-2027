@@ -47,3 +47,7 @@ Năm notebook dưới đây từng được gắn nhãn RQ chính trong danh m�
 [validation_RQ_main_compare.ipynb](validation_RQ_main_compare.ipynb) là bản tổng hợp **lịch sử** của năm nguồn này, không phải bảng chốt mô hình cuối. Không xếp hạng chung A17/B71 với A12/B27 hoặc so trực tiếp kết quả 6.086 giờ với C30 trên 6.050 giờ. E05 thiếu predictions; E13/E15 lặp A/B và E18 đọc lại RF/baseline từ E17.
 
 Code đọc/kiểm tra lịch sử nằm ở [src/validation_main.py](../../src/validation_main.py), bảng và hình ở [outputs/main_rq](outputs/main_rq/). Các nguồn và kết quả cũ được giữ nguyên; việc phân loại lại cách trình bày không tạo thêm lần huấn luyện.
+
+### Baseline tham chiếu trên test
+
+Mục 6.1 trong `predict_C30.ipynb` bổ sung trung bình thứ–giờ học trên cùng 28.553 giờ fit và chấm cùng 6.052 giờ test của ensemble. Đây là đối chiếu mô tả bổ sung sau khi xem test, không chọn lại mô hình. Xem `outputs/final_C30/test_baseline_comparison.csv`, `test_baseline_predictions.csv` và `test_baseline_observations.md`. Kết quả test và artifact ensemble ban đầu được giữ nguyên.

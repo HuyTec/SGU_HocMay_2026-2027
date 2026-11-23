@@ -127,38 +127,73 @@ class DemoContractTests(unittest.TestCase):
                     self.assertNotIn(name, ['fit', 'fit_final', 'evaluate_test_once'], str(path))
 
 
-class StreamlitFlowTests(unittest.TestCase):
-    def test_six_tabs_guards_hour_and_source_invalidation_and_range(self):
-        from streamlit.testing.v1 import AppTest
-        app = AppTest.from_file(str(demo.ROOT / 'app.py'), default_timeout=60).run()
-        self.assertEqual(len(app.exception), 0)
-        self.assertEqual(len(app.tabs), 6)
-        self.assertTrue(app.button(key='predict').disabled)
-        self.assertTrue(app.button(key='evaluate').disabled)
-        app.button(key='compare_sources').click().run()
-        self.assertEqual(len(app.exception), 0)
-        self.assertIn('comparison_result', app.session_state)
-        app.button(key='saved_errors').click().run()
-        self.assertEqual(len(app.exception), 0)
-        app.selectbox(key='source').select('Tổng hợp · kiểm tra kỹ thuật').run()
-        self.assertEqual(len(app.exception), 0)
-        app.button(key='predict').click().run()
-        self.assertIn('prediction_result', app.session_state)
-        self.assertFalse(app.session_state['prediction_result'][1].empty)
-        app.selectbox(key='at').select(pd.Timestamp('2019-01-01')).run()
-        self.assertNotIn('prediction_result', app.session_state)
-        app.button(key='predict').click().run()
-        self.assertTrue(app.session_state['prediction_result'][1].empty)
-        app.button(key='evaluate').click().run()
-        self.assertEqual(len(app.exception), 0)
-        self.assertGreater(app.session_state['evaluation_result'][2]['n'], 0)
-        app.date_input(key='end_True').set_value(pd.Timestamp('2019-01-09').date()).run()
-        self.assertNotIn('evaluation_result', app.session_state)
-        app.selectbox(key='source').select('MnDOT 2018 · đang kiểm tra').run()
-        self.assertNotIn('prediction_result', app.session_state)
-        self.assertNotIn('evaluation_result', app.session_state)
-        self.assertTrue(app.button(key='predict').disabled)
-        self.assertEqual(len(app.exception), 0)
+# The legacy source-switching UI contract is replaced by test_presentation.py.
+
+
+class ReadabilityTests(unittest.TestCase):
+    def test_readable_status_separates_history_contract_and_missing_actual(self):
+        grid = pd.DataFrame({'has_record': [True, True, True, False],
+                             'has_target': [True, True, False, False],
+                             'has_history': [False, True, True, False],
+                             'compatible_weather': [True, False, True, True],
+                             'input_ready': [False, False, True, False],
+                             'traffic_volume': [2500, 2500, np.nan, np.nan],
+                             'lag_24h': [2000, 2000, 2000, np.nan],
+                             'lag_168h': [np.nan, 2200, 2200, np.nan],
+                             'mean_24h': [2300, 2300, 2300, np.nan]},
+                            index=pd.date_range('2019-01-01', periods=4, freq='h'))
+        view = demo.quality_view(grid)
+        self.assertEqual(list(view['Trạng thái']), ['Thiếu lịch sử', 'Chờ xác minh nguồn',
+                                                   'Có thể dự đoán', 'Không có dữ liệu giờ này'])
+        self.assertIn('7 ngày', view['Giải thích'].iloc[0])
+        self.assertIn('tính sai số', view['Giải thích'].iloc[2])
+        uci_view = demo.quality_view(grid.iloc[[2]], 'uci')
+        self.assertEqual(uci_view['Trạng thái'].iloc[0], 'Xem dữ liệu UCI')
+
+
+class OpenWeatherIntegrationTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        from app.src.demo import weather
+        cls.weather_module = weather
+        cls.weather = weather.load()
+        cls.context, cls.traffic, _, cls.end = demo.load_sources()
+
+    def test_preview_preserves_uci_targets_calendar_and_history(self):
+        w = self.weather_module
+        joined = w.attach_preview(self.context, self.weather, self.end, w.POLICIES[0])
+        old = self.context.date_time.le(self.end)
+        pd.testing.assert_frame_equal(joined.loc[old, demo.FIELDS], self.context.loc[old, demo.FIELDS])
+        for col in ['date_time', 'traffic_volume', 'is_holiday']:
+            pd.testing.assert_series_equal(joined[col], self.context[col])
+        for col in demo.HISTORY_FEATURES:
+            pd.testing.assert_series_equal(demo.add_history_features(joined)[col],
+                                           demo.add_history_features(self.context)[col])
+        external = joined.loc[~old]
+        self.assertEqual(len(external), 1608)
+        self.assertFalse(external[w.VALUES].isna().any().any())
+        self.assertTrue(external.is_holiday.isna().all())
+
+    def test_dst_does_not_guess_repeated_or_nonexistent_hour(self):
+        w = self.weather_module
+        stamps = pd.to_datetime(['2018-03-11 02:00', '2018-11-04 01:00', '2018-11-04 03:00'])
+        chicago = w.utc_for_wall(stamps, w.POLICIES[1])
+        self.assertTrue(chicago[:2].isna().all())
+        self.assertFalse(pd.isna(chicago[2]))
+        self.assertFalse(w.utc_for_wall(stamps, w.POLICIES[0]).isna().any())
+        joined = w.attach_preview(self.context, self.weather, self.end, w.POLICIES[1])
+        external = joined.loc[joined.date_time.gt(self.end)]
+        self.assertEqual(external.temp.isna().sum(), 1)
+
+    def test_weather_comparison_matches_values_without_traffic_target(self):
+        w = self.weather_module
+        comparison = w.compare(demo.read_hourly(demo.UCI), self.weather, w.POLICIES[0])
+        self.assertEqual(comparison['n'], 6533)
+        rows = comparison['rows']
+        self.assertNotIn('traffic_volume', rows)
+        self.assertTrue(np.allclose(rows.temp_difference, rows.temp_ow - rows.temp_uci))
+        self.assertAlmostEqual(comparison['summary'].set_index('Biến').loc['temp', 'Sai khác tuyệt đối TB'],
+                               rows.temp_difference.abs().mean())
 
 
 if __name__ == '__main__':

@@ -1,0 +1,41 @@
+{
+  "test_predictions.csv": {
+    "exists": true,
+    "bytes": 489471,
+    "sha256": "ba493be1cca765b24c2cb6c686a02c53fe00d3212326bff952de5390dab31b84",
+    "matches": true
+  },
+  "test_metrics.csv": {
+    "exists": true,
+    "bytes": 216,
+    "sha256": "5f834cd0089cf5cf204aaa1821d1d53875233e7138507087dcbf9d763e2e1835",
+    "matches": true
+  },
+  "final_model.joblib": {
+    "exists": true,
+    "bytes": 123703982,
+    "sha256": "315c46c42cef222b16eac4bf7b94cbfdd5e36ad796b36149ebcbb2cea5e581cc",
+    "matches": true
+  },
+  "uci": {
+    "raw_rows": 48204,
+    "hourly_rows": 40575,
+    "splits": {
+      "Train": 28402,
+      "Test": 6087,
+      "Validation": 6086
+    }
+  },
+  "metrics_recomputed_from_saved_only": {
+    "n": 6052,
+    "MAE": 178.2075577330074,
+    "RMSE": 295.52821130690944,
+    "R2": 0.9775868412691358
+  },
+  "protected_code": {
+    "predict.py": "0f7e43ed7d460a58d30154c51b90ffe5bbefbc1aa5a45b8ce983475cf6597773",
+    "src\\features.py": "1f796ab10ff81e09e3ba7be8c0a48c518700256e635b1fd2698196772256e6ed",
+    "src\\preprocessing.py": "6e22a82410d02eb678bdef0e7bf41e6fabc94baaa92d831fd55046d5ba0ec705",
+    "src\\feature_experiments.py": "0cde7d4432da770eb0ef896469c0efb69ab32c7ecd6284627fa1801d1d69a859"
+  }
+}
