@@ -1,0 +1,27 @@
+{
+  "endpoint": "https://api.openweathermap.org/data/4.0/onecall/timeline/1h",
+  "parameters_without_key": {
+    "lat": 44.951424,
+    "lon": -93.147145,
+    "start": 1539496800,
+    "units": "standard"
+  },
+  "retrieved_utc": "2026-11-23T03:07:36.593272+00:00",
+  "coordinate_status": "provisional regional point, not verified UCI weather location",
+  "requests": 1,
+  "rows": 20,
+  "pagination_not_followed": true,
+  "sha256_saved_response": "2f0fdfc4af8858a117e7edd396a6f08c6857227b612c1779deaa471c745d43ad",
+  "first_dt": 1539496800,
+  "last_dt": 1539565200,
+  "field_present_counts": {
+    "dt": 20,
+    "temp": 20,
+    "clouds": 20,
+    "weather": 20
+  },
+  "rain_1h_present": 1,
+  "snow_1h_present": 7,
+  "missing_precipitation_policy": "preserved absent; not filled with zero",
+  "usage": "source inspection only; no traffic join or model scoring"
+}

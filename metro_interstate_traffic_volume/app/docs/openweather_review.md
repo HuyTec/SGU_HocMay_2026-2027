@@ -1,5 +1,26 @@
 # Kiểm tra OpenWeather cho MnDOT / C30
 
+## Kết quả gọi API thật — 23/11/2026
+
+Sau khi người dùng kích hoạt One Call và cung cấp key, đã gọi thành công
+hai yêu cầu One Call 4.0 tại 44.951424/−93.147145 (điểm khu vực do người dùng chọn):
+
+| Khoảng UTC trả về | Số giờ | temp/clouds/weather | rain.1h có mặt | snow.1h có mặt |
+|---|---:|---:|---:|---:|
+| 01/11/2018 00:00–19:00 | 20 | 20/20 | 0 | 0 |
+| 14/10/2018 06:00–15/10/2018 01:00 | 20 | 20/20 | 1 | 7 |
+
+Mẫu thứ hai được chọn theo sự hiện diện tuyết trong ERA5 để kiểm tra khả năng
+biểu diễn snow.1h, không dựa trên sai số mô hình giao thông. Có trường tuyết thật
+trong phản hồi không chứng minh đã phủ đủ toàn giai đoạn hoặc tương đương UCI.
+Các trường vắng mặt được giữ nguyên, chưa điền 0, chưa ghép traffic/chạy mô hình.
+
+Phản hồi đã bỏ link phân trang chứa key và metadata nằm trong:
+`data/external/mndot/weather/openweather_probe/20261123T030709875537Z/` và
+`data/external/mndot/weather/openweather_probe/20261123T030736593350Z/`.
+Key chỉ được dùng trong môi trường tiến trình và xóa sau khi chạy, không lưu vào file dự án.
+Các ghi nhận chưa có key/lỗi 401 bên dưới mô tả trạng thái trước lần gọi thành công này.
+
 ## Thử One Call — cập nhật 23/11/2026
 
 Đã kiểm tra biến môi trường có tên OpenWeather/OWM/WEATHER_API và các đường dẫn
